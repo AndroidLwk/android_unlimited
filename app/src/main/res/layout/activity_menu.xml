@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
+           <FrameLayout
+               android:id="@+id/main_menu_frament"
+               android:layout_width="match_parent"
+               android:overScrollMode="never"
+               android:background="@color/whitesmoke"
+               android:layout_height="0dp"
+               android:layout_weight="1"/>
+           <RadioGroup
+               android:id="@+id/main_menu_radiogroup"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/dp_50"
+               android:background="@color/white"
+               android:orientation="horizontal">
+               <com.wuxiantao.wxt.ui.custom.radiobutton.SiteImgRadioButton
+                   android:id="@+id/menu_tab_taobao"
+                   app:drawableTop="@drawable/main_menu_taobao_selector"
+                   style="@style/main_tab_bottom"
+                   android:text="@string/main_tab_tao_bao"/>
+               <com.wuxiantao.wxt.ui.custom.radiobutton.SiteImgRadioButton
+                   android:id="@+id/menu_tab_high_area"
+                   app:drawableTop="@drawable/main_menu_quality_selector"
+                   style="@style/main_tab_bottom"
+                   android:text="@string/main_tab_member_center" />
+               <com.wuxiantao.wxt.ui.custom.radiobutton.SiteImgRadioButton
+                   android:id="@+id/menu_tab_red_envelope"
+                   app:drawableTop="@drawable/main_menu_deposit_selector"
+                   style="@style/main_tab_bottom"
+                   android:visibility="visible"
+                   android:text="@string/main_tab_deposit" />
+               <com.wuxiantao.wxt.ui.custom.radiobutton.SiteImgRadioButton
+                   android:id="@+id/menu_tab_income_hall"
+                   app:drawableTop="@drawable/main_menu_game_selector"
+                   style="@style/main_tab_bottom"
+                   android:checked="false"
+                   android:visibility="visible"
+                   android:text="@string/main_tab_income_hall" />
+               <com.wuxiantao.wxt.ui.custom.radiobutton.SiteImgRadioButton
+                   android:id="@+id/menu_tab_my_deposit"
+                   app:drawableTop="@drawable/main_menu_mine_selector"
+                   style="@style/main_tab_bottom"
+                   android:text="@string/main_tab_mine" />
+           </RadioGroup>
+       </LinearLayout>
+       <ImageView
+           android:id="@+id/menu_tab_high_area_checked_img"
+           android:layout_width="@dimen/dp_40"
+           android:layout_height="@dimen/dp_48"
+           android:layout_alignParentBottom="true"
+           android:layout_centerHorizontal="true"
+           android:layout_marginBottom="@dimen/dp_23"
+           android:scaleType="centerCrop"
+           android:visibility="invisible"
+           android:src="@drawable/main_tab_red_envelope"/>
+
+       <ImageView
+           android:id="@+id/menu_tab_game_img"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentBottom="true"
+           android:layout_alignParentRight="true"
+           android:layout_marginBottom="@dimen/dp_30"
+           android:scaleType="centerCrop"
+           android:visibility="visible"
+           android:src="@drawable/game_dividend_img"
+           android:layout_alignParentEnd="true"
+           android:layout_marginRight="@dimen/dp_43"
+           android:layout_marginEnd="@dimen/dp_43" />
+   </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

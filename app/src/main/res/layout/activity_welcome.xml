@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fdfefa">
+
+    <!-- 2.开屏广告容器区域：-->
+    <!-- 注意：该区域宽度至少200dp，高度至少150dp。在本示例中没有写死adsRl的高度值，是因为第1部分的app_logo区域是一个高度很小的图片。 -->
+    <FrameLayout
+        android:id="@+id/welcome_adsRl"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
+    <!--预设开屏图片区域 在onADPresent回调中再把这个图片移除-->
+    <ImageView
+        android:id="@+id/welcome_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/welcome_img"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

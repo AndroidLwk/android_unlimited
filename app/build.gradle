@@ -1,0 +1,212 @@
+apply plugin: 'com.android.application'
+
+static def buildTime() {
+    return new Date().format("yyMMdd",TimeZone.getTimeZone("UTC"))
+}
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    defaultConfig {
+        applicationId rootProject.ext.android["applicationId"]
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner rootProject.ext.android["runner"]
+        multiDexEnabled true
+        // Specifies the ABI configurations of your native
+        // libraries Gradle should build and package with your APK.
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
+    }
+
+
+    signingConfigs {
+        release {
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file("local.properties").newDataInputStream())
+            storeFile file(properties.getProperty("keystore.path"))
+            storePassword properties.getProperty("keystore.password")
+            keyAlias = properties.getProperty("keystore.alias")
+            keyPassword properties.getProperty("keystore.alias_password")
+        }
+    }
+
+   // 打包输出apk文件名称
+    android.applicationVariants.all {
+        variant ->
+        // 仅修改正式包
+        if ("release" == variant.buildType.name) {
+            variant.outputs.all {
+                outputFileName = "${variant.name}_${defaultConfig.versionName}_${buildTime()}.apk"
+            }
+        }
+    }
+
+    repositories{
+        flatDir{
+            dirs 'libs'
+        }
+    }
+
+    buildTypes {
+        release {
+            debuggable rootProject.ext.release["debuggable"]
+            minifyEnabled rootProject.ext.release["minifyEnabled"]
+            shrinkResources rootProject.ext.release["shrinkResources"]
+            zipAlignEnabled rootProject.ext.release["zipAlignEnabled"]
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //打包时间
+            resValue "string", "build_time", buildTime()
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+
+    lintOptions {
+        checkReleaseBuilds rootProject.ext.lintOptions["checkReleaseBuilds"]
+        abortOnError rootProject.ext.lintOptions["abortOnError"]
+    }
+    //支持Java8特性
+    compileOptions {
+        sourceCompatibility = rootProject.ext.compileOptions["sourceCompatibility"]
+        targetCompatibility = rootProject.ext.compileOptions["targetCompatibility"]
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation rootProject.ext.dependencies["appcompat"]
+    implementation rootProject.ext.dependencies["v4"]
+    implementation rootProject.ext.dependencies["constraint-layout"]
+    testImplementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation rootProject.ext.dependencies["runner"]
+    androidTestImplementation rootProject.ext.dependencies["espresso"]
+    implementation rootProject.ext.dependencies["multidex"]
+
+    //集成微信sdk
+    implementation rootProject.ext.dependencies["wechat"]
+
+    //recyclerview
+    implementation rootProject.ext.dependencies["recyclerview"]
+
+    // xutils3 工具库
+    implementation rootProject.ext.dependencies["xutils"]
+
+    //gson解析
+    implementation rootProject.ext.dependencies["gson"]
+    implementation rootProject.ext.dependencies["retrofit"]
+
+    //retrofit2.0
+    implementation rootProject.ext.dependencies["adapter-rxjava2"]
+
+    //配合Rxjava 使用
+    implementation rootProject.ext.dependencies["converter-gson"]
+
+    //ConverterFactory的Gson:
+    implementation rootProject.ext.dependencies["rxjava"]
+
+    //rxjava
+    implementation rootProject.ext.dependencies["rxandroid"]
+
+    //日志拦截器
+    implementation rootProject.ext.dependencies["logging-interceptor"]
+
+    //防止Rxjava引发的内存泄漏
+    implementation rootProject.ext.dependencies["rxlifecycle"]
+
+    //图片加载框架
+    implementation rootProject.ext.dependencies["glide"]
+    implementation rootProject.ext.dependencies["glide-compiler"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+
+    //高斯模糊
+    implementation rootProject.ext.dependencies["transformations"]
+
+    // SmartRefreshLayout
+    implementation rootProject.ext.dependencies["smartRefreshLayout"]
+    implementation rootProject.ext.dependencies["smartRefreshHeader"]
+    implementation files('libs/alipaySdk-20180601.jar')
+
+    //cardview卡片布局
+    implementation rootProject.ext.dependencies["cardview"]
+
+    //banner
+    implementation rootProject.ext.dependencies["banner"]
+
+    //citypickerview
+    implementation rootProject.ext.dependencies["citypickerview"]
+
+    //labelsView
+    implementation rootProject.ext.dependencies["labelsView"]
+
+    //materialedittext
+    implementation rootProject.ext.dependencies["materialedittext"]
+
+    //design
+    implementation rootProject.ext.dependencies["design"]
+
+    //eventbus
+    implementation rootProject.ext.dependencies["eventbus"]
+
+    //photoView
+    implementation rootProject.ext.dependencies["photoView"]
+
+    //MPAndroidChart
+    implementation rootProject.ext.dependencies["MPAndroidChart"]
+
+    //阿里百川
+    //基础安全组件（必选）
+    implementation rootProject.ext.dependencies["securityguardaar"]
+    implementation rootProject.ext.dependencies["securitybodyaar"]
+    implementation rootProject.ext.dependencies["avmpaar"]
+    implementation rootProject.ext.dependencies["sgmiddletieraar"]
+    //Mtop网关
+    implementation rootProject.ext.dependencies["mtopsdk_allinone_open"]
+    ////登录授权（必选）
+    implementation rootProject.ext.dependencies["alibabauth_core"]
+    implementation rootProject.ext.dependencies["alibabauth_ui"]
+    implementation rootProject.ext.dependencies["alibabauth_ext"]
+    //applink
+    implementation rootProject.ext.dependencies["alibc_link_partner"]
+    //ut（jar包远端依赖）
+    implementation rootProject.ext.dependencies["utdid4all"]
+    implementation rootProject.ext.dependencies["monitor"]
+    //基础电商组件（必选）
+    implementation rootProject.ext.dependencies["alibc_trade_common"]
+    implementation rootProject.ext.dependencies["alibc_trade_biz"]
+    implementation rootProject.ext.dependencies["alibc_trade_sdk"]
+    //fastjson
+    implementation rootProject.ext.dependencies["fastjson"]
+
+    //腾讯x5浏览器
+    implementation files('libs/tbs_sdk_thirdapp_v3.6.0.jar')
+
+    //textdrawable
+    implementation rootProject.ext.dependencies["textdrawable"]
+    //subsampling
+    implementation rootProject.ext.dependencies["subsampling"]
+
+    //穿山甲广告sdk
+    implementation (name: 'open_ad_sdk', ext: 'aar')
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
+    //云客服系统
+    implementation project(':kf5sdkModule')
+
+    //common-java8
+    implementation rootProject.ext.dependencies["common-java8"]
+
+    //腾讯bug管理平台
+    implementation rootProject.ext.dependencies["crashreport"]
+    implementation rootProject.ext.dependencies["nativecrashreport"]
+
+    implementation project(':sharedpreferences_library')
+
+    //跑马灯
+    implementation rootProject.ext.dependencies["marqueeView"]
+}

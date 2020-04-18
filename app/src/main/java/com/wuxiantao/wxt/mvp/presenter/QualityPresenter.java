@@ -1,0 +1,138 @@
+package com.wuxiantao.wxt.mvp.presenter;
+
+import com.wuxiantao.wxt.R;
+import com.wuxiantao.wxt.bean.ActiveStatusBean;
+import com.wuxiantao.wxt.bean.AlipayBean;
+import com.wuxiantao.wxt.bean.VipStatusInfoBean;
+import com.wuxiantao.wxt.bean.WeChatPayBean;
+import com.wuxiantao.wxt.mvp.banner.BaseBannerPresenter;
+import com.wuxiantao.wxt.mvp.contract.QualityContract;
+import com.wuxiantao.wxt.mvp.model.ConfirmOrderModel;
+import com.wuxiantao.wxt.mvp.model.QualityModel;
+import com.wuxiantao.wxt.net.base.BaseObserver;
+
+import java.util.List;
+import java.util.Map;
+
+import static com.wuxiantao.wxt.config.Constant.RESOURCES;
+
+/**
+ * Company:成都可信网络科技有限责任公司
+ * FileName:QualityPresenter
+ * Author:android
+ * Mail:2898682029@qq.com
+ * Date:19-7-12 下午3:44
+ * Description:${DESCRIPTION}
+ */
+public class QualityPresenter extends BaseBannerPresenter<QualityContract.IQualityView> implements QualityContract.IQualityPresenter {
+
+    private QualityContract.IQualityView view;
+    private QualityModel model = new QualityModel();
+    private ConfirmOrderModel orderModel = new ConfirmOrderModel();
+
+    @Override
+    public void gainBanner(int type) {
+        super.gainBanner(model,type);
+    }
+
+    @Override
+    public void isActiveStatus(String token) {
+        if (view == null){
+            view = getMvpView();
+        }
+        BaseObserver<ActiveStatusBean> observer = new BaseObserver<ActiveStatusBean>() {
+            @Override
+            public void onSuccess(ActiveStatusBean bean) {
+                view.isActiveStatusSuccess(bean);
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.isActiveStatusFailure(errorMsg);
+            }
+        };
+        model.isActiveStatus(observer,token);
+    }
+
+    @Override
+    public void getVipStatusInfo(String token) {
+        if (view == null){
+            view = getMvpView();
+        }
+        BaseObserver<VipStatusInfoBean> observer = new BaseObserver<VipStatusInfoBean>() {
+            @Override
+            public void onSuccess(VipStatusInfoBean bean) {
+                view.getVipStatusInfoSuccess(bean);
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.getVipStatusInfoFailure(errorMsg);
+            }
+        };
+        model.getVipStatusInfo(observer,token);
+    }
+
+
+    @Override
+    public void onOrderCreate(Map<String, Object> parameters, int payType) {
+        //支付宝
+         if (payType == 1){
+             orderModel.onOrderCreateAlipay(createAlipayObserver(),parameters);
+         }else {
+             //微信
+             orderModel.onOrderCreateWeChat(createWeChatObserver(),parameters);
+         }
+    }
+
+
+    private BaseObserver createWeChatObserver(){
+        BaseObserver<WeChatPayBean> observer = new BaseObserver<WeChatPayBean>(view) {
+            @Override
+            public void onSuccess(WeChatPayBean bean) {
+                view.onWeChatPay(bean);
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.onOrderCreateFailure(errorMsg);
+            }
+        };
+        return observer;
+    }
+
+
+    private BaseObserver createAlipayObserver(){
+        BaseObserver<AlipayBean> observer = new BaseObserver<AlipayBean>(view) {
+            @Override
+            public void onSuccess(AlipayBean bean) {
+                view.onAliPay(bean.getOrder_id(),bean.getAlipay_message());
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.onOrderCreateFailure(errorMsg);
+            }
+        };
+        return observer;
+    }
+
+    @Override
+    public void checkOrderStatus(String token, String order_no) {
+        if (view == null){
+            view = getMvpView();
+        }
+        BaseObserver<List> observer = new BaseObserver<List>() {
+            @Override
+            public void onSuccess(List s) {
+                view.onOrderPaySuccess(RESOURCES.getString(R.string.pay_success));
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.onOrderPayFailure(errorMsg);
+            }
+        };
+        orderModel.checkOrderStatus(observer,token,order_no);
+    }
+}

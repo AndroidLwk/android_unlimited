@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="main_taobao_featured_title">
+        <item>红包大厅</item>
+        <item>游戏分红</item>
+        <item>推广赚钱</item>
+        <item>会员中心</item>
+        <item>0元商品</item>
+    </string-array>
+
+
+    <string-array name="main_taobao_featured_icon">
+        <item>@drawable/main_item_red_envelope</item>
+        <item>@drawable/main_item_game</item>
+        <item>@drawable/main_item_invite_icon</item>
+        <item>@drawable/main_item_favorites</item>
+        <item>@drawable/main_item_zero</item>
+    </string-array>
+
+
+
+    <string-array name="server_protocol_title">
+        <item>用户协议</item>
+        <item>隐私政策</item>
+    </string-array>
+
+
+    <string-array name="main_red_menu_icon">
+        <item>@drawable/main_red_play_game</item>
+        <item>@drawable/main_red_invite_friend</item>
+        <item>@drawable/main_red_open_member</item>
+        <item>@drawable/main_red_buy_shopping</item>
+        <item>@drawable/main_red_experience_project</item>
+    </string-array>
+    <string-array name="main_red_menu_title">
+        <item>游戏升级奖励红包机现金</item>
+        <item>邀请好友奖励红包机现金</item>
+        <item>开通会员增加金币产出速度</item>
+        <item>自营商品奖励金币</item>
+        <item>体验全网最新项目</item>
+    </string-array>
+    <string-array name="main_red_menu_content">
+        <item>每升15级奖励20红包现金</item>
+        <item>每邀请一位新用户奖励20红包现金</item>
+        <item>开通会员金币产出速度翻倍</item>
+        <item>购买自营商品奖励金币哦</item>
+        <item>获得海量金币</item>
+    </string-array>
+    <string-array name="main_red_menu_text">
+        <item>去升级</item>
+        <item>去邀请</item>
+        <item>去开通</item>
+        <item>去购物</item>
+        <item>去体验</item>
+    </string-array>
+
+    <string-array name="lottery_turntable_title">
+        <item>红包3元</item>
+        <item>抽奖券1张</item>
+        <item>银钥匙1把</item>
+        <item>红包5元</item>
+        <item>开始\n抽奖</item>
+        <item>铜钥匙1把</item>
+        <item>金钥匙1把</item>
+        <item>红包15元</item>
+        <item>铜钥匙2把</item>
+    </string-array>
+
+    <string-array name="order_status_title">
+        <item>全部订单</item>
+        <item>验证中</item>
+        <item>验证成功</item>
+        <item>已失效</item>
+    </string-array>
+
+    <string-array name="quality_discount_title">
+        <item>今日特卖</item>
+        <item>明日预告</item>
+    </string-array>
+
+    <string-array name="my_information_title1">
+        <item>头像</item>
+        <item>用户ID</item>
+        <item>昵称</item>
+        <item>手机号</item>
+        <item>支付宝</item>
+        <item>微信号</item>
+        <item>收货地址</item>
+
+        <item>登陆密码</item>
+
+        <item>淘宝授权</item>
+        <item>关于无限淘</item>
+    </string-array>
+
+    <string-array name="my_information_title2">
+        <item>头像</item>
+        <item>用户ID</item>
+        <item>昵称</item>
+        <item>手机号</item>
+        <item>支付宝</item>
+        <item>微信号</item>
+        <item>收货地址</item>
+
+        <item>淘宝授权</item>
+        <item>关于无限淘</item>
+    </string-array>
+
+    <string-array name="leader_board_title">
+        <item>昨日收益榜</item>
+        <item>累计收益榜</item>
+    </string-array>
+
+
+
+    <string-array name="lottery_winning_list_title">
+        <item>铜钥匙</item>
+        <item>银钥匙</item>
+        <item>金钥匙</item>
+    </string-array>
+
+    <string-array name="mine_fansi_title">
+        <item>潜在好友</item>
+        <item>直属好友</item>
+        <item>间接好友</item>
+    </string-array>
+
+    <string-array name="recording_title">
+        <item>时长记录</item>
+        <item>上限记录</item>
+    </string-array>
+
+    <string-array name="all_order_title">
+        <item>淘宝订单</item>
+        <item>自营订单</item>
+    </string-array>
+
+    <string-array name="share_title">
+        <item>微信好友</item>
+        <item>朋友圈</item>
+    </string-array>
+
+    <string-array name="withdraw_title">
+        <item>支付宝</item>
+        <item>微信</item>
+    </string-array>
+
+    <string-array name="hand_value_rule_grade">
+        <item>x0</item>
+        <item>x1</item>
+        <item>x2</item>
+        <item>x3</item>
+        <item>x4</item>
+        <item>x4</item>
+    </string-array>
+
+    <string-array name="hand_value_rule_title">
+        <item>手气极差</item>
+        <item>有点手气</item>
+        <item>手气较好</item>
+        <item>手气极好</item>
+        <item>手气巨好</item>
+        <item>手气爆棚</item>
+    </string-array>
+
+    <string-array name="hand_value_rule_content">
+        <item>只能开到芝麻一样小的红包。</item>
+        <item>能开到普通额度红包。</item>
+        <item>能开到较大额度红包。</item>
+        <item>能开到大额度红包。</item>
+        <item>能开到巨大额度的红包。</item>
+        <item>能开到超大额度的红包。</item>
+    </string-array>
+
+    <string-array name="commodity_info_title">
+        <item>图文详情</item>
+        <item>了解VIP权益</item>
+    </string-array>
+
+    <string-array name="share_them_rule_title">
+        <item>好友通过你的二维码下载app,并在24小时内登录无限淘app领取新人红包,则算邀请成功;</item>
+        <item>邀请成功的好友将成为你的好友;</item>
+        <item>你成为创客后，你的好友通过无限淘网购或分享商品每成交一单，你可以获得一定存款奖励;</item>
+        <item>禁止通过作弊手段进行虚假邀请注册骗取奖励，如有发现，将取消其奖励并酌情处罚;</item>
+        <item>本活动最终解释权归无限淘所有。</item>
+    </string-array>
+
+
+    <string-array name="more_income_icon">
+        <item>@drawable/interest_rate_help</item>
+        <item>@drawable/interest_rate_share</item>
+        <item>@drawable/interest_rate_vip</item>
+        <item>@drawable/interest_rate_shopping</item>
+    </string-array>
+    <string-array name="more_income_title">
+        <item>邀请好友</item>
+        <item>游戏分红</item>
+        <item>升级会员</item>
+        <item>购买商品</item>
+    </string-array>
+    <string-array name="more_income_msg">
+        <item>邀请好友扫描你的邀请二维码可以获得一定数量的红包</item>
+        <item>游戏等级达到150级，永久享受每日分红300+</item>
+        <item>成为会员金币打造速度翻倍，购买商品金币奖励更多哦</item>
+        <item>购买商品可以获得金币哦，快来购买</item>
+    </string-array>
+    <string-array name="more_income_text">
+        <item>邀请</item>
+        <item>分红</item>
+        <item>升级</item>
+        <item>购物</item>
+    </string-array>
+
+
+
+
+    <string-array name="item_daily_task_title">
+        <item>每日签到</item>
+        <item>每日一单</item>
+        <item>邀请5名好友</item>
+        <item>在线30分钟</item>
+        <item>广告贡献</item>
+    </string-array>
+</resources>

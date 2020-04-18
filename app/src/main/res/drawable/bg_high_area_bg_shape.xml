@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--高佣/0元购 标签背景shape-->
+    <corners
+        android:topLeftRadius="@dimen/dp_2"
+        android:bottomLeftRadius="@dimen/dp_2"
+        android:topRightRadius="@dimen/dp_2"
+        android:bottomRightRadius="@dimen/dp_10"/>
+
+    <gradient
+        android:startColor="#E14F2E"
+        android:centerColor="#ECA62D"
+        android:angle="0"/>
+
+</shape>

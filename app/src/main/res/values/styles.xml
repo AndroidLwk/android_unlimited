@@ -1,0 +1,320 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--标题栏颜色-->
+        <item name="colorPrimary">@color/whitesmoke</item>
+        <!--去除系统自带标题栏-->
+        <item name="windowNoTitle">true</item>
+        <!--状态栏的颜色-->
+        <!--<item name="colorPrimaryDark">@color/whitesmoke</item>-->
+        <item name="colorAccent">@color/whitesmoke</item>
+    </style>
+
+    <style name="AppTheme.No">
+        <!--去掉标题栏-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--API最少19-->
+        <!--状态栏透明色-->
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/alibc_transparent</item>
+    </style>
+
+
+    <style name="GameThem">
+        <!--去掉标题栏-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--API最少19-->
+        <!--状态栏透明色-->
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/alibc_transparent</item>
+    </style>
+
+
+    <!--欢迎界面主题-->
+    <style name="WelcomeThem" parent="AppTheme">
+        <!--去掉标题栏-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <!--API最少19-->
+        <!--状态栏透明色-->
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
+        <item name="android:windowBackground">@mipmap/welcome_img</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/alibc_transparent
+        </item>
+    </style>
+
+    <!--全屏-->
+    <style name="AppTheme.FullScreen" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AppTheme.NoBar">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="EditTextUnderline" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/grey</item>
+        <item name="colorControlActivated">@color/black</item>
+    </style>
+
+    <!--淘宝登陆界面主题-->
+    <style name="AlibcLoginTheme" parent="android:Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+
+    <!--Dialog Them-->
+    <style name="custom_dialog" parent="@android:style/Theme.Dialog">
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 遮罩层 -->
+        <item name="android:backgroundDimAmount">0.5</item>
+    </style>
+
+
+    <!--Activity Dialog-->
+    <style name="Dialog_Fullscreen" parent="@style/Theme.AppCompat.Dialog">
+        <item name="android:windowFullscreen">true</item>
+        <!--设置dialog的背景-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--设置Dialog的windowFrame框为无-->
+        <item name="android:windowFrame">@null</item>
+        <!--设置无标题-->
+        <item name="windowNoTitle">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否半透明-->
+        <item name="android:windowIsTranslucent">false</item>
+        <!--设置窗口内容不覆盖-->
+        <item name="android:windowContentOverlay">@null</item>
+        <!--设置动画，在这里使用让它继承系统的Animation.Dialog-->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <!--背景是否模糊显示-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+
+    <!--wx theme-->
+    <style name="WX_theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 设置启动背景透明 -->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowDisablePreview">true</item>
+        <!-- 设置启动不要Title -->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!--PopupWindow的弹出和消失动画 底部弹出-->
+    <style name="popup_window_anim">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+    <!--PopupWindow的弹出和消失动画 底部弹出-->
+    <style name="popupwindow_anim">
+        <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit_anim</item>
+    </style>
+    <!--LoadingDialog的弹出和消失动画 -->
+    <style name="loading_dialog_anim">
+        <item name="android:windowEnterAnimation">@anim/pop_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_gone</item>
+    </style>
+
+
+    <!--主菜单tab-->
+    <style name="main_tab_bottom">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:textColor">@drawable/main_tab_text_color</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">#00000000</item>
+        <item name="android:paddingTop">@dimen/dp_5</item>
+        <item name="android:layout_marginTop">1px</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="drawableSize">@dimen/dp_22</item>
+        <item name="android:drawablePadding">@dimen/dp_1</item>
+
+    </style>
+
+    <!--排行榜tab -->
+    <style name="leaderboard_tab_top">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/sp_17</item>
+        <item name="android:textColor">@drawable/leaderboared_tab_text_color</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/bg_interest_leader_selector</item>
+    </style>
+
+    <!--专属好友/普通好友tab -->
+    <style name="deposit_super_man_tab">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="android:textColor">@drawable/deposit_tab_text_color</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/bg_deposit_tab_selector</item>
+    </style>
+
+    <!--所有奖品/钥匙 -->
+    <style name="lottery_winning_tab">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="android:textColor">@drawable/deposit_tab_text_color</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/bg_winning_tab_selector</item>
+    </style>
+
+
+    <!--上限记录tab -->
+    <style name="recording_tab_top">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/sp_17</item>
+        <item name="android:textColor">@drawable/leaderboared_tab_text_color</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="softRadioButton_style">
+        <item name="textSize">@dimen/sp_15</item>
+        <item name="textColorChecked">#FF3700</item>
+        <item name="textColor">#232323</item>
+        <item name="upImage">@mipmap/goods_detail_sort_up</item>
+        <item name="downImage">@mipmap/goods_detail_sort_down</item>
+        <item name="upImageChecked">@mipmap/goods_detail_sort_up_choosed</item>
+        <item name="downImageChecked">@mipmap/goods_detail_sort_down_choosed</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="search_softRadioButton_style">
+        <item name="textSize">@dimen/sp_15</item>
+        <item name="textColorChecked">#FF3700</item>
+        <item name="textColor">#232323</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!--红色线条-->
+    <style name="red_line_style">
+        <item name="android:layout_width">@dimen/dp_3</item>
+        <item name="android:layout_height">@dimen/dp_14</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@color/red</item>
+    </style>
+
+    <!--提现说明-->
+    <style name="withdraw_description_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:layout_marginLeft">@dimen/dp_10</item>
+        <item name="android:layout_marginTop">@dimen/dp_3</item>
+        <item name="android:textColor">#858585</item>
+    </style>
+
+    <!--玩法img style-->
+    <style name="play_img_style">
+        <item name="android:layout_width">@dimen/dp_44</item>
+        <item name="android:layout_height">@dimen/dp_50</item>
+        <item name="android:layout_marginLeft">@dimen/dp_3</item>
+        <item name="android:layout_marginStart">@dimen/dp_3</item>
+    </style>
+    <!--玩法img style-->
+    <style name="play_right_arrow_style">
+        <item name="android:layout_width">@dimen/dp_31</item>
+        <item name="android:layout_height">@dimen/dp_21</item>
+        <item name="android:layout_marginLeft">@dimen/dp_3</item>
+        <item name="android:layout_marginStart">@dimen/dp_3</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:src">@mipmap/right_arrow</item>
+    </style>
+    <!--玩法text style-->
+    <style name="play_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#FF4E4E</item>
+        <item name="android:textSize">@dimen/sp_10</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:maxWidth">@dimen/dp_50</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!--玩法img style-->
+    <style name="divided_dragon_synthesis_style">
+        <item name="android:layout_width">@dimen/dp_56</item>
+        <item name="android:layout_height">@dimen/dp_71</item>
+        <item name="android:layout_marginLeft">@dimen/dp_10</item>
+        <item name="android:layout_marginStart">@dimen/dp_10</item>
+    </style>
+
+    <!--列表Driver line style-->
+    <style name="list_line_driver">
+        <item name="android:layout_width">@dimen/dp_340</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:background">#F4F4F4</item>
+    </style>
+
+    <!--自定义插屏广告 dialog背景全透明无边框theme -->
+    <style name="native_insert_dialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dp_255"
+    android:layout_height="@dimen/dp_36"
+    android:id="@+id/xc_dropdown_layout"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/bg_juxing_gree_border" >
+
+    <TextView
+        android:id="@+id/xc_dropdown_layout_title"
+        android:layout_width="@dimen/dp_320"
+        android:layout_height="@dimen/dp_50"
+        android:paddingLeft="@dimen/dp_10"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/sp_15"
+        android:maxLines="1"
+        android:maxEms="12"
+        android:ellipsize="end"
+        android:textColor="#575757"
+        android:paddingStart="@dimen/dp_10"
+        tools:ignore="RtlSymmetry" />
+    <ImageView
+        android:id="@+id/xc_dropdown_layout_img"
+        android:layout_width="@dimen/dp_15"
+        android:layout_height="@dimen/dp_15"
+        android:src="@mipmap/goods_detail_sort_up"
+        android:scaleType="centerCrop"
+        android:padding="@dimen/dp_3"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_5"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dp_5" />
+</RelativeLayout>

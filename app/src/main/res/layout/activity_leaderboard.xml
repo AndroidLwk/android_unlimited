@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <include
+        layout="@layout/base_title" />
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:background="@drawable/base_title_background"
+            android:fitsSystemWindows="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_120"
+                app:layout_scrollFlags="scroll"
+                android:fitsSystemWindows="true"
+                android:background="@drawable/base_title_background">
+                <ImageView
+                    android:layout_width="@dimen/dp_105"
+                    android:layout_height="@dimen/dp_35"
+                    android:layout_centerInParent="true"
+                    android:background="@mipmap/leader_board_text_img"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/leader_board_red_pg"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+            <RadioGroup
+                android:id="@+id/leadderboard_rg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/leadderboard_interest"
+                    android:text="@string/interest"
+                    style="@style/leaderboard_tab_top"
+                    android:checked="true" />
+                <RadioButton
+                    android:id="@+id/leadderboard_deposit"
+                    style="@style/leaderboard_tab_top"
+                    android:text="@string/deposit"/>
+            </RadioGroup>
+        </android.support.design.widget.AppBarLayout>
+        <com.wuxiantao.wxt.ui.custom.viewpager.LazyViewPager
+            android:id="@+id/leader_board_vp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:overScrollMode="never"/>
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</LinearLayout>

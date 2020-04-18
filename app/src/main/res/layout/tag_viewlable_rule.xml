@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp_20"
+    android:layout_height="@dimen/dp_20"
+    android:background="@drawable/yuan_solid_orange_dot"
+    android:id="@+id/tag_viewlable_rule_bg">
+
+    <TextView
+        android:id="@+id/tag_viewlable_rule_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/white"
+        android:text="@string/_zero"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

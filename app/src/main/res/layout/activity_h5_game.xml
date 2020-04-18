@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/h5_game_progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_3"
+        android:max="100"
+        android:layout_gravity="center_horizontal"
+        android:progressDrawable="@drawable/bg_instruct_progressbar"
+        android:visibility="visible"
+        style="?android:attr/progressBarStyleHorizontal"/>
+    <com.wuxiantao.wxt.ui.custom.webview.ScrollWebView
+        android:id="@+id/h5_game_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"/>
+</LinearLayout>

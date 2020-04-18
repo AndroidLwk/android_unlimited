@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"/>
+    <RelativeLayout
+        android:layout_width="@dimen/dp_313"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_322"
+            android:scaleType="centerInside"
+            android:src="@mipmap/red_bag_process"/>
+        <ImageView
+            android:id="@+id/popup_arrival_preocess_close"
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_60"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_15"
+            android:tint="@color/white"
+            android:src="@mipmap/close"/>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wuxiantao.wxt.ui.custom.layout.RecViewGridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_taobao_featured_menu_layout"
+    android:layout_marginTop="@dimen/dp_10">
+
+    <ImageView
+        android:id="@+id/item_taobao_featured_menu_icon"
+        android:layout_width="@dimen/dp_41"
+        android:layout_height="@dimen/dp_41"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/item_taobao_featured_menu_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_12"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_below="@id/item_taobao_featured_menu_icon"
+        android:textColor="#4B4848"/>
+</com.wuxiantao.wxt.ui.custom.layout.RecViewGridLayout>

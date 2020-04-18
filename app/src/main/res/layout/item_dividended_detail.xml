@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_40">
+    <TextView
+        android:id="@+id/item_dividend_detail_date"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="@dimen/sp_12"
+        android:textColor="#000000"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center_horizontal|center_vertical"/>
+    <TextView
+        android:id="@+id/item_dividend_detail_nickname"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="@dimen/sp_12"
+        android:textColor="#000000"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center_horizontal|center_vertical"/>
+    <TextView
+        android:id="@+id/item_dividend_detail_obtain_model"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="@dimen/sp_12"
+        android:textColor="#000000"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:gravity="center_horizontal|center_vertical"/>
+</LinearLayout>

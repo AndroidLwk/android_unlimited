@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_36"
+    android:id="@+id/item_dropdown_list_layout">
+
+    <TextView
+        android:id="@+id/item_dropdown_list_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_15"
+        android:textColor="#575757"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dp_15" />
+</RelativeLayout>

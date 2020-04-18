@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal">
+
+    <ImageView
+        android:id="@+id/item_divided_dragon_icon"
+        android:layout_width="@dimen/dp_51"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="@dimen/dp_57"/>
+</LinearLayout>

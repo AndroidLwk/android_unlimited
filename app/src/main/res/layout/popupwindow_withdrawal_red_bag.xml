@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"/>
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_250"
+        android:layout_height="@dimen/dp_350"
+        android:background="@mipmap/game_reward_bg"
+        android:layout_centerInParent="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/popup_withdrawal_red_bg_head_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40">
+            <ImageView
+                android:id="@+id/popup_withdrawal_red_bg_close"
+                android:layout_width="@dimen/dp_13"
+                android:layout_height="@dimen/dp_12"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="@dimen/dp_30"
+                android:layout_marginEnd="@dimen/dp_30"
+                android:tint="#BE833E"
+                android:src="@mipmap/close"/>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/popup_withdrawal_red_bg_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/popup_withdrawal_red_bg_head_layout"
+            android:textColor="#BE833E"
+            android:textSize="@dimen/sp_18"
+            android:maxLines="2"
+            android:enabled="true"
+            android:gravity="center_horizontal"
+            android:lineSpacingMultiplier="1.3"
+            android:maxWidth="@dimen/dp_190"
+            android:text="@string/congratulations"/>
+
+        <LinearLayout
+            android:id="@+id/popup_withdrawal_red_bg_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_60"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/popup_withdrawal_red_bg_title"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/popup_withdrawal_red_bg_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F7652C"
+                android:textSize="@dimen/sp_28"
+                android:visibility="visible"
+                android:gravity="center_horizontal"
+                android:maxWidth="@dimen/dp_190"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/zero"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#BE833E"
+                android:textSize="@dimen/sp_13"
+                android:visibility="visible"
+                android:layout_marginLeft="@dimen/dp_1"
+                android:text="@string/yuan"
+                android:layout_marginStart="@dimen/dp_1" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#BE833E"
+            android:textSize="@dimen/sp_13"
+            android:layout_below="@id/popup_withdrawal_red_bg_message"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_1"
+            android:text="@string/game_reward_balance"
+            android:layout_marginStart="@dimen/dp_1" />
+
+        <ImageView
+            android:id="@+id/popup_withdrawal_red_bg_share"
+            android:layout_width="@dimen/dp_211"
+            android:layout_height="@dimen/dp_60"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/share_get_money"
+            android:scaleType="center"
+            android:layout_marginBottom="@dimen/dp_10"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"/>
+
+
+
+
+</RelativeLayout>

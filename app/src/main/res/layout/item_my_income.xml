@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/item_my_income_date"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="@dimen/sp_16"
+            android:textColor="#B2B2B2"
+            android:gravity="center_horizontal|center_vertical"/>
+        <TextView
+            android:id="@+id/item_my_income_active_income"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="@dimen/sp_16"
+            android:textColor="#B2B2B2"
+            android:gravity="center_horizontal|center_vertical"/>
+        <TextView
+            android:id="@+id/item_my_income_total"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="@dimen/sp_16"
+            android:textColor="#B2B2B2"
+            android:gravity="center_horizontal|center_vertical"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/item_my_income_line"
+        style="@style/list_line_driver"/>
+</RelativeLayout>

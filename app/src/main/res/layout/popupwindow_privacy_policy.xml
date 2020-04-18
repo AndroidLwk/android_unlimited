@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_302"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_background"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_20"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/privacy_statement"
+            android:layout_marginTop="@dimen/dp_15"/>
+
+        <com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView
+            android:layout_width="@dimen/dp_280"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15"
+                android:text="岁的愤世嫉俗的的设计大岁的愤世嫉俗的的设计大赛四大皆空但是第三届岁的愤世嫉俗的的设计大赛四大皆空但是第三届岁的愤世嫉俗的的设计大赛四大皆空但是第三届岁的愤世嫉俗的的设计大赛四大皆空但是第三届岁的愤世嫉俗的的设计大赛四大皆空但是第三届岁的愤世嫉俗的的设计大赛四大皆空但是第三届岁的愤世嫉俗的的设计大赛四大皆空但是第三届岁的愤世嫉俗的的设计大赛四大皆空但是第三届岁的愤世嫉俗的的设计大赛四大皆空但是第三届岁的愤世嫉俗的的设计大赛四大皆空但是第三届岁的愤世嫉俗的的设计大赛四大皆空但是第三届赛四大皆空但是第三届"/>
+        </com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginBottom="@dimen/dp_15"
+            android:orientation="horizontal">
+            <com.wuxiantao.wxt.ui.custom.button.StateButton
+                android:id="@+id/popup_privacy_policy_refuse"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="0dp"
+                app:normalTextColor="@color/gray"
+                app:normalBackgroundStartColor="@color/white"
+                app:normalBackgroundCenterColor="@color/white"
+                app:normalBackgroundEndColor="@color/white"
+                app:normalStrokeWidth="@dimen/dp_1"
+                app:normalStrokeColor="@color/gray"
+                app:normalOrientation="BL_TR"
+                app:normalShapeType="LINEAR_GRADIENT"
+                android:textSize="@dimen/sp_15"
+                app:round="false"
+                app:radius="@dimen/dp_5"
+                android:text="@string/i_refuse"/>
+            <com.wuxiantao.wxt.ui.custom.button.StateButton
+                android:id="@+id/popup_privacy_policy_agree"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:padding="0dp"
+                app:normalTextColor="@color/white"
+                app:normalBackgroundStartColor="#FF8777"
+                app:normalBackgroundCenterColor="#FF8777"
+                app:normalBackgroundEndColor="#FB5654"
+                android:layout_marginLeft="@dimen/dp_10"
+                app:normalOrientation="BL_TR"
+                app:normalShapeType="LINEAR_GRADIENT"
+                android:textSize="@dimen/sp_15"
+                app:round="false"
+                app:radius="@dimen/dp_5"
+                android:text="@string/i_agree"
+                android:layout_marginStart="@dimen/dp_10" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"/>
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/dp_90">
+
+    <ImageView
+        android:id="@+id/item_exclusive_friends_work_icon"
+        android:layout_width="@dimen/dp_34"
+        android:layout_height="@dimen/dp_34"
+        android:scaleType="centerCrop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_25"/>
+
+    <com.wuxiantao.wxt.ui.custom.button.StateButton
+        android:id="@+id/item_exclusive_friends_rest_status"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_14"
+        android:layout_marginTop="@dimen/dp_55"
+        android:padding="0dp"
+        app:unableBackgroundStartColor="#FB8E7D"
+        app:unableBackgroundCenterColor="#FF5655"
+        app:unableBackgroundEndColor="#FF5655"
+        app:unableTextColor="@color/white"
+        app:normalOrientation="BL_TR"
+        app:normalShapeType="LINEAR_GRADIENT"
+        app:normalTextColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:enabled="false"
+        app:round="true"
+        android:textSize="@dimen/sp_8"
+        android:text="@string/obtain_money"/>
+
+    <TextView
+        android:id="@+id/item_exclusive_friends_work_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_13"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:maxLines="1"
+        android:maxEms="4"
+        android:ellipsize="end"
+        android:textColor="@color/black"/>
+</RelativeLayout>

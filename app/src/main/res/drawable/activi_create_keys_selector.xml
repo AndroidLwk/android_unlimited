@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+        <shape>
+            <!-- 圆角半径 -->
+            <corners
+                android:radius="@dimen/dp_20"/>
+            <!-- 渐变色 -->
+            <gradient
+                android:startColor="#FB5654"
+                android:centerColor="#FB5654"
+                android:endColor="#FB5654"
+                android:type="linear"
+                android:angle="0"/>
+        </shape>
+    </item>
+
+    <item android:state_pressed="false">
+        <shape>
+            <!-- 圆角半径 -->
+            <corners
+                android:radius="@dimen/dp_20"/>
+            <!-- 渐变色 -->
+            <gradient
+                android:startColor="#FF8777"
+                android:centerColor="#FF8777"
+                android:endColor="#FB5654"
+                android:type="linear"
+                android:angle="0"/>
+        </shape>
+    </item>
+</selector>

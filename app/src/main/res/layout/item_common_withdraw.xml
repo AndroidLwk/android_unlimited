@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/item_common_withdraw_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/item_common_withdraw_status_img"
+            android:layout_width="@dimen/dp_109"
+            android:layout_height="@dimen/dp_65"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@mipmap/withdraw_money_selecte"/>
+        <View
+            android:id="@+id/item_common_withdraw_status_enbled"
+            android:layout_width="@dimen/dp_109"
+            android:layout_height="@dimen/dp_65"
+            android:visibility="gone"
+            android:background="@drawable/withdraw_money_enbled_shpe"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/item_common_withdraw_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:text="@string/_zero"/>
+            <TextView
+                android:id="@+id/item_common_withdraw_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:text="@string/yuan"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

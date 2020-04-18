@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_302"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_background"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/popup_red_bag_machine_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_25"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_15"/>
+
+        <TextView
+            android:id="@+id/popup_red_bag_machine_message"
+            android:layout_width="@dimen/dp_234"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_15"/>
+
+        <LinearLayout
+            android:id="@+id/popup_red_bag_machine_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="@dimen/dp_58"
+                android:layout_height="@dimen/dp_71"
+                android:src="@mipmap/person"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_13"
+                android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="@string/popup_red_bag_msg"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/popup_red_bag_msg"
+            android:layout_width="@dimen/dp_234"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_15"
+            android:textColor="#A8A5A5"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/_02_00_07_00"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/dp_15"/>
+
+        <TextView
+            android:id="@+id/popup_red_bag_machine_time"
+            android:layout_width="@dimen/dp_234"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_15"
+            android:textColor="#F27713"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/update_time"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/dp_15"/>
+
+        <com.wuxiantao.wxt.ui.custom.button.StateButton
+            android:id="@+id/popup_red_bag_machine_know"
+            android:layout_width="@dimen/dp_240"
+            android:layout_height="@dimen/dp_45"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginBottom="@dimen/dp_15"
+            android:padding="0dp"
+            android:layout_gravity="center_horizontal"
+            app:normalTextColor="@color/white"
+            app:normalBackgroundStartColor="#FF8777"
+            app:normalBackgroundCenterColor="#FF8777"
+            app:normalBackgroundEndColor="#FB5654"
+            app:normalOrientation="BL_TR"
+            app:normalShapeType="LINEAR_GRADIENT"
+            android:textSize="@dimen/sp_15"
+            app:round="true"
+            android:text="@string/i_know"/>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"/>
+</RelativeLayout>

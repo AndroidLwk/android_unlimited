@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+
+
+    <View
+        android:layout_width="@dimen/dp_10"
+        android:layout_height="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_4"
+        android:background="@drawable/rectangle_description"/>
+    <TextView
+        android:id="@+id/item_invite_friend_login_activi_description_mt"
+        android:layout_width="@dimen/dp_313"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:textSize="@dimen/sp_14"
+        android:textColor="#908E8E"
+        android:layout_marginStart="@dimen/dp_5" />
+</LinearLayout>

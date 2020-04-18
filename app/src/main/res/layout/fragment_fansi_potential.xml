@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/fansi_potential_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlAccentColor="#00000000"
+        app:srlPrimaryColor="#00000000">
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:id="@+id/fansi_potential_classic_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlAccentColor="@color/black"
+            app:srlDrawableArrow="@mipmap/super_man_fly"
+            app:srlPrimaryColor="@color/white"
+            app:layout_srlSpinnerStyle="Scale"/>
+        <com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_45"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_13"
+                        android:textColor="#BFC1C3"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/app"/>
+                    <com.wuxiantao.wxt.ui.custom.radiobutton.SoftRadioGroup
+                        android:id="@+id/fansi_potential_rg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <com.wuxiantao.wxt.ui.custom.radiobutton.SoftRadioButton
+                            android:id="@+id/fansi_potential_time_rb"
+                            style="@style/softRadioButton_style"
+                            android:layout_marginLeft="@dimen/dp_5"
+                            app:text="@string/join_time"/>
+                    </com.wuxiantao.wxt.ui.custom.radiobutton.SoftRadioGroup>
+                </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/fansi_potential_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:overScrollMode="never"/>
+            </LinearLayout>
+        </com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView>
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

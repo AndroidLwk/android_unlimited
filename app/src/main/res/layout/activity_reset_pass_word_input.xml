@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:overScrollMode="never">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+            <include
+                layout="@layout/base_title"/>
+            <TextView
+                android:id="@+id/setting_pass_word_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_25"
+                android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_30"
+                android:text="@string/setting_new_pw"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_15"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="@string/pass_word_rule"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/reset__pass_word__input"
+                android:layout_marginTop="@dimen/dp_30"
+                android:layout_width="@dimen/dp_320"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:met_maxCharacters="16"
+                app:met_floatingLabel="normal"
+                app:met_baseColor="@color/grey"
+                app:met_primaryColor="@color/black"
+                app:met_errorColor="@color/red"
+                app:met_clearButton="true"
+                android:inputType="textPassword"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:hint="@string/input_new_pw"/>
+
+            <com.wuxiantao.wxt.ui.custom.button.StateButton
+                android:id="@+id/reset__pass_word_get_code"
+                android:layout_width="@dimen/dp_320"
+                android:layout_height="@dimen/dp_40"
+                android:padding="0dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_40"
+                app:round="true"
+                android:enabled="false"
+                app:unableTextColor="@color/whitesmoke"
+                app:unableBackgroundColor="#FB8E7D"
+                app:normalBackgroundColor="#FF5655"
+                app:normalTextColor="@color/white"
+                android:textSize="@dimen/sp_15"
+                android:text="@string/get_ver_code"/>
+        </LinearLayout>
+    </com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView>
+</LinearLayout>

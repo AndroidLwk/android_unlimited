@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_50"
+    android:id="@+id/item_order_pay_mde_layout">
+    <ImageView
+        android:id="@+id/item_order_pay_mode_icon"
+        android:layout_width="@dimen/dp_17"
+        android:layout_height="@dimen/dp_17"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_centerVertical="true"/>
+    <TextView
+        android:id="@+id/item_order_pay_mode_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_13"
+        android:textColor="@color/black"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp_45"/>
+    <ImageView
+        android:id="@+id/item_order_pay_mode_checked"
+        android:layout_width="@dimen/dp_17"
+        android:layout_height="@dimen/dp_17"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_15"
+        android:visibility="gone"
+        android:background="@mipmap/selected_icon"/>
+</RelativeLayout>

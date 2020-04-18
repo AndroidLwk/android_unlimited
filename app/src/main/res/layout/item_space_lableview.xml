@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.donkingliang.labels.LabelsView
+        android:id="@+id/item_space_labelview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginLeft="@dimen/dp_15"
+        app:labelBackground="@drawable/spce_lable_bg_selector"
+        app:labelTextColor="@drawable/spce_lable_text_selector"
+        app:labelTextPaddingBottom="@dimen/dp_5"
+        app:labelTextPaddingLeft="@dimen/dp_10"
+        app:labelTextPaddingRight="@dimen/dp_10"
+        app:labelTextPaddingTop="@dimen/dp_5"
+        app:lineMargin="@dimen/dp_6"
+        app:wordMargin="@dimen/dp_6"
+        app:selectType="SINGLE_IRREVOCABLY" />
+</RelativeLayout>

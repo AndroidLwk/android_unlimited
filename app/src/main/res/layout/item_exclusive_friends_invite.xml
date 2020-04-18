@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/dp_90"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/item_exclusive_friends_invite_icon"
+        android:layout_width="@dimen/dp_42"
+        android:layout_height="@dimen/dp_42"
+        android:layout_marginTop="@dimen/dp_25"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/invited_friend"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:id="@+id/item_exclusive_friends_tweery_icon"
+        android:layout_width="@dimen/dp_36"
+        android:layout_height="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_25"
+        android:src="@mipmap/immediately_tweery"
+        android:visibility="invisible"
+        android:layout_marginStart="@dimen/dp_25" />
+
+    <com.wuxiantao.wxt.ui.custom.button.StateButton
+        android:id="@+id/item_exclusive_friends_invite"
+        android:layout_width="@dimen/dp_38"
+        android:layout_height="@dimen/dp_16"
+        android:padding="0dp"
+        app:normalBackgroundStartColor="#FB8E7D"
+        app:normalBackgroundCenterColor="#FF5655"
+        app:normalBackgroundEndColor="#FF5655"
+        app:normalOrientation="BL_TR"
+        app:normalShapeType="LINEAR_GRADIENT"
+        app:normalTextColor="@color/white"
+        android:enabled="true"
+        app:round="true"
+        android:textSize="@dimen/sp_10"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/invite"/>
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_50"
+    android:id="@+id/item_about_superman_layout"
+    android:background="@drawable/bg_white_selector">
+
+    <TextView
+        android:id="@+id/item_about_superman_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_15" />
+
+    <TextView
+        android:id="@+id/item_about_superman_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp_25"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/sp_12" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_6"
+        android:layout_height="@dimen/dp_9"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp_15"
+        android:rotation="180"
+        android:src="@mipmap/base_title_back"
+        android:tint="@color/grey" />
+</RelativeLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="@dimen/dp_162"
+            android:layout_height="@dimen/dp_109"
+            android:src="@mipmap/not_fansi_img"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_16"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:text="@string/no_members"/>
+        <com.wuxiantao.wxt.ui.custom.button.StateButton
+            android:id="@+id/item_fansi_empty_invite"
+            android:layout_width="@dimen/dp_130"
+            android:layout_height="@dimen/dp_36"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_15"
+            android:padding="0dp"
+            app:normalTextColor="@color/white"
+            app:normalBackgroundStartColor="#FF8777"
+            app:normalBackgroundCenterColor="#FF8777"
+            app:normalBackgroundEndColor="#FB5654"
+            app:normalOrientation="BL_TR"
+            app:normalShapeType="LINEAR_GRADIENT"
+            app:radius="@dimen/dp_5"
+            android:text="@string/Go_to_invite_now"/>
+    </LinearLayout>
+</RelativeLayout>

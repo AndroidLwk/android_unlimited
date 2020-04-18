@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_50"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/base_search_layout"
+    android:background="@drawable/base_title_background">
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_267"
+        android:layout_height="@dimen/dp_33"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/base_search_shape">
+        <ImageView
+            android:layout_width="@dimen/dp_19"
+            android:layout_height="@dimen/dp_16"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:src="@mipmap/main_search_icon"/>
+        <EditText
+            android:id="@+id/base_search_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_25"
+            android:textCursorDrawable="@drawable/text_cursor"
+            android:hint="@string/input_keyword"
+            android:background="@null"
+            android:textSize="@dimen/sp_14"
+            android:inputType="text"/>
+        <com.wuxiantao.wxt.ui.custom.button.StateButton
+            android:id="@+id/base_search_btn"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_centerVertical="true"
+            app:round="true"
+            app:normalTextColor="@color/white"
+            app:normalBackgroundColor="#FF5D5B"
+            android:padding="0dp"
+            android:text="@string/search"/>
+    </RelativeLayout>
+
+</RelativeLayout>

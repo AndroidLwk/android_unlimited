@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="wuxiantao/app" />
+      <module fileurl="file://$PROJECT_DIR$/kf5sdkModule/kf5sdkModule.iml" filepath="$PROJECT_DIR$/kf5sdkModule/kf5sdkModule.iml" group="wuxiantao/kf5sdkModule" />
+      <module fileurl="file://$PROJECT_DIR$/sharedpreferences_library/sharedpreferences_library.iml" filepath="$PROJECT_DIR$/sharedpreferences_library/sharedpreferences_library.iml" group="wuxiantao/sharedpreferences_library" />
+      <module fileurl="file://$PROJECT_DIR$/wuxiantao.iml" filepath="$PROJECT_DIR$/wuxiantao.iml" group="wuxiantao" />
+    </modules>
+  </component>
+</project>

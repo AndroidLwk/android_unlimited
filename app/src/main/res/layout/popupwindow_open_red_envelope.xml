@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_260"
+        android:layout_height="@dimen/dp_370"
+        android:background="@mipmap/open_red_envelope_bg"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10">
+            <ImageView
+                android:id="@+id/popup_open_red_envelope_close"
+                android:layout_width="@dimen/dp_12"
+                android:layout_height="@dimen/dp_12"
+                android:tint="#FDB695"
+                android:src="@mipmap/close"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/dp_10" />
+            <TextView
+                android:id="@+id/popup_open_red_envelope_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_15"
+                android:textColor="#FDB695"
+                android:layout_centerInParent="true"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:maxWidth="@dimen/dp_200"
+                android:gravity="center_horizontal"
+                android:lineSpacingMultiplier="1.3"
+                android:text="@string/my_gold"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFEBC4"
+            android:textSize="@dimen/sp_18"
+            android:layout_marginTop="@dimen/dp_100"
+            android:lineSpacingMultiplier="1.3"
+            android:text="@string/_3000_n"
+            android:layout_gravity="center_horizontal"/>
+
+        <ImageView
+            android:id="@+id/popup_open_red_envelope_open"
+            android:layout_width="@dimen/dp_84"
+            android:layout_height="@dimen/dp_84"
+            android:src="@mipmap/open_img"
+            android:layout_marginTop="@dimen/dp_35"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"/>
+</RelativeLayout>

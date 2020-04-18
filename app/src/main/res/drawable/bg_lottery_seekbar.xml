@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--背景图-->
+    <item
+        android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <corners android:radius="@dimen/dp_15"/>
+        </shape>
+    </item>
+    <!-- 进度背景 -->
+    <item
+        android:id="@android:id/progress"
+        android:top="@dimen/dp_2"
+        android:bottom="@dimen/dp_2"
+        android:left="@dimen/dp_2">
+        <clip>
+            <bitmap
+                android:src="@drawable/lottery_seekbar_progress_bg"/>
+        </clip>
+    </item>
+</layer-list>
