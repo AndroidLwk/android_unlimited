@@ -10,7 +10,7 @@ package com.wuxiantao.wxt.adapter.bean;
  */
 public class BaseExampleBean {
 
-    private int type;
+    private int type; 
 
     public int getType() {
         return type;
