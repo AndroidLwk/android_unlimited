@@ -153,4 +153,8 @@
     <color name="black">#000000</color><!--黑色 -->
     <color name="holo_red_light">#ffff4444</color>
     <color name="holo_red_dark">#ffcc0000</color>
+    <color name="color_C1BBBB">#C1BBBB</color>
+    <color name="color_fa5858">#FA5858</color>
+    <color name="color_faf6f5">#FAF6F5</color>
+    <color name="color_f7f7f7">#F7F7F7</color>
 </resources>

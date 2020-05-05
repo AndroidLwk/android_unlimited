@@ -2,15 +2,15 @@
     <string name="app_name">无限淘</string>
     <string name="tao_bao_featured_sub">淘宝精选</string>
     <string name="main_tab_tao_bao">首页</string>
-    <string name="main_tab_member_center">会员中心</string>
-    <string name="main_tab_deposit">红包大厅</string>
-    <string name="main_tab_income_hall">游戏分红</string>
-    <string name="main_tab_mine">个人中心</string>
+    <string name="main_tab_member_center">斩妖之旅</string>
+    <string name="main_tab_deposit">刮刮卡</string>
+    <string name="main_tab_income_hall">任务大厅</string>
+    <string name="main_tab_mine">我的</string>
     <string name="withdraw_rule">提现金额不能低于1元,按提示金额的0.1%收手续费,单笔手续费小于0.1元,按0.1元收取</string>
     <string name="interest">昨日收益榜</string>
     <string name="deposit">累计收益榜</string>
 
-    <string name="featured_products">精选商品</string>
+    <string name="featured_products">淘宝精选</string>
 
     <string name="exclusive_firends">专属好友</string>
     <string name="general_friends">普通好友</string>

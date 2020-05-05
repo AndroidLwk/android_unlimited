@@ -33,12 +33,11 @@ import com.wuxiantao.wxt.mvp.presenter.MenuPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
 import com.wuxiantao.wxt.ui.custom.radiobutton.SiteImgRadioButton;
 import com.wuxiantao.wxt.ui.fragment.main.IncomeHallFragment;
-import com.wuxiantao.wxt.ui.fragment.main.MemberCenterFragment;
+import com.wuxiantao.wxt.ui.fragment.main.TaskHallFragment;
 import com.wuxiantao.wxt.ui.fragment.main.MyDepositFragment;
 import com.wuxiantao.wxt.ui.fragment.main.ReadyRedEnvelopeFragment;
 import com.wuxiantao.wxt.ui.fragment.main.TaoBaoFragment;
 import com.wuxiantao.wxt.ui.popupwindow.VersionUpdatePopupWindow;
-import com.wuxiantao.wxt.utils.AnimaUtils;
 import com.wuxiantao.wxt.utils.ToastUtils;
 import com.wuxiantao.wxt.utils.VersionUtils;
 
@@ -85,11 +84,8 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     SiteImgRadioButton menu_tab_my_deposit;
     @ViewInject(R.id.menu_tab_high_area_checked_img)
     ImageView menu_tab_high_area_checked_img;
-    @ViewInject(R.id.menu_tab_game_img)
-    ImageView menu_tab_game_img;
-
     private TaoBaoFragment mTaoBaoFragment;
-    private MemberCenterFragment mMemberCenterFragment;
+    private TaskHallFragment mTaskHallFragment;
     private ReadyRedEnvelopeFragment mReadyRedEnvelopeFragment;
     private IncomeHallFragment mIncomeHallFragment;
     private MyDepositFragment mMyDepositFragment;
@@ -139,14 +135,6 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
         //注册
         registerReceiver(receiver, filter);
         registerReceiver(netWorkReceiver, netFilter);
-
-        if (isReview){
-            menu_tab_game_img.setVisibility(View.GONE);
-        }else {
-            menu_tab_game_img.setVisibility(View.VISIBLE);
-            AnimaUtils.startShakeByPropertyAnim(menu_tab_game_img, null,-1);
-        }
-        setOnClikListener(menu_tab_game_img);
     }
 
     @Override
@@ -233,16 +221,6 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
             main_menu_radiogroup.setOnCheckedChangeListener(MenuActivity.this);
         }
     }
-
-
-    @Override
-    protected void widgetClick(int id) {
-        if (id == R.id.menu_tab_game_img){
-            changeFragment(3,null);
-            mRBlist.get(3).setChecked(true);
-        }
-    }
-
     //初始化RadioButton
     private void initRadioButton() {
         mRBlist.clear();
@@ -286,7 +264,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
         FragmentManager mManager = getSupportFragmentManager();
         mTransaction = mManager.beginTransaction();
         hideFragments();
-        menu_tab_high_area_checked_img.setVisibility(index == 2 ? View.VISIBLE : View.GONE);
+     //   menu_tab_high_area_checked_img.setVisibility(index == 2 ? View.VISIBLE : View.GONE);
         switch (index) {
             //首页
             case 0:
@@ -300,19 +278,21 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
                     mTaoBaoFragment.setArguments(bundle);
                 }
                 break;
-            //会员中心
+            //游戏分红
             case 1:
-                if (mMemberCenterFragment == null) {
-                    mMemberCenterFragment = new MemberCenterFragment();
-                    mTransaction.add(R.id.main_menu_frament, mMemberCenterFragment);
+                if (mIncomeHallFragment == null) {
+                    mIncomeHallFragment = new IncomeHallFragment();
+                    mTransaction.add(R.id.main_menu_frament, mIncomeHallFragment);
                 } else {
-                    mTransaction.show(mMemberCenterFragment);
+                    mTransaction.show(mIncomeHallFragment);
                 }
                 if (bundle != null) {
-                    mMemberCenterFragment.setArguments(bundle);
+                    mIncomeHallFragment.setArguments(bundle);
                 }
+
+
                 break;
-            //红包大厅
+            //刮刮卡
             case 2:
                 if (mReadyRedEnvelopeFragment == null) {
                     mReadyRedEnvelopeFragment = new ReadyRedEnvelopeFragment();
@@ -324,16 +304,15 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
                     mReadyRedEnvelopeFragment.setArguments(bundle);
                 }
                 break;
-            //游戏分红
-            case 3:
-                if (mIncomeHallFragment == null) {
-                    mIncomeHallFragment = new IncomeHallFragment();
-                    mTransaction.add(R.id.main_menu_frament, mIncomeHallFragment);
+            case 3://任务大厅
+                if (mTaskHallFragment == null) {
+                    mTaskHallFragment = new TaskHallFragment();
+                    mTransaction.add(R.id.main_menu_frament, mTaskHallFragment);
                 } else {
-                    mTransaction.show(mIncomeHallFragment);
+                    mTransaction.show(mTaskHallFragment);
                 }
                 if (bundle != null) {
-                    mIncomeHallFragment.setArguments(bundle);
+                    mTaskHallFragment.setArguments(bundle);
                 }
                 break;
             //个人中心
@@ -355,7 +334,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     //隐藏所有fragment
     private void hideFragments() {
         hideFragments(mTaoBaoFragment);
-        hideFragments(mMemberCenterFragment);
+        hideFragments(mTaskHallFragment);
         hideFragments(mReadyRedEnvelopeFragment);
         hideFragments(mIncomeHallFragment);
         hideFragments(mMyDepositFragment);

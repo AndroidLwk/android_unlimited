@@ -6,7 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -83,8 +83,8 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
     RecyclerView taobao_featured_ver_rv;
     @ViewInject(R.id.fragment_tao_bao_featured_banner)
     Banner mBanner;
-    @ViewInject(R.id.fragment_tao_bao_featured_layout)
-    LinearLayout fragment_tao_bao_featured_layout;
+    @ViewInject(R.id.tv_tao_bao_featured_layout)
+    TextView tv_tao_bao_featured_layout;
 
     private int page = 1;
     private TaoBaoFeaturedVerRecViewAdapter adapter;
@@ -105,10 +105,10 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
         boolean isReview = getSPBoolean(IS_REVIEW);
         if (isReview){
             mBanner.setVisibility(View.GONE);
-            fragment_tao_bao_featured_layout.setVisibility(View.GONE);
+            tv_tao_bao_featured_layout.setVisibility(View.GONE);
         }else {
             mBanner.setVisibility(View.VISIBLE);
-            fragment_tao_bao_featured_layout.setVisibility(View.VISIBLE);
+            tv_tao_bao_featured_layout.setVisibility(View.VISIBLE);
             mPresenter.gainBanner(0);
             initGridLayout();
         }

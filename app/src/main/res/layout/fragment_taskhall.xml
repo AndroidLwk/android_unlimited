@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f7f7f7">
+
+    <com.wuxiantao.wxt.ui.title.CNToolbar
+        android:id="@+id/fragment_member_center_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cn_titleText="@string/main_tab_income_hall" />
+
+    <LinearLayout
+        android:id="@+id/lt_task_finish"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_140"
+        android:layout_below="@+id/fragment_member_center_toolbar"
+        android:background="@drawable/base_title_background"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/main_taskhall_a" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_15"
+            android:text="领/取/签/到/奖/励"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_19" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_task_one"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_199"
+        android:background="@drawable/shape_taskhall_background"
+        android:layout_marginLeft="@dimen/dp_22"
+        android:layout_marginTop="@dimen/dp_186"
+        android:layout_marginRight="@dimen/dp_22" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_task_two"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_400"
+        android:layout_below="@+id/rv_task_one"
+        android:background="@drawable/shape_taskhall_background"
+        android:layout_marginLeft="@dimen/dp_22"
+        android:layout_marginTop="@dimen/dp_11"
+        android:layout_marginRight="@dimen/dp_22" />
+</RelativeLayout>

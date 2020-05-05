@@ -2,8 +2,6 @@ package com.wuxiantao.wxt.mvp.contract;
 
 
 import com.wuxiantao.wxt.bean.MyDepositBean;
-import com.wuxiantao.wxt.bean.TaobaoLatelyOrderBean;
-import com.wuxiantao.wxt.bean.YouXuanLatelyOrderBean;
 import com.wuxiantao.wxt.mvp.order.OrderTypeMvpPresenter;
 import com.wuxiantao.wxt.mvp.order.OrderTypeView;
 
@@ -20,9 +18,6 @@ public interface MineContract {
         //将一些操作界面的方法在这里声明
         void obtainMyDepositSuccess(MyDepositBean bean);
         void obtainMyDepositFailure(String failure);
-        void getTaobaoLatelyOrderSuccess(TaobaoLatelyOrderBean bean);
-        void getYouXuanLatelyOrderSuccess(YouXuanLatelyOrderBean bean);
-        void getTaobaoLatelyOrderFailure(String failure);
     }
 
     interface ILoginPresenter extends OrderTypeMvpPresenter<IMineView> {

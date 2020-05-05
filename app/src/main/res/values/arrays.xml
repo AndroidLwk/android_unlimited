@@ -2,20 +2,18 @@
 <resources>
 
     <string-array name="main_taobao_featured_title">
-        <item>红包大厅</item>
-        <item>游戏分红</item>
         <item>推广赚钱</item>
+        <item>淘宝精选</item>
         <item>会员中心</item>
-        <item>0元商品</item>
+        <item>邀请码</item>
+        <item>交易大厅</item>
     </string-array>
-
-
     <string-array name="main_taobao_featured_icon">
-        <item>@drawable/main_item_red_envelope</item>
-        <item>@drawable/main_item_game</item>
         <item>@drawable/main_item_invite_icon</item>
+        <item>@drawable/main_item_change_icon</item>
         <item>@drawable/main_item_favorites</item>
-        <item>@drawable/main_item_zero</item>
+        <item>@drawable/main_item_invitation</item>
+        <item>@drawable/main_item_transaction_icon</item>
     </string-array>
 
 

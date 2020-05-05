@@ -36,7 +36,7 @@
                    android:text="@string/main_tab_member_center" />
                <com.wuxiantao.wxt.ui.custom.radiobutton.SiteImgRadioButton
                    android:id="@+id/menu_tab_red_envelope"
-                   app:drawableTop="@drawable/main_menu_deposit_selector"
+                   app:drawableTop="@drawable/main_tab_car"
                    style="@style/main_tab_bottom"
                    android:visibility="visible"
                    android:text="@string/main_tab_deposit" />
@@ -56,27 +56,13 @@
        </LinearLayout>
        <ImageView
            android:id="@+id/menu_tab_high_area_checked_img"
-           android:layout_width="@dimen/dp_40"
-           android:layout_height="@dimen/dp_48"
-           android:layout_alignParentBottom="true"
-           android:layout_centerHorizontal="true"
-           android:layout_marginBottom="@dimen/dp_23"
-           android:scaleType="centerCrop"
-           android:visibility="invisible"
-           android:src="@drawable/main_tab_red_envelope"/>
-
-       <ImageView
-           android:id="@+id/menu_tab_game_img"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentBottom="true"
-           android:layout_alignParentRight="true"
-           android:layout_marginBottom="@dimen/dp_30"
+           android:layout_centerHorizontal="true"
+           android:layout_marginBottom="@dimen/dp_18"
            android:scaleType="centerCrop"
            android:visibility="visible"
-           android:src="@drawable/game_dividend_img"
-           android:layout_alignParentEnd="true"
-           android:layout_marginRight="@dimen/dp_43"
-           android:layout_marginEnd="@dimen/dp_43" />
+           android:src="@drawable/main_tab_car"/>
    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:state_checked="false" android:drawable="@drawable/main_tab_taobao_check" />
+        android:state_checked="false" android:drawable="@drawable/main_tab_index_check" />
     <item
-        android:state_checked="true" android:drawable="@drawable/main_tab_taobao_checked" />
+        android:state_checked="true" android:drawable="@drawable/main_tab_index_checked" />
 </selector>

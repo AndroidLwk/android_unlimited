@@ -88,7 +88,7 @@ public class TaoBaoFragment extends MvpFragment<TaoBaoSortPresenter, TaoBaoSortC
         }
         mPresenter.getTaoBaoSort();
         setOnClikListener(fragment_tao_bao_search, fragment_tao_bao_save_money, main_taobao_topping);
-        initMvText();
+        //initMvText();
 
         boolean isReview = getSPBoolean(IS_REVIEW);
         fragment_tao_bao_save_money.setVisibility(isReview ? View.GONE : View.VISIBLE);
@@ -122,6 +122,7 @@ public class TaoBaoFragment extends MvpFragment<TaoBaoSortPresenter, TaoBaoSortC
     protected void widgetClick(int id) {
         switch (id) {
             //搜索
+            case R.id.sbt_search:
             case R.id.fragment_tao_bao_search:
                 $startActivity(SearchActivity.class);
                 break;
