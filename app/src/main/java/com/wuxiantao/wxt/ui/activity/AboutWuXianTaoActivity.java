@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.tencent.bugly.beta.Beta;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.bean.AboutSuperManBean;
 import com.wuxiantao.wxt.adapter.recview.AboutSupermanRecViewAdapter;
@@ -47,7 +48,7 @@ public class AboutWuXianTaoActivity extends MvpActivity<AboutSupermanPresenter, 
     @Override
     public void initView() {
         Bundle bundle = getBundle();
-        if (bundle != null){
+        if (bundle != null) {
             String verName = bundle.getString(ABOUT_SUPER);
             super_man_about_rl.setEnableRefresh(false);
             super_man_about_rl.setEnableLoadMore(false);
@@ -73,7 +74,8 @@ public class AboutWuXianTaoActivity extends MvpActivity<AboutSupermanPresenter, 
                 //版本更新
                 case 0:
                     //获取版本号
-                    mPresenter.getAppCurrentVersion();
+                    //mPresenter.getAppCurrentVersion();
+                    Beta.checkUpgrade();
                     break;
                 //服务协议
                 case 1:
@@ -84,8 +86,8 @@ public class AboutWuXianTaoActivity extends MvpActivity<AboutSupermanPresenter, 
                     showDialog(getString(R.string.phone_cache), (dialog, which) -> {
                         CacheDataUtils.clearAllCache();
                         cacheBean.setVersion(CacheDataUtils.getTotalCacheSize());
-                        list.set(2,cacheBean);
-                        adapter.updataList(list,2,1);
+                        list.set(2, cacheBean);
+                        adapter.updataList(list, 2, 1);
                     });
                     break;
             }
@@ -96,9 +98,9 @@ public class AboutWuXianTaoActivity extends MvpActivity<AboutSupermanPresenter, 
     @Override
     public void getAppCurrentVersionSuccess(CurrentVersionBean bean) {
         boolean isNeedUpdate = VersionUtils.newInstance().isNeedUpdate(bean);
-        if (isNeedUpdate){
+        if (isNeedUpdate) {
             showVersionUpdateWindow(bean.getSite_url());
-        }else {
+        } else {
             showOnlyConfirmDialog(getString(R.string.already_latest_version));
         }
     }
@@ -118,8 +120,6 @@ public class AboutWuXianTaoActivity extends MvpActivity<AboutSupermanPresenter, 
                     startActivity(intent);
                 }).builder().showPopupWindow();
     }
-
-
 
 
     @Override

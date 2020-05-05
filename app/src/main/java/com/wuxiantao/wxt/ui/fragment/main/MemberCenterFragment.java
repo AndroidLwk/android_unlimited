@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.ActiveStatusBean;
 import com.wuxiantao.wxt.bean.BannerBean;
@@ -88,40 +90,39 @@ public class MemberCenterFragment extends MvpFragment<QualityPresenter, QualityC
         mPresenter.isActiveStatus(getAppToken());
         mPresenter.gainBanner(1);
 
-        setOnClikListener(quality_preference_head_img,member_center_open,member_center_menu_img);
+        setOnClikListener(quality_preference_head_img, member_center_open, member_center_menu_img);
         PayListener.getInstance().addListener(this);
+        MobclickAgent.onProfileSignIn("example_id");
+        Toast.makeText(getContext(), "已完成用户登录", Toast.LENGTH_SHORT).show();
     }
-
-
-
 
 
     @Override
     protected void widgetClick(int id) {
-        if (id == R.id.quality_preference_head_img){
+        if (id == R.id.quality_preference_head_img) {
             if (!headImgList.isEmpty()) {
                 previewImg(headImgList, 0);
             }
         }
         //开通会员
-        else if (id == R.id.member_center_open){
+        else if (id == R.id.member_center_open) {
+            MobclickAgent.onEvent(getContext(), "click", "button");
             showPayModeWindow();
-        }
-        else if (id == R.id.member_center_menu_img){
+        } else if (id == R.id.member_center_menu_img) {
             $startActivity(SuperManBeneficialActivity.class);
         }
     }
 
 
     //选择支付方式
-    private void showPayModeWindow(){
+    private void showPayModeWindow() {
         new OrderPayModePopupWindow.Build(getContext())
                 .setOnItemClickListener(payType -> {
-                    Map<String,Object> map = new HashMap<>();
-                    map.put(TOKEN,getAppToken());
-                    map.put("goods_id",9);
-                    map.put("type",payType);
-                    mPresenter.onOrderCreate(map,payType);
+                    Map<String, Object> map = new HashMap<>();
+                    map.put(TOKEN, getAppToken());
+                    map.put("goods_id", 9);
+                    map.put("type", payType);
+                    mPresenter.onOrderCreate(map, payType);
                 })
                 .setOrderPayMoney(money)
                 .setPopupWindowAnimStyle(R.style.custom_dialog)
@@ -139,12 +140,11 @@ public class MemberCenterFragment extends MvpFragment<QualityPresenter, QualityC
     @Override
     public void gainBannerSuccess(BannerBean bean) {
         this.money = bean.getVip();
-        GlideImgManager.loadImg(getContext(),bean.getVip_img(),member_center_menu_img);
+        GlideImgManager.loadImg(getContext(), bean.getVip_img(), member_center_menu_img);
 
         mPresenter.getVipStatusInfo(getAppToken());
         initBanner(bean.getList());
     }
-
 
 
     private void initBanner(List<BannerBean.ListBean> listBeans) {
@@ -178,15 +178,15 @@ public class MemberCenterFragment extends MvpFragment<QualityPresenter, QualityC
             switch (status) {
                 //-1是任务失败,
                 case -1:
-                //0是未参与任务
+                    //0是未参与任务
                 case 0:
-                //1任务进行中
+                    //1任务进行中
                 case 1:
-                //2任务完成
+                    //2任务完成
                 case 2:
                     Bundle bundle = new Bundle();
-                    bundle.putInt(TASK_STATUS,status);
-                    $startActivity(VipBeneficialActivity.class,bundle);
+                    bundle.putInt(TASK_STATUS, status);
+                    $startActivity(VipBeneficialActivity.class, bundle);
                     break;
             }
         });
@@ -201,25 +201,25 @@ public class MemberCenterFragment extends MvpFragment<QualityPresenter, QualityC
         int vipStatus = bean.getVip();
         String time = "";
         String type = "";
-        switch (vipStatus){
+        switch (vipStatus) {
             case -1:
                 member_status.setText(getString(R.string.ordinary_member));
                 time = getString(R.string.member_center_expired_time, DateUtils.timestampToTime(bean.getVip_end_time()));
-                type = getString(R.string.member_center_open,money);
+                type = getString(R.string.member_center_open, money);
                 break;
             case 0:
                 member_status.setText(getString(R.string.ordinary_member));
-                type = getString(R.string.member_center_open,money);
+                type = getString(R.string.member_center_open, money);
                 break;
             case 1:
                 member_status.setText(getString(R.string.year_member));
                 time = getString(R.string.member_center_end_time, DateUtils.timestampToTime(bean.getVip_end_time()));
-                type = getString(R.string.member_center_renew,money);
+                type = getString(R.string.member_center_renew, money);
                 break;
             case 2:
                 member_status.setText(getString(R.string.month_member));
                 time = getString(R.string.member_center_end_time, DateUtils.timestampToTime(bean.getVip_end_time()));
-                type = getString(R.string.member_center_renew,money);
+                type = getString(R.string.member_center_renew, money);
                 break;
         }
         member_center_end_time.setText(time);
@@ -234,9 +234,9 @@ public class MemberCenterFragment extends MvpFragment<QualityPresenter, QualityC
         String nickname = getUserInfo(NICK_NAME);
         headImgList.clear();
         headImgList.add(head_img);
-        if (!isEmpty(head_img)){
+        if (!isEmpty(head_img)) {
             GlideImgManager.loadCircleImg(getContext(), head_img, quality_preference_head_img);
-        }else {
+        } else {
             GlideImgManager.loadCircleImg(getContext(), R.drawable.ic_person_outline_black_24dp, quality_preference_head_img);
         }
         quality_preference_head_nick_name.setText(nickname);
@@ -249,21 +249,21 @@ public class MemberCenterFragment extends MvpFragment<QualityPresenter, QualityC
     @Override
     public void onWeChatPay(WeChatPayBean infoBean) {
         order_sn = infoBean.getOrder_id();
-        PayManager.getInstance(getActivity()).pay(PAY_TYPE_WX,infoBean);
+        PayManager.getInstance(getActivity()).pay(PAY_TYPE_WX, infoBean);
     }
 
     //支付宝支付
     @Override
     public void onAliPay(String order_id, String res) {
         order_sn = order_id;
-        PayManager.getInstance(getActivity()).pay(PAY_TYPE_ALI,res);
+        PayManager.getInstance(getActivity()).pay(PAY_TYPE_ALI, res);
     }
 
     //请求服务器查询订单
     @Override
     public void onPaySuccess() {
-        if (!isEmpty(order_sn)){
-            mPresenter.checkOrderStatus(getAppToken(),order_sn);
+        if (!isEmpty(order_sn)) {
+            mPresenter.checkOrderStatus(getAppToken(), order_sn);
         }
     }
 
@@ -275,8 +275,8 @@ public class MemberCenterFragment extends MvpFragment<QualityPresenter, QualityC
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent event){
-        if (event.getType() == MEMBER_CENTER_TOPPING){
+    public void onMessageEvent(MessageEvent event) {
+        if (event.getType() == MEMBER_CENTER_TOPPING) {
 
         }
     }

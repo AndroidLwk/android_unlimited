@@ -3,8 +3,11 @@ package com.wuxiantao.wxt.ui.activity;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
+import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.WeChatPayBean;
 import com.wuxiantao.wxt.mvp.contract.H5GameContract;
 import com.wuxiantao.wxt.mvp.presenter.H5GamePresenter;
@@ -58,21 +61,30 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
         PayListener.getInstance().addListener(this);
         mPresenter.onGetLoadingImg();
         startLoadGame();
+        /**
+         * 第二个参数：eventId	为当前统计的事件ID。
+         * 第三个参数 对当前事件的参数描述
+         */
+        Map<String, Object> map = new HashMap<>();
+        map.put("longTime", "2小时");
+        map.put("enterNum", "10次");
+        MobclickAgent.onEventObject(BaseApplication.getAppContext(), "event_enterToGame", map);//进入游戏页面统计
+        Toast.makeText(mContext, "已完成数值型统计", Toast.LENGTH_SHORT).show();
     }
 
 
-    private void startLoadGame(){
+    private void startLoadGame() {
         setWebClient();
         String account = getUserInfo(GAME_ACCOUNT);
-        if (!isEmpty(account)){
-            String url = getString(R.string.game_url_link,account);
+        if (!isEmpty(account)) {
+            String url = getString(R.string.game_url_link, account);
             h5_game_web_view.loadUrl(url);
         }
     }
 
-    private void setWebClient(){
+    private void setWebClient() {
         h5_game_web_view.setWebChromeClient(new BaseWebChromeClient(h5_game_progressbar));
-        GameWebViewClient client = new GameWebViewClient(h5_game_progressbar,this);
+        GameWebViewClient client = new GameWebViewClient(h5_game_progressbar, this);
         h5_game_web_view.setWebViewClient(client);
         client.setOnInterceptUrlListener(new GameWebViewClient.OnInterceptUrlListener() {
             //1支付宝支付 2微信支付
@@ -80,12 +92,12 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
             public void onCreateOrderPay(int type, int goods_id) {
                 String account = getUserInfo(GAME_ACCOUNT);
                 String srvid = getUserInfo("srvid");
-                Map<String,Object> map = new HashMap<>();
-                map.put("token",account);
-                map.put("type",type);
-                map.put("goods_id",goods_id);
-                map.put("srvid",srvid);
-                mPresenter.onOrderCreate(map,type == 1 ? -1 : -2);
+                Map<String, Object> map = new HashMap<>();
+                map.put("token", account);
+                map.put("type", type);
+                map.put("goods_id", goods_id);
+                map.put("srvid", srvid);
+                mPresenter.onOrderCreate(map, type == 1 ? -1 : -2);
             }
 
             @Override
@@ -96,7 +108,7 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
             @Override
             public void onSaveSrvid(String id) {
                 LogUtils.loge("id=================>" + id);
-               saveUserInfo("srvid",id);
+                saveUserInfo("srvid", id);
             }
 
             //跳转分享
@@ -121,22 +133,22 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
     @Override
     public void onWeChatPay(WeChatPayBean infoBean) {
         this.order_id = infoBean.getOrder_id();
-        PayManager.getInstance(H5GameActivity.this).pay(PAY_TYPE_WX,infoBean);
+        PayManager.getInstance(H5GameActivity.this).pay(PAY_TYPE_WX, infoBean);
     }
 
     //生成支付宝支付订单
     @Override
     public void onAliPay(String order_id, String res) {
         this.order_id = order_id;
-        PayManager.getInstance(H5GameActivity.this).pay(PAY_TYPE_ALI,res);
+        PayManager.getInstance(H5GameActivity.this).pay(PAY_TYPE_ALI, res);
     }
 
     //支付成功 查询服务器支付状态
     @Override
     public void onPaySuccess() {
-        if (!isEmpty(order_id)){
-            mPresenter.checkOrderStatus(getAppToken(),order_id);
-        }else {
+        if (!isEmpty(order_id)) {
+            mPresenter.checkOrderStatus(getAppToken(), order_id);
+        } else {
             showOnlyConfirmDialog(getString(R.string.pay_success));
         }
     }
@@ -174,13 +186,16 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
     @Override
     protected void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd("H5GameActivity");
         h5_game_web_view.webViewOnPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart("H5GameActivity");
         h5_game_web_view.webViewOnResume();
+
     }
 
     @Override

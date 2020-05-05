@@ -10,10 +10,13 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Process;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
+import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.alibaba.baichuan.android.trade.AlibcTradeSDK;
 import com.alibaba.baichuan.android.trade.callback.AlibcTradeInitCallback;
@@ -24,13 +27,24 @@ import com.kf5.sdk.system.init.KF5SDKInitializer;
 import com.kf5.sdk.system.utils.SPUtils;
 import com.ssm.androidkeystoresign.AndroidKeyStoreRSAUtils;
 import com.ssm.sp.SPSecuredUtils;
-import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tencent.smtt.sdk.QbSdk;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.PushAgent;
+import com.umeng.message.UTrack;
+import com.umeng.message.UmengMessageHandler;
+import com.umeng.message.UmengNotificationClickHandler;
+import com.umeng.message.entity.UMessage;
 import com.wuxiantao.wxt.ad.TTAdManagerHolder;
+import com.wuxiantao.wxt.config.Api;
 import com.wuxiantao.wxt.config.Constant;
 import com.wuxiantao.wxt.handler.CrashHandler;
+import com.wuxiantao.wxt.ui.activity.MenuActivity;
 import com.wuxiantao.wxt.utils.LogUtils;
 import com.wuxiantao.wxt.utils.ToastUtils;
 
@@ -76,14 +90,13 @@ public class BaseApplication extends MultiDexApplication implements Application.
         instance = this;
         appContext = getApplicationContext();
         initRSAKeyPair();
-
         ToastUtils.setContext(this);
 
         initAlibc();
         initXUtils();
         registerToWX();
         initX5Environment();
-
+        initUm();
 
         CrashHandler.newInstance().initCrashHandler(getInstance());
         registerActivityLifecycleCallbacks(this);
@@ -92,9 +105,91 @@ public class BaseApplication extends MultiDexApplication implements Application.
         initTTAdSdk();
     }
 
+    /**
+     * 初始化友盟SDK
+     */
+    private void initUm() {
+        /**
+         * 参数一：当前上下文context；
+         * 参数二：应用申请的Appkey（需替换）；
+         * 参数三：渠道名称；
+         * 参数四：设备类型，必须参数，传参数为UMConfigure.DEVICE_TYPE_PHONE则表示手机；传参数为UMConfigure.DEVICE_TYPE_BOX则表示盒子；默认为手机；
+         * 参数五：Push推送业务的secret 填充Umeng Message Secret对应信息（需替换）
+         */
+        // 打开统计SDK调试模式
+        UMConfigure.setLogEnabled(true);
+        UMConfigure.init(this, Api.UM_APPKEY, "Umeng", UMConfigure.DEVICE_TYPE_PHONE, Api.UM_MESSAGE_SECRECT);
+        // 支持在子进程中统计自定义事件
+        UMConfigure.setProcessEvent(true);
+        // 选用AUTO页面采集模式[统计]
+        MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.AUTO);
+        //程序退出时，用于保存统计数据的API
+        MobclickAgent.onKillProcess(this);
+        //获取消息推送代理示例
+        PushAgent mPushAgent = PushAgent.getInstance(this);
+        //注册推送服务，每次调用register方法都会回调该接口
+        mPushAgent.register(new IUmengRegisterCallback() {
+
+            @Override
+            public void onSuccess(String deviceToken) {
+                //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
+                Log.i("", "注册成功：deviceToken：-------->  " + deviceToken);
+            }
+
+            @Override
+            public void onFailure(String s, String s1) {
+                Log.e("", "注册失败：-------->  " + "s:" + s + ",s1:" + s1);
+            }
+        });
+        //自定义通知栏打开动作(自定义消息)
+        UmengNotificationClickHandler notificationClickHandler = new UmengNotificationClickHandler() {
+
+            @Override
+            public void dealWithCustomAction(Context context, UMessage msg) {
+                Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
+            }
+        };
+        mPushAgent.setNotificationClickHandler(notificationClickHandler);
+        //自定义消息回调
+        UmengMessageHandler messageHandler = new UmengMessageHandler() {
+            @Override
+            public void dealWithCustomMessage(final Context context, final UMessage msg) {
+                new Handler(getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        //自定义通知栏样式
+
+
+                        // 对于自定义消息，PushSDK默认只统计送达。若开发者需要统计点击和忽略，则需手动调用统计方法。
+                        boolean isClickOrDismissed = true;
+                        if (isClickOrDismissed) {
+                            //自定义消息的点击统计
+                            UTrack.getInstance(getApplicationContext()).trackMsgClick(msg);
+                        } else {
+                            //自定义消息的忽略统计
+                            UTrack.getInstance(getApplicationContext()).trackMsgDismissed(msg);
+                        }
+                        Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        };
+
+        mPushAgent.setMessageHandler(messageHandler);
+
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        // you must install multiDex whatever tinker is installed!
+        MultiDex.install(base);
+        // 安装tinker
+        Beta.installTinker();
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    private void initRSAKeyPair(){
+    private void initRSAKeyPair() {
         try {
             AndroidKeyStoreRSAUtils.generateRSAKeyPair(getApplicationContext());
         } catch (
@@ -175,18 +270,42 @@ public class BaseApplication extends MultiDexApplication implements Application.
     }
 
     //初始化腾讯bugly
-    private void initBugly(){
+    private void initBugly() {
         // 获取当前包名
-        String packageName = this.getPackageName();
-        // 获取当前进程名
-        String processName = getProcessName(Process.myPid());
-        // 设置是否为上报进程
-        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(this);
-        strategy.setUploadProcess(TextUtils.isEmpty(processName) || processName.equals(packageName));
-        //Bugly会在启动20s后联网同步数据
-        strategy.setAppReportDelay(10000);
+//        String packageName = this.getPackageName();
+//        // 获取当前进程名
+//        String processName = getProcessName(Process.myPid());
+//        // 设置是否为上报进程
+//        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(this);
+//        strategy.setUploadProcess(TextUtils.isEmpty(processName) || processName.equals(packageName));
+//        //Bugly会在启动20s后联网同步数据
+//        strategy.setAppReportDelay(10000);
         // 初始化Bugly
-        CrashReport.initCrashReport(this,BUGLY_ID,isDebugLog,strategy);
+        //CrashReport.initCrashReport(this,BUGLY_ID,isDebugLog,strategy);
+        Bugly.init(getApplicationContext(), BUGLY_ID, true);
+        /**
+         * true表示app启动自动初始化升级模块；
+         * false不好自动初始化
+         * 开发者如果担心sdk初始化影响app启动速度，可以设置为false
+         * 在后面某个时刻手动调用
+         */
+        Beta.autoInit = true;
+
+        /**
+         * true表示初始化时自动检查升级
+         * false表示不会自动检查升级，需要手动调用Beta.checkUpgrade()方法
+         */
+        Beta.autoCheckUpgrade = true;
+
+        /**
+         * 设置升级周期为60s（默认检查周期为0s），60s内SDK不重复向后天请求策略
+         */
+        Beta.initDelay = 1 * 1000;
+        /**
+         * 只允许在MainActivity上显示更新弹窗，其他activity上不显示弹窗;
+         * 不设置会默认所有activity都可以显示弹窗;
+         */
+        Beta.canShowUpgradeActs.add(MenuActivity.class);
     }
 
 
@@ -212,7 +331,7 @@ public class BaseApplication extends MultiDexApplication implements Application.
     }
 
     //初始化云客服
-    private void initYunKf(){
+    private void initYunKf() {
         KF5SDKInitializer.init(getApplicationContext());
         SPUtils.saveHelpAddress(YUN_KF_ADDRESS);
         SPUtils.saveAppID(YUN_KF_APP_ID);
@@ -221,8 +340,8 @@ public class BaseApplication extends MultiDexApplication implements Application.
     //初始化穿山甲SDK
     //穿山甲SDK初始化
     //强烈建议在应用对应的Application#onCreate()方法中调用，避免出现content为null的异常
-    private void initTTAdSdk(){
-        TTAdSdk.init(this,ttAdConfig);
+    private void initTTAdSdk() {
+        TTAdSdk.init(this, ttAdConfig);
         //强烈建议在应用对应的Application#onCreate()方法中调用，避免出现content为null的异常
         TTAdManagerHolder.init(this);
     }
@@ -278,7 +397,7 @@ public class BaseApplication extends MultiDexApplication implements Application.
 
 
     //获取当前进程名
-    private String getProcessName(int pid){
+    private String getProcessName(int pid) {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
@@ -287,14 +406,14 @@ public class BaseApplication extends MultiDexApplication implements Application.
                 processName = processName.trim();
             }
             return processName;
-        }catch (Throwable throwable){
+        } catch (Throwable throwable) {
             throwable.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (reader != null) {
                     reader.close();
                 }
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -341,6 +460,7 @@ public class BaseApplication extends MultiDexApplication implements Application.
 
     /**
      * 添加activity
+     *
      * @author android
      * @time 19-5-27 下午4:08
      */
@@ -367,6 +487,7 @@ public class BaseApplication extends MultiDexApplication implements Application.
 
     /**
      * 退出app
+     *
      * @author android
      * @time 19-5-27 下午4:08
      */
@@ -377,7 +498,7 @@ public class BaseApplication extends MultiDexApplication implements Application.
             }
             allActivities.clear();
             //  结束进程
-             System.exit(0);
+            System.exit(0);
         }
     }
 

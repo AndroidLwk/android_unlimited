@@ -8,13 +8,15 @@ buildscript {
         mavenCentral() // add repository
         maven { url 'https://jitpack.io' }
         maven { url "http://mvnrepo.alibaba-inc.com/mvn/repository" }
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
         // 腾讯bugly
         classpath 'com.tencent.bugly:symtabfileuploader:2.2.1'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+
+        // tinkersupport插件(1.0.3以上无须再配置tinker插件）
+        classpath "com.tencent.bugly:tinker-support:1.2.0"
     }
 }
 
@@ -25,6 +27,7 @@ allprojects {
         jcenter()
         maven { url 'https://jitpack.io' }
         maven { url "http://repo.baichuan-android.taobao.com/content/groups/BaichuanRepositories/"}
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
 }
 

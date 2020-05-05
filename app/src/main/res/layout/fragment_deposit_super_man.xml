@@ -9,8 +9,8 @@
         android:id="@+id/deposit_super_man_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlAccentColor="#00000000"
-        app:srlPrimaryColor="#00000000">
+        app:srlAccentColor="#FC8778"
+        app:srlPrimaryColor="#FC8778">
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:id="@+id/deposit_super_man_classic_header"

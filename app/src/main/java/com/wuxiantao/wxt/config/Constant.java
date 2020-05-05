@@ -45,7 +45,8 @@ public class Constant {
     public static final String TOKEN = "token";
 
     //腾讯bugly id
-    public static final String BUGLY_ID = "ddf6197528";
+    //public static final String BUGLY_ID = "ddf6197528";
+    public static final String BUGLY_ID = "97d1d301f4";
 
     //淘宝分类ID cate_id
     public static final String CATE_ID = "cate_id";

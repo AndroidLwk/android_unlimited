@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:cn_titleText="@string/main_tab_member_center"/>
 
-    <com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/fragment_member_center_toolbar"
@@ -172,7 +172,7 @@
                 android:scaleType="fitCenter"
                 android:layout_marginBottom="@dimen/dp_15"/>
         </LinearLayout>
-    </com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView>
+    </ScrollView>
 
 
 

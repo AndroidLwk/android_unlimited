@@ -25,6 +25,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.umeng.message.PushAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.listener.PermissionListener;
@@ -55,6 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
+        PushAgent.getInstance(this).onAppStart();//【友盟+】Push后台进行日活统计及多维度推送
         //设置状态栏透明
 //        StatusBarUtil.setTranslucentStatus(this);
         //设置默认不弹出软键盘

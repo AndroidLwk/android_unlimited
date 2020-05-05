@@ -19,7 +19,7 @@ import static com.wuxiantao.wxt.config.Constant.PAGE_SIZE;
  * Description:${DESCRIPTION}
  */
 public class TaoBaoFeaturedModel extends BaseModel {
-
+    //淘宝商品
     public void getTaoBaoHome(BaseObserver<TaoBaoHomeBean> observer,int page){
         HttpManager.newInstance()
                 .createService(TaoBaoApiService.class)
@@ -28,7 +28,7 @@ public class TaoBaoFeaturedModel extends BaseModel {
                 .subscribe(observer);
     }
 
-
+    //自营商品
     public void getSelfEmployed(BaseObserver<SelfEmployedBean> observer){
         HttpManager.newInstance()
                 .createService(TaoBaoApiService.class)

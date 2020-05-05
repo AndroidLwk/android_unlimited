@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
-
+// 依赖插件脚本
+//apply from: 'tinker-support.gradle'
 static def buildTime() {
-    return new Date().format("yyMMdd",TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyMMdd", TimeZone.getTimeZone("UTC"))
 }
 
 android {
@@ -20,8 +21,6 @@ android {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
         }
     }
-
-
     signingConfigs {
         release {
             Properties properties = new Properties()
@@ -33,19 +32,19 @@ android {
         }
     }
 
-   // 打包输出apk文件名称
-    android.applicationVariants.all {
-        variant ->
-        // 仅修改正式包
-        if ("release" == variant.buildType.name) {
-            variant.outputs.all {
-                outputFileName = "${variant.name}_${defaultConfig.versionName}_${buildTime()}.apk"
-            }
-        }
-    }
+    // 打包输出apk文件名称
+//    android.applicationVariants.all {
+//        variant ->
+//        // 仅修改正式包
+//        if ("release" == variant.buildType.name) {
+//            variant.outputs.all {
+//                outputFileName = "${variant.name}_${defaultConfig.versionName}_${buildTime()}.apk"
+//            }
+//        }
+//    }
 
-    repositories{
-        flatDir{
+    repositories {
+        flatDir {
             dirs 'libs'
         }
     }
@@ -193,7 +192,7 @@ dependencies {
     implementation rootProject.ext.dependencies["subsampling"]
 
     //穿山甲广告sdk
-    implementation (name: 'open_ad_sdk', ext: 'aar')
+    implementation(name: 'open_ad_sdk', ext: 'aar')
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
     //云客服系统
     implementation project(':kf5sdkModule')
@@ -204,9 +203,16 @@ dependencies {
     //腾讯bug管理平台
     implementation rootProject.ext.dependencies["crashreport"]
     implementation rootProject.ext.dependencies["nativecrashreport"]
+    implementation rootProject.ext.dependencies["tinker-android-lib"]
 
     implementation project(':sharedpreferences_library')
 
     //跑马灯
     implementation rootProject.ext.dependencies["marqueeView"]
+
+    //友盟消息推送、统计
+    implementation rootProject.ext.dependencies["um_common"]
+   // implementation rootProject.ext.dependencies["um_utdid"]
+    implementation rootProject.ext.dependencies["um_push"]
+    implementation rootProject.ext.dependencies["analytics"]
 }

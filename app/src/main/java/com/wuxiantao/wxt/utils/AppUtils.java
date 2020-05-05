@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import com.umeng.commonsdk.statistics.common.DeviceConfig;
 import com.wuxiantao.wxt.app.BaseApplication;
 
 /**
@@ -39,6 +40,7 @@ public class AppUtils {
 
     /**
      * [获取应用程序版本名称信息]
+     *
      * @return 当前应用的版本名称
      */
     public static synchronized String getVersionName() {
@@ -57,6 +59,7 @@ public class AppUtils {
 
     /**
      * [获取应用程序版本名称信息]
+     *
      * @return 当前应用的版本名称
      */
     public static synchronized int getVersionCode() {
@@ -75,6 +78,7 @@ public class AppUtils {
 
     /**
      * [获取应用程序版本名称信息]
+     *
      * @return 当前应用的版本名称
      */
     public static synchronized String getPackageName() {
@@ -110,5 +114,20 @@ public class AppUtils {
         BitmapDrawable bd = (BitmapDrawable) d;
         Bitmap bm = bd.getBitmap();
         return bm;
+    }
+
+    /**
+     * 获取的设备信息[友盟集成测试]
+     */
+    public static String[] getTestDeviceInfo(Context context) {
+        String[] deviceInfo = new String[2];
+        try {
+            if (context != null) {
+                deviceInfo[0] = DeviceConfig.getDeviceIdForGeneral(context);
+                deviceInfo[1] = DeviceConfig.getMac(context);
+            }
+        } catch (Exception e) {
+        }
+        return deviceInfo;
     }
 }
