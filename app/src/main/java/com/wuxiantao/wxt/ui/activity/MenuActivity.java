@@ -35,7 +35,7 @@ import com.wuxiantao.wxt.ui.custom.radiobutton.SiteImgRadioButton;
 import com.wuxiantao.wxt.ui.fragment.main.IncomeHallFragment;
 import com.wuxiantao.wxt.ui.fragment.main.TaskHallFragment;
 import com.wuxiantao.wxt.ui.fragment.main.MyDepositFragment;
-import com.wuxiantao.wxt.ui.fragment.main.ReadyRedEnvelopeFragment;
+import com.wuxiantao.wxt.ui.fragment.main.ScrapingCardFragment;
 import com.wuxiantao.wxt.ui.fragment.main.TaoBaoFragment;
 import com.wuxiantao.wxt.ui.popupwindow.VersionUpdatePopupWindow;
 import com.wuxiantao.wxt.utils.ToastUtils;
@@ -86,7 +86,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     ImageView menu_tab_high_area_checked_img;
     private TaoBaoFragment mTaoBaoFragment;
     private TaskHallFragment mTaskHallFragment;
-    private ReadyRedEnvelopeFragment mReadyRedEnvelopeFragment;
+    private ScrapingCardFragment mScrapingCardFragment;
     private IncomeHallFragment mIncomeHallFragment;
     private MyDepositFragment mMyDepositFragment;
 
@@ -294,14 +294,14 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
                 break;
             //刮刮卡
             case 2:
-                if (mReadyRedEnvelopeFragment == null) {
-                    mReadyRedEnvelopeFragment = new ReadyRedEnvelopeFragment();
-                    mTransaction.add(R.id.main_menu_frament, mReadyRedEnvelopeFragment);
+                if (mScrapingCardFragment == null) {
+                    mScrapingCardFragment = new ScrapingCardFragment();
+                    mTransaction.add(R.id.main_menu_frament, mScrapingCardFragment);
                 } else {
-                    mTransaction.show(mReadyRedEnvelopeFragment);
+                    mTransaction.show(mScrapingCardFragment);
                 }
                 if (bundle != null) {
-                    mReadyRedEnvelopeFragment.setArguments(bundle);
+                    mScrapingCardFragment.setArguments(bundle);
                 }
                 break;
             case 3://任务大厅
@@ -335,7 +335,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     private void hideFragments() {
         hideFragments(mTaoBaoFragment);
         hideFragments(mTaskHallFragment);
-        hideFragments(mReadyRedEnvelopeFragment);
+        hideFragments(mScrapingCardFragment);
         hideFragments(mIncomeHallFragment);
         hideFragments(mMyDepositFragment);
     }

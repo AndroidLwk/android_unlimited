@@ -1,9 +1,7 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
-import com.wuxiantao.wxt.bean.MyFansiHeadInfoBean;
 import com.wuxiantao.wxt.mvp.contract.MineFansiContract;
 import com.wuxiantao.wxt.mvp.model.MineFansiModel;
-import com.wuxiantao.wxt.net.base.BaseObserver;
 
 /**
  * Company:成都可信网络科技有限责任公司
@@ -20,20 +18,20 @@ public class MineFansiPresenter extends BasePresenter<MineFansiContract.IFansiVi
 
     @Override
     public void obtainFansiHeadInfo(String token) {
-        if (view == null){
-            view = getMvpView();
-        }
-        BaseObserver<MyFansiHeadInfoBean> observer = new BaseObserver<MyFansiHeadInfoBean>(view) {
-            @Override
-            public void onSuccess(MyFansiHeadInfoBean bean) {
-                view.obtainFansiHeadInfoSuccess(bean);
-            }
-
-            @Override
-            public void onFailure(String errorMsg) {
-                view.obtainFansiHeadInfoFailure(errorMsg);
-            }
-        };
-        model.obtainFansiHeadInfo(observer,token);
+//        if (view == null){
+//            view = getMvpView();
+//        }
+//        BaseObserver<MyFansiHeadInfoBean> observer = new BaseObserver<MyFansiHeadInfoBean>(view) {
+//            @Override
+//            public void onSuccess(MyFansiHeadInfoBean bean) {
+//                view.obtainFansiHeadInfoSuccess(bean);
+//            }
+//
+//            @Override
+//            public void onFailure(String errorMsg) {
+//                //view.obtainFansiHeadInfoFailure(errorMsg);
+//            }
+//        };
+//        model.obtainFansiHeadInfo(observer,token);
     }
 }

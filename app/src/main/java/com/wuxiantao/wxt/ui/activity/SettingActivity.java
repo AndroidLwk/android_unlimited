@@ -2,7 +2,6 @@ package com.wuxiantao.wxt.ui.activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
@@ -16,9 +15,11 @@ import com.wuxiantao.wxt.bean.CurrentVersionBean;
 import com.wuxiantao.wxt.mvp.contract.AboutSupermanContract;
 import com.wuxiantao.wxt.mvp.presenter.AboutSupermanPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
+import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.custom.decoration.RecViewItemDecoration;
 import com.wuxiantao.wxt.ui.popupwindow.VersionUpdatePopupWindow;
 import com.wuxiantao.wxt.ui.title.TitleBuilder;
+import com.wuxiantao.wxt.utils.AppUtils;
 import com.wuxiantao.wxt.utils.CacheDataUtils;
 import com.wuxiantao.wxt.utils.VersionUtils;
 
@@ -28,67 +29,72 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.wuxiantao.wxt.config.Constant.ABOUT_SUPER;
-
 /**
  * Company:成都可信网络科技有限责任公司
  * FileName:AboutWuXianTaoActivity
  * Author:android
  * Mail:2898682029@qq.com
  * Date:19-6-3 上午8:45
- * Description:${DESCRIPTION} 关于无线淘
+ * Description:${DESCRIPTION} 设置
  */
-@ContentView(R.layout.activity_about_wuxiantao)
-public class AboutWuXianTaoActivity extends MvpActivity<AboutSupermanPresenter, AboutSupermanContract.IAboutSupermanView> implements AboutSupermanContract.IAboutSupermanView {
+@ContentView(R.layout.activity_setting)
+public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSupermanContract.IAboutSupermanView> implements AboutSupermanContract.IAboutSupermanView {
     @ViewInject(R.id.super_man_about_rl)
     SmartRefreshLayout super_man_about_rl;
     @ViewInject(R.id.super_man_about_rv)
     RecyclerView super_man_about_rv;
+    @ViewInject(R.id.my_information_exit)
+    StateButton my_information_exit;
 
     @Override
     public void initView() {
-        Bundle bundle = getBundle();
-        if (bundle != null) {
-            String verName = bundle.getString(ABOUT_SUPER);
-            super_man_about_rl.setEnableRefresh(false);
-            super_man_about_rl.setEnableLoadMore(false);
-            initLayout(verName);
+        setOnClikListener(my_information_exit);
+        super_man_about_rl.setEnableRefresh(false);
+        super_man_about_rl.setEnableLoadMore(false);
+        initLayout();
+    }
+
+    @Override
+    protected void widgetClick(int id) {
+        super.widgetClick(id);
+        if (id == R.id.my_information_exit) {//退出登录
+
         }
     }
 
-    private void initLayout(String verName) {
+    private void initLayout() {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(1);
         RecViewItemDecoration decoration = new RecViewItemDecoration(this, LinearLayoutManager.VERTICAL);
         List<AboutSuperManBean> list = new ArrayList<>();
         AboutSuperManBean cacheBean = new AboutSuperManBean(getString(R.string.phone_cache), CacheDataUtils.getTotalCacheSize());
-        list.add(new AboutSuperManBean(getString(R.string.version_update), verName));
-        list.add(new AboutSuperManBean(getString(R.string.service_protocol), null));
+        list.add(new AboutSuperManBean(getString(R.string.udpate_pw), null));
+        list.add(new AboutSuperManBean(getString(R.string.setting_text1), null));
         list.add(cacheBean);
+        list.add(new AboutSuperManBean(getString(R.string.version_update), AppUtils.getVersionName()));
+        list.add(new AboutSuperManBean(getString(R.string.setting_text2), null));
         AboutSupermanRecViewAdapter adapter = new AboutSupermanRecViewAdapter(this, list);
         super_man_about_rv.setLayoutManager(manager);
         super_man_about_rv.addItemDecoration(decoration);
         super_man_about_rv.setAdapter(adapter);
         adapter.setOnBaseViewClickListener(position -> {
             switch (position) {
-                //版本更新
-                case 0:
-                    //获取版本号
-                    //mPresenter.getAppCurrentVersion();
-                    Beta.checkUpgrade();
+                case 0://修改密码
+                    $startActivity(SettingPassWordActivity.class);
                     break;
-                //服务协议
-                case 1:
-                    $startActivity(ServerProtocolActivity.class);
+                case 1://客服服务
                     break;
-                //清除缓存
-                case 2:
+                case 2://清除缓存
                     showDialog(getString(R.string.phone_cache), (dialog, which) -> {
                         CacheDataUtils.clearAllCache();
                         cacheBean.setVersion(CacheDataUtils.getTotalCacheSize());
                         list.set(2, cacheBean);
                         adapter.updataList(list, 2, 1);
                     });
+                case 3://版本更新
+                    Beta.checkUpgrade();
+                    break;
+                case 4://关于我们
                     break;
             }
         });
@@ -143,4 +149,6 @@ public class AboutWuXianTaoActivity extends MvpActivity<AboutSupermanPresenter, 
     public void dismissLoading() {
 
     }
+
+
 }

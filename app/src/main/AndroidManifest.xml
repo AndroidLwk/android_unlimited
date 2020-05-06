@@ -48,6 +48,9 @@
                  <category android:name="android.intent.category.LAUNCHER" />
              </intent-filter>
          </activity>
+        <activity android:name=".ui.activity.my.MyMemberActivity">
+
+        </activity>
        <!-- <activity android:name=".ui.activity.TestTwoActivity">
             <intent-filter>
                 <action
@@ -165,8 +168,8 @@
             android:theme="@style/AppTheme.No" />
         <!--我的个人信息-->
         <activity android:name=".ui.activity.MyInformationActivity" />
-        <!--关于赚省超人-->
-        <activity android:name=".ui.activity.AboutWuXianTaoActivity" />
+        <!--设置-->
+        <activity android:name=".ui.activity.SettingActivity" />
         <!--服务协议-->
         <activity android:name=".ui.activity.ServerProtocolActivity" />
         <!--帮助中心-->

@@ -17,7 +17,7 @@
                android:id="@+id/base_title_left_img"
                android:layout_width="@dimen/dp_8"
                android:layout_height="@dimen/dp_12"
-               android:src="@mipmap/base_title_back"
+               android:src="@drawable/back_mymember"
                android:tint="#B5B0AF"
                android:layout_centerInParent="true"
                android:visibility="gone"/>
@@ -36,7 +36,7 @@
            android:layout_height="wrap_content"
            android:layout_centerInParent="true"
            android:textColor="@color/black"
-           android:textSize="@dimen/sp_18"
+           android:textSize="@dimen/sp_15"
            android:visibility="gone"
            android:maxLines="1"
            android:maxEms="10"

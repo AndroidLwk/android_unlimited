@@ -18,8 +18,6 @@ import com.wuxiantao.wxt.mvp.fansi.p.FanSiIndirectPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
 import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.custom.decoration.SpaceItemDecoration;
-import com.wuxiantao.wxt.ui.custom.radiobutton.SoftRadioButton;
-import com.wuxiantao.wxt.ui.custom.radiobutton.SoftRadioGroup;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.popupwindow.FanSiInfoPopupWindow;
 import com.wuxiantao.wxt.utils.TextViewUtils;
@@ -52,14 +50,6 @@ public class FanSiIndirectFragment extends MvpFragment<FanSiIndirectPresenter, F
     ClassicsHeader fansi_indirectly_classic_header;
     @ViewInject(R.id.fansi_indirectly_rv)
     RecyclerView fansi_indirectly_rv;
-
-    @ViewInject(R.id.fansi_indirectly_rg)
-    SoftRadioGroup fansi_indirectly_rg;
-    @ViewInject(R.id.fansi_indirectly_time_rb)
-    SoftRadioButton fansi_indirectly_time_rb;
-    @ViewInject(R.id.fansi_indirectly_deposit_rb)
-    SoftRadioButton fansi_indirectly_deposit_rb;
-
     private FanSiIndirectlyRecViewAdapter adapter;
     private int page = 1;
     private FansiIndirectBean datas;
@@ -82,19 +72,7 @@ public class FanSiIndirectFragment extends MvpFragment<FanSiIndirectPresenter, F
         parameters.put("type",FANSI_TYPE_INDIRECT);
         mPresenter.obtainFansi(parameters);
         initRefreshLoad();
-        fansi_indirectly_rg.setOnCheckedChangeListener((group, checkedId, orientation) -> {
-            switch (checkedId){
-                case R.id.fansi_indirectly_time_rb:
-                    parameters.put("create_time",orientation ? 0 : 1);
-                    break;
-                case R.id.fansi_indirectly_deposit_rb:
-                    parameters.put("cun",orientation ? 0 : 1);
-                    break;
-            }
-            mPresenter.obtainFansi(parameters);
-        });
     }
-
 
     private void initRefreshLoad(){
         fansi_indirectly_rl.setRefreshHeader(fansi_indirectly_classic_header);

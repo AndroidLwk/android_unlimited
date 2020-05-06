@@ -17,7 +17,6 @@
     </string-array>
 
 
-
     <string-array name="server_protocol_title">
         <item>用户协议</item>
         <item>隐私政策</item>
@@ -111,7 +110,6 @@
     </string-array>
 
 
-
     <string-array name="lottery_winning_list_title">
         <item>铜钥匙</item>
         <item>银钥匙</item>
@@ -119,9 +117,9 @@
     </string-array>
 
     <string-array name="mine_fansi_title">
-        <item>潜在好友</item>
-        <item>直属好友</item>
-        <item>间接好友</item>
+        <!-- <item>潜在好友</item>-->
+        <item>徒弟</item>
+        <item>徒孙</item>
     </string-array>
 
     <string-array name="recording_title">
@@ -209,8 +207,6 @@
         <item>升级</item>
         <item>购物</item>
     </string-array>
-
-
 
 
     <string-array name="item_daily_task_title">

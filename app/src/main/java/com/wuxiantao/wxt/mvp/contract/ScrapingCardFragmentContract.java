@@ -10,11 +10,11 @@ import com.wuxiantao.wxt.mvp.view.MvpView;
  * Author: Administrator Shiming-Shi
  */
 
-public interface MineContract {
+public interface ScrapingCardFragmentContract {
 
-    interface IMineView extends MvpView {
+    interface IScrapingCardFragmentView extends MvpView {
+        //将一些操作界面的方法在这里声明
 
     }
-
 
 }

@@ -18,8 +18,6 @@ import com.wuxiantao.wxt.mvp.fansi.p.FanSiDirectlyPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
 import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.custom.decoration.SpaceItemDecoration;
-import com.wuxiantao.wxt.ui.custom.radiobutton.SoftRadioButton;
-import com.wuxiantao.wxt.ui.custom.radiobutton.SoftRadioGroup;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.popupwindow.FanSiInfoPopupWindow;
 import com.wuxiantao.wxt.utils.TextViewUtils;
@@ -52,16 +50,6 @@ public class FanSiDirectlyFragment extends MvpFragment<FanSiDirectlyPresenter, F
     ClassicsHeader fansi_directly_classic_header;
     @ViewInject(R.id.fansi_directly_rv)
     RecyclerView fansi_directly_rv;
-
-    @ViewInject(R.id.fansi_directly_rg)
-    SoftRadioGroup fansi_directly_rg;
-    @ViewInject(R.id.fansi_directly_time_rb)
-    SoftRadioButton fansi_directly_time_rb;
-    @ViewInject(R.id.fansi_directly_person_rb)
-    SoftRadioButton fansi_directly_person_rb;
-    @ViewInject(R.id.fansi_directly_deposit_rb)
-    SoftRadioButton fansi_directly_deposit_rb;
-
     private FanSiDirectlyRecViewAdapter adapter;
     private FansiDirectlyBean datas;
     private LoadingDialog loadingDialog;
@@ -85,20 +73,6 @@ public class FanSiDirectlyFragment extends MvpFragment<FanSiDirectlyPresenter, F
         parameters.put("type",FANSI_TYPE_DIRECTLY);
         mPresenter.obtainFansi(parameters);
         initRefreshLoad();
-        fansi_directly_rg.setOnCheckedChangeListener((group,checkedId, orientation) -> {
-            switch (checkedId){
-                case R.id.fansi_directly_time_rb:
-                    parameters.put("create_time",orientation ? 0 : 1);
-                    break;
-                case R.id.fansi_directly_person_rb:
-                    parameters.put("fnum",orientation ? 0 : 1);
-                    break;
-                case R.id.fansi_directly_deposit_rb:
-                    parameters.put("cun",orientation ? 0 : 1);
-                    break;
-            }
-            mPresenter.obtainFansi(parameters);
-        });
     }
 
     private void initRefreshLoad(){

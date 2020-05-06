@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/dp_25"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10">
+
+    <TextView
+        android:id="@+id/tv_num_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="任务大厅签到  +3张"
+        android:textColor="@color/color_999"
+        android:textSize="@dimen/sp_12" />
+
+    <com.wuxiantao.wxt.ui.custom.button.StateButton
+        android:id="@+id/sbt_finish"
+        android:layout_width="@dimen/dp_55"
+        android:layout_height="@dimen/dp_18"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="0dp"
+        android:text="@string/taskhall_text21"
+        android:textColor="@color/color_fa5858"
+        android:textSize="@dimen/sp_10"
+        app:normalBackgroundCenterColor="@color/color_fa5858"
+        app:normalBackgroundEndColor="@color/color_fa5858"
+        app:normalBackgroundStartColor="@color/color_fa5858"
+        app:normalOrientation="BL_TR"
+        app:normalShapeType="LINEAR_GRADIENT"
+        app:normalTextColor="@color/white"
+        app:radius="@dimen/dp_6"
+        app:round="true" />
+</LinearLayout>

@@ -1,55 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_f7f7f7">
+    android:background="@color/color_f7f7f7"
+    android:orientation="vertical">
 
-    <com.wuxiantao.wxt.ui.title.CNToolbar
-        android:id="@+id/fragment_member_center_toolbar"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cn_titleText="@string/main_tab_income_hall" />
+        android:scrollbars="vertical">
 
-    <LinearLayout
-        android:id="@+id/lt_task_finish"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_140"
-        android:layout_below="@+id/fragment_member_center_toolbar"
-        android:background="@drawable/base_title_background"
-        android:gravity="center"
-        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/main_taskhall_a" />
+            <com.wuxiantao.wxt.ui.title.CNToolbar
+                android:id="@+id/fragment_member_center_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cn_titleText="@string/main_tab_income_hall" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_15"
-            android:text="领/取/签/到/奖/励"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_19" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lt_task_finish"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_125"
+                android:layout_below="@+id/fragment_member_center_toolbar"
+                android:background="@drawable/base_title_background"
+                android:gravity="center"
+                android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_task_one"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_199"
-        android:background="@drawable/shape_taskhall_background"
-        android:layout_marginLeft="@dimen/dp_22"
-        android:layout_marginTop="@dimen/dp_186"
-        android:layout_marginRight="@dimen/dp_22" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/main_taskhall_a" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_task_two"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_400"
-        android:layout_below="@+id/rv_task_one"
-        android:background="@drawable/shape_taskhall_background"
-        android:layout_marginLeft="@dimen/dp_22"
-        android:layout_marginTop="@dimen/dp_11"
-        android:layout_marginRight="@dimen/dp_22" />
-</RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_task_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:text="领/取/签/到/奖/励"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_19" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lt_task_one"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_199"
+                android:layout_marginLeft="@dimen/dp_22"
+                android:layout_marginTop="@dimen/dp_175"
+                android:layout_marginRight="@dimen/dp_22"
+                android:background="@drawable/shape_taskhall_background"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_13"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_32"
+                    android:text="签到任务"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_15" />
+
+                <com.wuxiantao.wxt.ui.custom.recyclerview.NestRecyclerView
+                    android:id="@+id/rv_task_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lt_task_two"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_400"
+                android:layout_below="@+id/lt_task_one"
+                android:layout_marginLeft="@dimen/dp_22"
+                android:layout_marginTop="@dimen/dp_11"
+                android:layout_marginRight="@dimen/dp_22"
+                android:background="@drawable/shape_taskhall_background"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_13"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:layout_marginBottom="@dimen/dp_32"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_help"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/main_taskhall_j"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:text="今日任务"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_15" />
+
+                    <TextView
+                        android:id="@+id/tv_refresh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dp_9"
+                        android:drawableLeft="@drawable/main_taskhall_i"
+                        android:drawablePadding="@dimen/dp_7"
+                        android:text="刷新"
+                        android:textColor="@color/color_6a6a6a"
+                        android:textSize="@dimen/sp_12" />
+                </RelativeLayout>
+
+                <com.wuxiantao.wxt.ui.custom.recyclerview.NestRecyclerView
+                    android:id="@+id/rv_task_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

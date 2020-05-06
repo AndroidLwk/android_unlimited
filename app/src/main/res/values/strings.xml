@@ -896,7 +896,7 @@
     <string name="people_level_default">0/150</string>
     <string name="dividend_experience">分红体验中:%1$s</string>
     <string name="dividend_experience_ing">正在体验分红</string>
-    <string name="click_dividend_experience">点击体验分红</string>
+    <string name="click_dividend_experience">开始分红</string>
     <string name="flop__ingot">翻牌拿元宝</string>
     <string name="change_area">更改绑定大区</string>
     <string name="please_big_area">请选择大区</string>
@@ -941,4 +941,44 @@
     <string name="level">%1$d级</string>
     <string name="_1_0">1.0</string>
     <string name="more_get_income">更多方式获取收益，无限躺赚</string>
+    <!-- 刮刮卡-->
+    <string name="scrapingcard_text1">惊喜刮刮卡</string>
+
+    <!-- 我的会员-->
+    <string name="mymember_text1">开通会员可享受6大特权哦！</string>
+    <string name="mymember_text2">开通会员！</string>
+    <string name="mymember_text3">会员权益</string>
+    <string name="mymember_text4">会员说明</string>
+    <string name="mymember_text6">我的会员</string>
+    <string name="mymember_text5">价格：29.9元/月\n
+权益：\n返商家的40%，金币100：1\n优惠券个这种类型一张，卡包可查看\n评论的文字颜色不同\n签到 100金币/日\n游戏商城  每天购买次数增加+2次\n提现不限次数\n提现额度 20起提\n师徒收益 增加10%（徒孙）、增加20%（徒弟）\n
+游戏礼包--充值即送 10万游戏金币、100强化石、15飞升丹\n</string>
+
+    <!-- 设置-->
+    <string name="setting_text1">客服服务</string>
+    <string name="setting_text2">关于我们</string>
+
+    <!-- 任务大厅-->
+    <string name="taskhall_text1">去完成</string>
+    <string name="taskhall_text2">交易大厅</string>
+    <string name="taskhall_text3">惊喜刮刮卡</string>
+    <string name="taskhall_text4">我的背包</string>
+    <string name="taskhall_text5">当前幸运值</string>
+    <string name="taskhall_text6">如何获取幸运值？</string>
+    <string name="taskhall_text7">青铜英雄卡分红</string>
+    <string name="taskhall_text8">距离平台分红还差0张</string>
+    <string name="taskhall_text9">刮刮卡分红</string>
+    <string name="taskhall_text10">英雄卡卷轴</string>
+    <string name="taskhall_text11">距离平台分红还差5张</string>
+    <string name="taskhall_text12">黄金英雄卡分红</string>
+    <string name="taskhall_text13">目前5人正参与分红</string>
+    <string name="taskhall_text14">总余额</string>
+    <string name="taskhall_text15">累计提现</string>
+    <string name="taskhall_text16">刮刮卡奖池</string>
+    <string name="taskhall_text17">6-128元王者皮肤兑换卷1-50元王者皮肤兑换卷集齐英雄卡得平  台分红</string>
+    <string name="taskhall_text18">刮刮卡领取</string>
+    <string name="taskhall_text19">更多</string>
+    <string name="taskhall_text20">英雄卡整套分红</string>
+    <string name="taskhall_text21">已完成</string>
+
 </resources>

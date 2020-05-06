@@ -428,7 +428,7 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
             public void onAboutSuperman(String verName) {
                 Bundle bundle = new Bundle();
                 bundle.putString(ABOUT_SUPER,verName);
-                $startActivity(AboutWuXianTaoActivity.class,bundle);
+                $startActivity(SettingActivity.class,bundle);
             }
         });
     }

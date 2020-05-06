@@ -26,31 +26,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <com.wuxiantao.wxt.ui.custom.radiobutton.SoftRadioGroup
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:id="@+id/fansi_indirectly_rg"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_45">
-                    <com.wuxiantao.wxt.ui.custom.radiobutton.SoftRadioButton
-                        android:id="@+id/fansi_indirectly_time_rb"
-                        style="@style/softRadioButton_style"
-                        app:text="@string/join_time"/>
-                    <com.wuxiantao.wxt.ui.custom.radiobutton.SoftRadioButton
-                        android:id="@+id/fansi_indirectly_deposit_rb"
-                        style="@style/softRadioButton_style"
-                        android:visibility="gone"
-                        app:text="@string/jinggong_deposit"/>
-                </com.wuxiantao.wxt.ui.custom.radiobutton.SoftRadioGroup>
+
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/fansi_indirectly_rv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"/>
-            </LinearLayout>
         </com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView>
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"

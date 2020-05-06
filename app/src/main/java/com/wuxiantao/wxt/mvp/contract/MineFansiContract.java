@@ -17,7 +17,6 @@ public interface MineFansiContract {
     interface IFansiView extends MvpView {
         //将一些操作界面的方法在这里声明
         void obtainFansiHeadInfoSuccess(MyFansiHeadInfoBean bean);
-        void obtainFansiHeadInfoFailure(String failure);
     }
 
     interface IFansiPresenter extends MvpPresenter<IFansiView> {
