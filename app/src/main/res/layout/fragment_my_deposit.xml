@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:background="@color/white">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/mine_rl"
@@ -21,286 +20,306 @@
             app:srlAccentColor="@color/white"
             app:srlDrawableArrow="@mipmap/super_man_fly_white" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <RelativeLayout
-                android:id="@+id/rt_personInfo"
+            android:scrollbars="vertical">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/base_title_background"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/dp_17"
-                android:paddingBottom="@dimen/dp_24">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_title"
+                <RelativeLayout
+                    android:id="@+id/rt_personInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_17"
-                    android:gravity="right"
-                    android:paddingRight="@dimen/dp_17"
-                    android:text="@string/official_group"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp_15" />
+                    android:paddingTop="@dimen/dp_12"
+                    android:background="@drawable/base_title_background"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/dp_17"
+                    android:paddingBottom="@dimen/dp_24">
 
-                <ImageView
-                    android:id="@+id/iv_mine_header"
-                    android:layout_width="@dimen/dp_58"
-                    android:layout_height="@dimen/dp_58"
-                    android:layout_below="@+id/tv_title"
-                    android:src="@drawable/mine_header" />
+                    <TextView
+                        android:id="@+id/tv_officialGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_17"
+                        android:gravity="right"
+                        android:paddingRight="@dimen/dp_17"
+                        android:text="@string/official_group"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_15" />
 
-                <TextView
-                    android:id="@+id/iv_headerName"
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/iv_mine_header"
+                        android:layout_width="@dimen/dp_58"
+                        android:layout_height="@dimen/dp_58"
+                        android:layout_below="@+id/tv_title"
+                        android:layout_marginTop="@dimen/dp_19"
+                        android:src="@drawable/mine_header" />
+
+                    <TextView
+                        android:id="@+id/iv_headerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_title"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:layout_marginTop="@dimen/dp_31"
+                        android:layout_toRightOf="@+id/iv_mine_header"
+                        android:text="小猫咪"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_17" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_31"
+                        android:layout_toRightOf="@+id/iv_headerName"
+                        android:src="@drawable/mine_gold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_headerName"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:layout_toRightOf="@+id/iv_mine_header"
+                        android:text="我的师傅：小狐狸"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_13" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rt_balance"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_title"
-                    android:layout_marginLeft="@dimen/dp_12"
-                    android:layout_toRightOf="@+id/iv_mine_header"
-                    android:text="小猫咪"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp_17" />
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/dp_24"
+                    android:paddingTop="@dimen/dp_17"
+                    android:paddingBottom="@dimen/dp_17">
+
+                    <TextView
+                        android:id="@+id/tv_dirver"
+                        android:layout_width="2dp"
+                        android:layout_height="@dimen/dp_18"
+                        android:background="@color/red" />
+
+                    <TextView
+                        android:id="@+id/tv_bag_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_1"
+                        android:layout_toRightOf="@+id/tv_dirver"
+                        android:text="我的钱包"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:id="@+id/tv_money_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_bag_title"
+                        android:layout_marginTop="@dimen/dp_25"
+                        android:text="总余额"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_11" />
+
+                    <TextView
+                        android:id="@+id/tv_crashMoney_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_bag_title"
+                        android:layout_marginLeft="@dimen/dp_135"
+                        android:layout_marginTop="@dimen/dp_25"
+                        android:layout_toRightOf="@+id/tv_money_title"
+                        android:text="累计提现"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_11" />
+
+                    <TextView
+                        android:id="@+id/tv_blanseValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_money_title"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:text="2000元"
+                        android:textColor="@color/color_fa5858"
+                        android:textSize="@dimen/sp_16" />
+
+                    <TextView
+                        android:id="@+id/tv_crashValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_crashMoney_title"
+                        android:layout_alignLeft="@+id/tv_crashMoney_title"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:text="2000元"
+                        android:textColor="@color/color_fa5858"
+                        android:textSize="@dimen/sp_16" />
+                </RelativeLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_12"
+                    android:background="@color/color_faf6f5" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/iv_headerName"
-                    android:layout_marginLeft="@dimen/dp_12"
-                    android:layout_marginTop="@dimen/dp_8"
-                    android:layout_toRightOf="@+id/iv_mine_header"
-                    android:text="我的师傅：小狐狸"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp_13" />
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp_24"
+                    android:paddingTop="@dimen/dp_14"
+                    android:paddingBottom="@dimen/dp_20">
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tv_driver_two"
+                        android:layout_width="2dp"
+                        android:layout_height="@dimen/dp_18"
+                        android:background="@color/red" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/dp_24"
-                android:paddingTop="@dimen/dp_17"
-                android:paddingBottom="@dimen/dp_17">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_1"
+                        android:layout_toRightOf="@+id/tv_driver_two"
+                        android:text="常用工具"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_dirver"
-                    android:layout_width="2dp"
-                    android:layout_height="@dimen/dp_18"
-                    android:background="@color/red" />
-
-                <TextView
-                    android:id="@+id/tv_bag_title"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_1"
-                    android:layout_toRightOf="@+id/tv_dirver"
-                    android:text="我的钱包"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_14" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_mine_member"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/mine_member"
+                        android:drawablePadding="@dimen/dp_8"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:text="我的会员"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/tv_mine_friend"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/mine_friend"
+                        android:drawablePadding="@dimen/dp_8"
+
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:text="我的好友"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/tv_mine_code"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/mine_code"
+                        android:drawablePadding="@dimen/dp_8"
+                        android:gravity="center"
+                        android:orientation="vertical"
+
+                        android:text="我的邀请码"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/tv_mine_order"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/mine_order"
+                        android:drawablePadding="@dimen/dp_8"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:text="我的订单"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tv_money_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_13"
+                    android:layout_marginRight="@dimen/dp_24"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:background="@color/gainsboro" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_bag_title"
-                    android:layout_marginTop="@dimen/dp_25"
-                    android:text="总余额"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_11" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_crashMoney_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_bag_title"
-                    android:layout_marginLeft="@dimen/dp_135"
-                    android:layout_marginTop="@dimen/dp_25"
-                    android:layout_toRightOf="@+id/tv_money_title"
-                    android:text="累计提现"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_11" />
+                    <TextView
+                        android:id="@+id/tv_mine_profit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/mine_profit"
+                        android:drawablePadding="@dimen/dp_8"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:text="我的收益"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_money_title"
-                    android:layout_marginTop="@dimen/dp_8"
-                    android:text="2000元"
-                    android:textColor="@color/color_fa5858"
-                    android:textSize="@dimen/sp_16" />
+                    <TextView
+                        android:id="@+id/tv_mine_set"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/mine_set"
+                        android:drawablePadding="@dimen/dp_8"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:text="  设置"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_crashMoney_title"
-                    android:layout_alignLeft="@+id/tv_crashMoney_title"
-                    android:layout_marginTop="@dimen/dp_8"
-                    android:text="2000元"
-                    android:textColor="@color/color_fa5858"
-                    android:textSize="@dimen/sp_16" />
-            </RelativeLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_12"
-                android:background="@color/color_faf6f5" />
+                    <TextView
+                        android:id="@+id/tv_mine_freedback"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/mine_freedback"
+                        android:drawablePadding="@dimen/dp_8"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:text="问题反馈"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/dp_24"
-                android:paddingTop="@dimen/dp_14"
-                android:paddingBottom="@dimen/dp_20">
-
-                <TextView
-                    android:id="@+id/tv_driver_two"
-                    android:layout_width="2dp"
-                    android:layout_height="@dimen/dp_18"
-                    android:background="@color/red" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_1"
-                    android:layout_toRightOf="@+id/tv_driver_two"
-                    android:text="常用工具"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_14" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/mine_freedback"
+                        android:drawablePadding="@dimen/dp_8"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:text="我的订单"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12"
+                        android:visibility="invisible" />
+                </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_mine_member"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/mine_member"
-                    android:drawablePadding="@dimen/dp_8"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:text="我的会员"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_12" />
-
-                <TextView
-                    android:id="@+id/tv_mine_friend"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/mine_friend"
-                    android:drawablePadding="@dimen/dp_8"
-
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:text="我的好友"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_12" />
-
-                <TextView
-                    android:id="@+id/tv_mine_code"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/mine_code"
-                    android:drawablePadding="@dimen/dp_8"
-                    android:gravity="center"
-                    android:orientation="vertical"
-
-                    android:text="我的邀请码"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_12" />
-
-                <TextView
-                    android:id="@+id/tv_mine_order"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/mine_order"
-                    android:drawablePadding="@dimen/dp_8"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:text="我的订单"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_12" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1"
-                android:layout_marginLeft="@dimen/dp_24"
-                android:layout_marginTop="@dimen/dp_13"
-                android:layout_marginRight="@dimen/dp_24"
-                android:layout_marginBottom="@dimen/dp_10"
-                android:background="@color/gainsboro" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_mine_profit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/mine_profit"
-                    android:drawablePadding="@dimen/dp_8"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:text="我的收益"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_12" />
-
-                <TextView
-                    android:id="@+id/tv_mine_set"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/mine_set"
-                    android:drawablePadding="@dimen/dp_8"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:text="   设置"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_12" />
-
-                <TextView
-                    android:id="@+id/tv_mine_freedback"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/mine_freedback"
-                    android:drawablePadding="@dimen/dp_8"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:text="问题反馈"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_12" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/mine_freedback"
-                    android:drawablePadding="@dimen/dp_8"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:text="我的订单"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_12"
-                    android:visibility="invisible" />
-            </LinearLayout>
-        </LinearLayout>
-
-
+        </ScrollView>
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

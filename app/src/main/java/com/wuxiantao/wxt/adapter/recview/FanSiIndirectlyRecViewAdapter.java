@@ -26,11 +26,8 @@ public class FanSiIndirectlyRecViewAdapter extends RcvBaseAdapter<FansiIndirectB
 
     @Override
     public void convert(BaseViewHolder holder, FansiIndirectBean.ListBean bean, int position) {
-        holder.setCircleImageResource(R.id.item_fansi_indirectly_headimg,bean.getHeadimg());
-        holder.setText(R.id.item_fansi_indirectly_name,bean.getNickname());
-        holder.setText(R.id.item_fansi_indirectly_rebate,mContext.getString(R.string.tribute_count,bean.getRebate2()));
-        String name = bean.getSp().get(0).getNickname();
-        holder.setText(R.id.item_fansi_indirectly_inviter,mContext.getString(R.string.inviteer,name));
+        holder.setCircleImageResource(R.id.item_fansi_directly_headimg,bean.getHeadimg());
+        holder.setText(R.id.item_fansi_directly_name,bean.getNickname());
         holder.setViewOnClickListener(R.id.item_fansi_indirectly_layout, v -> {
             if (listener != null){
                 listener.onItemClick(bean.getId());
@@ -40,13 +37,13 @@ public class FanSiIndirectlyRecViewAdapter extends RcvBaseAdapter<FansiIndirectB
         switch (vipStatus){
             case -1:
             case 0:
-                holder.setBtnText(R.id.item_fansi_indirectly_vip_type,mContext.getString(R.string.ordinary_member));
+                holder.setText(R.id.item_fansi_directly_vip_type,mContext.getString(R.string.ordinary_member));
                 break;
             case 1:
-                holder.setBtnText(R.id.item_fansi_indirectly_vip_type,mContext.getString(R.string.year_member));
+                holder.setText(R.id.item_fansi_directly_vip_type,mContext.getString(R.string.year_member));
                 break;
             case 2:
-                holder.setBtnText(R.id.item_fansi_indirectly_vip_type,mContext.getString(R.string.month_member));
+                holder.setText(R.id.item_fansi_directly_vip_type,mContext.getString(R.string.month_member));
                 break;
         }
     }

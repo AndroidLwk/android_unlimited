@@ -14,7 +14,8 @@ import com.wuxiantao.wxt.mvp.version.VersionView;
 public interface AboutSupermanContract {
 
     interface IAboutSupermanView extends VersionView {
-
+        void onStopAppSuccess(String msg);
+        void onStopAppFailure(String failure);
     }
 
     interface IAboutSupermanPresenter extends VersionMvpPresenter<IAboutSupermanView> {

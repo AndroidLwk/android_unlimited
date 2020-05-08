@@ -48,9 +48,9 @@
                  <category android:name="android.intent.category.LAUNCHER" />
              </intent-filter>
          </activity>
-        <activity android:name=".ui.activity.my.MyMemberActivity">
-
-        </activity>
+        <activity android:name=".ui.activity.my.MyMemberActivity"/>
+        <activity android:name=".ui.activity.scrapingcard.PointToCardActivity"/>
+        <activity android:name=".ui.activity.my.MyInvitationCodeActivity"  android:theme="@style/AppTheme.No"/>
        <!-- <activity android:name=".ui.activity.TestTwoActivity">
             <intent-filter>
                 <action

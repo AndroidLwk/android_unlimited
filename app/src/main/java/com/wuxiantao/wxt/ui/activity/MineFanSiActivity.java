@@ -78,7 +78,7 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
     //设置指示器颜色
     private void setTabPagerIndicator() {
         // 设置模式，一定要先设置模式
-        mIndicator.setIndicatorMode(VPindicator.IndicatorMode.MODE_NOWEIGHT_EXPAND_SAME);
+        mIndicator.setIndicatorMode(VPindicator.IndicatorMode.MODE_WEIGHT_NOEXPAND_SAME);
         // 设置分割线的颜色
 //        my_coupon_indicator.setDividerColor(Color.parseColor("#00bbcf"));
         //设置

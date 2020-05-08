@@ -17,6 +17,7 @@ import com.wuxiantao.wxt.mvp.fansi.c.FansiDirectlyContract;
 import com.wuxiantao.wxt.mvp.fansi.p.FanSiDirectlyPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
 import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
+import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.custom.decoration.SpaceItemDecoration;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.popupwindow.FanSiInfoPopupWindow;
@@ -50,6 +51,8 @@ public class FanSiDirectlyFragment extends MvpFragment<FanSiDirectlyPresenter, F
     ClassicsHeader fansi_directly_classic_header;
     @ViewInject(R.id.fansi_directly_rv)
     RecyclerView fansi_directly_rv;
+    @ViewInject(R.id.sbt_share_code)
+    StateButton sbt_share_code;
     private FanSiDirectlyRecViewAdapter adapter;
     private FansiDirectlyBean datas;
     private LoadingDialog loadingDialog;
@@ -73,8 +76,15 @@ public class FanSiDirectlyFragment extends MvpFragment<FanSiDirectlyPresenter, F
         parameters.put("type",FANSI_TYPE_DIRECTLY);
         mPresenter.obtainFansi(parameters);
         initRefreshLoad();
-    }
+        setOnClikListener(sbt_share_code);
 
+    }
+    @Override
+    protected void widgetClick(int id) {
+        if(id==R.id.sbt_share_code){
+            $startActivity(ShareThemActivity.class);
+        }
+    }
     private void initRefreshLoad(){
         fansi_directly_rl.setRefreshHeader(fansi_directly_classic_header);
         fansi_directly_rl.setRefreshFooter(new BallPulseFooter(getContext()).setSpinnerStyle(SpinnerStyle.Scale));

@@ -1,12 +1,6 @@
 package com.wuxiantao.wxt.ui.fragment.main;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,26 +20,17 @@ import com.wuxiantao.wxt.imgloader.GlideImageLoader;
 import com.wuxiantao.wxt.mvp.contract.IncomeHallContract;
 import com.wuxiantao.wxt.mvp.presenter.IncomeHallPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
-import com.wuxiantao.wxt.ui.activity.DividendDetailsActivity;
 import com.wuxiantao.wxt.ui.activity.H5GameActivity;
-import com.wuxiantao.wxt.ui.activity.MineFanSiActivity;
-import com.wuxiantao.wxt.ui.activity.MyTaskActivity;
-import com.wuxiantao.wxt.ui.activity.PlayActivity;
-import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.custom.button.StateButton;
-import com.wuxiantao.wxt.ui.custom.decoration.SpaceItemDecoration;
-import com.wuxiantao.wxt.ui.custom.textview.RunNumTextView;
 import com.wuxiantao.wxt.ui.dialog.ChangeAreaDialog;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.popupwindow.FinishAimsPopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.GameRewardPopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.OpenCardPopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.OperatePromptPopupWindow;
-import com.wuxiantao.wxt.ui.popupwindow.RedBagMachinePopupWindow;
 import com.wuxiantao.wxt.utils.AdUtils;
 import com.wuxiantao.wxt.utils.BigDecimalUtils;
 import com.wuxiantao.wxt.utils.DateUtils;
-import com.wuxiantao.wxt.utils.TextViewUtils;
 import com.wuxiantao.wxt.utils.ToastUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -75,52 +60,27 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     SmartRefreshLayout income_hall_rl;
     @ViewInject(R.id.income_hall_banner)
     Banner mBanner;
-    @ViewInject(R.id.fragment_income_hall_rv)
-    RecyclerView fragment_income_hall_rv;
-    @ViewInject(R.id.fragment_income_hall_play)
-    LinearLayout hall_play;
-    @ViewInject(R.id.income_hall_next_tv)
-    TextView income_hall_next_tv;
     @ViewInject(R.id.income_hall_current_area)
     TextView income_hall_current_area;
-    @ViewInject(R.id.income_hall_detail)
-    LinearLayout income_hall_detail;
-    @ViewInject(R.id.income_hall_super_peoples)
-    TextView super_peoples;
-    @ViewInject(R.id.income_hall_people_counts)
-    TextView people_counts;
+
     @ViewInject(R.id.income_hall_experience)
     StateButton income_hall_experience;
-    @ViewInject(R.id.income_hall_people_level)
-    TextView people_level;
+
     @ViewInject(R.id.income_hall_progress1)
     ProgressBar income_hall_progress1;
-    @ViewInject(R.id.income_hall_money_title)
-    RunNumTextView income_hall_money_title;
 
-    @ViewInject(R.id.income_hall_total)
-    TextView income_hall_total;
-    @ViewInject(R.id.income_hall_income)
-    TextView income_hall_income;
-    @ViewInject(R.id.income_hall_total_income)
-    TextView total_income;
-    @ViewInject(R.id.income_hall_speed)
-    TextView income_hall_speed;
     @ViewInject(R.id.income_hall_progress2)
     ProgressBar income_hall_progress2;
-    @ViewInject(R.id.income_hall_unlock)
-    TextView income_hall_unlock;
-    @ViewInject(R.id.fragment_income_hall_invite)
-    StateButton invite_friend;
-    @ViewInject(R.id.income_hall_card_count)
-    TextView card_count;
-    @ViewInject(R.id.income_hall_more_count)
-    ImageView moreCount;
-    @ViewInject(R.id.income_hall_friend_count)
-    LinearLayout income_hall_friend_count;
-    @ViewInject(R.id.income_hall_get_count)
-    ImageView income_hall_get_count;
-
+    @ViewInject(R.id.income_hall_people_level)
+    TextView people_level;
+    @ViewInject(R.id.income_hall_next_tv)
+    TextView income_hall_next_tv;
+    @ViewInject(R.id.tv_current_leave)
+    TextView tv_current_leave;
+    @ViewInject(R.id.tv_benefit)
+    TextView tv_benefit;
+    @ViewInject(R.id.tv_benefit_money)
+    TextView tv_benefit_money;
     private LoadingDialog loadingDialog;
 
     @Override
@@ -129,9 +89,8 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         mPresenter.getIncomeHallInfo(getAppToken());
         mPresenter.onGameMessage(getAppToken());
         mPresenter.getDragonStatusInfo(getAppToken());
-        setOnClikListener(invite_friend, hall_play, total_income, moreCount,
-                income_hall_detail, income_hall_experience, income_hall_speed,
-                income_hall_friend_count,income_hall_current_area,income_hall_get_count);
+        setOnClikListener(income_hall_experience
+                ,income_hall_current_area);
         income_hall_rl.setEnableLoadMore(false);
         income_hall_rl.setOnRefreshListener(refreshLayout -> {
             refreshLayout.resetNoMoreData();
@@ -146,42 +105,10 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     @Override
     protected void widgetClick(int id) {
         switch (id) {
-            //总收入问号
-            case R.id.income_hall_total_income:
-            case R.id.income_hall_speed:
-                showMessageWindow();
-                break;
-            //邀请
-            case R.id.fragment_income_hall_invite:
-                $startActivity(ShareThemActivity.class);
-                break;
-            //玩法
-            case R.id.fragment_income_hall_play:
-                $startActivity(PlayActivity.class);
-                break;
-            //更多次数
-            case R.id.income_hall_more_count:
-                $startActivityForResult(MyTaskActivity.class, REQUEST_CODE_FLOP_COUNT);
-                break;
-            //获取次数
-            case R.id.income_hall_get_count:
-                AdUtils.initRewardVideoAd(getActivity(), () -> {
-                    loadingDialog = createLoadingDialog();
-                    mPresenter.onIncreaseCount(getAppToken());
-                });
-                break;
-            //分红详情
-            case R.id.income_hall_detail:
-                $startActivityForResult(DividendDetailsActivity.class, REQUEST_CODE_FLOP_COUNT);
-                break;
             //体验分红
             case R.id.income_hall_experience:
                 loadingDialog = createLoadingDialog();
                 mPresenter.onStartExperience(getAppToken());
-                break;
-            //好友人数
-            case R.id.income_hall_friend_count:
-                $startActivity(MineFanSiActivity.class);
                 break;
             //切换区
             case R.id.income_hall_current_area:
@@ -194,25 +121,30 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     //收益信息获取成功
     @Override
     public void getIncomeHallInfoSuccess(IncomeHallBean bean) {
-        //当前总收入
-        income_hall_total.setText(bean.getActive());
+        tv_benefit.setText(getString(R.string.game_text4,bean.getActive()));
         //阶段金额限制
-        String limit = bean.getLimit();
-        income_hall_income.setText(limit);
+        tv_benefit_money.setText(getString(R.string.game_text5,bean.getLimit()));
         //当前阶段以及加倍速度
         String spedd = bean.getMultiple();
-        income_hall_speed.setText(getString(R.string.income_speed, bean.getStage_level(), spedd));
         //当前进度
         String active = bean.getActive();
+        //阶段金额限制
+        String limit = bean.getLimit();
         String progress = BigDecimalUtils.div(active, limit, 2);
         income_hall_progress2.setMax(BigDecimalUtils.roundInt(limit));
         income_hall_progress2.setProgress(BigDecimalUtils.roundInt(active));
-        income_hall_unlock.setText(getString(R.string.unlock_progress, progress, "%", limit));
+
         if (bean.getIs_show() == 1){
             showFinisAimsWindow(active,BigDecimalUtils.roundStr(bean.getMoney()),spedd);
         }
     }
-
+    //完成目标展示对话框
+    private void showFinisAimsWindow(String income, String money, String speed) {
+        new FinishAimsPopupWindow.Build(getContext())
+                .setWindowData(income, money, speed)
+                .setOnWindClickListener(this::onRefreshData)
+                .builder().showPopupWindow();
+    }
     private List<String> bannerList = new ArrayList<>();
 
     //体验次数时间
@@ -230,16 +162,13 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         }
         initBanner(bannerList);
         //当前所在区
-        income_hall_current_area.setText(bean.getQu_name());
-        //今日超级玩家分红
-        super_peoples.setText(getString(R.string.divided_dragon_unit_price, bean.getSuper_money()));
-        //超级玩家数量
-        people_counts.setText(String.valueOf(bean.getSuper_total()));
+        income_hall_current_area.setText(getString(R.string.default_area,bean.getQu_name()));
         //可体验的次数
         int num = bean.getNum();
         //游戏等级
         int level = bean.getLevel();
-        people_level.setText(getString(R.string.people_level, bean.getLevel()));
+        people_level.setText(getString(R.string.game_text3,bean.getLevel()));
+        tv_current_leave.setText(getString(R.string.game_text1,bean.getLevel()));
         income_hall_progress1.setMax(150);
         income_hall_progress1.setProgress(level);
         //体验结束时间
@@ -251,16 +180,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         if (diff > 0) {
             startDividendTime(bean.getInfo().getTiyan_money(),end_time,diff);
         } else {
-            income_hall_money_title.setTextColor(Color.parseColor("#000000"));
-            //还差多少级体验下次分红
-            income_hall_next_tv.setTextColor(Color.parseColor("#000000"));
-            String s = getString(R.string.next_upgrade, bean.getCha());
-            TextViewUtils.setTextViewKeyWordHighlight(income_hall_next_tv, s,
-                    Color.parseColor("#FD4E4B"), new Pair<>(9, s.length()));
-            //每升15级体验分红
-            String experience = getString(R.string.experience_msg);
-            TextViewUtils.setTextViewKeyWordHighlight(income_hall_money_title, experience,
-                    Color.parseColor("#FD4E4B"), new Pair<>(7,9));
+            income_hall_next_tv.setText(getString(R.string.game_text2, bean.getCha()));
             //点击体验分红
             income_hall_experience.setText(getString(R.string.click_dividend_experience));
         }
@@ -297,16 +217,16 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     private void startDividendTime(String money,int end_time,long diff){
         //正在体验分红
         income_hall_experience.setText(getString(R.string.dividend_experience_ing));
-        income_hall_money_title.setTextColor(Color.parseColor("#FD4E4B"));
-        if (!income_hall_money_title.isStarted()){
-            income_hall_money_title.setNumber(money,diff * 1000);
-        }
+//        income_hall_money_title.setTextColor(Color.parseColor("#FD4E4B"));
+//        if (!income_hall_money_title.isStarted()){
+//            income_hall_money_title.setNumber(money,diff * 1000);
+//        }
         addObserver(end_time, new CountDownCallBack() {
             @Override
             public void onNext(Long time) {
                 String t = DateUtils.timeParse(time);
-                income_hall_next_tv.setTextColor(Color.parseColor("#FD4E4B"));
-                income_hall_next_tv.setText(getString(R.string.dividend_experience, t));
+//                income_hall_next_tv.setTextColor(Color.parseColor("#FD4E4B"));
+//                income_hall_next_tv.setText(getString(R.string.dividend_experience, t));
             }
 
             @Override
@@ -326,30 +246,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     }
 
     private void initDividedDragonLayout(List<DragonStatusInfoBean.CardMessageBean> lists, int num) {
-        card_count.setText(String.valueOf(num));
-        if (dragonRecViewAdapter == null) {
-            LinearLayoutManager manager = new LinearLayoutManager(getContext());
-            manager.setOrientation(0);
-            SpaceItemDecoration decoration = new SpaceItemDecoration(40, 0);
-            dragonRecViewAdapter = new DividedDragonRecViewAdapter(getContext(), lists);
-            fragment_income_hall_rv.setLayoutManager(manager);
-            fragment_income_hall_rv.addItemDecoration(decoration);
-            fragment_income_hall_rv.setAdapter(dragonRecViewAdapter);
-            dragonRecViewAdapter.setOnOpenDividedDragonListener(new DividedDragonRecViewAdapter.OnOpenDividedDragonListener() {
-                @Override
-                public void onOpenDividedDragon(int id) {
-                    loadingDialog = createLoadingDialog();
-                    mPresenter.onOpenDragon(getAppToken(), id);
-                }
 
-                @Override
-                public void onAnimationEnd() {
-                    mPresenter.getDragonStatusInfo(getAppToken());
-                }
-            });
-        } else {
-            dragonRecViewAdapter.updataList(lists);
-        }
     }
 
 
@@ -436,7 +333,6 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     //看视频增加次数
     @Override
     public void onIncreaseCountSuccess(IncreaseCountBean bean) {
-        card_count.setText(String.valueOf(bean.getCard_num()));
     }
 
     //刷新数据
@@ -463,26 +359,6 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
                         mPresenter.getDragonStatusInfo(getAppToken());
                     }
                 })
-                .builder().showPopupWindow();
-    }
-
-
-    //提示对话框
-    private void showMessageWindow() {
-        new RedBagMachinePopupWindow.Build(getContext())
-                .setWindowTitle(getString(R.string.tips))
-                .setWindowMessage(getString(R.string.missed_income_msg))
-                .setPopupWindowAnimStyle(R.style.custom_dialog)
-                .builder()
-                .showPopupWindow();
-    }
-
-
-    //完成目标展示对话框
-    private void showFinisAimsWindow(String income, String money, String speed) {
-        new FinishAimsPopupWindow.Build(getContext())
-                .setWindowData(income, money, speed)
-                .setOnWindClickListener(this::onRefreshData)
                 .builder().showPopupWindow();
     }
 

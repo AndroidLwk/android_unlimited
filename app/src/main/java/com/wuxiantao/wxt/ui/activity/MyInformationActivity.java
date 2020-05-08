@@ -35,7 +35,6 @@ import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.popupwindow.ApprovePopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.TakePhotoPopupWindow;
 import com.wuxiantao.wxt.ui.title.TitleBuilder;
-import com.wuxiantao.wxt.utils.AppUtils;
 import com.wuxiantao.wxt.utils.PhotoUtils;
 import com.wuxiantao.wxt.utils.TaoBaoUtils;
 import com.wuxiantao.wxt.utils.ToastUtils;
@@ -459,7 +458,7 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
         map.put(ALI_NAME,bean.getAliname());
         map.put(WECHAT_NO,bean.getWechat());
         map.put(IS_TAO_BAO_AUTH,bean.getIs_taobao() == 1);
-        map.put(ABOUT_SUPER,String.valueOf(AppUtils.getVersionName()));
+        //map.put(ABOUT_SUPER,String.valueOf(AppUtils.getVersionName()));
         return map;
     }
 

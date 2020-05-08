@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f7f7f7"
+    android:orientation="vertical">
+
+    <com.wuxiantao.wxt.ui.title.CNToolbar
+        android:id="@+id/cntoolbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cn_leftImage="@mipmap/base_title_back"
+        app:cn_rightText="@string/pointtocard_text2"
+        app:cn_titleText="@string/pointtocard_text1" />
+
+    <LinearLayout
+        android:id="@+id/lt_buck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cntoolbar_title"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp_12"
+            android:paddingTop="@dimen/dp_15"
+            android:paddingRight="@dimen/dp_16">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pointtocard_text3"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:id="@+id/tv_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="20%"
+                android:textColor="@color/color_a5a5a5"
+                android:textSize="@dimen/sp_15" />
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_pointtocard_a"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_8"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/dp_17"
+            android:layout_marginRight="@dimen/dp_23"
+            android:layout_marginBottom="@dimen/dp_18"
+            android:max="100"
+            android:paddingLeft="@dimen/dp_12"
+            android:progress="30"
+            android:progressDrawable="@drawable/progressbar_bg_divided_dragon" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="382dp"
+        android:layout_below="@+id/lt_buck"
+        android:layout_marginLeft="@dimen/dp_21"
+        android:layout_marginRight="@dimen/dp_21"
+        android:background="@drawable/pointtocard_a">
+
+        <ImageView
+            android:id="@+id/iv_countDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/iv_openCard"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp_25"
+            android:src="@drawable/pointtocard_countdown_five"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_openCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:src="@drawable/pointtocard_b" />
+    </RelativeLayout>
+
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/konfettiView_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</RelativeLayout>

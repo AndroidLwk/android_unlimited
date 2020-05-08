@@ -151,7 +151,7 @@ public class ToastUtils {
      */
     public static void showToast(String msg) {
         if (mToast == null) {
-            mToast = Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
+            mToast = Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT);
         } else {
             mToast.setText(msg);
         }

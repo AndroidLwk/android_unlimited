@@ -188,6 +188,9 @@ public class BaseApplication extends MultiDexApplication implements Application.
         Beta.installTinker();
     }
 
+    /**
+     * shapre本地储存初始化加密
+     */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     private void initRSAKeyPair() {
         try {

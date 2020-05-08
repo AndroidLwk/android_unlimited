@@ -87,7 +87,11 @@ public abstract class BaseMvpActivity<P extends MvpPresenter,V extends MvpView> 
         getLifecycle().addObserver(mCountDownManager);
         mCountDownManager.startCountDown(diff).setCallBack(callBack);
     }
-
+    protected void addObserverx(long diff, CountDownCallBack callBack){
+        CountDownManager mCountDownManager = new CountDownManager();
+        getLifecycle().addObserver(mCountDownManager);
+        mCountDownManager.startCountDownx(diff).setCallBack(callBack);
+    }
 
     //设置状态栏完全透明
     protected void setStatusBar(){

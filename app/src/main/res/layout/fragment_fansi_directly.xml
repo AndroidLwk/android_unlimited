@@ -1,37 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/fansi_directly_rl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:srlAccentColor="#00000000"
         app:srlPrimaryColor="#00000000">
+
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:id="@+id/fansi_directly_classic_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_srlSpinnerStyle="Scale"
             app:srlAccentColor="@color/black"
             app:srlDrawableArrow="@mipmap/super_man_fly"
-            app:srlPrimaryColor="@color/white"
-            app:layout_srlSpinnerStyle="Scale"/>
-        <com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView
+            app:srlPrimaryColor="@color/white" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fansi_directly_rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white">
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/fansi_directly_rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:overScrollMode="never"/>
-        </com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView>
+            android:layout_height="wrap_content"
+            android:overScrollMode="never" />
+
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <com.wuxiantao.wxt.ui.custom.button.StateButton
+        android:id="@+id/sbt_share_code"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_37"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/dp_48"
+        android:layout_marginTop="@dimen/dp_27"
+        android:layout_marginRight="@dimen/dp_48"
+        android:enabled="false"
+        android:padding="0dp"
+        android:text="@string/fansilndirect_text1"
+        android:textSize="@dimen/sp_15"
+        app:normalBackgroundCenterColor="#FD6F57"
+        app:normalBackgroundEndColor="#FA5858"
+        app:normalBackgroundStartColor="#FD6F57"
+        app:normalOrientation="BL_TR"
+        app:normalShapeType="LINEAR_GRADIENT"
+        app:normalTextColor="@color/white"
+        app:round="true"
+        app:unableBackgroundCenterColor="#FD6F57"
+        app:unableBackgroundEndColor="#FD6F57"
+        app:unableBackgroundStartColor="#FD6F57"
+        app:unableTextColor="@color/white" />
 </LinearLayout>

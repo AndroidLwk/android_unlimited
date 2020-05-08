@@ -1,42 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
-    <include
-        layout="@layout/base_title"/>
+    <include layout="@layout/base_title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_11"
+        android:background="@color/whitesmoke" />
 
     <com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <com.wuxiantao.wxt.ui.custom.recyclerview.NestRecyclerView
                 android:id="@+id/my_information_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never"/>
+                android:overScrollMode="never" />
+
             <com.wuxiantao.wxt.ui.custom.button.StateButton
                 android:id="@+id/my_information_exit"
                 android:layout_width="@dimen/dp_320"
                 android:layout_height="@dimen/dp_40"
-                android:layout_marginTop="@dimen/dp_60"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_60"
                 android:layout_marginBottom="@dimen/dp_20"
                 android:padding="0dp"
-                app:normalTextColor="@color/white"
-                app:normalBackgroundStartColor="#FF8E7C"
+                android:text="@string/quit_login"
+                android:visibility="gone"
                 app:normalBackgroundCenterColor="#FF5D5B"
                 app:normalBackgroundEndColor="#FF5D5B"
+                app:normalBackgroundStartColor="#FF8E7C"
                 app:normalOrientation="BL_TR"
                 app:normalShapeType="LINEAR_GRADIENT"
-                app:round="true"
-                android:text="@string/quit_login" />
+                app:normalTextColor="@color/white"
+                app:round="true" />
         </LinearLayout>
     </com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView>
 </LinearLayout>

@@ -40,6 +40,9 @@ public class CountDownManager implements LifecycleObserver {
     public CountDownManager startCountDown(@NonNull long time) {
         return startCountDown(time,TimeUnit.SECONDS);
     }
+    public CountDownManager startCountDownx(@NonNull long time) {
+        return startCountDownx(time,TimeUnit.SECONDS);
+    }
 
     private long getTimePeriod(TimeUnit unit){
         switch (unit){
@@ -61,6 +64,24 @@ public class CountDownManager implements LifecycleObserver {
 
     private CountDownManager startCountDown(@NonNull long s,TimeUnit unit) {
         long time = s - getCurrentTimeStamp();
+        if (time <= 0){
+            return this;
+        }
+        if (observer == null){
+            observer = createObserver();
+        }
+        //设置0延迟，每隔一秒发送一条数据
+        mDisposableObserver = Observable.interval(0,getTimePeriod(unit) , unit)
+                .subscribeOn(Schedulers.io())
+                //UI线程
+                .observeOn(AndroidSchedulers.mainThread())
+                //设置总共发送的次数
+                .take(time)
+                .map(aLong -> time - aLong)
+                .subscribeWith(observer);
+        return this;
+    }
+    private CountDownManager startCountDownx(long time,TimeUnit unit) {
         if (time <= 0){
             return this;
         }

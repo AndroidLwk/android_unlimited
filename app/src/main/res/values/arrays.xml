@@ -80,28 +80,27 @@
         <item>头像</item>
         <item>用户ID</item>
         <item>昵称</item>
+        <item>当前会员</item>
         <item>手机号</item>
         <item>支付宝</item>
         <item>微信号</item>
-        <item>收货地址</item>
-
-        <item>登陆密码</item>
-
+       <!-- <item>收货地址</item>-->
+       <!-- <item>登陆密码</item>-->
         <item>淘宝授权</item>
-        <item>关于无限淘</item>
+       <!-- <item>关于无限淘</item>-->
     </string-array>
 
     <string-array name="my_information_title2">
         <item>头像</item>
         <item>用户ID</item>
         <item>昵称</item>
+        <item>当前会员</item>
         <item>手机号</item>
         <item>支付宝</item>
         <item>微信号</item>
-        <item>收货地址</item>
-
+       <!-- <item>收货地址</item>-->
         <item>淘宝授权</item>
-        <item>关于无限淘</item>
+       <!-- <item>关于无限淘</item>-->
     </string-array>
 
     <string-array name="leader_board_title">

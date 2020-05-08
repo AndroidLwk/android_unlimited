@@ -8,554 +8,279 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <View
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_110"
-            android:background="@drawable/base_title_background"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/base_title_background"
+            android:paddingBottom="@dimen/dp_60">
+
+            <ImageView
+                android:id="@+id/iv_game_header"
+                android:layout_width="@dimen/dp_54"
+                android:layout_height="@dimen/dp_54"
+                android:layout_marginLeft="@dimen/dp_18"
+                android:layout_marginTop="@dimen/dp_36"
+                android:src="@drawable/mine_header" />
+
+            <TextView
+                android:id="@+id/iv_game_headerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_40"
+                android:layout_toRightOf="@+id/iv_game_header"
+                android:text="游戏昵称: Bang!"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_19" />
+
+            <com.wuxiantao.wxt.ui.custom.textview.BorderTextView
+                android:id="@+id/income_hall_current_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_game_headerName"
+                android:layout_marginLeft="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_7"
+                android:layout_toRightOf="@+id/iv_game_header"
+                android:ellipsize="end"
+                android:maxWidth="@dimen/dp_120"
+                android:maxLines="1"
+                android:text="@string/default_area"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/sp_12"
+                app:layout_borderBottom="true"
+                app:layout_borderLeft="false"
+                app:layout_borderRight="false"
+                app:layout_borderTop="false"
+                app:layout_borders="false" />
+
+            <ProgressBar
+                android:id="@+id/income_hall_progress1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_8"
+                android:layout_below="@+id/iv_game_header"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_15"
+                android:layout_marginRight="@dimen/dp_15"
+                android:max="100"
+                android:progress="30"
+                android:progressDrawable="@drawable/progressbar_incomehallfrgment_a" />
+
+            <TextView
+                android:id="@+id/income_hall_people_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_hall_progress1"
+                android:layout_alignLeft="@+id/income_hall_progress1"
+                android:layout_marginTop="@dimen/dp_6"
+                android:text="@string/game_text3"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_13" />
+
+            <TextView
+                android:id="@+id/tv_gameExperience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_hall_progress1"
+                android:layout_alignRight="@+id/income_hall_progress1"
+                android:layout_marginTop="@dimen/dp_6"
+                android:text="距离下一等级还差 542 点经验"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_10" />
+        </RelativeLayout>
 
         <com.youth.banner.Banner
             android:id="@+id/income_hall_banner"
             android:layout_width="@dimen/dp_330"
             android:layout_height="@dimen/dp_140"
-            app:indicator_width="@dimen/dp_8"
-            app:indicator_height="@dimen/dp_8"
-            app:is_auto_play="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_40"/>
+            android:layout_marginTop="@dimen/dp_148"
+            app:indicator_height="@dimen/dp_8"
+            app:indicator_width="@dimen/dp_8"
+            app:is_auto_play="true" />
     </RelativeLayout>
-
-
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/income_hall_rl"
-        android:layout_width ="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlAccentColor="#00000000"
         app:srlPrimaryColor="#00000000">
+
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_srlSpinnerStyle="Scale"/>
-       <com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:orientation="vertical">
-               <LinearLayout
-                   android:layout_width="@dimen/dp_340"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="@dimen/dp_10"
-                   android:layout_gravity="center_horizontal"
-                   android:visibility="visible"
-                   android:clickable="true"
-                   android:paddingTop="@dimen/dp_10"
-                   android:paddingBottom="@dimen/dp_10"
-                   android:background="@drawable/bg_white_radius_selector"
-                   android:orientation="vertical"
-                   android:focusable="true">
+            app:layout_srlSpinnerStyle="Scale" />
 
-                   <LinearLayout
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:gravity="center_vertical"
-                       android:layout_gravity="center_horizontal"
-                       android:orientation="horizontal">
-                       <ImageView
-                           android:layout_width="@dimen/dp_73"
-                           android:layout_height="@dimen/dp_5"
-                           android:src="@mipmap/line_right" />
-                       <com.wuxiantao.wxt.ui.custom.textview.RunNumTextView
-                           android:id="@+id/income_hall_money_title"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textSize="@dimen/sp_20"
-                           android:maxLines="2"
-                           android:ellipsize="end"
-                           android:gravity="center_horizontal"
-                           android:layout_marginLeft="@dimen/dp_10"
-                           android:layout_marginStart="@dimen/dp_10"
-                           android:maxWidth="@dimen/dp_170"
-                           android:text="@string/experience_msg"/>
-                       <ImageView
-                           android:layout_width="@dimen/dp_73"
-                           android:layout_height="@dimen/dp_5"
-                           android:layout_marginLeft="@dimen/dp_10"
-                           android:layout_marginStart="@dimen/dp_10"
-                           android:src="@mipmap/line_left"/>
-                   </LinearLayout>
+        <com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:textSize="@dimen/sp_11"
-                       android:textColor="#8C8C8C"
-                       android:layout_marginTop="@dimen/dp_3"
-                       android:layout_gravity="center_horizontal"
-                       android:text="@string/experience_dividend"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                   <RelativeLayout
-                       android:layout_width="@dimen/dp_300"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center_horizontal"
-                       android:layout_marginTop="@dimen/dp_15">
-                       <TextView
-                           android:id="@+id/income_hall_next_tv"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textColor="#2C2C2C"
-                           android:maxWidth="@dimen/dp_160"
-                           android:ellipsize="end"
-                           android:maxLines="1"
-                           android:text="@string/next_upgrade"
-                           android:textSize="@dimen/sp_12"/>
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_alignParentRight="true"
-                           android:layout_alignParentEnd="true"
-                           android:orientation="horizontal">
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:textColor="#2C2C2C"
-                               android:textSize="@dimen/sp_12"
-                               android:text="@string/current_area" />
-                           <com.wuxiantao.wxt.ui.custom.textview.BorderTextView
-                               android:id="@+id/income_hall_current_area"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:textSize="@dimen/sp_12"
-                               android:textColor="#FB5754"
-                               app:layout_borders="false"
-                               app:layout_borderLeft="false"
-                               app:layout_borderRight="false"
-                               app:layout_borderTop="false"
-                               android:maxLines="1"
-                               android:ellipsize="end"
-                               android:text="@string/default_area"
-                               android:maxWidth="@dimen/dp_70"
-                               app:layout_borderBottom="true" />
-                       </LinearLayout>
-                   </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:paddingLeft="@dimen/dp_16">
 
-                   <RelativeLayout
-                       android:layout_width="@dimen/dp_300"
-                       android:layout_height="wrap_content"
-                       android:layout_marginTop="@dimen/dp_10"
-                       android:layout_gravity="center_horizontal"
-                       android:orientation="horizontal">
-                       <ProgressBar
-                           android:id="@+id/income_hall_progress1"
-                           style="?android:attr/progressBarStyleHorizontal"
-                           android:layout_width="@dimen/dp_220"
-                           android:layout_height="@dimen/dp_8"
-                           android:layout_gravity="center_vertical"
-                           android:max="100"
-                           android:progress="0"
-                           android:layout_centerVertical="true"
-                           android:progressDrawable="@drawable/progressbar_bg_divided_dragon" />
-                       <TextView
-                           android:id="@+id/income_hall_people_level"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textSize="@dimen/sp_13"
-                           android:textColor="#353535"
-                           android:text="@string/people_level_default"
-                           android:layout_alignParentRight="true"
-                           android:layout_alignParentEnd="true" />
-                   </RelativeLayout>
+                    <TextView
+                        android:layout_width="4dp"
+                        android:layout_height="@dimen/dp_18"
+                        android:layout_marginRight="@dimen/dp_4"
+                        android:background="@color/color_fa5758" />
 
-                   <com.wuxiantao.wxt.ui.custom.button.StateButton
-                       android:id="@+id/income_hall_experience"
-                       android:layout_width="@dimen/dp_320"
-                       android:layout_height="@dimen/dp_40"
-                       app:unableBackgroundStartColor="#FB8E7D"
-                       app:unableBackgroundCenterColor="#FB8E7D"
-                       app:unableBackgroundEndColor="#FB8E7D"
-                       app:unableTextColor="@color/white"
-                       app:normalBackgroundStartColor="#FB8E7D"
-                       app:normalBackgroundCenterColor="#FB8E7D"
-                       app:normalBackgroundEndColor="#FF5655"
-                       app:normalOrientation="BL_TR"
-                       app:normalShapeType="LINEAR_GRADIENT"
-                       app:normalTextColor="@color/white"
-                       app:round="true"
-                       android:layout_gravity="center_horizontal"
-                       android:textSize="@dimen/sp_15"
-                       android:padding="0dp"
-                       android:text="@string/click_dividend_experience"
-                       android:enabled="false"
-                       android:layout_marginTop="@dimen/dp_15" />
-                   <RelativeLayout
-                       android:layout_width="@dimen/dp_300"
-                       android:layout_height="wrap_content"
-                       android:layout_marginTop="@dimen/dp_20"
-                       android:layout_gravity="center_horizontal">
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textSize="@dimen/sp_15"
-                           android:textColor="#3A3A3A"
-                           android:text="@string/platform_super"/>
-                       <LinearLayout
-                           android:id="@+id/income_hall_detail"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_alignParentRight="true"
-                           android:layout_alignParentEnd="true">
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:textColor="#9E9E9E"
-                               android:text="@string/dividend_details"
-                               android:textSize="@dimen/sp_12"/>
-                           <ImageView
-                               android:layout_width="@dimen/dp_12"
-                               android:layout_height="@dimen/dp_8"
-                               android:tint="#9E9E9E"
-                               android:rotation="180"
-                               android:layout_gravity="center_vertical"
-                               android:src="@mipmap/base_title_back"/>
-                       </LinearLayout>
-                   </RelativeLayout>
-                   <RelativeLayout
-                       android:layout_width="@dimen/dp_300"
-                       android:layout_height="wrap_content"
-                       android:layout_marginTop="@dimen/dp_10"
-                       android:layout_gravity="center_horizontal">
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textSize="@dimen/sp_13"
-                           android:textColor="#919191"
-                           android:text="@string/today_super_peoples"/>
-                       <TextView
-                           android:id="@+id/income_hall_super_peoples"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textColor="#9E9E9E"
-                           android:textSize="@dimen/sp_12"
-                           android:layout_alignParentRight="true"
-                           android:layout_alignParentEnd="true"
-                           android:text="@string/zero"/>
-                   </RelativeLayout>
-                   <RelativeLayout
-                       android:layout_width="@dimen/dp_300"
-                       android:layout_height="wrap_content"
-                       android:layout_marginTop="@dimen/dp_10"
-                       android:layout_gravity="center_horizontal">
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textSize="@dimen/sp_13"
-                           android:textColor="#919191"
-                           android:text="@string/super_people_count"/>
-                       <TextView
-                           android:id="@+id/income_hall_people_counts"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textColor="#9E9E9E"
-                           android:textSize="@dimen/sp_12"
-                           android:layout_alignParentRight="true"
-                           android:layout_alignParentEnd="true"
-                           android:text="@string/_zero"/>
-                   </RelativeLayout>
-               </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="150级永久分红"
+                        android:textColor="@color/color_3a0000"
+                        android:textSize="@dimen/sp_17" />
+                </LinearLayout>
 
-               <LinearLayout
-                   android:layout_width="@dimen/dp_340"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="@dimen/dp_10"
-                   android:layout_gravity="center_horizontal"
-                   android:paddingTop="@dimen/dp_10"
-                   android:paddingBottom="@dimen/dp_10"
-                   android:clickable="true"
-                   android:visibility="visible"
-                   android:background="@drawable/bg_white_radius_selector"
-                   android:orientation="vertical"
-                   android:focusable="true">
-                   <RelativeLayout
-                       android:layout_width="@dimen/dp_320"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center_horizontal">
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textSize="@dimen/sp_15"
-                           android:textColor="#3A3A3A"
-                           android:text="@string/friend_more"/>
-                       <LinearLayout
-                           android:id="@+id/income_hall_friend_count"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_centerVertical="true"
-                           android:layout_alignParentRight="true"
-                           android:layout_alignParentEnd="true">
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:textColor="#9E9E9E"
-                               android:textSize="@dimen/sp_12"
-                               android:text="@string/fansi_persion"/>
-                           <ImageView
-                               android:layout_width="@dimen/dp_12"
-                               android:layout_height="@dimen/dp_8"
-                               android:tint="#9E9E9E"
-                               android:rotation="180"
-                               android:layout_gravity="center_vertical"
-                               android:src="@mipmap/base_title_back"/>
-                       </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                   </RelativeLayout>
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_marginTop="@dimen/dp_10"
-                       android:orientation="horizontal">
-                       <LinearLayout
-                           android:layout_width="0dp"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"
-                           android:gravity="center_horizontal"
-                           android:orientation="vertical">
-                           <LinearLayout
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:orientation="horizontal">
-                               <TextView
-                                   android:id="@+id/income_hall_total"
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:textColor="#FF5A58"
-                                   android:maxLines="1"
-                                   android:ellipsize="end"
-                                   android:maxWidth="@dimen/dp_140"
-                                   android:text="@string/zero"
-                                   android:textSize="@dimen/sp_28"/>
-                               <TextView
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:textColor="#FF5A58"
-                                   android:text="@string/yuan"
-                                   android:textSize="@dimen/sp_15"/>
-                           </LinearLayout>
-                           <TextView
-                               android:id="@+id/income_hall_total_income"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:textColor="#9B9B9B"
-                               android:textSize="@dimen/sp_12"
-                               android:drawableRight="@mipmap/red_bag_description"
-                               android:drawableEnd="@mipmap/red_bag_description"
-                               android:text="@string/current_gross_income" />
-                       </LinearLayout>
-                       <LinearLayout
-                           android:layout_width="0dp"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"
-                           android:gravity="center_horizontal"
-                           android:orientation="vertical">
-                           <LinearLayout
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:orientation="horizontal">
-                               <TextView
-                                   android:id="@+id/income_hall_income"
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:textColor="#333333"
-                                   android:maxLines="1"
-                                   android:ellipsize="end"
-                                   android:maxWidth="@dimen/dp_140"
-                                   android:text="@string/zero"
-                                   android:textSize="@dimen/sp_28"/>
-                               <TextView
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:textColor="#333333"
-                                   android:text="@string/yuan"
-                                   android:textSize="@dimen/sp_15"/>
-                           </LinearLayout>
-                           <TextView
-                               android:id="@+id/income_hall_speed"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:textColor="#9B9B9B"
-                               android:textSize="@dimen/sp_12"
-                               android:drawableRight="@mipmap/red_bag_description"
-                               android:drawableEnd="@mipmap/red_bag_description"
-                               android:text="@string/income_speed"/>
-                       </LinearLayout>
-                   </LinearLayout>
-                   <ProgressBar
-                       android:id="@+id/income_hall_progress2"
-                       style="?android:attr/progressBarStyleHorizontal"
-                       android:layout_width="@dimen/dp_300"
-                       android:layout_height="@dimen/dp_8"
-                       android:layout_gravity="center_horizontal"
-                       android:max="100"
-                       android:progress="0"
-                       android:layout_marginTop="@dimen/dp_20"
-                       android:progressDrawable="@drawable/progressbar_bg_divided_dragon" />
-                   <TextView
-                       android:id="@+id/income_hall_unlock"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:textColor="#9B9B9B"
-                       android:layout_marginTop="@dimen/dp_5"
-                       android:textSize="@dimen/sp_10"
-                       android:layout_gravity="center_horizontal"
-                       android:text="@string/unlock_progress"/>
-                   <com.wuxiantao.wxt.ui.custom.button.StateButton
-                       android:id="@+id/fragment_income_hall_invite"
-                       android:layout_width="@dimen/dp_320"
-                       android:layout_height="@dimen/dp_40"
-                       app:unableBackgroundStartColor="#FB8E7D"
-                       app:unableBackgroundCenterColor="#FB8E7D"
-                       app:unableBackgroundEndColor="#FB8E7D"
-                       app:unableTextColor="@color/white"
-                       app:normalBackgroundStartColor="#FB8E7D"
-                       app:normalBackgroundCenterColor="#FB8E7D"
-                       app:normalBackgroundEndColor="#FF5655"
-                       app:normalOrientation="BL_TR"
-                       app:normalShapeType="LINEAR_GRADIENT"
-                       app:normalTextColor="@color/white"
-                       app:round="true"
-                       android:layout_gravity="center_horizontal"
-                       android:drawableLeft="@mipmap/copy_qr_code"
-                       android:paddingStart="@dimen/dp_100"
-                       android:paddingEnd="@dimen/dp_100"
-                       android:text="@string/invite_qr_code"
-                       android:textSize="@dimen/sp_15"
-                       android:padding="0dp"
-                       android:layout_marginTop="@dimen/dp_15"
-                       android:drawableStart="@mipmap/copy_qr_code" />
-               </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_benefit_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_22"
+                        android:text="分红利益"
+                        android:textColor="@color/color_636363"
+                        android:textSize="@dimen/sp_13" />
 
-               <LinearLayout
-                   android:layout_width="@dimen/dp_340"
-                   android:layout_height="wrap_content"
-                   android:layout_gravity="center_horizontal"
-                   android:layout_marginTop="@dimen/dp_10"
-                   android:layout_marginBottom="@dimen/dp_10"
-                   android:paddingTop="@dimen/dp_10"
-                   android:paddingBottom="@dimen/dp_10"
-                   android:background="@drawable/bg_white_radius_selector"
-                   android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_benefit_dayNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dp_43"
+                        android:text="已累计分红7天"
+                        android:textColor="@color/color_636363"
+                        android:textSize="@dimen/sp_13" />
 
-                   <RelativeLayout
-                       android:layout_width="@dimen/dp_320"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center_horizontal">
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textSize="@dimen/sp_12"
-                           android:textColor="#9E9E9E"
-                           android:text="@string/flop__ingot"/>
-                       <LinearLayout
-                           android:id="@+id/fragment_income_hall_play"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_alignParentRight="true"
-                           android:layout_alignParentEnd="true">
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:textColor="#9E9E9E"
-                               android:textSize="@dimen/sp_12"
-                               android:text="@string/play"/>
-                           <ImageView
-                               android:layout_width="@dimen/dp_12"
-                               android:layout_height="@dimen/dp_8"
-                               android:tint="#9E9E9E"
-                               android:rotation="180"
-                               android:layout_gravity="center_vertical"
-                               android:src="@mipmap/base_title_back"/>
-                       </LinearLayout>
-                   </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tv_benefit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_benefit_title"
+                        android:layout_alignLeft="@+id/tv_benefit_title"
+                        android:layout_marginTop="@dimen/dp_19"
+                        android:text="@string/game_text4"
+                        android:textColor="@color/color_fb5e58"
+                        android:textSize="@dimen/sp_20" />
 
-                   <android.support.v7.widget.RecyclerView
-                       android:id="@+id/fragment_income_hall_rv"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center_horizontal"
-                       android:layout_marginTop="@dimen/dp_10"
-                       android:overScrollMode="never"/>
-                   <LinearLayout
-                       android:layout_width="@dimen/dp_330"
-                       android:layout_height="@dimen/dp_30"
-                       android:orientation="horizontal"
-                       android:layout_gravity="center_horizontal"
-                       android:layout_marginTop="@dimen/dp_10">
-                       <ImageView
-                           android:id="@+id/income_hall_more_count"
-                           android:layout_width="0dp"
-                           android:layout_height="match_parent"
-                           android:src="@mipmap/more_frequency"
-                           android:scaleType="center"
-                           android:layout_weight="1"/>
-                       <RelativeLayout
-                           android:layout_width="0dp"
-                           android:layout_height="match_parent"
-                           android:layout_weight="1">
-                           <ImageView
-                               android:layout_width="match_parent"
-                               android:layout_height="match_parent"
-                               android:src="@mipmap/fillet_white"/>
-                           <LinearLayout
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_centerInParent="true"
-                               android:orientation="horizontal">
-                               <TextView
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:textSize="@dimen/sp_12"
-                                   android:textColor="#4E4E4E"
-                                   android:text="@string/remaining_times"/>
-                               <TextView
-                                   android:id="@+id/income_hall_card_count"
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:textSize="@dimen/sp_12"
-                                   android:textColor="#F8413C"
-                                   android:maxWidth="@dimen/dp_50"
-                                   android:ellipsize="end"
-                                   android:maxLines="1"
-                                   android:text="@string/_zero"/>
-                           </LinearLayout>
-                       </RelativeLayout>
-                       <RelativeLayout
-                           android:layout_width="0dp"
-                           android:layout_weight="1"
-                           android:layout_height="match_parent">
-                           <ImageView
-                               android:id="@+id/income_hall_get_count"
-                               android:layout_width="match_parent"
-                               android:layout_height="match_parent"
-                               android:src="@mipmap/get_count" />
-                           <View
-                               android:layout_width="@dimen/dp_6"
-                               android:layout_height="@dimen/dp_6"
-                               android:layout_alignParentRight="true"
-                               android:layout_marginRight="@dimen/dp_15"
-                               android:layout_centerVertical="true"
-                               android:background="@drawable/yuan_solid_read_dot"
-                               android:layout_alignParentEnd="true"
-                               android:layout_marginEnd="@dimen/dp_15" />
-                       </RelativeLayout>
-                   </LinearLayout>
-               </LinearLayout>
-           </LinearLayout>
-       </com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView>
+                    <TextView
+                        android:id="@+id/tv_benefit_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_benefit_title"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/dp_19"
+                        android:layout_marginRight="@dimen/dp_16"
+                        android:text="@string/game_text5"
+                        android:textColor="@color/color_fb5e58"
+                        android:textSize="@dimen/sp_20" />
+
+                    <TextView
+                        android:id="@+id/yesterday_profit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_benefit"
+                        android:layout_marginLeft="@dimen/dp_49"
+                        android:layout_marginTop="@dimen/dp_15"
+                        android:text="昨日收益"
+                        android:textColor="@color/color_636363"
+                        android:textSize="@dimen/sp_13" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_benefit_money"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/dp_15"
+                        android:layout_marginRight="@dimen/dp_47"
+                        android:text="累计收益"
+                        android:textColor="@color/color_636363"
+                        android:textSize="@dimen/sp_13" />
+
+                    <ProgressBar
+                        android:id="@+id/income_hall_progress2"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_8"
+                        android:layout_below="@+id/yesterday_profit"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_19"
+                        android:layout_marginRight="@dimen/dp_15"
+                        android:max="100"
+                        android:progress="30"
+                        android:progressDrawable="@drawable/progressbar_bg_divided_dragon" />
+
+                    <TextView
+                        android:id="@+id/tv_current_leave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/income_hall_progress2"
+                        android:layout_marginLeft="@dimen/dp_19"
+                        android:layout_marginTop="@dimen/dp_13"
+                        android:text="@string/game_text1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:id="@+id/income_hall_next_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/income_hall_progress2"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/dp_13"
+                        android:layout_marginRight="@dimen/dp_24"
+                        android:text="@string/game_text2"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14" />
+                </RelativeLayout>
+
+                <com.wuxiantao.wxt.ui.custom.button.StateButton
+                    android:id="@+id/income_hall_experience"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_37"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dp_43"
+                    android:layout_marginTop="@dimen/dp_33"
+                    android:layout_marginRight="@dimen/dp_43"
+                    android:enabled="false"
+                    android:padding="0dp"
+                    android:text="@string/click_dividend_experience"
+                    android:textSize="@dimen/sp_15"
+                    app:normalBackgroundCenterColor="#FB8E7D"
+                    app:normalBackgroundEndColor="#FF5655"
+                    app:normalBackgroundStartColor="#FB8E7D"
+                    app:normalOrientation="BL_TR"
+                    app:normalShapeType="LINEAR_GRADIENT"
+                    app:normalTextColor="@color/white"
+                    app:round="true"
+                    app:unableBackgroundCenterColor="#FB8E7D"
+                    app:unableBackgroundEndColor="#FB8E7D"
+                    app:unableBackgroundStartColor="#FB8E7D"
+                    app:unableTextColor="@color/white" />
+            </LinearLayout>
+        </com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView>
 
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
 
 
 </LinearLayout>

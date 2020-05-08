@@ -29,7 +29,7 @@ import com.wuxiantao.wxt.ui.custom.decoration.GridSpacingItemDecoration;
 import com.wuxiantao.wxt.ui.custom.decoration.SpaceItemDecoration;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.popupwindow.CopyNoPublicPopupWindow;
-import com.wuxiantao.wxt.ui.title.TitleBuilder;
+import com.wuxiantao.wxt.ui.title.CNToolbar;
 import com.wuxiantao.wxt.utils.BigDecimalUtils;
 import com.wuxiantao.wxt.utils.TextViewUtils;
 import com.wuxiantao.wxt.utils.WeChatUtils;
@@ -66,7 +66,7 @@ import static com.wuxiantao.wxt.config.Constant.UPDATE_WECHAT_BINGDING_SUCCESS;
  * Author:android
  * Mail:2898682029@qq.com
  * Date:19-6-5 下午4:57
- * Description:${DESCRIPTION} 红包提现
+ * Description:${DESCRIPTION} 余额提现
  */
 @ContentView(R.layout.activity_balance_withdraw)
 public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter, ApplyWithdrawContract.IApplyView> implements ApplyWithdrawContract.IApplyView {
@@ -84,6 +84,8 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     StateButton balance_with_draw_btn;
     @ViewInject(R.id.balance_with_draw_rv)
     RecyclerView balance_with_draw_rv;
+    @ViewInject(R.id.fragment_member_center_toolbar)
+    CNToolbar fragment_member_center_toolbar;
 
     private LoadingDialog loadingDialog;
     private boolean isAttentionPublic;
@@ -115,6 +117,9 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
         balance_with_draw_input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12)});
         setOnClikListener(balance_with_draw_clear,
                 balance_with_draw_all_money, balance_with_draw_btn);
+        fragment_member_center_toolbar.setOnLeftButtonClickListener(() -> {
+            finish();
+        });
         initWithdrawList();
     }
 
@@ -124,7 +129,7 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     public void getWithdrawInfoSuccess(RedBagWithdrawInfoBean bean) {
         balance = bean.getVolumes();
         balance_with_draw_able_money.setText(balance);
-        scarcity = isEmpty(balance) || BigDecimalUtils.compare("0",balance);
+        scarcity = isEmpty(balance) || BigDecimalUtils.compare("0", balance);
         isBindingAlipay = !isEmpty(bean.getAlicode());
         isBindingWeChat = !isEmpty(bean.getNickname());
 
@@ -159,7 +164,7 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     }
 
 
-    private void initEnabledText(){
+    private void initEnabledText() {
         //余额不足
         if (scarcity) {
             balance_with_draw_btn.setText(BALANCE_SCARCITY);
@@ -174,32 +179,31 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     }
 
 
-    private void setEnabledText(int len){
+    private void setEnabledText(int len) {
         //余额不足
-        if (scarcity){
+        if (scarcity) {
             balance_with_draw_btn.setText(BALANCE_SCARCITY);
             balance_with_draw_btn.setEnabled(false);
         }
         //未绑定支付宝
-        else if (withdrawType == 1 && !isBindingAlipay){
+        else if (withdrawType == 1 && !isBindingAlipay) {
             balance_with_draw_btn.setText(BINDIND_ALIPAY);
             balance_with_draw_btn.setEnabled(true);
         }
         //未绑定微信
-        else if (withdrawType == 2 && !isBindingWeChat){
+        else if (withdrawType == 2 && !isBindingWeChat) {
             balance_with_draw_btn.setText(BINDIND_WECHAT);
             balance_with_draw_btn.setEnabled(true);
-        }
-        else {
+        } else {
             try {
-                if (BigDecimalUtils.compare(getEdtText(balance_with_draw_input),getEdtText(balance_with_draw_input))){
+                if (BigDecimalUtils.compare(getEdtText(balance_with_draw_input), getEdtText(balance_with_draw_input))) {
                     balance_with_draw_btn.setText(MORE_THAN_THE_INPUT);
                     balance_with_draw_btn.setEnabled(false);
-                }else {
+                } else {
                     balance_with_draw_btn.setText(CONFIRM_WITHDRAW);
                     balance_with_draw_btn.setEnabled(len > 0);
                 }
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 balance_with_draw_btn.setText(CONFIRM_WITHDRAW);
                 balance_with_draw_btn.setEnabled(len > 0);
             }
@@ -227,16 +231,16 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     }
 
     //初始化金额选择列表:九宫格
-    private void initMoneyLayout(RedBagWithdrawInfoBean bean){
+    private void initMoneyLayout(RedBagWithdrawInfoBean bean) {
         list = initMoneyList(bean);
-        adapter = new RedEnvelopeRecViewAdapter(this,list);
-        GridLayoutManager manager = new GridLayoutManager(this,3);
-        GridSpacingItemDecoration itemDecoration = new GridSpacingItemDecoration(3,20,true);
+        adapter = new RedEnvelopeRecViewAdapter(this, list);
+        GridLayoutManager manager = new GridLayoutManager(this, 3);
+        GridSpacingItemDecoration itemDecoration = new GridSpacingItemDecoration(3, 20, true);
         balance_with_draw_money_rv.setLayoutManager(manager);
         balance_with_draw_money_rv.addItemDecoration(itemDecoration);
         balance_with_draw_money_rv.setAdapter(adapter);
         adapter.setOnBaseViewClickListener(position -> {
-            for (int i = 0;i < list.size();i++){
+            for (int i = 0; i < list.size(); i++) {
                 list.get(i).setSelected(false);
             }
             list.get(position).setSelected(!list.get(position).isSelected());
@@ -247,51 +251,50 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
         });
     }
 
-    private List<WithdrawBean> initMoneyList(RedBagWithdrawInfoBean bean){
+    private List<WithdrawBean> initMoneyList(RedBagWithdrawInfoBean bean) {
         List<WithdrawBean> list = new ArrayList<>();
-        for (int i = 0;i < bean.getShow_money().size();i++){
-            WithdrawBean b = new WithdrawBean(bean.getShow_money().get(i),false);
+        for (int i = 0; i < bean.getShow_money().size(); i++) {
+            WithdrawBean b = new WithdrawBean(bean.getShow_money().get(i), false);
             list.add(b);
         }
         return list;
     }
 
 
-    private void setShowSelectText(int position){
+    private void setShowSelectText(int position) {
         //余额不足
         if (scarcity) {
             balance_with_draw_btn.setText(BALANCE_SCARCITY);
-        }
-        else if (position == 0){
+        } else if (position == 0) {
             //未绑定支付宝
             if (!isBindingAlipay) {
                 balance_with_draw_btn.setText(BINDIND_ALIPAY);
                 balance_with_draw_btn.setEnabled(true);
-            }else {
+            } else {
                 filterMoney();
             }
-        }else {
+        } else {
             //未绑定微信
             if (!isBindingWeChat) {
                 balance_with_draw_btn.setText(BINDIND_WECHAT);
                 balance_with_draw_btn.setEnabled(true);
-            }else {
+            } else {
                 filterMoney();
             }
         }
         withdrawType = position == 0 ? 1 : 2;
     }
 
-    private void filterMoney(){
+    private void filterMoney() {
         try {
-            if (Double.valueOf(getEdtText(balance_with_draw_input)) > Double.valueOf(balance)){
+            if (Double.valueOf(getEdtText(balance_with_draw_input)) > Double.valueOf(balance)) {
                 balance_with_draw_btn.setEnabled(false);
                 balance_with_draw_btn.setText(MORE_THAN_THE_INPUT);
-            }else {
+            } else {
                 balance_with_draw_btn.setText(CONFIRM_WITHDRAW);
                 balance_with_draw_btn.setEnabled(getEdtText(balance_with_draw_input).length() > 0);
             }
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             balance_with_draw_btn.setEnabled(getEdtText(balance_with_draw_input).length() > 0);
             balance_with_draw_btn.setText(CONFIRM_WITHDRAW);
         }
@@ -302,8 +305,8 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
         switch (viewId) {
             //清空
             case R.id.balance_with_draw_clear:
-                if (list != null && adapter != null){
-                    for (int i = 0;i < list.size();i++){
+                if (list != null && adapter != null) {
+                    for (int i = 0; i < list.size(); i++) {
                         list.get(i).setSelected(false);
                     }
                     adapter.updataList(list);
@@ -312,8 +315,8 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
                 break;
             //全部提现
             case R.id.balance_with_draw_all_money:
-                if (list != null && adapter != null){
-                    for (int i = 0;i < list.size();i++){
+                if (list != null && adapter != null) {
+                    for (int i = 0; i < list.size(); i++) {
                         list.get(i).setSelected(false);
                     }
                     adapter.updataList(list);
@@ -327,14 +330,14 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
                 String btnText = getTextViewText(balance_with_draw_btn);
                 //绑定支付宝
                 if (btnText.equals(BINDIND_ALIPAY)) {
-                    $startActivityForResult(BinddingAlipayActivity.class,REQUEST_CODE_BINDING_ALIPAY);
+                    $startActivityForResult(BinddingAlipayActivity.class, REQUEST_CODE_BINDING_ALIPAY);
                 }
                 //绑定微信
                 else if (btnText.equals(BINDIND_WECHAT)) {
                     WeChatUtils.sendWeChatLoginRequest(true);
                 }
                 //未关注公众号
-                else if (!isAttentionPublic && !isPrompted){
+                else if (!isAttentionPublic && !isPrompted) {
                     new CopyNoPublicPopupWindow.Build(this)
                             .setOnCopyListener(TextViewUtils::copy)
                             .builder()
@@ -346,10 +349,10 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
                 else if (btnText.equals(CONFIRM_WITHDRAW)) {
                     loadingDialog = new LoadingDialog.Build(this)
                             .setLoadingText(R.string.apply_withdrawing).build();
-                    map.put(TOKEN,getAppToken());
-                    map.put("money",getEdtText(balance_with_draw_input));
-                    map.put("type",withdrawType);
-                    map.put(MODE,1);
+                    map.put(TOKEN, getAppToken());
+                    map.put("money", getEdtText(balance_with_draw_input));
+                    map.put("type", withdrawType);
+                    map.put(MODE, 1);
                     mPresenter.withdraw(map);
                 }
                 break;
@@ -357,11 +360,11 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     }
 
 
-    private Map<String,Object> map = new HashMap<>();
+    private Map<String, Object> map = new HashMap<>();
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent event){
-        switch (event.getType()){
+    public void onMessageEvent(MessageEvent event) {
+        switch (event.getType()) {
             //微信绑定成功
             case UPDATE_WECHAT_BINGDING_SUCCESS:
                 mPresenter.getWithdrawInfo(getAppToken());
@@ -370,10 +373,10 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
             case UPDATE_WECHAT_BINGDING_ERROR:
                 String msg = event.getMessage();
                 String s = getString(R.string.wechat_accout_banding);
-                if (isEmpty(msg)){
+                if (isEmpty(msg)) {
                     return;
                 }
-                if (msg.contains(s)){
+                if (msg.contains(s)) {
                     showOnlyConfirmDialog(event.getMessage());
                 }
                 break;
@@ -383,7 +386,7 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         //支付宝绑定完毕
-        if (requestCode == REQUEST_CODE_BINDING_ALIPAY && resultCode == RESULT_CODE_BINDING_ALIPAY){
+        if (requestCode == REQUEST_CODE_BINDING_ALIPAY && resultCode == RESULT_CODE_BINDING_ALIPAY) {
             mPresenter.getWithdrawInfo(getAppToken());
         }
     }
@@ -407,15 +410,6 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     public void withdrawFailure(String failure) {
         showOnlyConfirmDialog(failure);
     }
-
-    @Override
-    public void setTitle() {
-        new TitleBuilder(this)
-                .setLeftImageRes(R.mipmap.base_title_back)
-                .setLeftTextOrImageListener(v -> finish())
-                .setMiddleTitleText(R.string.withdraw).build();
-    }
-
 
     @Override
     protected void onDestroy() {

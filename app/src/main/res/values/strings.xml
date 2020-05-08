@@ -38,7 +38,7 @@
     <string name="withdraw_money">提现金额</string>
     <string name="frist">首次免费</string>
     <string name="input_withdraw_money">请输入提现金额</string>
-    <string name="able_withdraw_money">可提现金额</string>
+    <string name="able_withdraw_money">当前最多可提现</string>
     <string name="yuan">元</string>
     <string name="all_withdraw">全部提现</string>
     <string name="min_withdraw_money">最低提现金额为</string>
@@ -46,7 +46,7 @@
     <string name="wechat_friend">微信好友</string>
     <string name="wechat_group">朋友圈</string>
     <string name="confirm_withdraw">确认提现</string>
-    <string name="three_day_arrival">预计3个工作日内到帐</string>
+    <string name="three_day_arrival">(预计3个工作日内到帐)</string>
     <string name="number">手机号</string>
     <string name="next">下一步</string>
     <string name="current_number">当前手机号</string>
@@ -907,7 +907,7 @@
     <string name="duration_experience">体验时长</string>
     <string name="game_reward_balance">已存入您的余额</string>
     <string name="game_reward_end_time">时间结束体验金额存入余额</string>
-    <string name="default_area">仙侠1区</string>
+    <string name="default_area">游戏所在区:%1$s</string>
     <string name="permanent_dividend">永久分红</string>
     <string name="permanent_dividend_msg">永久分红是指斩妖诀游戏达到150级的玩家，平台会拿出广告收益的50%分给斩妖诀150级的超级玩家，保证每天分红收益达到300元以上，永久有效。</string>
     <string name="open_card_successed">恭喜获得%1$s%2$s个</string>
@@ -943,7 +943,14 @@
     <string name="more_get_income">更多方式获取收益，无限躺赚</string>
     <!-- 刮刮卡-->
     <string name="scrapingcard_text1">惊喜刮刮卡</string>
-
+    <string name="pointtocard_text1">点我刮卡</string>
+    <string name="pointtocard_text2">我的背包</string>
+    <string name="pointtocard_text3">幸运值进度条</string>
+    <string name="pointtocard_text4">Great!</string>
+    <string name="pointtocard_text7">领取</string>
+    <string name="pointtocard_text6">观看广告可领取双倍奖励！</string>
+    <string name="pointtocard_text5">恭喜你获得%1$s！!</string>
+    <string name="pointtocard_text8">我的背包</string>
     <!-- 我的会员-->
     <string name="mymember_text1">开通会员可享受6大特权哦！</string>
     <string name="mymember_text2">开通会员！</string>
@@ -954,9 +961,27 @@
 权益：\n返商家的40%，金币100：1\n优惠券个这种类型一张，卡包可查看\n评论的文字颜色不同\n签到 100金币/日\n游戏商城  每天购买次数增加+2次\n提现不限次数\n提现额度 20起提\n师徒收益 增加10%（徒孙）、增加20%（徒弟）\n
 游戏礼包--充值即送 10万游戏金币、100强化石、15飞升丹\n</string>
 
+    <!-- 游戏-->
+    <string name="game_text1">当前等级：%1$d级</string>
+    <string name="game_text2">距离平台分红还差%1$d级</string>
+    <string name="game_text3">%1$d级</string>
+    <string name="game_text4">￥%1$s元</string>
+    <string name="game_text5">￥%1$s元</string>
+
+
+    <!-- 我的-->
+    <string name="mine_text1">扫一扫上面的二维码 \n即可下载无限淘，成为我的好友</string>
+    <string name="mine_text2">我的邀请码</string>
+    <string name="mine_text3">余额提现</string>
+
+    <!-- 我的好友-->
+    <string name="fansilndirect_text1">分享二维码邀请好友</string>
+
+
     <!-- 设置-->
     <string name="setting_text1">客服服务</string>
     <string name="setting_text2">关于我们</string>
+    <string name="setting_text3">设置</string>
 
     <!-- 任务大厅-->
     <string name="taskhall_text1">去完成</string>

@@ -14,6 +14,7 @@ import com.wuxiantao.wxt.bean.ScrapingCardBean;
 import com.wuxiantao.wxt.mvp.contract.ScrapingCardFragmentContract;
 import com.wuxiantao.wxt.mvp.presenter.ScrapingCardFragmentPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
+import com.wuxiantao.wxt.ui.activity.scrapingcard.PointToCardActivity;
 import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.custom.recyclerview.NestRecyclerView;
 
@@ -137,6 +138,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
     protected void widgetClick(int id) {
         switch (id) {
             case R.id.iv_crapCard:
+                $startActivity(PointToCardActivity.class);
                 break;
             case R.id.tv_getValue_help:
                 break;
