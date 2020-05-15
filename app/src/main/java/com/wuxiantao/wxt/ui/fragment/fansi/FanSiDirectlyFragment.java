@@ -66,6 +66,7 @@ public class FanSiDirectlyFragment extends MvpFragment<FanSiDirectlyPresenter, F
 
     @Override
     public void initView() {
+        setOnClikListener(sbt_share_code);
         loadingDialog = new LoadingDialog.Build(getContext()).build();
         parameters.put(TOKEN,getAppToken());
         parameters.put("page",page);
@@ -76,7 +77,6 @@ public class FanSiDirectlyFragment extends MvpFragment<FanSiDirectlyPresenter, F
         parameters.put("type",FANSI_TYPE_DIRECTLY);
         mPresenter.obtainFansi(parameters);
         initRefreshLoad();
-        setOnClikListener(sbt_share_code);
 
     }
     @Override

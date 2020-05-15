@@ -386,4 +386,28 @@ public class Api {
     public static final String UM_APPKEY = "5e614e02895cca527e000862";
     //友盟 Push推送业务的secret
     public static final String UM_MESSAGE_SECRECT = "0daccf39fffcbbab9413d9d98ee324eb";
+    //刮刮卡页面信息
+    public static final String MY_CARDINFO = "Scratchcard/myCardInfo";
+    //报名分红
+    public static final String ENROLL_BONUS = "Scratchcard/enrollBonus";
+    //任务大厅信息
+    public static final String TASK_INFO = "Task/taskInfo";
+    //活跃度奖励领取
+    public static final String NEWEST_ACTIVE = "newest/active";
+    //任务页签到
+    public static final String TASK_SIGN = "Task/sign";
+    //领取刮出的卡片
+    public static final String GET_CARD = "Scratchcard/getCard";
+    //我的背包
+    public static final String MY_BOX = "Scratchcard/myBox";
+    //我的卷轴
+    public static final String MY_SCROLL = "Scratchcard/myScroll";
+    //碎片合成英雄卡
+    public static final String COMPOSE_HERO = "Scratchcard/composeHero";
+    //开始刮卡
+    public static final String START_STRAPING = "Scratchcard/startStraping";
+    //我的幸运值(狂点页面)
+    public static final String MY_LUCKYINFO = "Scratchcard/myLuckyInfo";
+    //分享二维码图片
+    public static final String GET_SHAREPIC = "newest/getSharePic";
 }

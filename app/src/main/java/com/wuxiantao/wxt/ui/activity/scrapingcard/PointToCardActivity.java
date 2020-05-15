@@ -1,12 +1,15 @@
 package com.wuxiantao.wxt.ui.activity.scrapingcard;
 
-import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wuxiantao.wxt.R;
+import com.wuxiantao.wxt.bean.CardInfoBean;
+import com.wuxiantao.wxt.bean.MyLuckyInfoBean;
+import com.wuxiantao.wxt.bean.StartStrapingBean;
 import com.wuxiantao.wxt.count_down.CountDownCallBack;
 import com.wuxiantao.wxt.mvp.contract.PointToCardContract;
 import com.wuxiantao.wxt.mvp.presenter.PointToCardPresenter;
@@ -14,15 +17,15 @@ import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
 import com.wuxiantao.wxt.ui.popupwindow.ScrapingCardSuccessPopupWindow;
 import com.wuxiantao.wxt.ui.title.CNToolbar;
 import com.wuxiantao.wxt.utils.LogUtils;
-import com.wuxiantao.wxt.utils.ToastUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
-import nl.dionsegijn.konfetti.KonfettiView;
-import nl.dionsegijn.konfetti.models.Shape;
-import nl.dionsegijn.konfetti.models.Size;
+import me.yifeiyuan.library.PeriscopeLayout;
 
+/**
+ * 点我刮卡
+ */
 @ContentView(R.layout.activity_pointtocard)
 public class PointToCardActivity extends MvpActivity<PointToCardPresenter, PointToCardContract> implements PointToCardContract {
     @ViewInject(R.id.cntoolbar_title)
@@ -35,40 +38,34 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     ImageView iv_openCard;
     @ViewInject(R.id.iv_countDown)
     ImageView iv_countDown;
-    @ViewInject(R.id.konfettiView_play)
-    KonfettiView konfettiView_play;
+    @ViewInject(R.id.periscope)
+    PeriscopeLayout periscope;
+    @ViewInject(R.id.rt_pointCard)
+    RelativeLayout rt_pointCard;
+    private boolean isFirst = true;//是否第 一次获取进度
+    private boolean isCountDowning;//是否正在计时
 
     @Override
     protected void initView() {
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
-        cntoolbar_title.setOnRightButtonClickListener(() -> {
-        });
-        setOnClikListener(iv_openCard);
-        startPlay();
-
+        cntoolbar_title.setOnRightButtonClickListener(() -> $startActivity(MyBackpackActivity.class));
+        setOnClikListener(iv_openCard, rt_pointCard);
+        mPresenter.myLuckyInfo(getAppToken(), "1");
     }
 
     private void startPlay() {
-        konfettiView_play.setVisibility(View.VISIBLE);
-        konfettiView_play.build()
-                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
-                .setDirection(0.0, 359.0)
-                .setSpeed(1f, 5f)
-                .setFadeOutEnabled(true)
-                .setTimeToLive(2000L)
-                .addShapes(Shape.RECT, Shape.CIRCLE)
-                .addSizes(new Size(12, 5))
-                .setPosition(-50f, konfettiView_play.getWidth() + 50f, -50f, -50f)
-                .streamFor(300, 5000L);
+        periscope.setVisibility(View.VISIBLE);
+        periscope.addHeart();
+
     }
 
-    //显示卡牌开启五个之后对话框
     private void showSuccessWindow(String carname, int id) {
         new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
                 .setWindowData(carname, id)
                 .setWindowAnimStyle(R.style.custom_dialog)
                 .setOnClickListener(() -> {//获取成功
-                            showOnlyConfirmDialog("领取成功！！！");
+                            showLoading();
+                            mPresenter.getCard(getAppToken(), "normal");
                         }
                 )
                 .builder().showPopupWindow();
@@ -77,8 +74,17 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     @Override
     protected void widgetClick(int id) {
         switch (id) {
+            case R.id.rt_pointCard:
+                isFirst = false;
+                mPresenter.myLuckyInfo(getAppToken(), "1");
+                break;
             case R.id.iv_openCard:
-                iv_openCard.setEnabled(false);
+                isFirst = false;
+                mPresenter.myLuckyInfo(getAppToken(), "1");
+                if (isCountDowning) {
+                    return;
+                }
+                isCountDowning = true;//正在计时
                 iv_countDown.setVisibility(View.VISIBLE);
                 addObserverx(6, new CountDownCallBack() {
                     @Override
@@ -95,14 +101,12 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
                         } else {
                             iv_countDown.setImageResource(R.drawable.pointtocard_countdown_five);
                         }
-                        ToastUtils.showToast("又来了" + time);
                     }
 
                     @Override
-                    public void onComplete() {
-                        ToastUtils.showToast("5秒完成=了哦!!!");
-                        showSuccessWindow("曹操青铜碎片", 2);
-                        iv_openCard.setEnabled(true);
+                    public void onComplete() {//计时完成
+                        isCountDowning = false;
+                        mPresenter.startStraping(getAppToken());
                         iv_countDown.setVisibility(View.GONE);
                     }
                 });
@@ -124,5 +128,33 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     @Override
     public void dismissLoading() {
 
+    }
+
+    @Override
+    public void startStrapSuccess(StartStrapingBean bean) {
+        showSuccessWindow(bean.getMsg(), bean.getCard_id());
+    }
+
+    @Override
+    public void getCardSuccess(CardInfoBean bean) {
+        showOnlyConfirmDialog(bean.getMsg());
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        showOnlyConfirmDialog(msg);
+    }
+
+    private int progress;
+
+    @Override
+    public void myLuckyInfo(MyLuckyInfoBean info) {
+        if (isFirst) {
+            progress = (int) Double.parseDouble(info.getLucky_value());
+        } else {
+            progress = (int) (info.getRand() + Double.parseDouble(info.getLucky_value()));
+        }
+        progress_pointtocard_a.setProgress(progress);
+        tv_percent.setText(progress + "%");
     }
 }

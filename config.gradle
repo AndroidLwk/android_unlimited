@@ -181,8 +181,7 @@ ext {
              */
             "um_common"            : 'com.umeng.umsdk:common:2.2.5',
             "um_push"              : 'com.umeng.umsdk:push:6.0.1',
-            "analytics"            : 'com.umeng.umsdk:analytics:8.1.6',
-            //彩带烟花动画
-            "konfetti"            : 'nl.dionsegijn:konfetti:1.1.3',
+            "analytics"            : 'com.umeng.umsdk:analytics:8.1.6'
+
     ]
 }

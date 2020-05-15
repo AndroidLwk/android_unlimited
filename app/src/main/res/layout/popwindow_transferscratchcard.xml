@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0" />
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_267"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_44"
+            android:background="@drawable/shape_popwindow_transscratchcard_a"
+            android:gravity="center"
+            android:text="@string/pointtocard_text15"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_17"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/dp_16"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_27"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_marginTop="@dimen/dp_14"
+                android:layout_marginRight="@dimen/dp_8"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp_62"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_6"
+                    android:text="转赠ID"
+                    android:textColor="@color/color_747474"
+                    android:textSize="@dimen/sp_12" />
+
+                <EditText
+                    android:id="@+id/edit_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:background="@drawable/shape_edittext_transscratchcard_b"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_27"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_marginTop="@dimen/dp_11"
+                android:layout_marginRight="@dimen/dp_8"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp_62"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_6"
+                    android:text="转赠数量"
+                    android:textColor="@color/color_747474"
+                    android:textSize="@dimen/sp_12" />
+
+                <EditText
+                    android:id="@+id/edit_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/dp_16"
+
+                    android:background="@drawable/shape_edittext_transscratchcard_b"
+                    android:inputType="numberPassword"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_27"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_marginTop="@dimen/dp_11"
+                android:layout_marginRight="@dimen/dp_8"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp_62"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_6"
+                    android:text="手续消耗"
+                    android:textColor="@color/color_747474"
+                    android:textSize="@dimen/sp_12" />
+
+                <EditText
+                    android:id="@+id/edit_sxxh"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/dp_16"
+
+                    android:background="@drawable/shape_edittext_transscratchcard_b"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_27"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_marginTop="@dimen/dp_11"
+                android:layout_marginRight="@dimen/dp_8"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/dp_62"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_6"
+                    android:text="二级密码"
+                    android:textColor="@color/color_747474"
+                    android:textSize="@dimen/sp_12" />
+
+                <EditText
+                    android:id="@+id/edit_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/dp_16"
+
+                    android:background="@drawable/shape_edittext_transscratchcard_b"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_popwindow_transscratchcard_b"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp_25"
+            android:paddingRight="@dimen/dp_25"
+            android:paddingBottom="@dimen/dp_18">
+
+            <com.wuxiantao.wxt.ui.custom.button.StateButton
+                android:id="@+id/sbt_cancel"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_31"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/pointtocard_text16"
+                android:textSize="@dimen/sp_12"
+                app:normalBackgroundCenterColor="#FBC67F"
+                app:normalBackgroundEndColor="#FBC67F"
+                app:normalBackgroundStartColor="#FBC67F"
+                app:normalOrientation="BL_TR"
+                app:normalShapeType="LINEAR_GRADIENT"
+                app:normalTextColor="@color/white"
+                app:round="true" />
+
+            <com.wuxiantao.wxt.ui.custom.button.StateButton
+                android:id="@+id/sbt_confirm"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_31"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/dp_23"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/pointtocard_text17"
+                android:textSize="@dimen/sp_12"
+                app:normalBackgroundCenterColor="#FD6F57"
+                app:normalBackgroundEndColor="#FA5758"
+                app:normalBackgroundStartColor="#FD6F57"
+                app:normalOrientation="BL_TR"
+                app:normalShapeType="LINEAR_GRADIENT"
+                app:normalTextColor="@color/white"
+                app:round="true" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

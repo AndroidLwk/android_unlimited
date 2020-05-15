@@ -951,6 +951,17 @@
     <string name="pointtocard_text6">观看广告可领取双倍奖励！</string>
     <string name="pointtocard_text5">恭喜你获得%1$s！!</string>
     <string name="pointtocard_text8">我的背包</string>
+    <string name="pointtocard_text9">英雄卷轴</string>
+    <string name="pointtocard_text10">点击合成</string>
+    <string name="pointtocard_text11">我知道了</string>
+    <string name="pointtocard_text13">什么是幸运值？</string>
+    <string name="pointtocard_text14">交易大厅暂未开放，请大家耐心等待</string>
+    <string name="pointtocard_text15">转赠刮刮卡</string>
+    <string name="pointtocard_text18">转赠英雄碎片</string>
+    <string name="pointtocard_text16">取消</string>
+    <string name="pointtocard_text17">确定</string>
+    <string name="pointtocard_text12">幸运值初始值\n游戏等级/是否会员将影响幸运值的初始值;\n普通用户初始幸运值为5，会员为15;\n
+        初始游戏等级0-50 获得5点</string>
     <!-- 我的会员-->
     <string name="mymember_text1">开通会员可享受6大特权哦！</string>
     <string name="mymember_text2">开通会员！</string>
@@ -998,7 +1009,7 @@
     <string name="taskhall_text12">黄金英雄卡分红</string>
     <string name="taskhall_text13">目前5人正参与分红</string>
     <string name="taskhall_text14">总余额</string>
-    <string name="taskhall_text15">累计提现</string>
+    <string name="taskhall_text15">累计分红天数</string>
     <string name="taskhall_text16">刮刮卡奖池</string>
     <string name="taskhall_text17">6-128元王者皮肤兑换卷1-50元王者皮肤兑换卷集齐英雄卡得平  台分红</string>
     <string name="taskhall_text18">刮刮卡领取</string>

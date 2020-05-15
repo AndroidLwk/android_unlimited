@@ -9,6 +9,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -327,7 +328,17 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
 
         return this;
     }
+    //设置文本2
+    protected BaseBuild setText(@IdRes int viewId, Spanned spanned){
+        if (viewId != 0){
+            TextView tv = findViewById(viewId);
+            if (tv != null){
+                tv.setText(spanned);
+            }
+        }
 
+        return this;
+    }
 
 
     //设置文本

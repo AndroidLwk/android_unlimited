@@ -486,6 +486,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         view.setCompoundDrawables(drawable, null, null, null);
         return this;
     }
+
     public BaseViewHolder setDrawableTopRes(int viewId, int res) {
         TextView view = findView(viewId);
         Drawable drawable = mContext.getResources().getDrawable(res);
@@ -494,6 +495,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         view.setCompoundDrawables(null, drawable, null, null);
         return this;
     }
+
     //获取check状态
     public boolean getViewChecked(int viewId) {
         Checkable view = findView(viewId);
@@ -532,6 +534,16 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
             if (view != null) {
                 view.setVisibility(visibility);
             }
+        }
+        return this;
+    }
+
+    //设置View四周间距
+    public BaseViewHolder setMargin(int viewId, int px) {
+        View view = findView(viewId);
+        if (view != null) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            p.setMargins(px, px, px, px);
         }
         return this;
     }

@@ -61,15 +61,23 @@
         android:background="@drawable/shape_myinnvitationcode_a"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/iv_header"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginLeft="@dimen/dp_23"
+            android:layout_marginTop="@dimen/dp_14"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mine_header" />
+
         <TextView
             android:id="@+id/tv_hearderInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_23"
-            android:layout_marginTop="@dimen/dp_14"
-            android:drawableLeft="@drawable/mine_header"
-            android:drawablePadding="@dimen/dp_11"
-            android:text="\n三十"
+            android:layout_toRightOf="@+id/iv_header"
+            android:paddingLeft="@dimen/dp_11"
+            android:layout_marginTop="@dimen/dp_25"
+            android:text="三十"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_17" />
 

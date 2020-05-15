@@ -10,13 +10,24 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.ScrapingCardFragmentOneAdapter;
 import com.wuxiantao.wxt.adapter.recview.ScrapingCardFragmentTwoAdapter;
+import com.wuxiantao.wxt.bean.MyCardInfo;
+import com.wuxiantao.wxt.bean.MySignInfo;
 import com.wuxiantao.wxt.bean.ScrapingCardBean;
 import com.wuxiantao.wxt.mvp.contract.ScrapingCardFragmentContract;
 import com.wuxiantao.wxt.mvp.presenter.ScrapingCardFragmentPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
+import com.wuxiantao.wxt.ui.activity.H5GameActivity;
+import com.wuxiantao.wxt.ui.activity.MenuActivity;
+import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
+import com.wuxiantao.wxt.ui.activity.my.MyInvitationCodeActivity;
+import com.wuxiantao.wxt.ui.activity.scrapingcard.HeroScrollActivity;
+import com.wuxiantao.wxt.ui.activity.scrapingcard.MyBackpackActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.PointToCardActivity;
 import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.custom.recyclerview.NestRecyclerView;
+import com.wuxiantao.wxt.ui.popupwindow.LuckyValuePopupWindow;
+import com.wuxiantao.wxt.ui.popupwindow.TradingHallPopupWindow;
+import com.wuxiantao.wxt.ui.title.CNToolbar;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ContentView;
@@ -57,8 +68,8 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
     ProgressBar progress_scrapingcard_b;
     @ViewInject(R.id.tv_gold_num)
     TextView tv_gold_num;
-    @ViewInject(R.id.sbt_startHall)
-    StateButton sbt_startHall;
+    @ViewInject(R.id.sbt_startHall_scrapCard)
+    StateButton sbt_startHall_scrapCard;
     @ViewInject(R.id.tv_heroCard_num)
     TextView tv_heroCard_num;
     @ViewInject(R.id.tv_money)
@@ -69,10 +80,19 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
     NestRecyclerView rv_scrapingcard_one;
     @ViewInject(R.id.tv_more)
     TextView tv_more;
+    @ViewInject(R.id.tv_my_heroscroll)
+    TextView tv_my_heroscroll;
+    @ViewInject(R.id.tv_jackpot_text)
+    TextView tv_jackpot_text;
+    @ViewInject(R.id.fragment_member_center_toolbar)
+    CNToolbar fragment_member_center_toolbar;
+
     @ViewInject(R.id.rv_scrapingcard_two)
     NestRecyclerView rv_scrapingcard_two;
-    private List<ScrapingCardBean> mData_a = new ArrayList<>();
+    private List<MyCardInfo.JackpotImgsBean> mData_a = new ArrayList<>();
     private List<ScrapingCardBean> mData_b = new ArrayList<>();
+    private ScrapingCardFragmentOneAdapter mAdapter_a;
+    private ScrapingCardFragmentTwoAdapter mAdapter_b;
 
     @Override
     protected ScrapingCardFragmentPresenter CreatePresenter() {
@@ -81,56 +101,56 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
 
     @Override
     public void initView() {
+        setOnClikListener(iv_crapCard, tv_getValue_help, sbt_startHall_scrapCard, tv_heroCard_num,
+                tv_more, tv_myBag, tv_my_heroscroll);
+        mPresenter.getMyCardInfo(getAppToken());
+        fragment_member_center_toolbar.setOnRightButtonClickListener(() -> {//交易大厅
+            new TradingHallPopupWindow.Build(getContext())
+                    .setWindowAnimStyle(R.style.custom_dialog)
+                    .builder().showPopupWindow();
+        });
         deposit_super_man_classic_header.setBackgroundResource(R.drawable.base_title_background);
         deposit_super_man_rl.setRefreshHeader(deposit_super_man_classic_header);
         deposit_super_man_rl.setEnableLoadMore(false);
         deposit_super_man_rl.setOnRefreshListener(refreshlayout -> {
+            mPresenter.getMyCardInfo(getAppToken());
             refreshlayout.resetNoMoreData();
             refreshlayout.finishRefresh(REFRESH_LOAD_MORE_TIME);
         });
-        setOnClikListener(iv_crapCard, tv_getValue_help, sbt_startHall, tv_heroCard_num,
-                tv_more);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());  //LinearLayoutManager中定制了可扩展的布局排列接口，子类按照接口中的规范来实现就可以定制出不同排雷方式的布局了
         //配置布局，默认为vertical（垂直布局），下边这句将布局改为水平布局
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        /**
-         * 测试数据
-         */
         rv_scrapingcard_one.setLayoutManager(layoutManager);
-        ScrapingCardBean scrapingCardBean = new ScrapingCardBean();
-        scrapingCardBean.setImg_res(R.drawable.screpingcard_b);
-        mData_a.add(scrapingCardBean);
-        scrapingCardBean = new ScrapingCardBean();
-        scrapingCardBean.setImg_res(R.drawable.screpingcard_c);
-        mData_a.add(scrapingCardBean);
-        scrapingCardBean = new ScrapingCardBean();
-        scrapingCardBean.setImg_res(R.drawable.screpingcard_d);
-        mData_a.add(scrapingCardBean);
-        scrapingCardBean = new ScrapingCardBean();
-        scrapingCardBean.setImg_res(R.drawable.screpingcard_d);
-        mData_a.add(scrapingCardBean);
-        scrapingCardBean = new ScrapingCardBean();
-        scrapingCardBean.setImg_res(R.drawable.screpingcard_d);
-        mData_a.add(scrapingCardBean);
-        scrapingCardBean.setImg_res(R.drawable.screpingcard_d);
-        ScrapingCardFragmentOneAdapter mAdapter_a = new ScrapingCardFragmentOneAdapter(getContext(), mData_a);
+        mAdapter_a = new ScrapingCardFragmentOneAdapter(getContext(), mData_a);
         rv_scrapingcard_one.setAdapter(mAdapter_a);
         rv_scrapingcard_two.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        ScrapingCardBean scrapingCardBean_b = new ScrapingCardBean();
-        scrapingCardBean_b.setNumTitle("任务大厅签到  +3张");
-        mData_b.add(scrapingCardBean_b);
-        scrapingCardBean_b = new ScrapingCardBean();
-        scrapingCardBean_b.setNumTitle("二维码邀请好友  +1张");
-        mData_b.add(scrapingCardBean_b);
-        scrapingCardBean_b = new ScrapingCardBean();
-        scrapingCardBean_b.setNumTitle("分享无限淘  +1张");
-        mData_b.add(scrapingCardBean_b);
-        scrapingCardBean_b = new ScrapingCardBean();
-        scrapingCardBean_b.setNumTitle("登录斩妖诀游戏且在线5分钟  +1张");
-        mData_b.add(scrapingCardBean_b);
-        ScrapingCardFragmentTwoAdapter mAdapter_b = new ScrapingCardFragmentTwoAdapter(getContext(), mData_b);
+        mData_b.clear();
+        mData_b.addAll(mPresenter.getScarapCasdTask());
+        mAdapter_b = new ScrapingCardFragmentTwoAdapter(getContext(), mData_b);
+        mAdapter_b.setOnItemBtnClickListener(potion -> {
+            switch (potion) {
+                case 0://签到
+                    mPresenter.taskSign(getAppToken());
+                    break;
+                case 1://邀请好友
+                    $startActivity(MyInvitationCodeActivity.class);
+                    break;
+                case 2://分享无限淘
+                    $startActivity(ShareThemActivity.class);
+                    break;
+                case 3://在线游戏
+                    $startActivity(H5GameActivity.class);
+                    break;
+            }
+        });
         rv_scrapingcard_two.setAdapter(mAdapter_b);
+    }
+
+    public void refreshData() {
+        if(mPresenter!=null){
+            mPresenter.getMyCardInfo(getAppToken());
+        }
     }
 
     @Subscribe
@@ -141,12 +161,25 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
                 $startActivity(PointToCardActivity.class);
                 break;
             case R.id.tv_getValue_help:
+                new LuckyValuePopupWindow.Build(getContext())
+                        .setWindowAnimStyle(R.style.custom_dialog)
+                        .builder().showPopupWindow();
                 break;
-            case R.id.sbt_startHall:
+            case R.id.sbt_startHall_scrapCard:
+                mPresenter.enrollBonus(getAppToken(), "1");
                 break;
             case R.id.tv_heroCard_num:
                 break;
             case R.id.tv_more:
+                MenuActivity menuActivity = (MenuActivity) getActivity();
+                menuActivity.changeFragment(3, null);
+                menuActivity.menu_tab_income_hall.setChecked(true);
+                break;
+            case R.id.tv_myBag://我的背包
+                $startActivity(MyBackpackActivity.class);
+                break;
+            case R.id.tv_my_heroscroll:
+                $startActivity(HeroScrollActivity.class);
                 break;
         }
     }
@@ -165,5 +198,53 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
     @Override
     public void dismissLoading() {
 
+    }
+
+    private MyCardInfo info;
+    private int progress_one;
+
+    @Override
+    public void showMyCardInfo(MyCardInfo info) {
+        this.info = info;
+        mData_a.clear();
+        mData_a.addAll(info.getJackpot_imgs());
+        mAdapter_a.notifyDataSetChanged();
+        tv_jackpot_text.setText(info.getJackpot_text());
+        double luckValue = Double.parseDouble(info.getLucky_value());
+        progress_scrapingcard_a.setProgress((int) luckValue);
+        tv_money.setText(info.getList().get(2).getMoney() + "元");
+        tv_day_num.setText(info.getList().get(2).getDay() + "天");
+        tv_bronze_num.setText("距离平台分红还差" + info.getList().get(0).getCard_cha() + "张");
+        tv_gold_num.setText("目前" + info.getList().get(1).getStatus_total() + "人正参与分红");
+        if (info.getList().get(0).getCard_all() + info.getList().get(0).getCard_cha() > 0) {
+            progress_one = info.getList().get(0).getCard_all() / (info.getList().get(0).getCard_all() + info.getList().get(0).getCard_cha());
+        }
+        progress_scrapingcard_b.setProgress(progress_one);
+        mData_b.get(0).setIsFinish(info.getIs_sign());
+        mData_b.get(1).setIsFinish(info.getShare());
+        mData_b.get(2).setIsFinish(info.getShare_award());
+        mData_b.get(3).setIsFinish(info.getOnline_award());
+        mAdapter_b.notifyDataSetChanged();
+    }
+
+    @Override
+    public void getMyCardInfoFailure(String errorMsg) {
+        showOnlyConfirmDialog(errorMsg);
+    }
+
+    @Override
+    public void enrollBonusSuccess(String msg) {
+        showOnlyConfirmDialog(msg);
+    }
+
+    @Override
+    public void signFailure(String msg) {
+        showOnlyConfirmDialog(msg);
+    }
+
+    @Override
+    public void signSuccess(MySignInfo info) {
+        showOnlyConfirmDialog(info.getMsg());
+        mPresenter.getMyCardInfo(getAppToken());
     }
 }

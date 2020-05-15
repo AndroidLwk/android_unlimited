@@ -55,12 +55,12 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
 
     @Override
     public void initView() {
+        setOnClikListener(mine_fansi_back, mine_fansi_title_text, mine_fansi_title_img);
         setStatusBar();
         initFragment();
         loadingDialog = new LoadingDialog.Build(this).build();
         mPresenter.obtainFansiHeadInfo(getAppToken());
         initViewPager();
-        setOnClikListener(mine_fansi_back, mine_fansi_title_text, mine_fansi_title_img);
     }
 
 

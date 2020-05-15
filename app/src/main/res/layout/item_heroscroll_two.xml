@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/dp_10">
+
+    <RelativeLayout
+        android:id="@+id/rt_item"
+        android:layout_width="@dimen/dp_107"
+        android:layout_height="@dimen/dp_123">
+
+        <ImageView
+            android:id="@+id/iv_hero"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bronze_dj" />
+
+        <TextView
+            android:id="@+id/tv_heroscroll_two_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dp_62"
+            android:background="@drawable/shape_mybackpack_num"
+            android:text="15"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_11" />
+    </RelativeLayout>
+</LinearLayout>

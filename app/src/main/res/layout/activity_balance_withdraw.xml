@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         app:cn_leftImage="@mipmap/base_title_back"
         app:cn_titleText="@string/mine_text3" />
+
     <com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/dp_75">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -174,37 +174,29 @@
                 android:layout_marginLeft="@dimen/dp_14"
                 android:layout_marginTop="@dimen/dp_23"
                 android:layout_marginRight="@dimen/dp_14" />
+
+            <com.wuxiantao.wxt.ui.custom.button.StateButton
+                android:id="@+id/balance_with_draw_btn"
+                android:layout_width="@dimen/dp_320"
+                android:layout_height="@dimen/dp_40"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_20"
+                android:enabled="false"
+                android:padding="0dp"
+                android:text="@string/confirm_withdraw"
+                app:normalBackgroundCenterColor="#FB8E7D"
+                app:normalBackgroundEndColor="#FF5655"
+                app:normalBackgroundStartColor="#FB8E7D"
+                app:normalOrientation="BL_TR"
+                app:normalShapeType="LINEAR_GRADIENT"
+                app:normalTextColor="@color/white"
+                app:round="true"
+                app:unableBackgroundCenterColor="#FB8E7D"
+                app:unableBackgroundEndColor="#FB8E7D"
+                app:unableBackgroundStartColor="#FB8E7D"
+                app:unableTextColor="@color/white" />
         </LinearLayout>
     </com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical">
-
-        <com.wuxiantao.wxt.ui.custom.button.StateButton
-            android:id="@+id/balance_with_draw_btn"
-            android:layout_width="@dimen/dp_320"
-            android:layout_height="@dimen/dp_40"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/dp_20"
-            android:enabled="false"
-            android:padding="0dp"
-            android:text="@string/confirm_withdraw"
-            app:normalBackgroundCenterColor="#FB8E7D"
-            app:normalBackgroundEndColor="#FF5655"
-            app:normalBackgroundStartColor="#FB8E7D"
-            app:normalOrientation="BL_TR"
-            app:normalShapeType="LINEAR_GRADIENT"
-            app:normalTextColor="@color/white"
-            app:round="true"
-            app:unableBackgroundCenterColor="#FB8E7D"
-            app:unableBackgroundEndColor="#FB8E7D"
-            app:unableBackgroundStartColor="#FB8E7D"
-            app:unableTextColor="@color/white" />
-
-
-    </LinearLayout>
 
 </LinearLayout>

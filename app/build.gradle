@@ -215,7 +215,7 @@ dependencies {
    // implementation rootProject.ext.dependencies["um_utdid"]
     implementation rootProject.ext.dependencies["um_push"]
     implementation rootProject.ext.dependencies["analytics"]
-    //彩带烟花动画
-    implementation rootProject.ext.dependencies["konfetti"]
+    implementation 'me.yifeiyuan.periscopelayout:library:1.0.0'
+    implementation 'com.google.zxing:core:3.3.0'
 
 }

@@ -73,13 +73,13 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     @ViewInject(R.id.main_menu_radiogroup)
     RadioGroup main_menu_radiogroup;
     @ViewInject(R.id.menu_tab_taobao)
-    SiteImgRadioButton menu_tab_taobao;
+    public SiteImgRadioButton menu_tab_taobao;
     @ViewInject(R.id.menu_tab_high_area)
     SiteImgRadioButton menu_tab_high_area;
     @ViewInject(R.id.menu_tab_red_envelope)
     SiteImgRadioButton menu_tab_red_envelope;
     @ViewInject(R.id.menu_tab_income_hall)
-    SiteImgRadioButton menu_tab_income_hall;
+    public SiteImgRadioButton menu_tab_income_hall;
     @ViewInject(R.id.menu_tab_my_deposit)
     SiteImgRadioButton menu_tab_my_deposit;
     @ViewInject(R.id.menu_tab_high_area_checked_img)
@@ -206,7 +206,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
             saveUserInfo(IS_TAO_BAO_AUTH, bean.getIs_taobao() == 1);
             saveUserInfo(IS_SHOW_SAMALL_ICON, !(isTaoBao && isBindingNumber && isWriteWeChat));
             saveUserInfo(WECHAT_NO, bean.getWechat());
-            saveUserInfo(GAME_ACCOUNT,bean.getAccountname());
+            saveUserInfo(GAME_ACCOUNT, bean.getAccountname());
             saveUserInfo(USER_HEAD_IMG, bean.getHeadimg());
             //isShowSmallIcon
             initRadioButton();
@@ -221,6 +221,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
             main_menu_radiogroup.setOnCheckedChangeListener(MenuActivity.this);
         }
     }
+
     //初始化RadioButton
     private void initRadioButton() {
         mRBlist.clear();
@@ -240,19 +241,21 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
             case R.id.menu_tab_taobao:
                 changeFragment(0, null);
                 break;
-            //高佣专区
+            //游戏
             case R.id.menu_tab_high_area:
                 changeFragment(1, null);
                 break;
-            //现金红包
+            //刮刮卡
             case R.id.menu_tab_red_envelope:
                 changeFragment(2, null);
+                mScrapingCardFragment.refreshData();
                 break;
-            //收益大厅
+            //任务大厅
             case R.id.menu_tab_income_hall:
                 changeFragment(3, null);
+                mTaskHallFragment.refreshData();
                 break;
-            //我的存款
+            //我的
             case R.id.menu_tab_my_deposit:
                 changeFragment(4, null);
                 break;
@@ -260,11 +263,11 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     }
 
     //切换页面
-    private void changeFragment(int index, Bundle bundle) {
+    public void changeFragment(int index, Bundle bundle) {
         FragmentManager mManager = getSupportFragmentManager();
         mTransaction = mManager.beginTransaction();
         hideFragments();
-     //   menu_tab_high_area_checked_img.setVisibility(index == 2 ? View.VISIBLE : View.GONE);
+        //   menu_tab_high_area_checked_img.setVisibility(index == 2 ? View.VISIBLE : View.GONE);
         switch (index) {
             //首页
             case 0:

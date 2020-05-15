@@ -1,6 +1,8 @@
 package com.wuxiantao.wxt.mvp.contract;
 
 
+import com.wuxiantao.wxt.bean.MyCardInfo;
+import com.wuxiantao.wxt.bean.MySignInfo;
 import com.wuxiantao.wxt.mvp.view.MvpView;
 
 /**
@@ -14,7 +16,12 @@ public interface ScrapingCardFragmentContract {
 
     interface IScrapingCardFragmentView extends MvpView {
         //将一些操作界面的方法在这里声明
+        void showMyCardInfo(MyCardInfo info);
+        void getMyCardInfoFailure(String errorMsg);
+        void enrollBonusSuccess(String msg);
 
+        void signFailure(String msg);
+        void signSuccess(MySignInfo info);
     }
 
 }

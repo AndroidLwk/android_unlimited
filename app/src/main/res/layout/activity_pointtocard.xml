@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="20%"
+                android:text="0%"
                 android:textColor="@color/color_a5a5a5"
                 android:textSize="@dimen/sp_15" />
         </RelativeLayout>
@@ -57,11 +57,12 @@
             android:layout_marginBottom="@dimen/dp_18"
             android:max="100"
             android:paddingLeft="@dimen/dp_12"
-            android:progress="30"
+            android:progress="0"
             android:progressDrawable="@drawable/progressbar_bg_divided_dragon" />
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rt_pointCard"
         android:layout_width="match_parent"
         android:layout_height="382dp"
         android:layout_below="@+id/lt_buck"
@@ -71,11 +72,12 @@
 
         <ImageView
             android:id="@+id/iv_countDown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp_155"
+            android:layout_height="@dimen/dp_155"
             android:layout_above="@+id/iv_openCard"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/dp_25"
+            android:scaleType="centerCrop"
             android:src="@drawable/pointtocard_countdown_five"
             android:visibility="gone" />
 
@@ -89,8 +91,8 @@
             android:src="@drawable/pointtocard_b" />
     </RelativeLayout>
 
-    <nl.dionsegijn.konfetti.KonfettiView
-        android:id="@+id/konfettiView_play"
+    <me.yifeiyuan.library.PeriscopeLayout
+        android:id="@+id/periscope"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />

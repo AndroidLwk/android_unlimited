@@ -12,14 +12,14 @@ import com.wuxiantao.wxt.adapter.bean.MineMenuBean;
 import com.wuxiantao.wxt.mvp.contract.MineContract;
 import com.wuxiantao.wxt.mvp.presenter.MinePresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
-import com.wuxiantao.wxt.ui.activity.AllOrderActivity;
 import com.wuxiantao.wxt.ui.activity.BalanceWithdrawActivity;
 import com.wuxiantao.wxt.ui.activity.HelpCenterActivity;
 import com.wuxiantao.wxt.ui.activity.MineBalanceActivity;
 import com.wuxiantao.wxt.ui.activity.MineFanSiActivity;
 import com.wuxiantao.wxt.ui.activity.MyInformationActivity;
-import com.wuxiantao.wxt.ui.activity.ProfitRecordingActivity;
 import com.wuxiantao.wxt.ui.activity.SettingActivity;
+import com.wuxiantao.wxt.ui.activity.SettingPassWordActivity;
+import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.activity.my.MyInvitationCodeActivity;
 import com.wuxiantao.wxt.ui.activity.my.MyMemberActivity;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
@@ -53,10 +53,10 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
     TextView tv_mine_friend;
     @ViewInject(R.id.tv_mine_code)
     TextView tv_mine_code;
-    @ViewInject(R.id.tv_mine_order)
-    TextView tv_mine_order;
-    @ViewInject(R.id.tv_mine_profit)
-    TextView tv_mine_profit;
+    @ViewInject(R.id.tv_promotioninvitation)
+    TextView tv_promotioninvitation;
+    @ViewInject(R.id.tv_mine_second_pass)
+    TextView tv_mine_second_pass;
     @ViewInject(R.id.tv_mine_set)
     TextView tv_mine_set;
     @ViewInject(R.id.tv_mine_freedback)
@@ -83,7 +83,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
     @Override
     public void initView() {
         setOnClikListener(tv_mine_member, tv_mine_set, tv_blanseValue, tv_officialGroup, tv_money_title, tv_crashMoney_title, tv_crashValue,
-                tv_mine_friend, tv_mine_code, tv_mine_order, tv_mine_profit, tv_mine_freedback, rt_personInfo);
+                tv_mine_friend, tv_mine_code, tv_promotioninvitation, tv_mine_second_pass, tv_mine_freedback, rt_personInfo);
         loadingDialog = createLoadingDialog();
         initRefreshLoad();
     }
@@ -144,11 +144,11 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
             case R.id.tv_mine_code:
                 $startActivity(MyInvitationCodeActivity.class);
                 break;
-            case R.id.tv_mine_order:
-                $startActivity(AllOrderActivity.class);
+            case R.id.tv_promotioninvitation:
+                $startActivity(ShareThemActivity.class);
                 break;
-            case R.id.tv_mine_profit:
-                $startActivity(ProfitRecordingActivity.class);
+            case R.id.tv_mine_second_pass:
+                $startActivity(SettingPassWordActivity.class);
                 break;
             case R.id.tv_mine_set:
                 $startActivity(SettingActivity.class);

@@ -29,4 +29,14 @@ public class ScrapingCardBean {
     }
 
     private int img_res;
+
+    public int getIsFinish() {
+        return isFinish;
+    }
+
+    public void setIsFinish(int isFinish) {
+        this.isFinish = isFinish;
+    }
+
+    private  int isFinish;
 }
