@@ -1,6 +1,6 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
-import com.wuxiantao.wxt.bean.MyBackpackBean;
+import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.mvp.contract.MyBackpackContract;
 import com.wuxiantao.wxt.mvp.model.MyBackpackModel;
@@ -14,7 +14,7 @@ public class MyBackpackPrewenter extends BasePresenter<MyBackpackContract> {
     private MyBackpackContract view;
     private MyBackpackModel model = new MyBackpackModel();
 
-    public void myBox(String token, int page,int pid) {
+    public void myBox(String token, int page, int pid) {
         Map<String, Object> map = new HashMap<>();
         map.put("token", token);
         map.put("page", page);
@@ -28,6 +28,7 @@ public class MyBackpackPrewenter extends BasePresenter<MyBackpackContract> {
             public void onSuccess(MyBoxInfo bean) {
                 view.showMyBackPack(bean);
             }
+
             @Override
             public void onFailure(String errorMsg) {
                 view.onFailure(errorMsg);
@@ -36,54 +37,28 @@ public class MyBackpackPrewenter extends BasePresenter<MyBackpackContract> {
         model.myBox(observer, map);
     }
 
-    /**
-     * 碎片
-     *
-     * @return
-     */
-    public List<MyBackpackBean> getData_one(List<MyBackpackBean> list) {
-        list.clear();
-        for (int i = 46; i <= 225; i++) {
-            MyBackpackBean bean = new MyBackpackBean();
-            bean.setPid(1);
-            bean.setHeroName("曹操碎片" + i);
-            bean.setImg_id(i);
-            list.add(bean);
+    public void getBoxCate(String token) {
+        if (view == null) {
+            view = getMvpView();
         }
-        return list;
+        BaseObserver<List<BoxTypeBean>> observer = new BaseObserver<List<BoxTypeBean>>() {
+            @Override
+            public void onSuccess(List<BoxTypeBean> list) {
+                changeBoxType(list, 0);
+                view.showBoxType(list);
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.onFailure(errorMsg);
+            }
+        };
+        model.getBoxCate(observer, token);
     }
 
-    /**
-     * 皮肤卡
-     *
-     * @param list
-     */
-    public void notify_data2(List<MyBackpackBean> list) {
-        list.clear();
-        for (int i = 13; i <= 23; i++) {
-            MyBackpackBean bean = new MyBackpackBean();
-            bean.setPid(2);
-            bean.setHeroName("皮肤卡" + i);
-            bean.setImg_id(i);
-            list.add(bean);
+    public void changeBoxType(List<BoxTypeBean> list, int seletedPotion) {
+        for (BoxTypeBean bean : list) {
+            bean.setSeleted(list.indexOf(bean) == seletedPotion ? true : false);
         }
-
-    }
-
-    /**
-     * 现金卡
-     *
-     * @param list
-     */
-    public void notify_data3(List<MyBackpackBean> list) {
-        list.clear();
-        for (int i = 4; i <= 8; i++) {
-            MyBackpackBean bean = new MyBackpackBean();
-            bean.setPid(3);
-            bean.setHeroName("现金卡" + i);
-            bean.setImg_id(i);
-            list.add(bean);
-        }
-
     }
 }

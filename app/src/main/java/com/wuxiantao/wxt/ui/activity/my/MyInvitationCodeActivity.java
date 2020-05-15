@@ -5,14 +5,17 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.SharePicBean;
 import com.wuxiantao.wxt.imgloader.GlideImgManager;
 import com.wuxiantao.wxt.mvp.contract.MyInvitationContract;
 import com.wuxiantao.wxt.mvp.presenter.MyInvitationPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
+import com.wuxiantao.wxt.ui.popupwindow.SharePosterPopupWindow;
 import com.wuxiantao.wxt.utils.DensityUtils;
 import com.wuxiantao.wxt.utils.QRCodeUtil;
+import com.wuxiantao.wxt.wxapi.WXShare;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -49,6 +52,24 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
                 finish();
                 break;
             case R.id.iv_invateCode:
+                if (mBitmap == null) {
+                    return;
+                }
+                new SharePosterPopupWindow.Build(this)
+                        .setRoundImageResource(mBitmap)
+                        .setOnPopupClickListener(new SharePosterPopupWindow.Build.OnPopupClickListener() {
+                            @Override
+                            public void onShareWechat() {
+                                //微信好友
+                                WXShare.getInstance().shareImgMessage(false, mBitmap);
+                            }
+
+                            @Override
+                            public void onShareFriends() {
+                                //微信朋友圈
+                                WXShare.getInstance().shareImgMessage(true, mBitmap);
+                            }
+                        }).builder().showPopupWindow();
                 break;
         }
     }
@@ -68,15 +89,35 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
 
     }
 
+    private Bitmap mBitmap;
+
     @Override
     public void showShareCode(SharePicBean info) {
         tv_hearderInfo.setText(info.getNickname());
         GlideImgManager.loadRoundImg(MyInvitationCodeActivity.this, info.getHeadimg(), iv_header);
         String imgUrl = info.getSrc() + getLocalUserId();
-      //  Bitmap logo = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.qrcode_logo);
-        Bitmap mBitmap = QRCodeUtil.createQRCodeBitmap(imgUrl, DensityUtils.dip2px(261), DensityUtils.dip2px(261));
-     //   iv_invateCode.setImageBitmap(QRCodeUtil.addLogo(mBitmap, logo));
+        mBitmap = QRCodeUtil.createQRCodeBitmap(imgUrl, DensityUtils.dip2px(261), DensityUtils.dip2px(261));
         iv_invateCode.setImageBitmap(mBitmap);
+        iv_invateCode.setWillNotDraw(false);
+        getLogo(info.getHeadimg());
+    }
+
+    private void getLogo(String imgUrl) {
+        new Thread() {
+            public void run() {
+                try {
+                    Bitmap myBitmap = Glide.with(MyInvitationCodeActivity.this)
+                            .asBitmap()
+                            .load(imgUrl)
+                            .submit(100, 100).get();
+                    Bitmap logo = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(), myBitmap.getHeight());
+                    iv_invateCode.setImageBitmap(QRCodeUtil.addLogo(mBitmap, logo));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }.start();
     }
 
     @Override

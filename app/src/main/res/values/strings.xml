@@ -673,9 +673,9 @@
     <string name="cancel_auth">取消授权</string>
     <string name="cancel_msg">取消授权将会影响APP正常使用,确定要取消授权吗</string>
     <string name="commission">收益</string>
-    <string name="ordinary_member">普通会员</string>
-    <string name="year_member">年会员</string>
-    <string name="month_member">月会员</string>
+    <string name="ordinary_member">普通会员  </string>
+    <string name="year_member">年会员  </string>
+    <string name="month_member">月会员  </string>
     <string name="go_to_pay">去付款</string>
 
     <string name="rule_title1">红包是什么？</string>
@@ -922,7 +922,7 @@
     <string name="help">帮助</string>
     <string name="gold_wait_make">打造速度:%1$d倍</string>
     <string name="invite_add_money">邀请增加红包现金:%1$d</string>
-    <string name="member_center_end_time">会员到期日期:%1$s</string>
+    <string name="member_center_end_time">到期时间:%1$s</string>
     <string name="member_center_expired_time">会员过期日期:%1$s</string>
     <string name="member_center_open">开通会员%1$s元</string>
     <string name="member_center_renew">续费会员%1$s元</string>
@@ -968,9 +968,9 @@
     <string name="mymember_text3">会员权益</string>
     <string name="mymember_text4">会员说明</string>
     <string name="mymember_text6">我的会员</string>
-    <string name="mymember_text5">价格：29.9元/月\n
-权益：\n返商家的40%，金币100：1\n优惠券个这种类型一张，卡包可查看\n评论的文字颜色不同\n签到 100金币/日\n游戏商城  每天购买次数增加+2次\n提现不限次数\n提现额度 20起提\n师徒收益 增加10%（徒孙）、增加20%（徒弟）\n
-游戏礼包--充值即送 10万游戏金币、100强化石、15飞升丹\n</string>
+    <string name="mymember_text5">
+                                价格：29.9元/月\n权益：\n充值立得10张刮刮卡\n会员签到每日可多得2张刮刮卡\n会员二维码邀请上限上升至10人，且每邀请一人获得3张刮刮\n卡\n我的钱包提现额度低至10元\n
+        赠送超豪华游戏礼包包括 10万游戏金币、100强化石、15飞\n升丹</string>
 
     <!-- 游戏-->
     <string name="game_text1">当前等级：%1$d级</string>

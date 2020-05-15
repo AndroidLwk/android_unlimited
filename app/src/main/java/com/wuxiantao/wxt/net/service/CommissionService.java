@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.net.service;
 
 import com.wuxiantao.wxt.adapter.bean.HeroScrolllBean;
+import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.CheckInInfoBean;
 import com.wuxiantao.wxt.bean.CommissionWithdrawInfoBean;
@@ -28,10 +29,12 @@ import static com.wuxiantao.wxt.config.Api.CHECK_IN;
 import static com.wuxiantao.wxt.config.Api.COMMISSION_WITHDRAW;
 import static com.wuxiantao.wxt.config.Api.COMPOSE_HERO;
 import static com.wuxiantao.wxt.config.Api.ENROLL_BONUS;
+import static com.wuxiantao.wxt.config.Api.GET_BOXCATE;
 import static com.wuxiantao.wxt.config.Api.GET_CARD;
 import static com.wuxiantao.wxt.config.Api.GET_CHECK_IN_INFO;
 import static com.wuxiantao.wxt.config.Api.GET_COMMISSION_WITHDRAW_INFO;
 import static com.wuxiantao.wxt.config.Api.GET_RED_BAG_WITHDRAW_INFO;
+import static com.wuxiantao.wxt.config.Api.GET_SCROLLCATE;
 import static com.wuxiantao.wxt.config.Api.GET_SHAREPIC;
 import static com.wuxiantao.wxt.config.Api.MY_BOX;
 import static com.wuxiantao.wxt.config.Api.MY_CARDINFO;
@@ -125,5 +128,13 @@ public interface CommissionService {
     @POST(GET_SHAREPIC)
     @FormUrlEncoded
     Observable<BaseResponse<SharePicBean>> getSharePic(@Field("token") String token);
+
+    @POST(GET_BOXCATE)
+    @FormUrlEncoded
+    Observable<BaseResponse<List<BoxTypeBean>>> getBoxCate(@Field("token") String token);
+
+    @POST(GET_SCROLLCATE)
+    @FormUrlEncoded
+    Observable<BaseResponse<List<BoxTypeBean>>> getScrollCate(@Field("token") String token);
 
 }

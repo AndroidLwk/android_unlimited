@@ -410,4 +410,9 @@ public class Api {
     public static final String MY_LUCKYINFO = "Scratchcard/myLuckyInfo";
     //分享二维码图片
     public static final String GET_SHAREPIC = "newest/getSharePic";
+    //背包分类
+    public static final String GET_BOXCATE = "Scratchcard/getBoxCate";
+    //卷轴分类
+    public static final String GET_SCROLLCATE = "Scratchcard/getScrollCate";
+
 }

@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
 import com.wuxiantao.wxt.adapter.bean.HeroScrolllBean;
+import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.ComposeHeroBean;
 import com.wuxiantao.wxt.mvp.contract.HeroScrollContract;
 import com.wuxiantao.wxt.mvp.model.HeroScrollModel;
@@ -54,5 +55,26 @@ public class HeroScrollPresenter extends BasePresenter<HeroScrollContract> {
             }
         };
         model.composeHero(observer, token, cid);
+    }
+
+    /**
+     * 卷轴分类
+     */
+    public void getScrollCate(String token) {
+        if (view == null) {
+            view = getMvpView();
+        }
+        BaseObserver<List<BoxTypeBean>> observer = new BaseObserver<List<BoxTypeBean>>() {
+            @Override
+            public void onSuccess(List<BoxTypeBean> list) {
+
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+
+            }
+        };
+        model.getScrollCate(observer, token);
     }
 }

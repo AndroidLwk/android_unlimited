@@ -2,6 +2,7 @@ package com.wuxiantao.wxt.mvp.model;
 
 import com.wuxiantao.wxt.adapter.bean.HeroScrolllBean;
 import com.wuxiantao.wxt.app.BaseApplication;
+import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.ComposeHeroBean;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
@@ -22,6 +23,13 @@ public class HeroScrollModel extends BaseModel {
         HttpManager.newInstance()
                 .createService(CommissionService.class)
                 .composeHero(token, cid)
+                .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
+                .subscribe(observer);
+    }
+    public void getScrollCate(BaseObserver<List<BoxTypeBean>> observer, String token) {
+        HttpManager.newInstance()
+                .createService(CommissionService.class)
+                .getScrollCate(token)
                 .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
                 .subscribe(observer);
     }

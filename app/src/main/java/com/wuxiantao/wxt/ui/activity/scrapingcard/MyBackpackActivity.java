@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.FrameLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.wuxiantao.wxt.R;
+import com.wuxiantao.wxt.adapter.recview.MyBoxTypeAdapter;
+import com.wuxiantao.wxt.bean.BoxTypeBean;
+import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.mvp.contract.MyBackpackContract;
 import com.wuxiantao.wxt.mvp.presenter.MyBackpackPrewenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
@@ -17,41 +20,44 @@ import com.wuxiantao.wxt.ui.fragment.mybackpack.BackPackCrashCardFragment;
 import com.wuxiantao.wxt.ui.fragment.mybackpack.BackPackHerFragment;
 import com.wuxiantao.wxt.ui.fragment.mybackpack.BackPackHeroCardFragment;
 import com.wuxiantao.wxt.ui.fragment.mybackpack.BackPackSkinCardFragment;
+import com.wuxiantao.wxt.ui.fragment.mybackpack.BackPackTemapFragment;
 import com.wuxiantao.wxt.ui.fragment.mybackpack.BackpackScreptCardFragment;
 import com.wuxiantao.wxt.ui.title.CNToolbar;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 我的背包
  */
 @ContentView(R.layout.activity_mybackpack)
-public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackpackContract> implements RadioGroup.OnCheckedChangeListener {
+public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackpackContract> implements MyBackpackContract {
     @ViewInject(R.id.cntoolbar_title)
     CNToolbar cntoolbar_title;
-    @ViewInject(R.id.rb_hero_card)
-    RadioButton rb_hero_card;
-    @ViewInject(R.id.rb_pifu_card)
-    RadioButton rb_pifu_card;
-    @ViewInject(R.id.rb_crash_card)
-    RadioButton rb_crash_card;
-    @ViewInject(R.id.rg_title)
-    RadioGroup rg_title;
-    @ViewInject(R.id.rb_all)
-    RadioButton rb_all;
-    @ViewInject(R.id.rb_scrapingcard)
-    RadioButton rb_scrapingcard;
-    @ViewInject(R.id.rb_hero_ft)
-    RadioButton rb_hero_ft;
     @ViewInject(R.id.ft_mybackpack)
     FrameLayout ft_mybackpack;
+    @ViewInject(R.id.rv_boxType)
+    RecyclerView rv_boxType;
+    private List<BoxTypeBean> mData = new ArrayList<>();
+    private MyBoxTypeAdapter mAdapter;
 
     @Override
     protected void initView() {
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
-        rg_title.setOnCheckedChangeListener(this);
-        changeFragment(0, null);
+        mPresenter.getBoxCate(getAppToken());
+        rv_boxType.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new MyBoxTypeAdapter(this, mData);
+        rv_boxType.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener((bean, potion) -> {
+            mPresenter.changeBoxType(mData, potion);//切换效果
+            mAdapter.notifyDataSetChanged();
+            Bundle bundle = new Bundle();
+            bundle.putInt("pid", bean.getId());
+            changeFragment(potion, bundle);//切换界面
+        });
     }
 
     @Override
@@ -79,6 +85,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
         hideFragments(mBackPackHeroCardFragment);
         hideFragments(mBackpackScreptCardFragment);
         hideFragments(mBackPackSkinCardFragment);
+        hideFragments(mBackPackTemapFragment);
     }
 
     //隐藏
@@ -94,6 +101,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
     private BackPackHeroCardFragment mBackPackHeroCardFragment;
     private BackpackScreptCardFragment mBackpackScreptCardFragment;
     private BackPackSkinCardFragment mBackPackSkinCardFragment;
+    private BackPackTemapFragment mBackPackTemapFragment;
 
     //切换页面
     private void changeFragment(int index, Bundle bundle) {
@@ -171,31 +179,43 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
                     mBackPackCrashCardFragment.setArguments(bundle);
                 }
                 break;
+            case 6://暂存
+                if (mBackPackTemapFragment == null) {
+                    mBackPackTemapFragment = new BackPackTemapFragment();
+                    mTransaction.add(R.id.ft_mybackpack, mBackPackTemapFragment);
+                } else {
+                    mTransaction.show(mBackPackTemapFragment);
+                }
+                if (bundle != null) {
+                    mBackPackTemapFragment.setArguments(bundle);
+                }
+                break;
+
         }
         mTransaction.commit();
     }
 
+
     @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId) {
-            case R.id.rb_all:
-                changeFragment(0, null);
-                break;
-            case R.id.rb_scrapingcard:
-                changeFragment(1, null);
-                break;
-            case R.id.rb_hero_ft:
-                changeFragment(2, null);
-                break;
-            case R.id.rb_hero_card:
-                changeFragment(3, null);
-                break;
-            case R.id.rb_pifu_card:
-                changeFragment(4, null);
-                break;
-            case R.id.rb_crash_card:
-                changeFragment(5, null);
-                break;
+    public void onFailure(String msg) {
+
+    }
+
+    @Override
+    public void showMyBackPack(MyBoxInfo list) {
+
+    }
+
+    @Override
+    public void showBoxType(List<BoxTypeBean> list) {
+        mData.clear();
+        mData.addAll(list);
+        mAdapter.notifyDataSetChanged();
+        if (list.size() > 0) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("pid", list.get(0).getId());
+            changeFragment(0, bundle);
         }
     }
+
 }

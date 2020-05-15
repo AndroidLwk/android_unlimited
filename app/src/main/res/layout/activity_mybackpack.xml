@@ -17,86 +17,11 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <RadioGroup
-            android:id="@+id/rg_title"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_boxType"
             android:layout_width="@dimen/dp_92"
             android:layout_height="match_parent"
-            android:background="@color/color_f5f6f9"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/rb_all"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_43"
-                android:background="@drawable/selector_mybackpack_button"
-                android:button="@null"
-                android:checked="true"
-                android:drawableLeft="@drawable/selector_draweft_icon_radionbutton"
-                android:gravity="center"
-                android:text="全部"
-                android:textColor="@drawable/selector_radiobutton_textcolor_check"
-                android:textSize="@dimen/sp_11" />
-
-            <RadioButton
-                android:id="@+id/rb_scrapingcard"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_43"
-                android:background="@drawable/selector_mybackpack_button"
-                android:button="@null"
-                android:drawableLeft="@drawable/selector_draweft_icon_radionbutton"
-                android:gravity="center"
-                android:text="刮刮卡"
-                android:textColor="@drawable/selector_radiobutton_textcolor_check"
-                android:textSize="@dimen/sp_11" />
-
-            <RadioButton
-                android:id="@+id/rb_hero_ft"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_43"
-                android:background="@drawable/selector_mybackpack_button"
-                android:button="@null"
-                android:drawableLeft="@drawable/selector_draweft_icon_radionbutton"
-                android:gravity="center"
-                android:text="英雄碎片"
-                android:textColor="@drawable/selector_radiobutton_textcolor_check"
-                android:textSize="@dimen/sp_11" />
-
-            <RadioButton
-                android:id="@+id/rb_hero_card"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_43"
-                android:background="@drawable/selector_mybackpack_button"
-                android:button="@null"
-                android:drawableLeft="@drawable/selector_draweft_icon_radionbutton"
-                android:gravity="center"
-                android:text="英雄卡"
-                android:textColor="@drawable/selector_radiobutton_textcolor_check"
-                android:textSize="@dimen/sp_11" />
-
-            <RadioButton
-                android:id="@+id/rb_pifu_card"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_43"
-                android:background="@drawable/selector_mybackpack_button"
-                android:button="@null"
-                android:drawableLeft="@drawable/selector_draweft_icon_radionbutton"
-                android:gravity="center"
-                android:text="皮肤卡"
-                android:textColor="@drawable/selector_radiobutton_textcolor_check"
-                android:textSize="@dimen/sp_11" />
-
-            <RadioButton
-                android:id="@+id/rb_crash_card"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_43"
-                android:background="@drawable/selector_mybackpack_button"
-                android:button="@null"
-                android:drawableLeft="@drawable/selector_draweft_icon_radionbutton"
-                android:gravity="center"
-                android:text="现金卡"
-                android:textColor="@drawable/selector_radiobutton_textcolor_check"
-                android:textSize="@dimen/sp_11" />
-        </RadioGroup>
+            android:background="@color/color_f5f6f9" />
 
         <FrameLayout
             android:id="@+id/ft_mybackpack"

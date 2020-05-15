@@ -24,11 +24,8 @@ import java.util.List;
 
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
 
-/**
- * 英雄卡
- */
 @ContentView(R.layout.fragment_backpack)
-public class BackPackHeroCardFragment extends MvpFragment<MyBackpackPrewenter, MyBackpackContract> implements MyBackpackContract {
+public class BackPackTemapFragment extends MvpFragment<MyBackpackPrewenter, MyBackpackContract> implements MyBackpackContract {
     @ViewInject(R.id.fragment_tao_bao_featured_sub_classic_header)
     ClassicsHeader fragment_tao_bao_featured_sub_classic_header;
     @ViewInject(R.id.rv_myBackpack)

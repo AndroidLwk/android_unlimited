@@ -47,13 +47,24 @@
                     android:textSize="@dimen/sp_19" />
 
                 <TextView
+                    android:id="@+id/tv_vipStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VIP"
+                    android:layout_marginLeft="@dimen/dp_2"
+                    android:layout_toRightOf="@+id/iv_headerName"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/tv_memberType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_headerName"
                     android:layout_marginLeft="@dimen/dp_12"
                     android:layout_marginTop="@dimen/dp_8"
                     android:layout_toRightOf="@+id/iv_mine_header"
-                    android:text="我的师傅：小狐狸"
+                    android:text="普通会员"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_11" />
 
@@ -74,6 +85,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginRight="@dimen/dp_21"
+                    android:paddingTop="@dimen/dp_4"
                     android:background="@drawable/mymember_j"
                     android:gravity="center"
                     android:paddingBottom="@dimen/dp_10"
@@ -120,8 +132,10 @@
                 android:textSize="@dimen/sp_19" />
 
             <TextView
+                android:id="@+id/tv_member_explain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_11"
                 android:layout_marginLeft="@dimen/dp_21"
                 android:text="@string/mymember_text5"
                 android:textColor="@color/color_999"

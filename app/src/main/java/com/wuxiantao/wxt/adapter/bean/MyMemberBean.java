@@ -1,10 +1,9 @@
 package com.wuxiantao.wxt.adapter.bean;
 
 public class MyMemberBean {
-    public MyMemberBean(int img_res, String bigTitle, String smallTitle) {
+    public MyMemberBean(int img_res, String bigTitle) {
         this.img_res = img_res;
         this.bigTitle = bigTitle;
-        this.smallTitle = smallTitle;
     }
 
     private int img_res;
@@ -24,15 +23,5 @@ public class MyMemberBean {
     public void setBigTitle(String bigTitle) {
         this.bigTitle = bigTitle;
     }
-
-    public String getSmallTitle() {
-        return smallTitle;
-    }
-
-    public void setSmallTitle(String smallTitle) {
-        this.smallTitle = smallTitle;
-    }
-
     private String bigTitle;
-    private String smallTitle;
 }
