@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.mvp.fansi.p;
 
+import com.wuxiantao.wxt.bean.FansiDirectlyBean;
 import com.wuxiantao.wxt.bean.FansiIndirectBean;
 import com.wuxiantao.wxt.mvp.fansi.c.FansiIndirectContract;
 import com.wuxiantao.wxt.mvp.fansi.m.FanSiIndirectModel;
@@ -25,9 +26,9 @@ public class FanSiIndirectPresenter extends FansiPresenter<FansiIndirectContract
         if (view == null){
             view = getMvpView();
         }
-        BaseObserver<FansiIndirectBean> observer = new BaseObserver<FansiIndirectBean>(view) {
+        BaseObserver<FansiDirectlyBean> observer = new BaseObserver<FansiDirectlyBean>(view) {
             @Override
-            public void onSuccess(FansiIndirectBean bean) {
+            public void onSuccess(FansiDirectlyBean bean) {
                 view.obtainFansSuccess(bean);
             }
 

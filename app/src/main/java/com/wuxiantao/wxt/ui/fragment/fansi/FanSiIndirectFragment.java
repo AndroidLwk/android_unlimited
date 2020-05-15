@@ -10,8 +10,10 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.wuxiantao.wxt.R;
+import com.wuxiantao.wxt.adapter.recview.FanSiDirectlyRecViewAdapter;
 import com.wuxiantao.wxt.adapter.recview.FanSiIndirectlyRecViewAdapter;
 import com.wuxiantao.wxt.bean.FansiDetailBean;
+import com.wuxiantao.wxt.bean.FansiDirectlyBean;
 import com.wuxiantao.wxt.bean.FansiIndirectBean;
 import com.wuxiantao.wxt.mvp.fansi.c.FansiIndirectContract;
 import com.wuxiantao.wxt.mvp.fansi.p.FanSiIndirectPresenter;
@@ -32,7 +34,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_DIRECTLY;
 import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_INDIRECT;
+import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_POTENTIAL;
 import static com.wuxiantao.wxt.config.Constant.PAGE_SIZE;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
 import static com.wuxiantao.wxt.config.Constant.TOKEN;
@@ -55,9 +59,9 @@ public class FanSiIndirectFragment extends MvpFragment<FanSiIndirectPresenter, F
     RecyclerView fansi_indirectly_rv;
     @ViewInject(R.id.sbt_share_code)
     StateButton sbt_share_code;
-    private FanSiIndirectlyRecViewAdapter adapter;
+    private FanSiDirectlyRecViewAdapter adapter;
     private int page = 1;
-    private FansiIndirectBean datas;
+    private FansiDirectlyBean datas;
     private Map<String, Object> parameters = new HashMap<>();
     private LoadingDialog loadingDialog;
 
@@ -69,12 +73,11 @@ public class FanSiIndirectFragment extends MvpFragment<FanSiIndirectPresenter, F
     @Override
     public void initView() {
         loadingDialog = new LoadingDialog.Build(getContext()).build();
-        parameters.put(TOKEN, getAppToken());
-        parameters.put("page", page);
-        parameters.put("pagesize", PAGE_SIZE);
-        parameters.put("create_time", 0);
-        parameters.put("cun", 0);
-        parameters.put("type", FANSI_TYPE_INDIRECT);
+        //        parameters.put(TOKEN,getAppToken());
+        parameters.put(TOKEN,"o1voQ1Xik7iCxobahGFXoBpi1KS8");
+        parameters.put("page",page);
+        parameters.put("pagesize",PAGE_SIZE);
+        parameters.put("type",FANSI_TYPE_DIRECTLY);
         mPresenter.obtainFansi(parameters);
         initRefreshLoad();
         setOnClikListener(sbt_share_code);
@@ -97,7 +100,7 @@ public class FanSiIndirectFragment extends MvpFragment<FanSiIndirectPresenter, F
             refreshlayout.finishRefresh(REFRESH_LOAD_MORE_TIME);
         });
         fansi_indirectly_rl.setOnLoadMoreListener(refreshlayout -> {
-            if (datas.getMore() == 1) {
+            if (datas.getCount()>page) {
                 parameters.put("page", ++page);
                 mPresenter.obtainFansi(parameters);
                 refreshlayout.finishLoadMore(REFRESH_LOAD_MORE_TIME);
@@ -109,32 +112,21 @@ public class FanSiIndirectFragment extends MvpFragment<FanSiIndirectPresenter, F
 
 
     @Override
-    public void obtainFansSuccess(FansiIndirectBean bean) {
+    public void obtainFansSuccess(FansiDirectlyBean bean) {
         this.datas = bean;
         initVerLayout(bean);
     }
 
     //垂直列表
-    private void initVerLayout(FansiIndirectBean bean) {
-        if (adapter == null) {
-            //adapter = new FanSiIndirectlyRecViewAdapter(getContext(),bean.getList());
-            /**
-             * 测试数据
-             */
-            List<FansiIndirectBean.ListBean> list = new ArrayList<>();
-            FansiIndirectBean.ListBean xx=new FansiIndirectBean.ListBean();
-            xx.setNickname("小猫咪");
-            list.add(xx);
-            list.add(new FansiIndirectBean.ListBean());
-            list.add(new FansiIndirectBean.ListBean());
-            list.add(new FansiIndirectBean.ListBean());
-            adapter = new FanSiIndirectlyRecViewAdapter(getContext(), list);
+    private void initVerLayout(FansiDirectlyBean bean) {
+        if (adapter == null){
+            adapter = new FanSiDirectlyRecViewAdapter(getContext(),bean.getList());
             LinearLayoutManager manager = new LinearLayoutManager(getContext());
-            SpaceItemDecoration itemDecoration = new SpaceItemDecoration(0, 20);
+            SpaceItemDecoration itemDecoration = new SpaceItemDecoration(0,20);
             fansi_indirectly_rv.setLayoutManager(manager);
             fansi_indirectly_rv.addItemDecoration(itemDecoration);
             fansi_indirectly_rv.setAdapter(adapter);
-            adapter.setOnItemClickListener(new FanSiIndirectlyRecViewAdapter.OnItemClickListener() {
+            adapter.setOnItemClickListener(new FanSiDirectlyRecViewAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int uid) {
                     mPresenter.obtainFansiDetail(uid);
@@ -145,8 +137,8 @@ public class FanSiIndirectFragment extends MvpFragment<FanSiIndirectPresenter, F
                     $startActivity(ShareThemActivity.class);
                 }
             });
-        } else {
-            adapter.addList(bean.getList(), page);
+        }else {
+            adapter.addList(bean.getList(),page);
         }
     }
 

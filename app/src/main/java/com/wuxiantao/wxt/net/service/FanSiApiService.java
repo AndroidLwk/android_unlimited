@@ -38,12 +38,12 @@ public interface FanSiApiService {
     Observable<BaseResponse<FanSiPotentialBean>> obtainPotentialFansi(@FieldMap Map<String, Object> parameters);
 
     @POST(OBTAIN_FANSI)
-    @FormUrlEncoded
+    @FormUrlEncoded    //好友列表
     Observable<BaseResponse<FansiDirectlyBean>> obtainDirectlyFansi(@FieldMap Map<String, Object> parameters);
 
     @POST(OBTAIN_FANSI)
     @FormUrlEncoded
-    Observable<BaseResponse<FansiIndirectBean>> obtainInDirectlyFansi(@FieldMap Map<String, Object> parameters);
+    Observable<BaseResponse<FansiDirectlyBean>> obtainInDirectlyFansi(@FieldMap Map<String, Object> parameters);
 
     @POST(FANSI_DETAIL)
     @FormUrlEncoded

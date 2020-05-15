@@ -29,24 +29,32 @@ public class FanSiDirectlyRecViewAdapter extends RcvBaseAdapter<FansiDirectlyBea
     public void convert(BaseViewHolder holder, FansiDirectlyBean.ListBean bean, int position) {
         holder.setCircleImageResource(R.id.item_fansi_directly_headimg,bean.getHeadimg());
         holder.setText(R.id.item_fansi_directly_name,bean.getNickname());
+        String trask="";
+        if (bean.getIs_task()==0){
+            trask = "未完成";
+        }else {
+            trask = "完成";
+        }
+        holder.setText(R.id.item_fansi_directly_vip_type,"游戏等级："+bean.getLevel()+"级/"+trask);
+        holder.setText(R.id.item_fansi_contribute,"贡献"+bean.getGongxian()+"元");
         holder.setViewOnClickListener(R.id.item_fansi_directly_layout, v -> {
             if (listener != null){
                 listener.onItemClick(bean.getId());
             }
         });
-        int vipStatus = bean.getVip();
-        switch (vipStatus){
-            case -1:
-            case 0:
-                holder.setText(R.id.item_fansi_directly_vip_type,mContext.getString(R.string.ordinary_member));
-                break;
-            case 1:
-                holder.setText(R.id.item_fansi_directly_vip_type,mContext.getString(R.string.year_member));
-                break;
-            case 2:
-                holder.setText(R.id.item_fansi_directly_vip_type,mContext.getString(R.string.month_member));
-                break;
-        }
+//        int vipStatus = bean.getVip();
+//        switch (vipStatus){
+//            case -1:
+//            case 0:
+//                holder.setText(R.id.item_fansi_directly_vip_type,mContext.getString(R.string.ordinary_member));
+//                break;
+//            case 1:
+//                holder.setText(R.id.item_fansi_directly_vip_type,mContext.getString(R.string.year_member));
+//                break;
+//            case 2:
+//                holder.setText(R.id.item_fansi_directly_vip_type,mContext.getString(R.string.month_member));
+//                break;
+//        }
     }
 
     @Override

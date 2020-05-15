@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_DIRECTLY;
+import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_POTENTIAL;
 import static com.wuxiantao.wxt.config.Constant.PAGE_SIZE;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
 import static com.wuxiantao.wxt.config.Constant.TOKEN;
@@ -68,13 +69,11 @@ public class FanSiDirectlyFragment extends MvpFragment<FanSiDirectlyPresenter, F
     public void initView() {
         setOnClikListener(sbt_share_code);
         loadingDialog = new LoadingDialog.Build(getContext()).build();
-        parameters.put(TOKEN,getAppToken());
+//        parameters.put(TOKEN,getAppToken());
+        parameters.put(TOKEN,"o1voQ1Xik7iCxobahGFXoBpi1KS8");
         parameters.put("page",page);
         parameters.put("pagesize",PAGE_SIZE);
-        parameters.put("create_time",0);
-        parameters.put("fnum",0);
-        parameters.put("cun",0);
-        parameters.put("type",FANSI_TYPE_DIRECTLY);
+        parameters.put("type",FANSI_TYPE_POTENTIAL);
         mPresenter.obtainFansi(parameters);
         initRefreshLoad();
 
@@ -96,7 +95,7 @@ public class FanSiDirectlyFragment extends MvpFragment<FanSiDirectlyPresenter, F
             refreshlayout.finishRefresh(REFRESH_LOAD_MORE_TIME);
         });
         fansi_directly_rl.setOnLoadMoreListener(refreshlayout -> {
-            if (datas.getMore() == 1){
+            if (datas.getCount()>page){
                 parameters.put("page",++page);
                 mPresenter.obtainFansi(parameters);
                 refreshlayout.finishLoadMore(REFRESH_LOAD_MORE_TIME);

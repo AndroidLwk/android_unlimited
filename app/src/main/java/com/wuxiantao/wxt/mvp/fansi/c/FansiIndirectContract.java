@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.mvp.fansi.c;
 
 
+import com.wuxiantao.wxt.bean.FansiDirectlyBean;
 import com.wuxiantao.wxt.bean.FansiIndirectBean;
 import com.wuxiantao.wxt.mvp.fansi.p.FansiMvpPresenter;
 import com.wuxiantao.wxt.mvp.fansi.view.FansiView;
@@ -16,7 +17,7 @@ public interface FansiIndirectContract {
 
     interface IFansiView extends FansiView {
         //将一些操作界面的方法在这里声明
-        void obtainFansSuccess(FansiIndirectBean bean);
+        void obtainFansSuccess(FansiDirectlyBean bean);
     }
 
     interface IFansiPresenter extends FansiMvpPresenter<IFansiView> {

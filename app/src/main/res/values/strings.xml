@@ -197,6 +197,13 @@
     <string name="change_info">更改信息</string>
     <string name="detail">明细</string>
     <string name="balance">余额</string>
+    <string name="balance_my">我的余额</string>
+    <string name="balance_my_num">￥2222.21元</string>
+    <string name="balance_my_add">已累计提现￥23.26元</string>
+    <string name="balance_my_ggk">刮卡有机会开出现金红包哦！快去试试吧！</string>
+    <string name="balance_my_top_up">充值</string>
+    <string name="balance_my_withdraw">提现</string>
+    <string name="balance_my_gogk">去刮卡</string>
     <string name="balance_detail">余额明细</string>
     <string name="know_rate">更多收益</string>
     <string name="withdraw_recording">提现记录</string>
@@ -984,6 +991,14 @@
     <string name="mine_text1">扫一扫上面的二维码 \n即可下载无限淘，成为我的好友</string>
     <string name="mine_text2">我的邀请码</string>
     <string name="mine_text3">余额提现</string>
+
+    <string name="myfriend_earn">累计收益:</string>
+    <string name="myfriend_earn_zhitui">直推好友返利</string>
+    <string name="myfriend_earn_jianjie">间接好友返利</string>
+    <string name="myfriend_earn_price">￥3000.00元</string>
+    <string name="myfriend_today_rebate">今日返利</string>
+
+
 
     <!-- 我的好友-->
     <string name="fansilndirect_text1">分享二维码邀请好友</string>

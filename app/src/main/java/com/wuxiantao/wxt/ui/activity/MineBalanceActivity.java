@@ -2,6 +2,7 @@ package com.wuxiantao.wxt.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,33 +41,26 @@ import static com.wuxiantao.wxt.config.Constant.UPDATE_MINE_BALANCE;
 public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceContract.IBalanceView> implements BalanceContract.IBalanceView {
     @ViewInject(R.id.mine_balance_back)
     ImageView mine_balance_back;
-    @ViewInject(R.id.mine_balance_recording)
-    TextView mine_balance_recording;
-    @ViewInject(R.id.mine_balance_rl)
-    SmartRefreshLayout mine_balance_rl;
-    @ViewInject(R.id.mine_balance_tv)
-    TextView mine_balance_tv;
-    @ViewInject(R.id.mine_balance_withdraw_red_bag)
-    StateButton mine_balance_withdraw_red_bag;
-    @ViewInject(R.id.mine_balance_withdraw_commission)
-    StateButton mine_balance_withdraw_commission;
+    @ViewInject(R.id.tv_balance_top_up)
+    TextView tv_balance_top_up;
+    @ViewInject(R.id.tv_balance_withdraw)
+    TextView tv_balance_withdraw;
 
     private LoadingDialog loadingDialog;
     private BalanceBean datas;
 
     @Override
     public void initView() {
-        StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.white));
-        StatusBarUtil.setStatusBarDarkTheme(this, true);
+        setStatusBar();
+//        StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.white)); 设置状态栏颜色
+//        StatusBarUtil.setStatusBarDarkTheme(this, true);  设置状态栏图标是否深色切换
         if (!EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().register(this);
         }
         loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.loading).build();
         mPresenter.obtainBalance(getAppToken());
-        mine_balance_rl.setEnableRefresh(false);
-        mine_balance_rl.setEnableLoadMore(false);
-        setOnClikListener(mine_balance_back, mine_balance_recording, mine_balance_withdraw_red_bag,
-                mine_balance_withdraw_commission);
+        mine_balance_back.setOnClickListener(v -> {finish();});
+//        setOnClikListener(mine_balance_back, tv_balance_top_up, tv_balance_withdraw);
     }
 
 
@@ -81,17 +75,21 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
             case R.id.mine_balance_back:
                 finish();
                 break;
-            case R.id.mine_balance_recording:
-                $startActivity(WithdrawRecordingActivity.class);
+            case R.id.tv_balance_top_up:
                 break;
-            //红包提现
-            case R.id.mine_balance_withdraw_red_bag:
-                $startActivity(BalanceWithdrawActivity.class,bundle);
+            case R.id.tv_balance_withdraw:
                 break;
-            //佣金提现
-            case R.id.mine_balance_withdraw_commission:
-                $startActivity(CommissionWithdrawActivity.class,bundle);
-                break;
+//            case R.id.mine_balance_recording:
+//                $startActivity(WithdrawRecordingActivity.class);
+//                break;
+//            //红包提现
+//            case R.id.mine_balance_withdraw_red_bag:
+//                $startActivity(BalanceWithdrawActivity.class,bundle);
+//                break;
+//            //佣金提现
+//            case R.id.mine_balance_withdraw_commission:
+//                $startActivity(CommissionWithdrawActivity.class,bundle);
+//                break;
         }
     }
 
@@ -106,21 +104,21 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
     @Override
     public void obtainBalanceSuccess(BalanceBean bean) {
         this.datas = bean;
-        try {
-            //佣金余额
-            double amount = Double.valueOf(bean.getAmount());
-            //红包余额
-            double volumes = Double.valueOf(bean.getVolumes());
-            //总和
-            double total = bean.getTotal();
-            mine_balance_tv.setText(total <= 0 ? getString(R.string.zero) : BigDecimalUtils.round(String.valueOf(total), DECIMAL_BIT));
-            mine_balance_withdraw_red_bag.setText(getString(R.string.withdraw_red_bag, getString(R.string.red_bg), volumes));
-            mine_balance_withdraw_commission.setText(getString(R.string.withdraw_red_bag, getString(R.string.commission), amount));
-        } catch (NumberFormatException e) {
-            mine_balance_tv.setText(R.string.zero);
-            mine_balance_withdraw_red_bag.setEnabled(false);
-            mine_balance_withdraw_commission.setEnabled(false);
-        }
+//        try {
+//            //佣金余额
+//            double amount = Double.valueOf(bean.getAmount());
+//            //红包余额
+//            double volumes = Double.valueOf(bean.getVolumes());
+//            //总和
+//            double total = bean.getTotal();
+//            mine_balance_tv.setText(total <= 0 ? getString(R.string.zero) : BigDecimalUtils.round(String.valueOf(total), DECIMAL_BIT));
+//            mine_balance_withdraw_red_bag.setText(getString(R.string.withdraw_red_bag, getString(R.string.red_bg), volumes));
+//            mine_balance_withdraw_commission.setText(getString(R.string.withdraw_red_bag, getString(R.string.commission), amount));
+//        } catch (NumberFormatException e) {
+//            mine_balance_tv.setText(R.string.zero);
+//            mine_balance_withdraw_red_bag.setEnabled(false);
+//            mine_balance_withdraw_commission.setEnabled(false);
+//        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

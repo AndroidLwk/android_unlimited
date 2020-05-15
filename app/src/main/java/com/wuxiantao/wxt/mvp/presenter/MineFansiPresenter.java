@@ -1,7 +1,12 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
+import com.wuxiantao.wxt.bean.FansiDirectlyBean;
+import com.wuxiantao.wxt.bean.FansiIndirectBean;
 import com.wuxiantao.wxt.mvp.contract.MineFansiContract;
 import com.wuxiantao.wxt.mvp.model.MineFansiModel;
+import com.wuxiantao.wxt.net.base.BaseObserver;
+
+import java.util.Map;
 
 /**
  * Company:成都可信网络科技有限责任公司
@@ -33,5 +38,25 @@ public class MineFansiPresenter extends BasePresenter<MineFansiContract.IFansiVi
 //            }
 //        };
 //        model.obtainFansiHeadInfo(observer,token);
+
     }
+
+    @Override
+    public void obtainDirectlyFansi(Map<String, Object> parameters){
+        if (view == null){
+            view = getMvpView();
+        }
+        BaseObserver<FansiDirectlyBean> observer = new BaseObserver<FansiDirectlyBean>(view) {
+            @Override
+            public void onSuccess(FansiDirectlyBean bean) {
+                view.obtainFansSuccess(bean);
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+            }
+        };
+        model.obtainDirectlyFansi(observer,parameters);
+    }
+
 }

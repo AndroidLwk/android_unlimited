@@ -58,8 +58,9 @@ public class Api {
     //我的粉丝头部数据信息
     public static final String OBTAIN_FANSI_HEAD_INFO = "user/myfansup";
 
-    //我的粉丝 1潜在粉丝，2直属粉丝，3间接粉丝
-    public static final String OBTAIN_FANSI = "user/myfans";
+    //好友列表  1徒弟2徒孙
+//    public static final String OBTAIN_FANSI = "user/myfans";
+    public static final String OBTAIN_FANSI = "newest/friendsList";
 
     //粉丝详情
     public static final String FANSI_DETAIL = "user/fansDetail";

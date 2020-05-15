@@ -3,12 +3,14 @@ package com.wuxiantao.wxt.ui.activity;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.base.BaseViewPagerAdapter;
+import com.wuxiantao.wxt.bean.FansiDirectlyBean;
 import com.wuxiantao.wxt.bean.MyFansiHeadInfoBean;
 import com.wuxiantao.wxt.mvp.contract.MineFansiContract;
 import com.wuxiantao.wxt.mvp.presenter.MineFansiPresenter;
@@ -23,7 +25,14 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_DIRECTLY;
+import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_POTENTIAL;
+import static com.wuxiantao.wxt.config.Constant.PAGE_SIZE;
+import static com.wuxiantao.wxt.config.Constant.TOKEN;
 
 /**
  * Company:成都可信网络科技有限责任公司
@@ -41,13 +50,23 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
     private ImageView mine_fansi_title_img;
     @ViewInject(R.id.mine_fansi_title_text)
     private TextView mine_fansi_title_text;
+
+    @ViewInject(R.id.tv_fansi_total)
+    private TextView tv_fansi_total;
+    @ViewInject(R.id.tv_fansi_total_zhitui)
+    private TextView tv_fansi_total_zhitui;
+    @ViewInject(R.id.tv_fansi_total_jianjie)
+    private TextView tv_fansi_total_jianjie;
+
+
     @ViewInject(R.id.mine_fansi_viewpager)
     private LazyViewPager mViewpager;
     @ViewInject(R.id.mine_fansi_indicator)
     private VPindicator mIndicator;
+
     private List<Fragment> mFragments = new ArrayList<>();
     private LoadingDialog loadingDialog;
-
+    private Map<String, Object> parameters = new HashMap<>();
     @Override
     protected MineFansiPresenter CreatePresenter() {
         return new MineFansiPresenter();
@@ -60,6 +79,13 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
         initFragment();
         loadingDialog = new LoadingDialog.Build(this).build();
         mPresenter.obtainFansiHeadInfo(getAppToken());
+
+        //        parameters.put(TOKEN,getAppToken());
+        parameters.put(TOKEN,"o1voQ1Xik7iCxobahGFXoBpi1KS8");
+        parameters.put("page","1");
+        parameters.put("pagesize",PAGE_SIZE);
+        parameters.put("type",FANSI_TYPE_POTENTIAL);
+        mPresenter.obtainDirectlyFansi(parameters);
         initViewPager();
     }
 
@@ -114,6 +140,14 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
     @Override
     public void obtainFansiHeadInfoSuccess(MyFansiHeadInfoBean bean) {
 
+    }
+
+    //获取
+    @Override
+    public void obtainFansSuccess(FansiDirectlyBean bean) {
+        tv_fansi_total.setText("￥"+bean.getTotal()+"元");
+        tv_fansi_total_zhitui.setText("￥"+bean.getTotal_zhitui()+"元");
+        tv_fansi_total_jianjie.setText("￥"+bean.getTotal_jianjie()+"元");
     }
 
     @Override

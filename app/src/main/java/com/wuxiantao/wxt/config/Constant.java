@@ -295,6 +295,7 @@ public class Constant {
     public static final String FRIEND_TYPE = "friend_type";
 
     //粉丝类型 1.潜在粉丝  2.直属粉丝 3.简介粉丝
+    //1徒弟2徒孙
     public static final int FANSI_TYPE_POTENTIAL = 1;
     public static final int FANSI_TYPE_DIRECTLY = 2;
     public static final int FANSI_TYPE_INDIRECT = 3;

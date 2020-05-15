@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.mvp.fansi.m;
 
 import com.wuxiantao.wxt.app.BaseApplication;
+import com.wuxiantao.wxt.bean.FansiDirectlyBean;
 import com.wuxiantao.wxt.bean.FansiIndirectBean;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
@@ -19,10 +20,10 @@ import java.util.Map;
  */
  public class FanSiIndirectModel extends BaseFansiModel {
 
-    public   void obtainInDirectlyFansi(BaseObserver<FansiIndirectBean> observer, Map<String,Object> parameters){
+    public   void obtainInDirectlyFansi(BaseObserver<FansiDirectlyBean> observer, Map<String,Object> parameters){
         HttpManager.newInstance()
                 .createService(FanSiApiService.class)
-                .obtainInDirectlyFansi(parameters)
+                .obtainDirectlyFansi(parameters)
                 .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
                 .subscribe(observer);
     }

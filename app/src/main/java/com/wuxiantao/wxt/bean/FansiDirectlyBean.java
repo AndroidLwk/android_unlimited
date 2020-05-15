@@ -12,21 +12,50 @@ import java.util.List;
  */
 public class FansiDirectlyBean {
 
-
     /**
-     * list : [{"id":11,"nickname":"","headimg":"","create_at":1560485204,"vip":0,"partner":0,"rebate1":0,"fnum":0},{"id":18,"nickname":"腹黑教官","headimg":"http://chaoren.haowusong.com./uploads/20190703/9445a0f59d6a73b709d3e121b55c768f.jpg","create_at":1561611202,"vip":0,"partner":0,"rebate1":0,"fnum":0},{"id":7,"nickname":"张晴明","headimg":"https://wx.qlogo.cn/mmhead/PDUdrUmQaWic6TRFsy3zMwxfibBibN4icMbKo9cl8mEa2cg/132","create_at":1557829409,"vip":1,"partner":0,"rebate1":0,"fnum":2}]
-     * more : 0
+     * total : 0
+     * total_zhitui : 0
+     * total_jianjie : 0
+     * list : [{"id":84,"headimg":"","nickname":"朱古力👿","level":148,"gongxian":0,"is_task":0},{"id":58,"headimg":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epPkRJOceZ3wRF9uhice7BfRZVqPXDD1umVXubMHL1tiaFu6gobJgm7nBEGaibbz0YGtib9KQzXIb9tvw/132","nickname":"🐲 领航晓瀚 🐲","level":93,"gongxian":0,"is_task":0},{"id":34981,"headimg":"https://wx.qlogo.cn/mmopen/vi_32/EyQxj5PiczTgQ0VOqnpcemsX73iaiady6ojfO6T9P8XLHxhFENicqOZJbLibKtXmCB5l3jbicibFbgg4d97pic1PnO3p1Q/132","nickname":"最初的梦","level":85,"gongxian":0,"is_task":0}]
+     * count : 9
      */
 
-    private int more;
+    private int total;
+    private int total_zhitui;
+    private int total_jianjie;
+    private int count;
     private List<ListBean> list;
 
-    public int getMore() {
-        return more;
+    public int getTotal() {
+        return total;
     }
 
-    public void setMore(int more) {
-        this.more = more;
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getTotal_zhitui() {
+        return total_zhitui;
+    }
+
+    public void setTotal_zhitui(int total_zhitui) {
+        this.total_zhitui = total_zhitui;
+    }
+
+    public int getTotal_jianjie() {
+        return total_jianjie;
+    }
+
+    public void setTotal_jianjie(int total_jianjie) {
+        this.total_jianjie = total_jianjie;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public List<ListBean> getList() {
@@ -39,24 +68,20 @@ public class FansiDirectlyBean {
 
     public static class ListBean {
         /**
-         * id : 11
-         * nickname :
+         * id : 84
          * headimg :
-         * create_at : 1560485204
-         * vip : 0
-         * partner : 0
-         * rebate : 0 //进贡
-         * fnum : 0 //粉丝数量
+         * nickname : 朱古力👿
+         * level : 148
+         * gongxian : 0
+         * is_task : 0
          */
 
         private int id;
-        private String nickname;
         private String headimg;
-        private int create_at;
-        private int vip;
-        private int partner;
-        private int rebate1;
-        private int fnum;
+        private String nickname;
+        private int level;
+        private int gongxian;
+        private int is_task;
 
         public int getId() {
             return id;
@@ -64,14 +89,6 @@ public class FansiDirectlyBean {
 
         public void setId(int id) {
             this.id = id;
-        }
-
-        public String getNickname() {
-            return nickname;
-        }
-
-        public void setNickname(String nickname) {
-            this.nickname = nickname;
         }
 
         public String getHeadimg() {
@@ -82,44 +99,36 @@ public class FansiDirectlyBean {
             this.headimg = headimg;
         }
 
-        public int getCreate_at() {
-            return create_at;
+        public String getNickname() {
+            return nickname;
         }
 
-        public void setCreate_at(int create_at) {
-            this.create_at = create_at;
+        public void setNickname(String nickname) {
+            this.nickname = nickname;
         }
 
-        public int getVip() {
-            return vip;
+        public int getLevel() {
+            return level;
         }
 
-        public void setVip(int vip) {
-            this.vip = vip;
+        public void setLevel(int level) {
+            this.level = level;
         }
 
-        public int getPartner() {
-            return partner;
+        public int getGongxian() {
+            return gongxian;
         }
 
-        public void setPartner(int partner) {
-            this.partner = partner;
+        public void setGongxian(int gongxian) {
+            this.gongxian = gongxian;
         }
 
-        public int getRebate1() {
-            return rebate1;
+        public int getIs_task() {
+            return is_task;
         }
 
-        public void setRebate1(int rebate1) {
-            this.rebate1 = rebate1;
-        }
-
-        public int getFnum() {
-            return fnum;
-        }
-
-        public void setFnum(int fnum) {
-            this.fnum = fnum;
+        public void setIs_task(int is_task) {
+            this.is_task = is_task;
         }
     }
 }

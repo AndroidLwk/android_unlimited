@@ -1,11 +1,14 @@
 package com.wuxiantao.wxt.mvp.model;
 
 import com.wuxiantao.wxt.app.BaseApplication;
+import com.wuxiantao.wxt.bean.FansiDirectlyBean;
 import com.wuxiantao.wxt.bean.MyFansiHeadInfoBean;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
 import com.wuxiantao.wxt.net.service.FanSiApiService;
+
+import java.util.Map;
 
 /**
  * Copyright (C), 2018-2018, 都可信有限公司
@@ -25,5 +28,13 @@ public class MineFansiModel extends BaseModel{
                 .subscribe(observer);
     }
 
+
+    public   void obtainDirectlyFansi(BaseObserver<FansiDirectlyBean> observer, Map<String,Object> parameters){
+        HttpManager.newInstance()
+                .createService(FanSiApiService.class)
+                .obtainDirectlyFansi(parameters)
+                .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
+                .subscribe(observer);
+    }
 
 }

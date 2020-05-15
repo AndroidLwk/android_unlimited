@@ -13,13 +13,17 @@ import java.util.Map;
  * Author:android
  * Mail:2898682029@qq.com
  * Date:19-7-5 下午6:26
- * Description:${DESCRIPTION} 直属粉丝
+ * Description:${DESCRIPTION} 好友列表
  */
 public class FanSiDirectlyPresenter extends FansiPresenter<FansiDirectlyContract.IFansiView> implements FansiDirectlyContract.IFansiPresenter {
 
     private FansiDirectlyContract.IFansiView view;
     private FanSiDirectlyModel model = new FanSiDirectlyModel();
 
+    /**
+     * 好友列表
+     * @param parameters
+     */
     @Override
     public void obtainFansi(Map<String, Object> parameters) {
         if (view == null){
