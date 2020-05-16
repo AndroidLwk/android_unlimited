@@ -9,6 +9,7 @@ import com.wuxiantao.wxt.bean.ComposeHeroBean;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.bean.MyCardInfo;
 import com.wuxiantao.wxt.bean.MyLuckyInfoBean;
+import com.wuxiantao.wxt.bean.MyMoneyCashBean;
 import com.wuxiantao.wxt.bean.MySignInfo;
 import com.wuxiantao.wxt.bean.MyTaskInfoBean;
 import com.wuxiantao.wxt.bean.RedBagWithdrawInfoBean;
@@ -28,7 +29,9 @@ import retrofit2.http.POST;
 import static com.wuxiantao.wxt.config.Api.CHECK_IN;
 import static com.wuxiantao.wxt.config.Api.COMMISSION_WITHDRAW;
 import static com.wuxiantao.wxt.config.Api.COMPOSE_HERO;
+import static com.wuxiantao.wxt.config.Api.DIS_CARD;
 import static com.wuxiantao.wxt.config.Api.ENROLL_BONUS;
+import static com.wuxiantao.wxt.config.Api.EXCHANGE;
 import static com.wuxiantao.wxt.config.Api.GET_BOXCATE;
 import static com.wuxiantao.wxt.config.Api.GET_CARD;
 import static com.wuxiantao.wxt.config.Api.GET_CHECK_IN_INFO;
@@ -39,12 +42,14 @@ import static com.wuxiantao.wxt.config.Api.GET_SHAREPIC;
 import static com.wuxiantao.wxt.config.Api.MY_BOX;
 import static com.wuxiantao.wxt.config.Api.MY_CARDINFO;
 import static com.wuxiantao.wxt.config.Api.MY_LUCKYINFO;
+import static com.wuxiantao.wxt.config.Api.MY_MONEYCASH;
 import static com.wuxiantao.wxt.config.Api.MY_SCROLL;
 import static com.wuxiantao.wxt.config.Api.NEWEST_ACTIVE;
 import static com.wuxiantao.wxt.config.Api.RED_BAG_WITHDRAW;
 import static com.wuxiantao.wxt.config.Api.START_STRAPING;
 import static com.wuxiantao.wxt.config.Api.TASK_INFO;
 import static com.wuxiantao.wxt.config.Api.TASK_SIGN;
+import static com.wuxiantao.wxt.config.Api.USE_CARD;
 
 /**
  * Company:成都可信网络科技有限责任公司
@@ -136,5 +141,20 @@ public interface CommissionService {
     @POST(GET_SCROLLCATE)
     @FormUrlEncoded
     Observable<BaseResponse<List<BoxTypeBean>>> getScrollCate(@Field("token") String token);
+
+    @POST(MY_MONEYCASH)
+    @FormUrlEncoded
+    Observable<BaseResponse<MyMoneyCashBean>> myMoneyCash(@Field("token") String token);
+
+    @POST(USE_CARD)
+    @FormUrlEncoded
+    Observable<BaseResponse<CardInfoBean>> useCard(@Field("token") String token, @Field("cid") String cid, @Field("num") String num);
+    @POST(DIS_CARD)
+    @FormUrlEncoded
+    Observable<BaseResponse<CardInfoBean>> discard(@Field("token") String token, @Field("card_id") String cid, @Field("num") String num);
+    @POST(EXCHANGE)
+    @FormUrlEncoded
+    Observable<BaseResponse<List>> exchange(@FieldMap Map<String, Object> map);
+
 
 }

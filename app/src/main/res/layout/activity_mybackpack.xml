@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cn_leftImage="@mipmap/base_title_back"
+        app:cn_rightText="背包扩容"
         app:cn_titleText="@string/pointtocard_text8" />
 
     <LinearLayout

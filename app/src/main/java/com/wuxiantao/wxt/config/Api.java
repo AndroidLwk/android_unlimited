@@ -415,5 +415,13 @@ public class Api {
     public static final String GET_BOXCATE = "Scratchcard/getBoxCate";
     //卷轴分类
     public static final String GET_SCROLLCATE = "Scratchcard/getScrollCate";
+    //我的余额和累计提现金额
+    public static final String MY_MONEYCASH = "newest/myMoneyCash";
+    //使用卡片
+    public static final String USE_CARD = "Scratchcard/userCard";
+    //销毁卡片
+    public static final String DIS_CARD = "Scratchcard/discard";
+    //转赠刮刮卡和碎片
+    public static final String EXCHANGE = "newest/exchange";
 
 }

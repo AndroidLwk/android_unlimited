@@ -9,6 +9,10 @@ import java.util.List;
 public interface MyBackpackContract extends MvpView {
     void onFailure(String msg);
 
+    void exchangeSuccess();
+    void useCardSuccess(String msg);
+    void discardSuccess(String msg);
+
     void showMyBackPack(MyBoxInfo list);
 
     void showBoxType(List<BoxTypeBean> list);

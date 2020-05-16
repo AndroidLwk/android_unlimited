@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0" />
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_280"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_white_background"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_15"
+        android:paddingTop="@dimen/dp_19"
+        android:paddingRight="@dimen/dp_11"
+        android:paddingBottom="@dimen/dp_24">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:gravity="center_horizontal"
+            android:text="选择背包操作"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_17"
+            android:textStyle="bold" />
+
+        <com.wuxiantao.wxt.ui.custom.button.StateButton
+            android:id="@+id/sbt_goOpenCard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dp_37"
+            android:layout_marginRight="@dimen/dp_37"
+            android:gravity="center"
+            android:text="去刮卡"
+            android:textSize="@dimen/sp_15"
+            app:normalBackgroundCenterColor="#FD6F57"
+            app:normalBackgroundEndColor="#FA5758"
+            app:normalBackgroundStartColor="#FD6F57"
+            app:normalOrientation="BL_TR"
+            app:normalShapeType="LINEAR_GRADIENT"
+            app:normalTextColor="@color/white"
+            app:round="true" />
+
+        <com.wuxiantao.wxt.ui.custom.button.StateButton
+            android:id="@+id/sbt_cardTransfer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dp_37"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_37"
+            android:gravity="center"
+            android:text="转赠"
+            android:textSize="@dimen/sp_15"
+
+            app:normalBackgroundCenterColor="#FD6F57"
+            app:normalBackgroundEndColor="#FA5758"
+            app:normalBackgroundStartColor="#FD6F57"
+            app:normalOrientation="BL_TR"
+            app:normalShapeType="LINEAR_GRADIENT"
+            app:normalTextColor="@color/white"
+            app:round="true" />
+
+        <com.wuxiantao.wxt.ui.custom.button.StateButton
+            android:id="@+id/sbt_carUse"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dp_37"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_37"
+            android:gravity="center"
+            android:text="使用"
+            android:textSize="@dimen/sp_15"
+
+            app:normalBackgroundCenterColor="#FD6F57"
+            app:normalBackgroundEndColor="#FA5758"
+            app:normalBackgroundStartColor="#FD6F57"
+            app:normalOrientation="BL_TR"
+            app:normalShapeType="LINEAR_GRADIENT"
+            app:normalTextColor="@color/white"
+            app:round="true" />
+
+        <com.wuxiantao.wxt.ui.custom.button.StateButton
+            android:id="@+id/sbt_synthesis"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dp_37"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_37"
+            android:gravity="center"
+            android:text="合成"
+            android:textSize="@dimen/sp_15"
+            app:normalBackgroundCenterColor="#FD6F57"
+            app:normalBackgroundEndColor="#FA5758"
+            app:normalBackgroundStartColor="#FD6F57"
+            app:normalOrientation="BL_TR"
+            app:normalShapeType="LINEAR_GRADIENT"
+            app:normalTextColor="@color/white"
+            app:round="true" />
+
+        <com.wuxiantao.wxt.ui.custom.button.StateButton
+            android:id="@+id/sbt_discard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dp_37"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_37"
+            android:gravity="center"
+            android:text="丢弃"
+            android:textSize="@dimen/sp_15"
+            app:normalBackgroundCenterColor="#FD6F57"
+            app:normalBackgroundEndColor="#FA5758"
+            app:normalBackgroundStartColor="#FD6F57"
+            app:normalOrientation="BL_TR"
+            app:normalShapeType="LINEAR_GRADIENT"
+            app:normalTextColor="@color/white"
+            app:round="true" />
+    </LinearLayout>
+</RelativeLayout>

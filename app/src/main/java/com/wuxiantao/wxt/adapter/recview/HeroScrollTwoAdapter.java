@@ -17,11 +17,11 @@ public class HeroScrollTwoAdapter extends RcvBaseAdapter<HeroScrolllBean> {
 
     @Override
     protected void convert(BaseViewHolder holder, HeroScrolllBean heroScrolllBean, int position) {
-        //holder.setImageResource(R.id.iv_hero, heroScrolllBean.getHero_img_background());
-       // holder.setText(R.id.tv_heroscroll_two_num, heroScrolllBean.getHero_num() + "");
-        holder.setVisibility(R.id.tv_heroscroll_two_num, heroScrolllBean.getIsHave() == 0 ? View.GONE : View.VISIBLE);
+        holder.setGlide(R.id.iv_hero, heroScrolllBean.getImg());
+        holder.setText(R.id.tv_heroscroll_two_num, heroScrolllBean.getTotal());
+        holder.setVisibility(R.id.tv_heroscroll_two_num, Integer.parseInt(heroScrolllBean.getTotal()) > 0 ? View.VISIBLE : View.INVISIBLE);
         holder.setViewOnClickListener(R.id.rt_item, v -> {
-            listener.onItemClick(heroScrolllBean,position);
+            listener.onItemClick(heroScrolllBean, position);
         });
     }
 
@@ -37,6 +37,6 @@ public class HeroScrollTwoAdapter extends RcvBaseAdapter<HeroScrolllBean> {
     }
 
     public interface OnItemClickListener {
-        void onItemClick(HeroScrolllBean heroScrolllBean,int potion);
+        void onItemClick(HeroScrolllBean heroScrolllBean, int potion);
     }
 }

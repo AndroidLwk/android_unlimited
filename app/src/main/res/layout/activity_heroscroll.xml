@@ -9,6 +9,7 @@
         android:id="@+id/cntoolbar_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         app:cn_leftImage="@mipmap/base_title_back"
         app:cn_titleText="@string/pointtocard_text9" />
 

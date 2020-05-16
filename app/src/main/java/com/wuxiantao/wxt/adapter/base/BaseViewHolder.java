@@ -254,6 +254,15 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     }
 
     //为ImageView设置圆形图片
+    public <T> BaseViewHolder setGlide(int viewId, T url) {
+        ImageView img = findView(viewId);
+        if (img != null) {
+            GlideImgManager.loadInitImg(mContext, url, img);
+        }
+        return this;
+    }
+
+    //为ImageView设置圆形图片
     public <T> BaseViewHolder setCircleImageResource(int viewId, T url) {
         ImageView img = findView(viewId);
         if (img != null) {

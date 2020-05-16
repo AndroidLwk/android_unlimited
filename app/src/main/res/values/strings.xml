@@ -992,6 +992,8 @@
     <string name="mine_text2">我的邀请码</string>
     <string name="mine_text3">余额提现</string>
     <string name="mine_text4">我的刮刮卡</string>
+    <string name="mine_text5">更多详情</string>
+    <string name="mine_text6">我的余额</string>
 
     <string name="myfriend_earn">累计收益:</string>
     <string name="myfriend_earn_zhitui">直推好友返利</string>

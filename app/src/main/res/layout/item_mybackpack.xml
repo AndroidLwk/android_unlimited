@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingRight="@dimen/dp_10"
+    android:paddingBottom="@dimen/dp_5">
 
 
     <RelativeLayout
@@ -18,8 +20,7 @@
             android:layout_height="@dimen/dp_49"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/crashcard_a" />
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/tv_mybakcpack_num"
@@ -37,10 +38,9 @@
     <TextView
         android:id="@+id/tv_mybackpack_heroName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="12dp"
         android:layout_marginTop="@dimen/dp_5"
-        android:layout_marginBottom="@dimen/dp_5"
-        android:text="曹操皮肤卡"
+        android:text=""
         android:textColor="@color/color_333"
         android:textSize="@dimen/sp_10" />
 

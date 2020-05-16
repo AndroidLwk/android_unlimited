@@ -2,6 +2,7 @@ package com.wuxiantao.wxt.mvp.model;
 
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
+import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
@@ -20,11 +21,37 @@ public class MyBackpackModel extends BaseModel {
                 .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
                 .subscribe(observer);
     }
+
     //背包分类
     public void getBoxCate(BaseObserver<List<BoxTypeBean>> observer, String token) {
         HttpManager.newInstance()
                 .createService(CommissionService.class)
                 .getBoxCate(token)
+                .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
+                .subscribe(observer);
+    }
+
+    //使用卡片
+    public void useCard(BaseObserver<CardInfoBean> observer, String token, String cid, String num) {
+        HttpManager.newInstance()
+                .createService(CommissionService.class)
+                .useCard(token, cid, num)
+                .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
+                .subscribe(observer);
+    }
+    //销毁卡片
+    public void discard(BaseObserver<CardInfoBean> observer, String token, String card_id, String num) {
+        HttpManager.newInstance()
+                .createService(CommissionService.class)
+                .discard(token, card_id, num)
+                .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
+                .subscribe(observer);
+    }
+    //转赠刮刮卡和碎片
+    public void exchange(BaseObserver<List> observer, Map<String, Object> map) {
+        HttpManager.newInstance()
+                .createService(CommissionService.class)
+                .exchange(map)
                 .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
                 .subscribe(observer);
     }

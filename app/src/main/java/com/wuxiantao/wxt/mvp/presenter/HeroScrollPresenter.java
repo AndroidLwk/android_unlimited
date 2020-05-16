@@ -23,13 +23,12 @@ public class HeroScrollPresenter extends BasePresenter<HeroScrollContract> {
         BaseObserver<List<HeroScrolllBean>> observer = new BaseObserver<List<HeroScrolllBean>>() {
             @Override
             public void onSuccess(List<HeroScrolllBean> bean) {
-
-
+                view.showMyScroll(bean);
             }
 
             @Override
             public void onFailure(String errorMsg) {
-
+                view.getMyScrollOnFailure(errorMsg);
             }
         };
         model.myScroll(observer, token, pid);
@@ -45,13 +44,12 @@ public class HeroScrollPresenter extends BasePresenter<HeroScrollContract> {
         BaseObserver<ComposeHeroBean> observer = new BaseObserver<ComposeHeroBean>() {
             @Override
             public void onSuccess(ComposeHeroBean bean) {
-
-
+                view.composeHeroSuccess(bean.getMsg());
             }
 
             @Override
             public void onFailure(String errorMsg) {
-
+                view.composeHeroOnFailure(errorMsg);
             }
         };
         model.composeHero(observer, token, cid);

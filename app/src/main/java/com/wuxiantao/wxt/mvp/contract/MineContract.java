@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.mvp.contract;
 
 
+import com.wuxiantao.wxt.bean.MyMoneyCashBean;
 import com.wuxiantao.wxt.mvp.view.MvpView;
 
 /**
@@ -13,7 +14,8 @@ import com.wuxiantao.wxt.mvp.view.MvpView;
 public interface MineContract {
 
     interface IMineView extends MvpView {
-
+        void onFailure(String msg);
+        void  showMyMoneyCash(MyMoneyCashBean info);
     }
 
 

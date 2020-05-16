@@ -47,6 +47,9 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
     @Override
     protected void initView() {
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
+        cntoolbar_title.setOnRightButtonClickListener(() -> {
+
+        });
         mPresenter.getBoxCate(getAppToken());
         rv_boxType.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new MyBoxTypeAdapter(this, mData);
@@ -198,6 +201,21 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
 
     @Override
     public void onFailure(String msg) {
+
+    }
+
+    @Override
+    public void exchangeSuccess() {
+
+    }
+
+    @Override
+    public void useCardSuccess(String msg) {
+
+    }
+
+    @Override
+    public void discardSuccess(String msg) {
 
     }
 

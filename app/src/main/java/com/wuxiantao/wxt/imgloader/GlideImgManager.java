@@ -129,7 +129,14 @@ public class GlideImgManager {
                     });
         }
     }
-
+    public static <T> void loadInitImg(Context context, T url, ImageView img) {
+        if (!((Activity) context).isFinishing()) {
+            Glide.with(context)
+                    .load(url)
+                    .apply(createOptions())
+                    .into(img);
+        }
+    }
 
 
 }

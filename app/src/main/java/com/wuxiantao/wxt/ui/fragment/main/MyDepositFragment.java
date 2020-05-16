@@ -1,14 +1,17 @@
 package com.wuxiantao.wxt.ui.fragment.main;
 
 import android.os.Bundle;
-import android.support.annotation.StringRes;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.wuxiantao.wxt.R;
-import com.wuxiantao.wxt.adapter.bean.MineMenuBean;
+import com.wuxiantao.wxt.bean.MyMoneyCashBean;
+import com.wuxiantao.wxt.imgloader.GlideImgManager;
 import com.wuxiantao.wxt.mvp.contract.MineContract;
 import com.wuxiantao.wxt.mvp.presenter.MinePresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
@@ -22,6 +25,7 @@ import com.wuxiantao.wxt.ui.activity.SettingPassWordActivity;
 import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.activity.my.MyInvitationCodeActivity;
 import com.wuxiantao.wxt.ui.activity.my.MyMemberActivity;
+import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.popupwindow.ImagePopupWindow;
 
@@ -29,9 +33,8 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 import static com.wuxiantao.wxt.config.Constant.IS_ATTENTION_PUBLIC;
-import static com.wuxiantao.wxt.config.Constant.IS_SHOW_SAMALL_ICON;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
-import static com.wuxiantao.wxt.config.Constant.TYPE_NORMAL;
+import static com.wuxiantao.wxt.config.Constant.USER_HEAD_IMG;
 
 /**
  * Company:成都可信网络科技有限责任公司
@@ -73,6 +76,36 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
     TextView tv_crashMoney_title;
     @ViewInject(R.id.tv_crashValue)
     TextView tv_crashValue;
+    @ViewInject(R.id.iv_mine_header)
+    ImageView iv_mine_header;
+    @ViewInject(R.id.iv_headerName)
+    TextView iv_headerName;
+    @ViewInject(R.id.tv_scrapcard_title)
+    TextView tv_scrapcard_title;
+    @ViewInject(R.id.tv_scrapcard_num)
+    TextView tv_scrapcard_num;
+    @ViewInject(R.id.tv_num_title)
+    TextView tv_num_title;
+    @ViewInject(R.id.tv_yesterday_num)
+    TextView tv_yesterday_num;
+    @ViewInject(R.id.sbt_startHall_scrapCard)
+    StateButton sbt_startHall_scrapCard;
+    @ViewInject(R.id.tv_dirver)
+    TextView tv_dirver;
+    @ViewInject(R.id.tv_bag_title)
+    TextView tv_bag_title;
+    @ViewInject(R.id.tv_mynickname)
+    TextView tv_mynickname;
+    @ViewInject(R.id.rt_balance)
+    RelativeLayout rt_balance;
+    @ViewInject(R.id.tv_driver_two)
+    TextView tv_driver_two;
+    @ViewInject(R.id.tv_total_num)
+    TextView tv_total_num;
+    @ViewInject(R.id.sbt_moreInfo)
+    StateButton sbt_moreInfo;
+    @ViewInject(R.id.iv_isvip)
+    ImageView iv_isvip;
     private LoadingDialog loadingDialog;
 
     @Override
@@ -82,9 +115,10 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
 
     @Override
     public void initView() {
-        setOnClikListener(tv_mine_member, tv_mine_set, tv_blanseValue, tv_officialGroup, tv_money_title, tv_crashMoney_title, tv_crashValue,
+        setOnClikListener(sbt_moreInfo, tv_mine_member, tv_mine_set, tv_blanseValue, tv_officialGroup, tv_money_title, tv_crashMoney_title, tv_crashValue,
                 tv_mine_friend, tv_mine_code, tv_promotioninvitation, tv_mine_second_pass, tv_mine_freedback, rt_personInfo);
         loadingDialog = createLoadingDialog();
+        mPresenter.myMoneyCash(getAppToken());
         initRefreshLoad();
     }
 
@@ -99,7 +133,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
         mine_rl.setOnRefreshListener(refreshlayout -> {
             refreshlayout.resetNoMoreData();
             if (!isEmpty(getAppToken())) {
-                //  mPresenter.obtainMyDeposit(getAppToken());
+                mPresenter.myMoneyCash(getAppToken());
             }
             refreshlayout.finishRefresh(REFRESH_LOAD_MORE_TIME);
         });
@@ -159,13 +193,10 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
             case R.id.rt_personInfo:
                 $startActivity(MyInformationActivity.class);
                 break;
-        }
-    }
+            case R.id.sbt_moreInfo://更多详情
 
-    private MineMenuBean createMineMenuBean(int icon, @StringRes int title) {
-        MineMenuBean bean = new MineMenuBean(icon, getString(title), isUserAuthorization(IS_SHOW_SAMALL_ICON));
-        bean.setType(TYPE_NORMAL);
-        return bean;
+                break;
+        }
     }
 
     @Override
@@ -182,5 +213,43 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        showOnlyConfirmDialog(msg);
+    }
+
+    @Override
+    public void showMyMoneyCash(MyMoneyCashBean info) {
+        if (TextUtils.isEmpty(getUserInfo(USER_HEAD_IMG))) {
+            GlideImgManager.loadCircleImg(getContext(), R.mipmap.default_user_head_img, iv_mine_header);
+        } else {
+            GlideImgManager.loadCircleImg(getContext(), getUserInfo(USER_HEAD_IMG), iv_mine_header);
+        }
+        iv_headerName.setText(info.getUp_nickname());
+        iv_isvip.setVisibility(info.getIs_vip() != 0 ? View.VISIBLE : View.INVISIBLE);
+        String time = "";
+        switch (info.getIs_vip()) {
+            case -1:
+                time = getString(R.string.ordinary_member);
+                break;
+            case 0:
+                time = "";
+                break;
+            case 1:
+                time = getString(R.string.year_member);
+                break;
+            case 2:
+                time = getString(R.string.month_member);
+                break;
+        }
+        tv_mynickname.setText(time);
+        tv_scrapcard_num.setText(info.getUnopen_card() + "");
+        tv_total_num.setText("累计刮卡" + info.getTotal_use() + "张");
+        tv_yesterday_num.setText("昨日获得" + info.getTotal_yesterday() + "张");
+        tv_blanseValue.setText("￥" + info.getMoney() + "元");
+        tv_crashValue.setText("￥" + info.getCash() + "元");
+
     }
 }

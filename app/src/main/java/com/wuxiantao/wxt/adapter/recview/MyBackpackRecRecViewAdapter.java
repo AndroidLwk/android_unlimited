@@ -1,6 +1,8 @@
 package com.wuxiantao.wxt.adapter.recview;
 
 import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.base.BaseViewHolder;
@@ -17,10 +19,14 @@ public class MyBackpackRecRecViewAdapter extends RcvBaseAdapter<MyBoxInfo.ListBe
 
     @Override
     protected void convert(BaseViewHolder holder, MyBoxInfo.ListBean myBackpackBean, int position) {
+        holder.setVisibility(R.id.tv_mybackpack_heroName, TextUtils.isEmpty(myBackpackBean.getName()) ? View.INVISIBLE : View.VISIBLE);
         holder.setText(R.id.tv_mybackpack_heroName, myBackpackBean.getName());
         holder.setText(R.id.tv_mybakcpack_num, myBackpackBean.getNumber() + "");
+        holder.setVisibility(R.id.tv_mybakcpack_num, myBackpackBean.getNumber() > 0 ? View.VISIBLE : View.GONE);
         holder.setMargin(R.id.iv_mybackpack_hero, myBackpackBean.getPid() == 5 ? DensityUtils.dip2px(6) : DensityUtils.dip2px(0));
-        holder.setCircleImageResource(R.id.iv_mybackpack_hero, myBackpackBean.getImg());
+        if (!TextUtils.isEmpty(myBackpackBean.getImg())) {
+            holder.setGlide(R.id.iv_mybackpack_hero, myBackpackBean.getImg());
+        }
         holder.setViewOnClickListener(R.id.lt_item, v -> listener.onConfirm(myBackpackBean, position));
     }
 

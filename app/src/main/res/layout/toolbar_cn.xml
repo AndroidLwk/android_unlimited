@@ -5,7 +5,7 @@
     android:background="@drawable/base_title_background"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
-    android:minHeight="@dimen/dp_50"
+    android:minHeight="@dimen/dp_40"
     android:paddingTop="@dimen/dp_20"
     android:id="@+id/toolbar_layout">
 

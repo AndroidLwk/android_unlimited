@@ -27,6 +27,7 @@
             android:id="@+id/rv_myBackpack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp_20"
             android:overScrollMode="never"/>
 
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter

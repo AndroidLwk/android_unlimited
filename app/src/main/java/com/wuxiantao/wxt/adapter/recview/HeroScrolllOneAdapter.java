@@ -10,16 +10,16 @@ import com.wuxiantao.wxt.adapter.bean.HeroScrolllBean;
 
 import java.util.List;
 
-public class HeroScrolllOneAdapter extends RcvBaseAdapter<HeroScrolllBean> {
-    public HeroScrolllOneAdapter(Context context, List<HeroScrolllBean> list) {
+public class HeroScrolllOneAdapter extends RcvBaseAdapter<HeroScrolllBean.ChildBean> {
+    public HeroScrolllOneAdapter(Context context, List<HeroScrolllBean.ChildBean> list) {
         super(context, list);
     }
 
     @Override
-    protected void convert(BaseViewHolder holder, HeroScrolllBean heroScrolllBean, int position) {
-//        holder.setImageResource(R.id.iv_hero_background, heroScrolllBean.getHero_img_background());
-//        holder.setText(R.id.tv_heroscroll_num, heroScrolllBean.getHero_num() + "");
-        holder.setVisibility(R.id.tv_heroscroll_num, heroScrolllBean.getIsHave() == 0 ? View.GONE : View.VISIBLE);
+    protected void convert(BaseViewHolder holder, HeroScrolllBean.ChildBean heroScrolllBean, int position) {
+        holder.setGlide(R.id.iv_hero_background, heroScrolllBean.getImg());
+        holder.setText(R.id.tv_heroscroll_num, heroScrolllBean.getTotal());
+        holder.setVisibility(R.id.tv_heroscroll_num, Integer.parseInt(heroScrolllBean.getTotal()) > 0 ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
