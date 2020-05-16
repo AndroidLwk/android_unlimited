@@ -17,8 +17,8 @@ public class HeroScrolllOneAdapter extends RcvBaseAdapter<HeroScrolllBean> {
 
     @Override
     protected void convert(BaseViewHolder holder, HeroScrolllBean heroScrolllBean, int position) {
-        holder.setImageResource(R.id.iv_hero_background, heroScrolllBean.getHero_img_background());
-        holder.setText(R.id.tv_heroscroll_num, heroScrolllBean.getHero_num() + "");
+//        holder.setImageResource(R.id.iv_hero_background, heroScrolllBean.getHero_img_background());
+//        holder.setText(R.id.tv_heroscroll_num, heroScrolllBean.getHero_num() + "");
         holder.setVisibility(R.id.tv_heroscroll_num, heroScrolllBean.getIsHave() == 0 ? View.GONE : View.VISIBLE);
     }
 
