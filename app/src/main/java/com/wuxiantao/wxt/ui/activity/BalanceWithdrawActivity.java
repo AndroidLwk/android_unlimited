@@ -107,6 +107,7 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
 
     @Override
     public void initView() {
+        setStatusBar();
         EventBus.getDefault().register(this);
         Bundle bundle = getBundle();
         if (bundle != null) {

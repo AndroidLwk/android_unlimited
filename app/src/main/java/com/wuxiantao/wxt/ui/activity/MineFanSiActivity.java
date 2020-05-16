@@ -8,6 +8,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.base.BaseViewPagerAdapter;
 import com.wuxiantao.wxt.bean.FansiDirectlyBean;
@@ -29,7 +34,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_DIRECTLY;
 import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_POTENTIAL;
 import static com.wuxiantao.wxt.config.Constant.PAGE_SIZE;
 import static com.wuxiantao.wxt.config.Constant.TOKEN;
@@ -57,7 +61,8 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
     private TextView tv_fansi_total_zhitui;
     @ViewInject(R.id.tv_fansi_total_jianjie)
     private TextView tv_fansi_total_jianjie;
-
+    @ViewInject(R.id.mPieChart)
+    private PieChart mPieChart;
 
     @ViewInject(R.id.mine_fansi_viewpager)
     private LazyViewPager mViewpager;
@@ -67,6 +72,9 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
     private List<Fragment> mFragments = new ArrayList<>();
     private LoadingDialog loadingDialog;
     private Map<String, Object> parameters = new HashMap<>();
+
+    private String[] Stars = new String[]{"", "", "", ""};
+    private int[] number = new int[]{1, 1};
     @Override
     protected MineFansiPresenter CreatePresenter() {
         return new MineFansiPresenter();
@@ -87,6 +95,35 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
         parameters.put("type",FANSI_TYPE_POTENTIAL);
         mPresenter.obtainDirectlyFansi(parameters);
         initViewPager();
+        initVie();
+    }
+
+    /**
+     * 初始化图表
+     */
+    private void initVie() {
+        ArrayList<String> titles = new ArrayList<>();
+        for (int i = 0; i < Stars.length; i++) {
+            titles.add(Stars[i]);
+        }
+        ArrayList<PieEntry> entrys = new ArrayList<>();
+        for (int i = 0; i < number.length; i++) {
+            entrys.add(new PieEntry(number[i], i));
+        }
+        PieDataSet dataset = new PieDataSet(entrys, "");
+        dataset.setSelectionShift(10f);
+        //颜色填充
+        dataset.setColors(new int[]{getResources().getColor(R.color.orange),getResources().getColor(R.color.tomato)});
+        //数据填充
+        PieData piedata = new PieData(dataset);
+        //设置饼图上显示数据的字体大小
+//        piedata.setValueTextSize(10);
+        mPieChart.setData(piedata);
+        mPieChart.animateX(1400);
+        mPieChart.setUsePercentValues(true);
+        mPieChart.getLegend().setEnabled(false);
+        mPieChart.setDescription(null);
+        mPieChart.setRotationEnabled(true);
     }
 
 

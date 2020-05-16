@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -42,9 +43,9 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
     @ViewInject(R.id.mine_balance_back)
     ImageView mine_balance_back;
     @ViewInject(R.id.tv_balance_top_up)
-    TextView tv_balance_top_up;
+    LinearLayout tv_balance_top_up;
     @ViewInject(R.id.tv_balance_withdraw)
-    TextView tv_balance_withdraw;
+    LinearLayout tv_balance_withdraw;
 
     private LoadingDialog loadingDialog;
     private BalanceBean datas;
@@ -59,8 +60,7 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
         }
         loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.loading).build();
         mPresenter.obtainBalance(getAppToken());
-        mine_balance_back.setOnClickListener(v -> {finish();});
-//        setOnClikListener(mine_balance_back, tv_balance_top_up, tv_balance_withdraw);
+        setOnClikListener(mine_balance_back,tv_balance_top_up,tv_balance_withdraw);
     }
 
 
@@ -78,6 +78,7 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
             case R.id.tv_balance_top_up:
                 break;
             case R.id.tv_balance_withdraw:
+                $startActivity(BalanceWithdrawActivity.class, bundle);
                 break;
 //            case R.id.mine_balance_recording:
 //                $startActivity(WithdrawRecordingActivity.class);

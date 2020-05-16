@@ -217,5 +217,5 @@ dependencies {
     implementation rootProject.ext.dependencies["analytics"]
     implementation 'me.yifeiyuan.periscopelayout:library:1.0.0'
     implementation 'com.google.zxing:core:3.3.0'
-
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.1.6'
 }
