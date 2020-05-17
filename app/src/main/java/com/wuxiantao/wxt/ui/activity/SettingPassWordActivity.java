@@ -192,6 +192,16 @@ public class SettingPassWordActivity extends MvpActivity<SettingPassWordPresente
     }
 
     @Override
+    public void isPayPasswordSuccess(int msg) {
+
+    }
+
+    @Override
+    public void isPayPasswordFailure(String failure) {
+
+    }
+
+    @Override
     public void showLoading() {
         loadingDialog.showLoadingDialog();
     }

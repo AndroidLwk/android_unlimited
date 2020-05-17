@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
 import com.wuxiantao.wxt.R;
+import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.mvp.contract.SettingPassWordContract;
 import com.wuxiantao.wxt.mvp.model.SettingPassWordModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
@@ -46,7 +47,42 @@ public class SettingPassWordPresenter extends BasePresenter<SettingPassWordContr
     //设置用户支付密码
     @Override
     public void setUserPayPassword(Map<String, Object> parameters) {
+        if (view == null){
+            view = getMvpView();
+        }
+        BaseObserver<List> observer = new BaseObserver<List>(view) {
 
+            @Override
+            public void onSuccess(List list) {
+                view.setPayPasswordSuccess("密码修改成功！");
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.setPayPasswordFailure(errorMsg);
+            }
+        };
+        model.setUserPayPassword(parameters,observer);
+    }
+    //是否设置交易密码
+    @Override
+    public void isSetPayPassword(String token) {
+        if (view == null){
+            view = getMvpView();
+        }
+        BaseObserver<IsSetPayPassword> observer = new BaseObserver<IsSetPayPassword>(view) {
+
+            @Override
+            public void onSuccess(IsSetPayPassword isSetPayPassword) {
+                view.isPayPasswordSuccess(isSetPayPassword.getStatus());
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.isPayPasswordFailure(errorMsg);
+            }
+        };
+        model.isSetPayPassword(token,observer);
     }
 
 

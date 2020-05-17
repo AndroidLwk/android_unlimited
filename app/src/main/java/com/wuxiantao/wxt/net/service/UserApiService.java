@@ -2,6 +2,7 @@ package com.wuxiantao.wxt.net.service;
 
 import com.wuxiantao.wxt.bean.BalanceBean;
 import com.wuxiantao.wxt.bean.HandValueBean;
+import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.bean.MyDepositBean;
 import com.wuxiantao.wxt.bean.OnLineServiceBean;
 import com.wuxiantao.wxt.bean.PersonalInfoBean;
@@ -21,12 +22,14 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 
 import static com.wuxiantao.wxt.config.Api.BALANCE_WITHDRAW;
+import static com.wuxiantao.wxt.config.Api.IS_SET_PAY_PWD;
 import static com.wuxiantao.wxt.config.Api.NEW_USER_RECEIVE_RB;
 import static com.wuxiantao.wxt.config.Api.OBTAIN_BALANCE;
 import static com.wuxiantao.wxt.config.Api.OBTAIN_LUCK;
 import static com.wuxiantao.wxt.config.Api.OBTAIN_MY_PAGE;
 import static com.wuxiantao.wxt.config.Api.OBTAIN_PERSONAL;
 import static com.wuxiantao.wxt.config.Api.ON_LINE_SERVICE;
+import static com.wuxiantao.wxt.config.Api.SET_CHANGE_PAY_PWD;
 import static com.wuxiantao.wxt.config.Api.SET_USER_PASS_WORD;
 import static com.wuxiantao.wxt.config.Api.UPDATE_PERSONAL_CENTER;
 import static com.wuxiantao.wxt.config.Api.UPLOAD_FILE;
@@ -84,4 +87,12 @@ public interface UserApiService {
     @POST(NEW_USER_RECEIVE_RB)
     @FormUrlEncoded
     Observable<BaseResponse<List>> receiveRedBag(@Field("token") String token);
+
+    @POST(IS_SET_PAY_PWD)
+    @FormUrlEncoded      //是否设置支付密码
+    Observable<BaseResponse<IsSetPayPassword>> isSetPayPassword(@Field("token") String token);
+
+    @POST(SET_CHANGE_PAY_PWD)
+    @FormUrlEncoded     //设置或修改交易密码
+    Observable<BaseResponse<List>> setUserPayPassword(@FieldMap Map<String,Object> parameters);
 }

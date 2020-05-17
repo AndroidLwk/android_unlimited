@@ -23,6 +23,10 @@ public interface SettingPassWordContract {
         //设置支付密码
         void setPayPasswordSuccess(String msg);
         void setPayPasswordFailure(String failure);
+
+        //是否设置交易密码
+        void isPayPasswordSuccess(int msg);
+        void isPayPasswordFailure(String failure);
     }
 
     interface ISettingPresenter extends MvpPresenter<ISettingView> {
@@ -30,5 +34,7 @@ public interface SettingPassWordContract {
         void setUserLoginPassWord(String token,String password_old, String password_new);
         //调用设置支付密码
         void setUserPayPassword(Map<String, Object> parameters);
+        //是否设置交易密码
+        void isSetPayPassword(String token);
     }
 }

@@ -1,12 +1,14 @@
 package com.wuxiantao.wxt.mvp.model;
 
 import com.wuxiantao.wxt.app.BaseApplication;
+import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
 import com.wuxiantao.wxt.net.service.UserApiService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Copyright (C), 2018-2018, 都可信有限公司
@@ -17,7 +19,6 @@ import java.util.List;
 
 public class SettingPassWordModel extends BaseModel{
 
-
     public void setUserLoginPassWord(String token, BaseObserver<List> observer, String password_old, String password_new){
         HttpManager.newInstance()
                 .createService(UserApiService.class)
@@ -25,6 +26,21 @@ public class SettingPassWordModel extends BaseModel{
                 .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
                 .subscribe(observer);
     }
+    //调用设置支付密码
+    public void setUserPayPassword(Map<String,Object> parameters, BaseObserver<List> observer){
+        HttpManager.newInstance()
+                .createService(UserApiService.class)
+                .setUserPayPassword(parameters)
+                .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
+                .subscribe(observer);
+    }
 
-
+    //是否设置交易密码
+    public void isSetPayPassword(String token, BaseObserver<IsSetPayPassword> observer){
+        HttpManager.newInstance()
+                .createService(UserApiService.class)
+                .isSetPayPassword(token)
+                .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
+                .subscribe(observer);
+    }
 }

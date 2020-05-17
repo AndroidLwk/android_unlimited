@@ -427,4 +427,10 @@ public class Api {
 
     //生成充值订单
     public static final String CREATE_CZ_ORDER = "payment/chargeMoney";
+
+    // 是否设置支付密码
+    public static final String IS_SET_PAY_PWD = "newest/isSetPayPassword";
+
+    // 设置或修改交易密码
+    public static final String SET_CHANGE_PAY_PWD = "newest/setPayPassword";
 }

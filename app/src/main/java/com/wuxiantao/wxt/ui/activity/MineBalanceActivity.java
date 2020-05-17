@@ -38,7 +38,7 @@ import static com.wuxiantao.wxt.config.Constant.UPDATE_MINE_BALANCE;
  * Author:android
  * Mail:2898682029@qq.com
  * Date:19-6-5 下午4:57
- * Description:${DESCRIPTION} 提现页（红包 + 佣金）
+ * Description:${DESCRIPTION} 我的余额
  */
 @ContentView(R.layout.activity_mine_balance)
 public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceContract.IBalanceView> implements BalanceContract.IBalanceView {
@@ -54,6 +54,8 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
     TextView tv_balance_cash;
     @ViewInject(R.id.tv_balance_gogk)
     TextView tv_balance_gogk;
+    @ViewInject(R.id.mine_balance_details)
+    TextView mine_balance_details;
 
     private LoadingDialog loadingDialog;
     private BalanceBean datas;
@@ -67,9 +69,9 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
             EventBus.getDefault().register(this);
         }
         loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.loading).build();
-//        mPresenter.obtainBalance(getAppToken());
-        mPresenter.obtainBalance("o1voQ1XGQBGDT1F6UjC4xnLbFavc");
-        setOnClikListener(mine_balance_back,tv_balance_top_up,tv_balance_withdraw,tv_balance_gogk);
+        mPresenter.obtainBalance(getAppToken());
+//        mPresenter.obtainBalance("o1voQ1XGQBGDT1F6UjC4xnLbFavc");
+        setOnClikListener(mine_balance_back,tv_balance_top_up,tv_balance_withdraw,tv_balance_gogk,mine_balance_details);
     }
 
 
@@ -91,6 +93,9 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
                 break;
             case R.id.tv_balance_gogk:
                 $startActivity(PointToCardActivity.class);
+                break;
+            case R.id.mine_balance_details: //余额明细
+//                $startActivity(PointToCardActivity.class);
                 break;
         }
     }
