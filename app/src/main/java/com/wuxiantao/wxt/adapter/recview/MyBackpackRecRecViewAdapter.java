@@ -26,6 +26,8 @@ public class MyBackpackRecRecViewAdapter extends RcvBaseAdapter<MyBoxInfo.ListBe
         holder.setMargin(R.id.iv_mybackpack_hero, myBackpackBean.getPid() == 5 ? DensityUtils.dip2px(6) : DensityUtils.dip2px(0));
         if (!TextUtils.isEmpty(myBackpackBean.getImg())) {
             holder.setGlide(R.id.iv_mybackpack_hero, myBackpackBean.getImg());
+        } else {
+            holder.setImageDrawable(R.id.iv_mybackpack_hero);
         }
         holder.setViewOnClickListener(R.id.lt_item, v -> listener.onConfirm(myBackpackBean, position));
     }

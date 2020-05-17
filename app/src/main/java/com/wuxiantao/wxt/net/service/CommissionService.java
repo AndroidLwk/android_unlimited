@@ -1,11 +1,13 @@
 package com.wuxiantao.wxt.net.service;
 
 import com.wuxiantao.wxt.adapter.bean.HeroScrolllBean;
+import com.wuxiantao.wxt.bean.AlipayBean;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.CheckInInfoBean;
 import com.wuxiantao.wxt.bean.CommissionWithdrawInfoBean;
 import com.wuxiantao.wxt.bean.ComposeHeroBean;
+import com.wuxiantao.wxt.bean.KuorongInfoBean;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.bean.MyCardInfo;
 import com.wuxiantao.wxt.bean.MyLuckyInfoBean;
@@ -15,6 +17,7 @@ import com.wuxiantao.wxt.bean.MyTaskInfoBean;
 import com.wuxiantao.wxt.bean.RedBagWithdrawInfoBean;
 import com.wuxiantao.wxt.bean.SharePicBean;
 import com.wuxiantao.wxt.bean.StartStrapingBean;
+import com.wuxiantao.wxt.bean.WeChatPayBean;
 import com.wuxiantao.wxt.net.base.BaseResponse;
 
 import java.util.List;
@@ -26,6 +29,9 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
+import static com.wuxiantao.wxt.config.Api.ADDBOX_ALIPAY;
+import static com.wuxiantao.wxt.config.Api.ADDBOX_BALANCE;
+import static com.wuxiantao.wxt.config.Api.ADDBOX_WX;
 import static com.wuxiantao.wxt.config.Api.CHECK_IN;
 import static com.wuxiantao.wxt.config.Api.COMMISSION_WITHDRAW;
 import static com.wuxiantao.wxt.config.Api.COMPOSE_HERO;
@@ -39,6 +45,7 @@ import static com.wuxiantao.wxt.config.Api.GET_COMMISSION_WITHDRAW_INFO;
 import static com.wuxiantao.wxt.config.Api.GET_RED_BAG_WITHDRAW_INFO;
 import static com.wuxiantao.wxt.config.Api.GET_SCROLLCATE;
 import static com.wuxiantao.wxt.config.Api.GET_SHAREPIC;
+import static com.wuxiantao.wxt.config.Api.KUORONG_INFO;
 import static com.wuxiantao.wxt.config.Api.MY_BOX;
 import static com.wuxiantao.wxt.config.Api.MY_CARDINFO;
 import static com.wuxiantao.wxt.config.Api.MY_LUCKYINFO;
@@ -124,7 +131,7 @@ public interface CommissionService {
 
     @POST(START_STRAPING)
     @FormUrlEncoded
-    Observable<BaseResponse<StartStrapingBean>> startStraping(@Field("token") String token);
+    Observable<StartStrapingBean> startStraping(@Field("token") String token);
 
     @POST(MY_LUCKYINFO)
     @FormUrlEncoded
@@ -149,12 +156,28 @@ public interface CommissionService {
     @POST(USE_CARD)
     @FormUrlEncoded
     Observable<BaseResponse<CardInfoBean>> useCard(@Field("token") String token, @Field("cid") String cid, @Field("num") String num);
+
     @POST(DIS_CARD)
     @FormUrlEncoded
     Observable<BaseResponse<CardInfoBean>> discard(@Field("token") String token, @Field("card_id") String cid, @Field("num") String num);
+
     @POST(EXCHANGE)
     @FormUrlEncoded
     Observable<BaseResponse<List>> exchange(@FieldMap Map<String, Object> map);
 
+    @POST(KUORONG_INFO)
+    @FormUrlEncoded
+    Observable<BaseResponse<KuorongInfoBean>> kuorongInfo(@Field("token") String token);
 
+    @POST(ADDBOX_BALANCE)
+    @FormUrlEncoded
+    Observable<BaseResponse<List>> addbox_balance(@Field("token") String token, @Field("type") String type);
+
+    @POST(ADDBOX_ALIPAY)
+    @FormUrlEncoded
+    Observable<BaseResponse<AlipayBean>> addbox_alipay(@Field("token") String token, @Field("type") String type);
+
+    @POST(ADDBOX_WX)
+    @FormUrlEncoded
+    Observable<BaseResponse<WeChatPayBean>> addbox_wx(@Field("token") String token, @Field("type") String type);
 }

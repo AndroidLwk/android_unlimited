@@ -2,6 +2,7 @@ package com.wuxiantao.wxt.mvp.presenter;
 
 import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.CardInfoBean;
+import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.mvp.contract.MyBackpackContract;
 import com.wuxiantao.wxt.mvp.model.MyBackpackModel;
@@ -14,6 +15,24 @@ import java.util.Map;
 public class MyBackpackPrewenter extends BasePresenter<MyBackpackContract> {
     private MyBackpackContract view;
     private MyBackpackModel model = new MyBackpackModel();
+
+    public void isSetPayPassword(String token) {
+        if (view == null) {
+            view = getMvpView();
+        }
+        BaseObserver<IsSetPayPassword> observer = new BaseObserver<IsSetPayPassword>() {
+            @Override
+            public void onSuccess(IsSetPayPassword bean) {
+                view.isSetPayPasswordSuccess(bean);
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.onFailure(errorMsg);
+            }
+        };
+        model.isSetPayPassword(token, observer);
+    }
 
     public void myBox(String token, int page, int pid) {
         Map<String, Object> map = new HashMap<>();

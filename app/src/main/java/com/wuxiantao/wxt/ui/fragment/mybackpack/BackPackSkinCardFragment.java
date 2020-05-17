@@ -12,11 +12,15 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.MyBackpackRecRecViewAdapter;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
+import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.mvp.contract.MyBackpackContract;
 import com.wuxiantao.wxt.mvp.presenter.MyBackpackPrewenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
+import com.wuxiantao.wxt.ui.activity.ChangePassWordActivity;
+import com.wuxiantao.wxt.ui.activity.PayActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.HeroScrollActivity;
+import com.wuxiantao.wxt.ui.activity.scrapingcard.PointToCardActivity;
 import com.wuxiantao.wxt.ui.popupwindow.PackOperationPopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.TransferScratchCardPopupWindow;
 
@@ -25,6 +29,7 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.List;
 
+import static com.wuxiantao.wxt.config.Constant.IS_SETPAY_PASS;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
 
 /**
@@ -59,7 +64,6 @@ public class BackPackSkinCardFragment extends MvpFragment<MyBackpackPrewenter, M
         });
         GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         rv_myBackpack.setLayoutManager(manager);
-
         mPresenter.myBox(getAppToken(), page, pid);
     }
 
@@ -74,25 +78,28 @@ public class BackPackSkinCardFragment extends MvpFragment<MyBackpackPrewenter, M
                 .setOnPopupClickListener(new PackOperationPopupWindow.Build.OnPopupClickListener() {
                     @Override
                     public void goOpenCard() {
-                        getActivity().finish();
+                        $startActivity(PointToCardActivity.class);
                     }
 
                     @Override
                     public void cardTransfer() {
+                        if (!getUserInfo(IS_SETPAY_PASS).equals("1")) {
+                            showOnlyConfirmDialog("未设置交易密码，确定前往设置?", (dialog, which) -> $startActivity(ChangePassWordActivity.class));
+                            return;
+                        }
                         new TransferScratchCardPopupWindow.Build(getContext())
                                 .setWindowAnimStyle(R.style.custom_dialog)
-                                .setTitleText(myBackpackBean.getPid() == 1 ? getResources().getString(R.string.pointtocard_text15) : getResources().getString(R.string.pointtocard_text18))
+                                .setTitleText(myBackpackBean.getPid() == 226 ? getResources().getString(R.string.pointtocard_text15) : getResources().getString(R.string.pointtocard_text18))
                                 .setOnItemClickListener((id, num, sxxh, pass) -> {
                                     if (id.equals("null")) {
                                         showOnlyConfirmDialog("转赠ID不能为空");
                                     } else if (num.equals("null")) {
                                         showOnlyConfirmDialog("转赠数量不能为空");
-                                    } else if (sxxh.equals("null")) {
-                                        showOnlyConfirmDialog("手续消耗不能为空");
                                     } else if (pass.equals("null")) {
                                         showOnlyConfirmDialog("二级密码不能为空");
                                     } else {
                                         //调接口
+                                        showLoading();
                                         mPresenter.exchange(getAppToken(), myBackpackBean.getCard_id() + "", id, pass, num);
                                     }
                                 })
@@ -136,6 +143,10 @@ public class BackPackSkinCardFragment extends MvpFragment<MyBackpackPrewenter, M
 
     @Override
     public void onFailure(String msg) {
+        if (msg.equals("余额不足!")) {
+            showOnlyConfirmDialog(msg + "前往充值？", (dialog, which) -> $startActivity(PayActivity.class));
+            return;
+        }
         showOnlyConfirmDialog(msg);
     }
 
@@ -157,6 +168,7 @@ public class BackPackSkinCardFragment extends MvpFragment<MyBackpackPrewenter, M
 
     @Override
     public void discardSuccess(String msg) {
+        mPresenter.myBox(getAppToken(), page, pid);
         showOnlyConfirmDialog(msg);
     }
 
@@ -167,6 +179,11 @@ public class BackPackSkinCardFragment extends MvpFragment<MyBackpackPrewenter, M
 
     @Override
     public void showBoxType(List<BoxTypeBean> list) {
+
+    }
+
+    @Override
+    public void isSetPayPasswordSuccess(IsSetPayPassword info) {
 
     }
 

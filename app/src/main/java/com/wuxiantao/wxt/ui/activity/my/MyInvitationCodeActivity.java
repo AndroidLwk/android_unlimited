@@ -37,12 +37,32 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
     ImageView iv_invateCode;
     @ViewInject(R.id.iv_header)
     ImageView iv_header;
+    @ViewInject(R.id.iv_centerherader)
+    ImageView iv_centerherader;
 
     @Override
     protected void initView() {
         mPresenter.getSharePic(getAppToken());
         setOnClikListener(mine_fansi_back, iv_invateCode);
 
+    }
+
+    private void showSharePosterWindow(Bitmap bitmap) {
+        new SharePosterPopupWindow.Build(this)
+                .setRoundImageResource(bitmap)
+                .setOnPopupClickListener(new SharePosterPopupWindow.Build.OnPopupClickListener() {
+                    @Override
+                    public void onShareWechat() {
+                        //微信好友
+                        WXShare.getInstance().shareImgMessage(false, bitmap);
+                    }
+
+                    @Override
+                    public void onShareFriends() {
+                        //微信朋友圈
+                        WXShare.getInstance().shareImgMessage(true, bitmap);
+                    }
+                }).builder().showPopupWindow();
     }
 
     @Override
@@ -55,21 +75,7 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
                 if (mBitmap == null) {
                     return;
                 }
-                new SharePosterPopupWindow.Build(this)
-                        .setRoundImageResource(mBitmap)
-                        .setOnPopupClickListener(new SharePosterPopupWindow.Build.OnPopupClickListener() {
-                            @Override
-                            public void onShareWechat() {
-                                //微信好友
-                                WXShare.getInstance().shareImgMessage(false, mBitmap);
-                            }
-
-                            @Override
-                            public void onShareFriends() {
-                                //微信朋友圈
-                                WXShare.getInstance().shareImgMessage(true, mBitmap);
-                            }
-                        }).builder().showPopupWindow();
+                showSharePosterWindow(mBitmap);
                 break;
         }
     }
@@ -94,12 +100,13 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
     @Override
     public void showShareCode(SharePicBean info) {
         tv_hearderInfo.setText(info.getNickname());
-        GlideImgManager.loadRoundImg(MyInvitationCodeActivity.this, info.getHeadimg(), iv_header);
+        GlideImgManager.loadInitImg(MyInvitationCodeActivity.this, info.getHeadimg(),iv_centerherader );
+        GlideImgManager.loadCircleImg(this, R.mipmap.default_user_head_img, iv_header);
         String imgUrl = info.getSrc() + getLocalUserId();
         mBitmap = QRCodeUtil.createQRCodeBitmap(imgUrl, DensityUtils.dip2px(261), DensityUtils.dip2px(261));
         iv_invateCode.setImageBitmap(mBitmap);
-        iv_invateCode.setWillNotDraw(false);
-        getLogo(info.getHeadimg());
+//        iv_invateCode.setWillNotDraw(false);
+//        getLogo(info.getHeadimg());
     }
 
     private void getLogo(String imgUrl) {

@@ -252,7 +252,14 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         }
         return this;
     }
-
+    //为ImageView设置圆形图片
+    public <T> BaseViewHolder setImageDrawable(int viewId) {
+        ImageView img = findView(viewId);
+        if (img != null) {
+            img.setImageDrawable(null);
+        }
+        return this;
+    }
     //为ImageView设置圆形图片
     public <T> BaseViewHolder setGlide(int viewId, T url) {
         ImageView img = findView(viewId);

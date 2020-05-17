@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.MyBoxTypeAdapter;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
+import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.mvp.contract.MyBackpackContract;
 import com.wuxiantao.wxt.mvp.presenter.MyBackpackPrewenter;
@@ -30,6 +31,8 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.wuxiantao.wxt.config.Constant.IS_SETPAY_PASS;
+
 /**
  * 我的背包
  */
@@ -46,10 +49,9 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
 
     @Override
     protected void initView() {
+        mPresenter.isSetPayPassword(getAppToken());
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
-        cntoolbar_title.setOnRightButtonClickListener(() -> {
-
-        });
+        cntoolbar_title.setOnRightButtonClickListener(() -> $startActivity(BackpackExpansionActivity.class));
         mPresenter.getBoxCate(getAppToken());
         rv_boxType.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new MyBoxTypeAdapter(this, mData);
@@ -234,6 +236,12 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
             bundle.putInt("pid", list.get(0).getId());
             changeFragment(0, bundle);
         }
+    }
+
+    @Override
+    public void isSetPayPasswordSuccess(IsSetPayPassword info) {
+        //保存设置密码状态
+        saveUserInfo(IS_SETPAY_PASS, info.getStatus()+"");
     }
 
 }

@@ -208,9 +208,9 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
     @Override
     public void showNewestActive() {//活跃度奖励领取成功业务处理
         new ScrapingCardSuccessPopupWindow.Build(getContext())
-                .setWindowData("", -1)
+                .setWindowData("1张刮刮卡", "")
                 .setWindowAnimStyle(R.style.custom_dialog)
-                .setOnClickListener(() -> mPresenter.getCard(getAppToken(), "normal"))
+                .setOnClickListener(() -> {})
                 .builder().showPopupWindow();
 
     }
@@ -219,8 +219,8 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
     public void signSuccess(MySignInfo info) {//签到成功业务处理
         mPresenter.getTaskInfo(getAppToken());
         new ScrapingCardSuccessPopupWindow.Build(getContext())
-                .setWindowData("", -1)
-                .setOnClickListener(() -> mPresenter.getCard(getAppToken(), "normal"))
+                .setWindowData(info.getMsg(), "")
+                .setOnClickListener(() -> {})
                 .setWindowAnimStyle(R.style.custom_dialog)
                 .builder().showPopupWindow();
     }

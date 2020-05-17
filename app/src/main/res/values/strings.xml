@@ -121,8 +121,8 @@
     <string name="input_nick_name">请输入内容</string>
     <string name="choose_them">选择主题</string>
     <string name="query_more"><![CDATA[查看更多>]]></string>
-    <string name="gain_profit">成功邀请的好友每下一单，你都能重中获得收益</string>
-    <string name="share_poster">分享专属海报</string>
+    <string name="gain_profit">邀请好友注册下载，有机会开出王者皮肤和现金红包！</string>
+    <string name="share_poster">分享邀请</string>
     <string name="my_invitation">我的邀请码:</string>
     <string name="copy">复制</string>
     <string name="total_invite_success">累计成功邀请</string>
@@ -976,6 +976,8 @@
     <string name="pointtocard_text18">转赠英雄碎片</string>
     <string name="pointtocard_text16">取消</string>
     <string name="pointtocard_text17">确定</string>
+    <string name="pointtocard_text19">背包扩容</string>
+    <string name="pointtocard_text20">一元扩容</string>
     <string name="pointtocard_text12">幸运值初始值\n游戏等级/是否会员将影响幸运值的初始值;\n普通用户初始幸运值为5，会员为15;\n
         初始游戏等级0-50 获得5点</string>
     <!-- 我的会员-->

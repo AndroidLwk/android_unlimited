@@ -16,7 +16,7 @@ public class PackOperationPopupWindow extends BasePopupWindow {
     public static class Build extends BaseBuild {
         public Build(Context context) {
             super(context, R.layout.popupwindow_packoperation);
-            setOnButtonListener(R.id.sbt_goOpenCard, R.id.sbt_cardTransfer, R.id.sbt_carUse, R.id.sbt_synthesis, R.id.sbt_discard);
+            setOnButtonListener(R.id.sbt_goOpenCard, R.id.sbt_cardTransfer, R.id.sbt_carUse, R.id.sbt_synthesis, R.id.sbt_discard, R.id.iv_close);
         }
 
         public Build setWindowAnimStyle(int animationStyle) {
@@ -55,6 +55,9 @@ public class PackOperationPopupWindow extends BasePopupWindow {
                     break;
                 case R.id.sbt_discard:
                     listener.discard();
+                    break;
+                case R.id.iv_close:
+                    dismiss();
                     break;
             }
         }

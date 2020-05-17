@@ -32,8 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:paddingBottom="@dimen/dp_16"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dp_16">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_27"
@@ -55,8 +56,9 @@
                     android:id="@+id/edit_id"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingLeft="@dimen/dp_16"
                     android:background="@drawable/shape_edittext_transscratchcard_b"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/dp_16"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_14" />
             </LinearLayout>
@@ -82,10 +84,10 @@
                     android:id="@+id/edit_num"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingLeft="@dimen/dp_16"
-
                     android:background="@drawable/shape_edittext_transscratchcard_b"
-                    android:inputType="numberPassword"
+
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/dp_16"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_14" />
             </LinearLayout>
@@ -97,7 +99,8 @@
                 android:layout_marginTop="@dimen/dp_11"
                 android:layout_marginRight="@dimen/dp_8"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="@dimen/dp_62"
@@ -111,9 +114,9 @@
                     android:id="@+id/edit_sxxh"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingLeft="@dimen/dp_16"
-
                     android:background="@drawable/shape_edittext_transscratchcard_b"
+
+                    android:paddingLeft="@dimen/dp_16"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_14" />
             </LinearLayout>
@@ -139,14 +142,13 @@
                     android:id="@+id/edit_pass"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingLeft="@dimen/dp_16"
-
                     android:background="@drawable/shape_edittext_transscratchcard_b"
+                    android:inputType="textPassword"
+                    android:paddingLeft="@dimen/dp_16"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_14" />
             </LinearLayout>
         </LinearLayout>
-
 
 
         <LinearLayout

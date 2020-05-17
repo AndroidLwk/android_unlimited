@@ -73,7 +73,7 @@
             android:layout_height="@dimen/dp_94"
             android:layout_marginTop="@dimen/dp_12"
             android:scaleType="centerCrop"
-            android:src="@drawable/scrapcard_open_pop_a" />
+            android:src="@drawable/scrap_card" />
 
         <LinearLayout
             android:layout_width="wrap_content"

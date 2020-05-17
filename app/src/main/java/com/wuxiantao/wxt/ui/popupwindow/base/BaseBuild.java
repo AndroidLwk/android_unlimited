@@ -315,7 +315,14 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
         }
         return this;
     }
-
+    //为ImageView设置圆形图片
+    public <T> BaseBuild setGlide(int viewId, T url) {
+        ImageView img = findViewById(viewId);
+        if (img != null) {
+            GlideImgManager.loadInitImg(mContext, url, img);
+        }
+        return this;
+    }
 
     //设置文本
     protected BaseBuild setText(@StringRes int resid,@IdRes int viewId){

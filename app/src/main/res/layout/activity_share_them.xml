@@ -102,6 +102,7 @@
                     <ImageView
                         android:layout_width="@dimen/dp_13"
                         android:layout_height="@dimen/dp_20"
+                        android:visibility="gone"
                         android:src="@mipmap/share_them_prompt" />
                     <TextView
                         android:layout_width="wrap_content"
@@ -122,9 +123,9 @@
                     android:textSize="@dimen/sp_15"
                     app:round="true"
                     app:normalTextColor="@color/white"
-                    app:normalBackgroundStartColor="#FF9A42"
-                    app:normalBackgroundCenterColor="#FF9A42"
-                    app:normalBackgroundEndColor="#FF6841"
+                    app:normalBackgroundStartColor="#FD6F57"
+                    app:normalBackgroundCenterColor="#FD6F57"
+                    app:normalBackgroundEndColor="#FA5758"
                     app:normalOrientation="BL_TR"
                     app:normalShapeType="LINEAR_GRADIENT"
                     android:text="@string/share_poster"/>
@@ -133,6 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginBottom="@dimen/dp_10">
@@ -165,6 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/dp_10"
                 android:background="@drawable/bg_white_selector">
                 <TextView

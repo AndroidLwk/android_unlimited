@@ -16,7 +16,6 @@ import com.wuxiantao.wxt.mvp.presenter.PointToCardPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
 import com.wuxiantao.wxt.ui.popupwindow.ScrapingCardSuccessPopupWindow;
 import com.wuxiantao.wxt.ui.title.CNToolbar;
-import com.wuxiantao.wxt.utils.LogUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -59,13 +58,18 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
     }
 
-    private void showSuccessWindow(String carname, int id) {
+
+    private void showSuccessWindow(StartStrapingBean bean) {
+        if (bean.getCode() == 2002) {//去扩容
+            showOnlyConfirmDialog(bean.getMsg());
+            return;
+        }
         new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
-                .setWindowData(carname, id)
+                .setWindowData(bean.getCode() == 200 ? bean.getData().getMsg() : bean.getMsg(), bean.getData().getCard_img())
                 .setWindowAnimStyle(R.style.custom_dialog)
                 .setOnClickListener(() -> {//获取成功
-                            showLoading();
-                            mPresenter.getCard(getAppToken(), "normal");
+//                            showLoading();
+//                            mPresenter.getCard(getAppToken(), "normal");
                         }
                 )
                 .builder().showPopupWindow();
@@ -89,7 +93,6 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
                 addObserverx(6, new CountDownCallBack() {
                     @Override
                     public void onNext(Long time) {
-                        LogUtils.loge("time:" + time);
                         if (time == 1) {
                             iv_countDown.setImageResource(R.drawable.pointtocard_countdown_one);
                         } else if (time == 2) {
@@ -132,7 +135,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
     @Override
     public void startStrapSuccess(StartStrapingBean bean) {
-        showSuccessWindow(bean.getMsg(), bean.getCard_id());
+        showSuccessWindow(bean);
     }
 
     @Override

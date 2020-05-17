@@ -215,8 +215,8 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
     }
 
     private void setWeChatItem(BaseViewHolder holder, String wechat_id) {
-        holder.setVisibility(R.id.item_my_information_prize_icon, !isEmpty(wechat_id) ? View.GONE : View.VISIBLE);
-        holder.setVisibility(R.id.item_my_information_prize_money, !isEmpty(wechat_id) ? View.GONE : View.VISIBLE);
+       // holder.setVisibility(R.id.item_my_information_prize_icon, !isEmpty(wechat_id) ? View.GONE : View.VISIBLE);
+       // holder.setVisibility(R.id.item_my_information_prize_money, !isEmpty(wechat_id) ? View.GONE : View.VISIBLE);
 
         if (!isEmpty(wechat_id)) {
             holder.setText(R.id.item_my_information_content, wechat_id);
@@ -238,8 +238,8 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
 
 
     private void setTaoBaoVerItem(BaseViewHolder holder, boolean isVer) {
-        holder.setVisibility(R.id.item_my_information_prize_icon, isVer ? View.GONE : View.VISIBLE);
-        holder.setVisibility(R.id.item_my_information_prize_money, isVer ? View.GONE : View.VISIBLE);
+        //holder.setVisibility(R.id.item_my_information_prize_icon, isVer ? View.GONE : View.VISIBLE);
+       // holder.setVisibility(R.id.item_my_information_prize_money, isVer ? View.GONE : View.VISIBLE);
         holder.setViewChecked(R.id.item_my_information_sb, isVer);
         holder.setOnCheckedChangeListener(R.id.item_my_information_sb, (view, isChecked) -> {
             if (l != null) {

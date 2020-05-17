@@ -433,4 +433,11 @@ public class Api {
 
     // 设置或修改交易密码
     public static final String SET_CHANGE_PAY_PWD = "newest/setPayPassword";
+    //扩容页面信息
+    public static final String KUORONG_INFO = "newest/kuorongInfo";
+    /*背包扩容 start*/
+    public static final String ADDBOX_BALANCE = "payment/addBox";//余额
+    public static final String ADDBOX_ALIPAY = "payment/addBox";//支付宝
+    public static final String ADDBOX_WX = "payment/addBox";//微信
+    /*背包扩容 end*/
 }

@@ -22,7 +22,6 @@
             app:srlAccentColor="@color/black"
             app:srlDrawableArrow="@mipmap/super_man_fly"
             app:srlPrimaryColor="@color/white" />
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_myBackpack"
             android:layout_width="match_parent"

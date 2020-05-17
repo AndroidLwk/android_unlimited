@@ -91,20 +91,19 @@ public class ShareThemActivity extends MvpActivity<ShareThemPresenter, ShareThem
 
     @Override
     public void initView() {
-        StatusBarUtil.setStatusBarColor(this,getResources().getColor(R.color.white));
-        StatusBarUtil.setStatusBarDarkTheme(this,true);
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.white));
+        StatusBarUtil.setStatusBarDarkTheme(this, true);
         loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.loading).build();
         mPresenter.getShareBg(1, 3);
         mPresenter.getFriendNum(getAppToken(), 0);
-
         boolean isReview = getSPBoolean(IS_REVIEW);
-        if (isReview){
+        if (isReview) {
             share_them_rule_layout.setVisibility(View.GONE);
-        }else {
+        } else {
             share_them_rule_layout.setVisibility(View.VISIBLE);
             initInviteRuleLayout();
         }
-        setOnClikListener(share_them_title_back, share_them_more, share_them_poster,share_them_total_layout);
+        setOnClikListener(share_them_title_back, share_them_more, share_them_poster, share_them_total_layout);
         WeChatShareListener.getInstance().addListener(this);
     }
 
@@ -122,7 +121,7 @@ public class ShareThemActivity extends MvpActivity<ShareThemPresenter, ShareThem
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             back();
         }
         return super.onKeyDown(keyCode, event);
@@ -150,11 +149,11 @@ public class ShareThemActivity extends MvpActivity<ShareThemPresenter, ShareThem
         }
     }
 
-    private void back(){
+    private void back() {
         Bundle bundle = new Bundle();
-        bundle.putString(REWARD_MONEY,reward);
-        bundle.putBoolean(IS_SHARE_SUCCESS,isShare);
-        getResult(RESULT_CODE_SHARE,bundle);
+        bundle.putString(REWARD_MONEY, reward);
+        bundle.putBoolean(IS_SHARE_SUCCESS, isShare);
+        getResult(RESULT_CODE_SHARE, bundle);
     }
 
     @Override
@@ -239,13 +238,13 @@ public class ShareThemActivity extends MvpActivity<ShareThemPresenter, ShareThem
                     @Override
                     public void onShareWechat() {
                         //微信好友
-                        WXShare.getInstance().shareImgMessage(false,bitmap);
+                        WXShare.getInstance().shareImgMessage(false, bitmap);
                     }
 
                     @Override
                     public void onShareFriends() {
                         //微信朋友圈
-                        WXShare.getInstance().shareImgMessage(true,bitmap);
+                        WXShare.getInstance().shareImgMessage(true, bitmap);
                     }
                 }).builder().showPopupWindow();
     }

@@ -21,7 +21,6 @@ public class TransferScratchCardPopupWindow extends BasePopupWindow {
             super(context, R.layout.popwindow_transferscratchcard);
             setOnButtonListener(R.id.sbt_confirm, R.id.sbt_cancel);
         }
-
         public Build setOnItemClickListener(OnConfirmClickListener listener) {
             this.listener = listener;
             return this;
