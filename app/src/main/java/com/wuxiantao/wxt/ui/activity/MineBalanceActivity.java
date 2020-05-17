@@ -95,7 +95,7 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
                 $startActivity(PointToCardActivity.class);
                 break;
             case R.id.mine_balance_details: //余额明细
-//                $startActivity(PointToCardActivity.class);
+                $startActivity(BalanceDetailsActivity.class);
                 break;
         }
     }

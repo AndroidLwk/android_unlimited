@@ -212,6 +212,7 @@
     <string name="balance_my_affirm">确认充值</string>
     <string name="balance_my_gogk">去刮卡</string>
     <string name="balance_detail">余额明细</string>
+    <string name="ggk_detail">刮刮卡明细</string>
     <string name="know_rate">更多收益</string>
     <string name="withdraw_recording">提现记录</string>
     <string name="number_login">手机号登陆</string>
@@ -296,6 +297,8 @@
     <string name="input_name">请输入收款人姓名</string>
     <string name="input_old_pw">请输入原密码</string>
     <string name="input_new_pw">请输入新密码</string>
+    <string name="input_new_qpwd">确认新密码</string>
+    <string name="balance_details_time">2019-04-08</string>
     <string name="input_new_pw_hint">设置或者修改二级密码,密码限制6位纯数字,修改密码时原密码必须填写</string>
     <string name="payee_name">收款人姓名</string>
     <string name="alipay_bangding">绑定支付宝</string>

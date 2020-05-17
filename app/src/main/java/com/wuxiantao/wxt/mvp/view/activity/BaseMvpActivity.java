@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.mvp.view.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -29,6 +30,7 @@ import com.wuxiantao.wxt.mvp.delegate.ActivityMvpDelegateCallback;
 import com.wuxiantao.wxt.mvp.delegate.ActyvityDelegate;
 import com.wuxiantao.wxt.mvp.presenter.MvpPresenter;
 import com.wuxiantao.wxt.mvp.view.MvpView;
+import com.wuxiantao.wxt.utils.OSUtils;
 
 import org.xutils.x;
 
@@ -103,6 +105,7 @@ public abstract class BaseMvpActivity<P extends MvpPresenter,V extends MvpView> 
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         }
     }
+
 
 
     /**

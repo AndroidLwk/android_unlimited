@@ -6,12 +6,10 @@ import com.wuxiantao.wxt.mvp.model.BalanceDetailModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 
 /**
- * Company:成都可信网络科技有限责任公司
- * FileName:MainPresenter
- * Author:android
- * Mail:2898682029@qq.com
- * Date:19-5-28 下午2:26
- * Description:${DESCRIPTION}
+ * Copyright (C), 成都都爱玩科技有限公司
+ * Date: 2020/5/17--15:05
+ * Description: 余额明细
+ * Author: lht
  */
 public class BalanceDetailPresenter extends BasePresenter<BalanceDetailContract.IDetailView> implements BalanceDetailContract.IDetailPresenter {
 

@@ -75,7 +75,7 @@
                     android:id="@+id/et_pay_sum"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:background="@null"
                     android:layout_height="match_parent">
 

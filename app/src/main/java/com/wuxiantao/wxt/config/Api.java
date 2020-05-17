@@ -72,7 +72,11 @@ public class Api {
     public static final String HELP_CENTER_DETAILS = "user/helpDetail";
 
     //余额明细
-    public static final String BALANCE_DETAIL = "user/DetailBalance";
+//    public static final String BALANCE_DETAIL = "user/DetailBalance";
+    public static final String BALANCE_DETAIL = "newest/moneyRecord";
+
+    //刮刮卡明细
+    public static final String SCRATCH_CARD_DETAIL = "newest/ggkDetail";
 
     //提现记录 withdraw
     public static final String WITHDRAW_RECORDING = "user/tixianlog";

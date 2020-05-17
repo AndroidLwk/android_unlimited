@@ -55,11 +55,11 @@ import static com.wuxiantao.wxt.config.Api.ON_WATCH_VIDEO_FIVE;
 public interface DragonApiService {
 
     @POST(GET_DRAGON_STATUS_INFO)
-    @FormUrlEncoded
+    @FormUrlEncoded  //新卡牌信息    收益大厅
     Observable<BaseResponse<DragonStatusInfoBean>> getDragonStatusInfo(@Field("token")String token);
 
     @POST(ON_OPEN_DRAGON)
-    @FormUrlEncoded
+    @FormUrlEncoded  //翻牌  收益大厅
     Observable<BaseResponse<OpenDragonBean>> onOpenDragon(@Field("token")String token,@Field("card_id") int card_id);
 
     @POST(ON_WATCH_VIDEO_FIVE)
@@ -90,7 +90,7 @@ public interface DragonApiService {
 
 
     @POST(INCOME_HALL_INFO)
-    @FormUrlEncoded
+    @FormUrlEncoded  //用户阶段及收益信息  收益大厅
     Observable<BaseResponse<IncomeHallBean>> getIncomeHallInfo(@Field("token")String token);
 
 

@@ -37,7 +37,9 @@
         tools:ignore="GoogleAppIndexingWarning,RtlEnabled"
         tools:replace="android:icon,android:theme,android:allowBackup"
         tools:targetApi="n">
-        <activity android:name=".ui.activity.ChangePassWordActivity"></activity>
+        <activity android:name=".ui.activity.ScratchCardActivity"></activity>
+        <activity android:name=".ui.activity.BalanceDetailsActivity" />
+        <activity android:name=".ui.activity.ChangePassWordActivity" />
         <activity android:name=".ui.activity.PayActivity" /> <!-- 欢迎界面 开屏广告 -->
         <activity
             android:name=".ui.activity.WelcomeActivity"

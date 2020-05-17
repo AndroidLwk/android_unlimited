@@ -106,7 +106,6 @@ public class PayActivity extends MvpActivity<PayPresenter, PayContract.IPayView>
             img_pay_check_wx.setImageDrawable(getResources().getDrawable(R.drawable.scrapcard_popwindow_a));
         });
         bll_pay_affirm.setOnClickListener(v -> {
-//            ToastUtils.showToast("充值");
             if (TextUtils.isEmpty(et_pay_sum.getText())){
                 ToastUtils.showToast("请输入充值金额！");
             }else {
@@ -153,6 +152,7 @@ public class PayActivity extends MvpActivity<PayPresenter, PayContract.IPayView>
     //支付后查询订单成功
     @Override
     public void onOrderPaySuccess(String msg) {
+        ToastUtils.showToast(msg);
         finish();
     }
     //支付后查询订单失败

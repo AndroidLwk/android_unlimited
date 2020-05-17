@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.ui.activity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +35,8 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
     MaterialEditText change_password_old_input;
     @ViewInject(R.id.change_password_new_input)
     MaterialEditText change_password_new_input;
+    @ViewInject(R.id.change_password_new_inpu)
+    MaterialEditText change_password_new_inpu;
     @ViewInject(R.id.change_password_submit)
     TextView change_password_submit;
     @ViewInject(R.id.change_password_title)
@@ -57,9 +60,13 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
         bimg_change_pwd_back.setOnClickListener(v -> finish());
         change_password_submit.setOnClickListener(v -> {
             if (status == 1 && TextUtils.isEmpty(change_password_old_input.getText())) {
-                ToastUtils.showToast("修改密码必须填写原密码");
+                ToastUtils.showToast("请填写原密码");
             } else if (TextUtils.isEmpty(change_password_new_input.getText())) {
                 ToastUtils.showToast("请输入新密码");
+            }else if (TextUtils.isEmpty(change_password_new_inpu.getText())) {
+                ToastUtils.showToast("请再次输入密码");
+            }else if (!(change_password_new_input.getText().toString().equals(change_password_new_inpu.getText().toString()))) {
+                ToastUtils.showToast("两次密码不一致");
             } else {
                 HashMap<String, Object> map = new HashMap<>();
 //                map.put("token","o1voQ1XGQBGDT1F6UjC4xnLbFavc");
@@ -131,9 +138,11 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
         if (msg == 1) {//已设置   修改
             type = 2;
             change_password_title.setText("修改密码");
+            change_password_old_input.setVisibility(View.VISIBLE);
         } else { //未设置  设置
             type = 1;
             change_password_title.setText("设置密码");
+            change_password_old_input.setVisibility(View.GONE);
         }
     }
 

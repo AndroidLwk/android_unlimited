@@ -4,6 +4,7 @@ import com.wuxiantao.wxt.bean.BalanceDetailBean;
 import com.wuxiantao.wxt.bean.HandValueRecordingBean;
 import com.wuxiantao.wxt.bean.LeaderboardBean;
 import com.wuxiantao.wxt.bean.LogRecordingBean;
+import com.wuxiantao.wxt.bean.ScratchCardDetailsBean;
 import com.wuxiantao.wxt.bean.TotalDepositBean;
 import com.wuxiantao.wxt.bean.WithdrawRecordingBean;
 import com.wuxiantao.wxt.net.base.BaseResponse;
@@ -17,6 +18,7 @@ import static com.wuxiantao.wxt.config.Api.BALANCE_DETAIL;
 import static com.wuxiantao.wxt.config.Api.DEPOSIT_DETAIL;
 import static com.wuxiantao.wxt.config.Api.HAND_VALUE_RECORDING;
 import static com.wuxiantao.wxt.config.Api.LEADERBOARD_RECORDING;
+import static com.wuxiantao.wxt.config.Api.SCRATCH_CARD_DETAIL;
 import static com.wuxiantao.wxt.config.Api.SUPER_LOG_RECORDING;
 import static com.wuxiantao.wxt.config.Api.WITHDRAW_RECORDING;
 
@@ -31,10 +33,16 @@ import static com.wuxiantao.wxt.config.Api.WITHDRAW_RECORDING;
 public interface RecordingApiService {
 
     @POST(BALANCE_DETAIL)
-    @FormUrlEncoded
+    @FormUrlEncoded  //余额明细
     Observable<BaseResponse<BalanceDetailBean>> obtainBalanceDetails(@Field("token") String token,
                                                                      @Field("page") int page,
                                                                      @Field("pagesize") int pagesize);
+
+    @POST(SCRATCH_CARD_DETAIL)
+    @FormUrlEncoded //刮刮卡明细
+    Observable<BaseResponse<ScratchCardDetailsBean>> obtainCardDetails(@Field("token") String token,
+                                                                       @Field("page") int page,
+                                                                       @Field("pagesize") int pagesize);
 
     @POST(WITHDRAW_RECORDING)
     @FormUrlEncoded

@@ -57,9 +57,8 @@
                 app:met_errorColor="@color/red"
                 app:met_clearButton="true"
                 android:hint="@string/input_old_pw"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
                 android:textCursorDrawable="@drawable/text_cursor"/>
-
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/change_password_new_input"
@@ -74,10 +73,26 @@
                 app:met_primaryColor="@color/black"
                 app:met_errorColor="@color/red"
                 app:met_clearButton="true"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
                 android:textCursorDrawable="@drawable/text_cursor"
                 android:hint="@string/input_new_pw"/>
-                <TextView
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/change_password_new_inpu"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_width="@dimen/dp_320"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:met_maxCharacters="6"
+                android:maxLength="6"
+                app:met_floatingLabel="normal"
+                app:met_baseColor="@color/grey"
+                app:met_primaryColor="@color/black"
+                app:met_errorColor="@color/red"
+                app:met_clearButton="true"
+                android:inputType="numberPassword"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:hint="@string/input_new_qpwd"/>
+            <TextView
                     android:layout_width="match_parent"
                     android:text="@string/input_new_pw_hint"
                     android:layout_marginLeft="@dimen/dp_20"

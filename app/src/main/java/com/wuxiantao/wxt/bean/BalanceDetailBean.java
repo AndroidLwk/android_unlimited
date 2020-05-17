@@ -13,19 +13,19 @@ import java.util.List;
 public class BalanceDetailBean {
 
     /**
-     * list : [{"num":"-0.014999595","time":"1560827230","msg":"提现"},{"num":"-0.014999595","time":"1560827215","msg":"提现"},{"num":"-0.01","time":"1560827200","msg":"提现"},{"num":"-0.01","time":"1560827185","msg":"提现"},{"num":"-0.01","time":"1560827170","msg":"提现"},{"num":"-0.01","time":"1560827155","msg":"提现"},{"num":"-0.01","time":"1560827140","msg":"提现"},{"num":"-0.01","time":"1560827125","msg":"提现"},{"num":"0.014999595","time":"1560827110","msg":"每日利息"},{"num":"0.014999595","time":"1560827095","msg":"每日利息"}]
-     * more : 1
+     * list : [{"id":23,"user_id":49,"msg":"余额购买背包容量","money":"-1","total":"2488.40","time":"2020-05-17 10:43:56"},{"id":22,"user_id":49,"msg":"余额购买背包容量","money":"-1","total":"2489.40","time":"2020-05-17 10:23:55"},{"id":21,"user_id":49,"msg":"余额购买背包容量","money":"-1","total":"2490.40","time":"2020-05-17 10:00:38"}]
+     * count : 17
      */
 
-    private int more;
+    private int count;
     private List<ListBean> list;
 
-    public int getMore() {
-        return more;
+    public int getCount() {
+        return count;
     }
 
-    public void setMore(int more) {
-        this.more = more;
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public List<ListBean> getList() {
@@ -38,29 +38,35 @@ public class BalanceDetailBean {
 
     public static class ListBean {
         /**
-         * num : -0.014999595
-         * time : 1560827230
-         * msg : 提现
+         * id : 23
+         * user_id : 49
+         * msg : 余额购买背包容量
+         * money : -1
+         * total : 2488.40
+         * time : 2020-05-17 10:43:56
          */
 
-        private String num;
-        private String time;
+        private int id;
+        private int user_id;
         private String msg;
+        private String money;
+        private String total;
+        private String time;
 
-        public String getNum() {
-            return num;
+        public int getId() {
+            return id;
         }
 
-        public void setNum(String num) {
-            this.num = num;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public String getTime() {
-            return time;
+        public int getUser_id() {
+            return user_id;
         }
 
-        public void setTime(String time) {
-            this.time = time;
+        public void setUser_id(int user_id) {
+            this.user_id = user_id;
         }
 
         public String getMsg() {
@@ -69,6 +75,30 @@ public class BalanceDetailBean {
 
         public void setMsg(String msg) {
             this.msg = msg;
+        }
+
+        public String getMoney() {
+            return money;
+        }
+
+        public void setMoney(String money) {
+            this.money = money;
+        }
+
+        public String getTotal() {
+            return total;
+        }
+
+        public void setTotal(String total) {
+            this.total = total;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
         }
     }
 }

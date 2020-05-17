@@ -21,6 +21,7 @@ import com.wuxiantao.wxt.ui.activity.HelpCenterActivity;
 import com.wuxiantao.wxt.ui.activity.MineBalanceActivity;
 import com.wuxiantao.wxt.ui.activity.MineFanSiActivity;
 import com.wuxiantao.wxt.ui.activity.MyInformationActivity;
+import com.wuxiantao.wxt.ui.activity.ScratchCardActivity;
 import com.wuxiantao.wxt.ui.activity.SettingActivity;
 import com.wuxiantao.wxt.ui.activity.SettingPassWordActivity;
 import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
@@ -196,7 +197,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
                 $startActivity(MyInformationActivity.class);
                 break;
             case R.id.sbt_moreInfo://更多详情
-
+                $startActivity(ScratchCardActivity.class);
                 break;
         }
     }
