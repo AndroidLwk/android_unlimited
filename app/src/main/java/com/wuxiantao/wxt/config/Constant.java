@@ -401,4 +401,6 @@ public class Constant {
 
     //是否已加载过
     public static final String IS_STARTED_LOADING = "isStartedLoading";
+    //是否设置交易密码
+    public static final String IS_SETPAY_PASS = "isSetPayPassword";
 }
