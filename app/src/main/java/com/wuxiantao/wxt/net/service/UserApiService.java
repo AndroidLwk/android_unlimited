@@ -64,7 +64,7 @@ public interface UserApiService {
                                                         @Field("password_new") String password_new);
 
     @POST(OBTAIN_BALANCE)
-    @FormUrlEncoded
+    @FormUrlEncoded  //我的余额和累计提现金额
     Observable<BaseResponse<BalanceBean>> obtainBalance(@Field("token") String token);
 
     @POST(OBTAIN_LUCK)

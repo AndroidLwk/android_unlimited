@@ -6,6 +6,7 @@ import com.wuxiantao.wxt.mvp.model.SettingPassWordModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.wuxiantao.wxt.config.Constant.RESOURCES;
 
@@ -40,6 +41,12 @@ public class SettingPassWordPresenter extends BasePresenter<SettingPassWordContr
             }
         };
         model.setUserLoginPassWord(token,observer,password_old,password_new);
+    }
+
+    //设置用户支付密码
+    @Override
+    public void setUserPayPassword(Map<String, Object> parameters) {
+
     }
 
 

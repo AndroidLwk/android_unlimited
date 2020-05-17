@@ -16,6 +16,7 @@ import com.wuxiantao.wxt.mvp.contract.MineContract;
 import com.wuxiantao.wxt.mvp.presenter.MinePresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
 import com.wuxiantao.wxt.ui.activity.BalanceWithdrawActivity;
+import com.wuxiantao.wxt.ui.activity.ChangePassWordActivity;
 import com.wuxiantao.wxt.ui.activity.HelpCenterActivity;
 import com.wuxiantao.wxt.ui.activity.MineBalanceActivity;
 import com.wuxiantao.wxt.ui.activity.MineFanSiActivity;
@@ -182,7 +183,8 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
                 $startActivity(ShareThemActivity.class);
                 break;
             case R.id.tv_mine_second_pass:
-                $startActivity(SettingPassWordActivity.class);
+//                $startActivity(SettingPassWordActivity.class);
+                $startActivity(ChangePassWordActivity.class);
                 break;
             case R.id.tv_mine_set:
                 $startActivity(SettingActivity.class);

@@ -36,7 +36,7 @@
            android:layout_height="wrap_content"
            android:layout_centerInParent="true"
            android:textColor="@color/black"
-           android:textSize="@dimen/sp_15"
+           android:textSize="@dimen/sp_16"
            android:visibility="gone"
            android:maxLines="1"
            android:maxEms="10"

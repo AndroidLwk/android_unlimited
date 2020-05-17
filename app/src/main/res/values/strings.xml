@@ -202,7 +202,13 @@
     <string name="balance_my_add">已累计提现￥23.26元</string>
     <string name="balance_my_ggk">刮卡有机会开出现金红包哦！快去试试吧！</string>
     <string name="balance_my_top_up">充值</string>
+    <string name="balance_my_top_u">￥</string>
+    <string name="balance_my_top_up_num">充值金额</string>
+    <string name="balance_my_jianyi">建议单词充值20.0元</string>
     <string name="balance_my_withdraw">提现</string>
+    <string name="balance_my_wx">微信</string>
+    <string name="balance_my_zfb">支付宝</string>
+    <string name="balance_my_affirm">确认充值</string>
     <string name="balance_my_gogk">去刮卡</string>
     <string name="balance_detail">余额明细</string>
     <string name="know_rate">更多收益</string>
@@ -289,6 +295,7 @@
     <string name="input_name">请输入收款人姓名</string>
     <string name="input_old_pw">请输入原密码</string>
     <string name="input_new_pw">请输入新密码</string>
+    <string name="input_new_pw_hint">密码限制6位纯数字,修改密码时原密码必须填写</string>
     <string name="payee_name">收款人姓名</string>
     <string name="alipay_bangding">绑定支付宝</string>
     <string name="alipay_change">更换支付宝</string>
@@ -355,6 +362,7 @@
     <string name="setting_pw">设置密码</string>
     <string name="setting_new_pw">请设置您的新密码</string>
     <string name="udpate_pw">修改密码</string>
+    <string name="udpate_submit">提交</string>
     <string name="pass_word_rule">密码为3~16位非中文字符，区分大小写</string>
     <string name="confirm_setting">确认设置</string>
     <string name="confirm_update">确认修改</string>
@@ -1000,7 +1008,6 @@
     <string name="myfriend_earn_jianjie">间接好友返利</string>
     <string name="myfriend_earn_price">￥3000.00元</string>
     <string name="myfriend_today_rebate">今日返利</string>
-
 
 
     <!-- 我的好友-->

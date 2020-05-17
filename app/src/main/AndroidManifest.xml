@@ -2,27 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.wuxiantao.wxt">
-
-    <!--添加网络权限-->
+    <!-- 添加网络权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--sd卡读写权限-->
+
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- sd卡读写权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!--相机权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 相机权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-        tools:ignore="ProtectedPermissions" />
-    <!--读取手机状态权限-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- targetSdkVersion >= 26 时需要配置此权限，否则无法进行安装app的动作 -->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <!-- 如果有视频相关的广告且使用textureView播放，请务必添加，否则黑屏 -->
+        tools:ignore="ProtectedPermissions" /> <!-- 读取手机状态权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- targetSdkVersion >= 26 时需要配置此权限，否则无法进行安装app的动作 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- 如果有视频相关的广告且使用textureView播放，请务必添加，否则黑屏 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
@@ -37,52 +33,49 @@
         tools:ignore="GoogleAppIndexingWarning,RtlEnabled"
         tools:replace="android:icon,android:theme,android:allowBackup"
         tools:targetApi="n">
-        <!--欢迎界面 开屏广告-->
-         <activity
-             android:name=".ui.activity.WelcomeActivity"
-             android:theme="@style/WelcomeThem">
-             <intent-filter>
-                 <action
-                     android:name="android.intent.action.MAIN"
-                     android:theme="@style/AppTheme.FullScreen" />
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-         </activity>
-        <activity android:name=".ui.activity.my.MyMemberActivity"/>
-        <activity android:name=".ui.activity.scrapingcard.PointToCardActivity"/>
-        <activity android:name=".ui.activity.scrapingcard.MyBackpackActivity"/>
-        <activity android:name=".ui.activity.my.MyInvitationCodeActivity"  android:theme="@style/AppTheme.No"/>
-        <activity android:name=".ui.activity.scrapingcard.HeroScrollActivity">
+        <activity android:name=".ui.activity.ChangePassWordActivity"></activity>
+        <activity android:name=".ui.activity.PayActivity" /> <!-- 欢迎界面 开屏广告 -->
+        <activity
+            android:name=".ui.activity.WelcomeActivity"
+            android:theme="@style/WelcomeThem">
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.MAIN"
+                    android:theme="@style/AppTheme.FullScreen" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
-       <!-- <activity android:name=".ui.activity.TestTwoActivity">
+        <activity android:name=".ui.activity.my.MyMemberActivity" />
+        <activity android:name=".ui.activity.scrapingcard.PointToCardActivity" />
+        <activity android:name=".ui.activity.scrapingcard.MyBackpackActivity" />
+        <activity
+            android:name=".ui.activity.my.MyInvitationCodeActivity"
+            android:theme="@style/AppTheme.No" />
+        <activity android:name=".ui.activity.scrapingcard.HeroScrollActivity" />
+        <!--
+ <activity android:name=".ui.activity.TestTwoActivity">
             <intent-filter>
                 <action
                     android:name="android.intent.action.MAIN"
                     android:theme="@style/AppTheme.FullScreen" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>-->
-
-        <!--后台倒计时-->
+        </activity>
+        -->
+        <!-- 后台倒计时 -->
         <service
             android:name=".service.CountDownTimeService"
             android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <!--普通好友-->
-        <service android:name=".service.GeneralFriendService" />
-        <!--阿里百川-->
+            android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- 普通好友 -->
+        <service android:name=".service.GeneralFriendService" /> <!-- 阿里百川 -->
         <meta-data
             android:name="com.alibaba.apmplus.app_key"
-            android:value="27689343" />
-        <!--设置淘宝登录页面Activity的样式-->
+            android:value="27689343" /> <!-- 设置淘宝登录页面Activity的样式 -->
         <activity
             android:name="com.ali.auth.third.ui.LoginActivity"
             android:theme="@style/AlibcLoginTheme"
-            tools:replace="android:theme" />
-
-        <!--适配android7.0文件下载(apk更新)-->
+            tools:replace="android:theme" /> <!-- 适配android7.0文件下载(apk更新) -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -91,10 +84,8 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/app_provider_paths" />
-        </provider>
-
-        <!--穿山甲广告-->
-        <!--targetSdkVersion >= 24-->
+        </provider> <!-- 穿山甲广告 -->
+        <!-- targetSdkVersion >= 24 -->
         <provider
             android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
             android:authorities="${applicationId}.TTFileProvider"
@@ -107,21 +98,16 @@
         <provider
             android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
             android:authorities="${applicationId}.TTMultiProvider"
-            android:exported="false" />
-
-
-        <!--适配android7.0 文件权限-->
+            android:exported="false" /> <!-- 适配android7.0 文件权限 -->
         <provider
-            android:name="com.wuxiantao.wxt.provider.ImageFileProvider"
+            android:name=".provider.ImageFileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_paths" />
-        </provider>
-
-        <!--监听网络状态-->
+        </provider> <!-- 监听网络状态 -->
         <receiver android:name=".broadcast.NetWorkTimeOutReceiver">
             <intent-filter>
                 <action
@@ -130,171 +116,102 @@
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
                 <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
-        </receiver>
-
-        <!--微信支付-->
+        </receiver> <!-- 微信支付 -->
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WX_theme" />
-
-        <!--微信登录、分享-->
+            android:theme="@style/WX_theme" /> <!-- 微信登录、分享 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/WX_theme" />
-
-        <!--app导航页-->
-        <activity android:name=".ui.activity.NavigationPageActivity" />
-        <!--账号密码登陆-->
-        <activity android:name=".ui.activity.AdminLoginActivity" />
-        <!--验证码登陆-->
-        <activity android:name=".ui.activity.VerCodeLoginActivity" />
-        <!--微信登陆-->
-        <activity android:name=".ui.activity.WeChatLoginActivity" />
-        <!--绑定手机号-->
-        <activity android:name=".ui.activity.BinddingNumberActivity" />
-        <!--设置或修改登陆密码-->
-        <activity android:name=".ui.activity.SettingPassWordActivity" />
-        <!--重置登陆密码-->
-        <activity android:name=".ui.activity.ResetPassWordActivity" />
-        <!--输入新密码-->
-        <activity android:name=".ui.activity.ResetPassWordInputActivity" />
-        <!--验证码验证(绑定手机号,修改手机号,手机号登陆)-->
-        <activity android:name=".ui.activity.VerificationCodeActivity" />
-        <!--主菜单界面-->
+            android:theme="@style/WX_theme" /> <!-- app导航页 -->
+        <activity android:name=".ui.activity.NavigationPageActivity" /> <!-- 账号密码登陆 -->
+        <activity android:name=".ui.activity.AdminLoginActivity" /> <!-- 验证码登陆 -->
+        <activity android:name=".ui.activity.VerCodeLoginActivity" /> <!-- 微信登陆 -->
+        <activity android:name=".ui.activity.WeChatLoginActivity" /> <!-- 绑定手机号 -->
+        <activity android:name=".ui.activity.BinddingNumberActivity" /> <!-- 设置或修改登陆密码 -->
+        <activity android:name=".ui.activity.SettingPassWordActivity" /> <!-- 重置登陆密码 -->
+        <activity android:name=".ui.activity.ResetPassWordActivity" /> <!-- 输入新密码 -->
+        <activity android:name=".ui.activity.ResetPassWordInputActivity" /> <!-- 验证码验证(绑定手机号,修改手机号,手机号登陆) -->
+        <activity android:name=".ui.activity.VerificationCodeActivity" /> <!-- 主菜单界面 -->
         <activity
             android:name=".ui.activity.MenuActivity"
-            android:theme="@style/AppTheme.No" />
-        <!--我的个人信息-->
-        <activity android:name=".ui.activity.MyInformationActivity" />
-        <!--设置-->
-        <activity android:name=".ui.activity.SettingActivity" />
-        <!--服务协议-->
-        <activity android:name=".ui.activity.ServerProtocolActivity" />
-        <!--帮助中心-->
-        <activity android:name=".ui.activity.HelpCenterActivity" />
-        <!--绑定支付宝-->
-        <activity android:name=".ui.activity.BinddingAlipayActivity" />
-        <!--我的支付宝-->
-        <activity android:name=".ui.activity.MyAlipayInfoActivity" />
-        <!--设置用户昵称-->
-        <activity android:name=".ui.activity.SettingNickNameActivity" />
-        <!--我的余额-->
-        <activity android:name=".ui.activity.MineBalanceActivity" />
-        <!--佣金收益-->
-        <!--更多收益-->
+            android:theme="@style/AppTheme.No" /> <!-- 我的个人信息 -->
+        <activity android:name=".ui.activity.MyInformationActivity" /> <!-- 设置 -->
+        <activity android:name=".ui.activity.SettingActivity" /> <!-- 服务协议 -->
+        <activity android:name=".ui.activity.ServerProtocolActivity" /> <!-- 帮助中心 -->
+        <activity android:name=".ui.activity.HelpCenterActivity" /> <!-- 绑定支付宝 -->
+        <activity android:name=".ui.activity.BinddingAlipayActivity" /> <!-- 我的支付宝 -->
+        <activity android:name=".ui.activity.MyAlipayInfoActivity" /> <!-- 设置用户昵称 -->
+        <activity android:name=".ui.activity.SettingNickNameActivity" /> <!-- 我的余额 -->
+        <activity android:name=".ui.activity.MineBalanceActivity" /> <!-- 佣金收益 -->
+        <!-- 更多收益 -->
         <activity
             android:name=".ui.activity.MoreIncomeActivity"
-            android:theme="@style/AppTheme.No" />
-        <!--红包提现-->
-        <activity android:name=".ui.activity.BalanceWithdrawActivity" />
-        <!--佣金提现-->
-        <activity android:name=".ui.activity.CommissionWithdrawActivity" />
-        <!--提现记录-->
-        <activity android:name=".ui.activity.WithdrawRecordingActivity" />
-        <!--排行榜-->
-        <activity android:name=".ui.activity.LeaderboardActivity" />
-        <!--分享主题-->
-        <activity android:name=".ui.activity.ShareThemActivity" />
-        <!--更多主题-->
-        <activity android:name=".ui.activity.MoreThemActivity" />
-        <!--全部订单-->
-        <activity android:name=".ui.activity.AllOrderActivity" />
-        <!--订单详情-->
-        <activity android:name=".ui.activity.OrderDetailsInfoActivity" />
-        <!--找回丢失订单-->
-        <activity android:name=".ui.activity.RetrieveLostOrderActivity" />
-        <!--订单找回失败-->
-        <activity android:name=".ui.activity.OrderFoundFailureActivity" />
-        <!--订单找回成功-->
-        <activity android:name=".ui.activity.OrderFoundSuccessActivity" />
-        <!--我的粉丝-->
-        <activity android:name=".ui.activity.MineFanSiActivity" />
-        <!--我的团队-->
-        <activity android:name=".ui.activity.MyTeamActivity" />
-        <!--搜索界面-->
-        <activity android:name=".ui.activity.SearchActivity" />
-        <!--搜索结果界面-->
-        <activity android:name=".ui.activity.SearchResultActivity" />
-        <!--记录-->
-        <activity android:name=".ui.activity.RecordingActivity" />
-        <!--确认订单-->
-        <activity android:name=".ui.activity.ConfirmOrderActivity" />
-        <!--编辑/添加收货地址-->
-        <activity android:name=".ui.activity.ReceiptAddressActivity" />
-        <!--无限淘VIP权益-->
-        <activity android:name=".ui.activity.SuperManBeneficialActivity" />
-        <!--免费获VIP权益-->
-        <activity android:name=".ui.activity.VipBeneficialActivity" />
-        <!--立即参加活动-->
-        <activity android:name=".ui.activity.ParticipateActivity" />
-
-        <!--协议-->
-        <activity android:name=".ui.activity.ProtocolActivity" />
-        <!--在线客服-->
+            android:theme="@style/AppTheme.No" /> <!-- 红包提现 -->
+        <activity android:name=".ui.activity.BalanceWithdrawActivity" /> <!-- 佣金提现 -->
+        <activity android:name=".ui.activity.CommissionWithdrawActivity" /> <!-- 提现记录 -->
+        <activity android:name=".ui.activity.WithdrawRecordingActivity" /> <!-- 排行榜 -->
+        <activity android:name=".ui.activity.LeaderboardActivity" /> <!-- 分享主题 -->
+        <activity android:name=".ui.activity.ShareThemActivity" /> <!-- 更多主题 -->
+        <activity android:name=".ui.activity.MoreThemActivity" /> <!-- 全部订单 -->
+        <activity android:name=".ui.activity.AllOrderActivity" /> <!-- 订单详情 -->
+        <activity android:name=".ui.activity.OrderDetailsInfoActivity" /> <!-- 找回丢失订单 -->
+        <activity android:name=".ui.activity.RetrieveLostOrderActivity" /> <!-- 订单找回失败 -->
+        <activity android:name=".ui.activity.OrderFoundFailureActivity" /> <!-- 订单找回成功 -->
+        <activity android:name=".ui.activity.OrderFoundSuccessActivity" /> <!-- 我的粉丝 -->
+        <activity android:name=".ui.activity.MineFanSiActivity" /> <!-- 我的团队 -->
+        <activity android:name=".ui.activity.MyTeamActivity" /> <!-- 搜索界面 -->
+        <activity android:name=".ui.activity.SearchActivity" /> <!-- 搜索结果界面 -->
+        <activity android:name=".ui.activity.SearchResultActivity" /> <!-- 记录 -->
+        <activity android:name=".ui.activity.RecordingActivity" /> <!-- 确认订单 -->
+        <activity android:name=".ui.activity.ConfirmOrderActivity" /> <!-- 编辑/添加收货地址 -->
+        <activity android:name=".ui.activity.ReceiptAddressActivity" /> <!-- 无限淘VIP权益 -->
+        <activity android:name=".ui.activity.SuperManBeneficialActivity" /> <!-- 免费获VIP权益 -->
+        <activity android:name=".ui.activity.VipBeneficialActivity" /> <!-- 立即参加活动 -->
+        <activity android:name=".ui.activity.ParticipateActivity" /> <!-- 协议 -->
+        <activity android:name=".ui.activity.ProtocolActivity" /> <!-- 在线客服 -->
         <activity
             android:name=".ui.activity.OnLineServiceActivity"
-            android:theme="@style/AppTheme.No" />
-        <!--自营商品详情-->
+            android:theme="@style/AppTheme.No" /> <!-- 自营商品详情 -->
         <activity
             android:name=".ui.activity.CommodityInfoActivity"
-            android:theme="@style/AppTheme.No" />
-        <!--收益记录-->
-        <activity android:name=".ui.activity.ProfitRecordingActivity" />
-
-        <!--邀请好友登陆-->
+            android:theme="@style/AppTheme.No" /> <!-- 收益记录 -->
+        <activity android:name=".ui.activity.ProfitRecordingActivity" /> <!-- 邀请好友登陆 -->
         <activity
             android:name=".ui.activity.InviteFriendLoginActivity"
-            android:theme="@style/AppTheme.No" />
-        <!--淘宝商品详情-->
+            android:theme="@style/AppTheme.No" /> <!-- 淘宝商品详情 -->
         <activity
             android:name=".ui.activity.MerchandiseDetailsActivity"
-            android:theme="@style/AppTheme.No" />
-        <!--省钱教程-->
-        <activity android:name=".ui.activity.InstructActivity" />
-        <!--图片预览-->
-        <activity android:name=".ui.activity.PreviewImgActivity" />
-        <!--规则-->
-        <activity android:name=".ui.activity.RuleActivity" />
-        <!--我的红包好友-->
+            android:theme="@style/AppTheme.No" /> <!-- 省钱教程 -->
+        <activity android:name=".ui.activity.InstructActivity" /> <!-- 图片预览 -->
+        <activity android:name=".ui.activity.PreviewImgActivity" /> <!-- 规则 -->
+        <activity android:name=".ui.activity.RuleActivity" /> <!-- 我的红包好友 -->
         <activity
             android:name=".ui.activity.MyRedBagFriendActivity"
-            android:theme="@style/AppTheme.No" />
-        <!--订单备注-->
-        <activity android:name=".ui.activity.OrderRemarkActivity" />
-        <!--地址管理-->
-        <activity android:name=".ui.activity.AddressManagementActivity" />
-        <!--微信号填写-->
-        <activity android:name=".ui.activity.WriteWeChatIdActivity" />
-        <!--分红详情-->
-        <activity android:name=".ui.activity.DividendDetailsActivity" />
-        <!--我的任务-->
+            android:theme="@style/AppTheme.No" /> <!-- 订单备注 -->
+        <activity android:name=".ui.activity.OrderRemarkActivity" /> <!-- 地址管理 -->
+        <activity android:name=".ui.activity.AddressManagementActivity" /> <!-- 微信号填写 -->
+        <activity android:name=".ui.activity.WriteWeChatIdActivity" /> <!-- 分红详情 -->
+        <activity android:name=".ui.activity.DividendDetailsActivity" /> <!-- 我的任务 -->
         <activity
             android:name=".ui.activity.MyTaskActivity"
-            android:theme="@style/AppTheme.No" />
-        <!--收益说明-->
-        <activity android:name=".ui.activity.IncomeLegendActivity" />
-        <!--我的收益-->
-        <activity android:name=".ui.activity.MyIncomeActivity" />
-        <!--玩法-->
-        <activity android:name=".ui.activity.PlayActivity" />
-
-        <!--高用专区 0元购-->
+            android:theme="@style/AppTheme.No" /> <!-- 收益说明 -->
+        <activity android:name=".ui.activity.IncomeLegendActivity" /> <!-- 我的收益 -->
+        <activity android:name=".ui.activity.MyIncomeActivity" /> <!-- 玩法 -->
+        <activity android:name=".ui.activity.PlayActivity" /> <!-- 高用专区 0元购 -->
         <activity
             android:name=".ui.activity.HighAreaActivity"
-            android:theme="@style/AppTheme.No" />
-        <!--游戏界面-->
+            android:theme="@style/AppTheme.No" /> <!-- 游戏界面 -->
         <activity
             android:name=".ui.activity.H5GameActivity"
             android:theme="@style/AppTheme.No"
-            android:windowSoftInputMode="adjustPan" />
-        <!--腾讯升级配置-->
+            android:windowSoftInputMode="adjustPan" /> <!-- 腾讯升级配置 -->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"

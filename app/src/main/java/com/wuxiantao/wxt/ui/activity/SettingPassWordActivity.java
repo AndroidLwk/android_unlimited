@@ -35,7 +35,7 @@ import static com.wuxiantao.wxt.config.Constant.TOKEN;
  * Author:android
  * Mail:2898682029@qq.com
  * Date:19-6-25 下午2:49
- * Description:${DESCRIPTION} 设置或修改登陆密码
+ * Description:${DESCRIPTION} 设置登陆密码
  */
 @ContentView(R.layout.activity_setting_pass_word)
 public class SettingPassWordActivity extends MvpActivity<SettingPassWordPresenter, SettingPassWordContract.ISettingView> implements View.OnKeyListener, TextWatcher,SettingPassWordContract.ISettingView {
@@ -179,6 +179,16 @@ public class SettingPassWordActivity extends MvpActivity<SettingPassWordPresente
             setting_pass_word_old_input.setText("");
             setting_pass_word_new_input.setText("");
         });
+    }
+
+    @Override
+    public void setPayPasswordSuccess(String msg) {
+
+    }
+
+    @Override
+    public void setPayPasswordFailure(String failure) {
+
     }
 
     @Override

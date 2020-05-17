@@ -240,6 +240,5 @@ public class MyMemberActivity extends MvpActivity<MyMemberPresenter, MyMemberCon
     @Override
     public void onPayCancel() {
         showOnlyConfirmDialog(getString(R.string.order_pay_cancel));
-
     }
 }

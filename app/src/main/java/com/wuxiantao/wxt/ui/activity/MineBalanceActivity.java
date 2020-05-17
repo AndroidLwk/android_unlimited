@@ -12,8 +12,10 @@ import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.BalanceBean;
 import com.wuxiantao.wxt.event.MessageEvent;
 import com.wuxiantao.wxt.mvp.contract.BalanceContract;
+import com.wuxiantao.wxt.mvp.contract.PointToCardContract;
 import com.wuxiantao.wxt.mvp.presenter.BalancePresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
+import com.wuxiantao.wxt.ui.activity.scrapingcard.PointToCardActivity;
 import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.utils.BigDecimalUtils;
@@ -46,6 +48,12 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
     LinearLayout tv_balance_top_up;
     @ViewInject(R.id.tv_balance_withdraw)
     LinearLayout tv_balance_withdraw;
+    @ViewInject(R.id.tv_balance_money)
+    TextView tv_balance_money;
+    @ViewInject(R.id.tv_balance_cash)
+    TextView tv_balance_cash;
+    @ViewInject(R.id.tv_balance_gogk)
+    TextView tv_balance_gogk;
 
     private LoadingDialog loadingDialog;
     private BalanceBean datas;
@@ -59,8 +67,9 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
             EventBus.getDefault().register(this);
         }
         loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.loading).build();
-        mPresenter.obtainBalance(getAppToken());
-        setOnClikListener(mine_balance_back,tv_balance_top_up,tv_balance_withdraw);
+//        mPresenter.obtainBalance(getAppToken());
+        mPresenter.obtainBalance("o1voQ1XGQBGDT1F6UjC4xnLbFavc");
+        setOnClikListener(mine_balance_back,tv_balance_top_up,tv_balance_withdraw,tv_balance_gogk);
     }
 
 
@@ -69,28 +78,20 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
         Bundle bundle = null;
         if (datas != null) {
             bundle = new Bundle();
-            bundle.putBoolean(IS_ATTENTION_PUBLIC, datas.getSubscribe() == 1);
         }
         switch (viewId) {
             case R.id.mine_balance_back:
                 finish();
                 break;
             case R.id.tv_balance_top_up:
+                $startActivity(PayActivity.class);
                 break;
             case R.id.tv_balance_withdraw:
-                $startActivity(BalanceWithdrawActivity.class, bundle);
+                $startActivity(BalanceWithdrawActivity.class);
                 break;
-//            case R.id.mine_balance_recording:
-//                $startActivity(WithdrawRecordingActivity.class);
-//                break;
-//            //红包提现
-//            case R.id.mine_balance_withdraw_red_bag:
-//                $startActivity(BalanceWithdrawActivity.class,bundle);
-//                break;
-//            //佣金提现
-//            case R.id.mine_balance_withdraw_commission:
-//                $startActivity(CommissionWithdrawActivity.class,bundle);
-//                break;
+            case R.id.tv_balance_gogk:
+                $startActivity(PointToCardActivity.class);
+                break;
         }
     }
 
@@ -105,6 +106,17 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
     @Override
     public void obtainBalanceSuccess(BalanceBean bean) {
         this.datas = bean;
+        try {
+            //余额
+            Double money = Double.valueOf(bean.getMoney());
+            tv_balance_money.setText("￥" +money+"元");
+            //累计提现金额
+            Double cash = Double.valueOf(bean.getCash());
+            tv_balance_cash.setText("已累计提现￥"+cash+"元");
+        } catch (NumberFormatException e) {
+            tv_balance_money.setText("￥" +R.string.zero+"元");
+            tv_balance_cash.setText("已累计提现￥"+R.string.zero+"元");
+        }
 //        try {
 //            //佣金余额
 //            double amount = Double.valueOf(bean.getAmount());

@@ -92,8 +92,9 @@ public class Api {
     //超人日志记录
     public static final String SUPER_LOG_RECORDING = "super/getDepLog";
 
-    //获取当前余额
-    public static final String OBTAIN_BALANCE = "user/myAmount";
+    //我的余额和累计提现金额
+//    public static final String OBTAIN_BALANCE = "user/myAmount";
+    public static final String OBTAIN_BALANCE = "newest/myMoneyCash";
 
     //余额提现申请
     public static final String BALANCE_WITHDRAW = "user/withdraw";
@@ -424,4 +425,6 @@ public class Api {
     //转赠刮刮卡和碎片
     public static final String EXCHANGE = "newest/exchange";
 
+    //生成充值订单
+    public static final String CREATE_CZ_ORDER = "payment/chargeMoney";
 }
