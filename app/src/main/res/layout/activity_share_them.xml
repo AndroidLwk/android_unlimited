@@ -7,12 +7,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
+        android:layout_height="@dimen/dp_70"
         android:background="@drawable/base_title_background">
 
         <RelativeLayout
             android:id="@+id/share_them_title_back"
             android:layout_width="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_20"
             android:layout_height="match_parent">
 
             <ImageView
@@ -28,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/share"
+            android:paddingTop="@dimen/dp_20"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_17" />
     </RelativeLayout>
