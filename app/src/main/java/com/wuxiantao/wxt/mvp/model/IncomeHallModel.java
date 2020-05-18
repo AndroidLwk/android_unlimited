@@ -26,7 +26,6 @@ import java.util.List;
  */
 public class IncomeHallModel extends BaseModel {
 
-
     public void getIncomeHallInfo(BaseObserver<IncomeHallBean> observer,String token){
         HttpManager.newInstance()
                 .createService(DragonApiService.class)
@@ -34,7 +33,6 @@ public class IncomeHallModel extends BaseModel {
                 .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
                 .subscribe(observer);
     }
-
 
     public void getDragonStatusInfo(BaseObserver<DragonStatusInfoBean> observer, String token){
         HttpManager.newInstance()
@@ -52,7 +50,6 @@ public class IncomeHallModel extends BaseModel {
                 .subscribe(observer);
     }
 
-
     public void onVideoDouble(BaseObserver<VideoDoubleBean> observer, String token, int dragon_id, String num){
         HttpManager.newInstance()
                 .createService(DragonApiService.class)
@@ -68,7 +65,6 @@ public class IncomeHallModel extends BaseModel {
                 .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
                 .subscribe(observer);
     }
-
 
     public void onStartExperience(BaseObserver<StartExperienceBean> observer, String token){
         HttpManager.newInstance()
@@ -86,7 +82,6 @@ public class IncomeHallModel extends BaseModel {
                 .subscribe(observer);
     }
 
-
     public void onBindingArea(BaseObserver<List<String>> observer, String token, int id){
         HttpManager.newInstance()
                 .createService(DragonApiService.class)
@@ -95,7 +90,6 @@ public class IncomeHallModel extends BaseModel {
                 .subscribe(observer);
     }
 
-
     public void onIncreaseCount(BaseObserver<IncreaseCountBean> observer, String token){
         HttpManager.newInstance()
                 .createService(DragonApiService.class)
@@ -103,4 +97,17 @@ public class IncomeHallModel extends BaseModel {
                 .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
                 .subscribe(observer);
     }
+
+    /**
+     * 斩妖之旅
+     * @param observer
+     * @param token
+     */
+    public void onGetMyGameInfo(BaseObserver<IncreaseCountBean> observer, String token){
+        HttpManager.newInstance()
+            .createService(DragonApiService.class)
+            .onGetMyGameInfo(token)
+            .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
+            .subscribe(observer);
+}
 }

@@ -182,6 +182,5 @@ ext {
             "um_common"            : 'com.umeng.umsdk:common:2.2.5',
             "um_push"              : 'com.umeng.umsdk:push:6.0.1',
             "analytics"            : 'com.umeng.umsdk:analytics:8.1.6'
-
     ]
 }

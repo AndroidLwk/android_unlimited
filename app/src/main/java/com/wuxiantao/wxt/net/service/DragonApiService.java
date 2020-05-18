@@ -32,6 +32,7 @@ import static com.wuxiantao.wxt.config.Api.GET_DRAGON_INFO;
 import static com.wuxiantao.wxt.config.Api.GET_DRAGON_STATUS_INFO;
 import static com.wuxiantao.wxt.config.Api.GET_MY_INCOME_LIST;
 import static com.wuxiantao.wxt.config.Api.INCOME_HALL_INFO;
+import static com.wuxiantao.wxt.config.Api.MY_GAME_INFO;
 import static com.wuxiantao.wxt.config.Api.MY_TASK_INFO;
 import static com.wuxiantao.wxt.config.Api.ON_ADS_DEVOTE;
 import static com.wuxiantao.wxt.config.Api.ON_BINDING_AREA;
@@ -87,6 +88,10 @@ public interface DragonApiService {
     @POST(ON_INCREASE_COUNT)
     @FormUrlEncoded
     Observable<BaseResponse<IncreaseCountBean>> onIncreaseCount(@Field("token")String token);
+
+    @POST(MY_GAME_INFO)
+    @FormUrlEncoded //斩妖之旅
+    Observable<BaseResponse<IncreaseCountBean>> onGetMyGameInfo(@Field("token")String token);
 
 
     @POST(INCOME_HALL_INFO)

@@ -357,6 +357,9 @@ public class Api {
     //看视频增加翻牌次数    收益大厅
     public static final String ON_INCREASE_COUNT = "game/addCardNum";
 
+    //我的游戏
+    public static final String MY_GAME_INFO = "game/myGameInfo";
+
     //游戏载入图
     public static final String GET_GAME_LOADING_IMG = "news/gamePic";
 

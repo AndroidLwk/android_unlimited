@@ -220,8 +220,4 @@ public class StatusBarUtil {
         }
         return result;
     }
-
-
-
-
 }

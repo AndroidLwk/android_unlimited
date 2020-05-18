@@ -51,6 +51,10 @@ public interface IncomeHallContract {
 
         void onVideoDoubleSuccess(VideoDoubleBean bean);
         void onVideoDoubleFailure(String failure);
+
+        //获取我的游戏信息
+        void onGetMyGameInfoSuccess();
+        void onGetMyGameInfoFailure();
     }
 
     interface IIncomeHallPresenter extends MvpPresenter<IIncomeHallView>{
@@ -63,5 +67,7 @@ public interface IncomeHallContract {
         void onBindingArea(String token,int id);
         void onIncreaseCount(String token);
         void onVideoDouble(String token,int dragon_id,String num);
+
+        void getMyGameInfo(String token);
     }
 }

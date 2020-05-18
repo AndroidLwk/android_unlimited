@@ -413,6 +413,16 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         showOnlyConfirmDialog(failure);
     }
 
+    @Override //斩妖之旅
+    public void onGetMyGameInfoSuccess() {
+
+    }
+
+    @Override
+    public void onGetMyGameInfoFailure() {
+
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

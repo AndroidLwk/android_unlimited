@@ -199,4 +199,23 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
         model.onVideoDouble(observer,token,dragon_id,num);
     }
 
+    @Override //斩妖之旅
+    public void getMyGameInfo(String token) {
+        if (view == null){
+            view = getMvpView();
+        }
+        BaseObserver<VideoDoubleBean> observer = new BaseObserver<VideoDoubleBean>() {
+            @Override
+            public void onSuccess(VideoDoubleBean msg) {
+                view.onVideoDoubleSuccess(msg);
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.onVideoDoubleFailure(errorMsg);
+            }
+        };
+//        model.onGetMyGameInfo(observer,token);
+    }
+
 }
