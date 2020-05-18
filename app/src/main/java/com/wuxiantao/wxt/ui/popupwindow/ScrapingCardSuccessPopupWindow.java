@@ -37,7 +37,7 @@ public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
             if (isEmpty(msg)) {
                 return this;
             }
-            if (msg.contains("成功")) {
+            if (msg.contains("成功")||msg.contains("签到")) {
                 setText(getString(R.string.pointtocard_text5, msg), R.id.tv_openCard_name);
             } else {
                 setText(msg, R.id.tv_openCard_name);

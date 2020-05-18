@@ -66,7 +66,6 @@ public class TaskHallPresenter extends BasePresenter<TaskHallContract.ITaskHallV
         };
         model.newestActive(observer, token, type);
     }
-
     /**
      * 签到
      */

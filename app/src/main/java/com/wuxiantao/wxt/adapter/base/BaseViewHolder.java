@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Checkable;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.donkingliang.labels.LabelsView;
@@ -519,6 +520,16 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
             return view.isChecked();
         }
         return false;
+    }
+    //设置进度条
+    public BaseViewHolder setProgress(int viewId, int progress) {
+        if (viewId != 0) {
+            ProgressBar view = findView(viewId);
+            if (view != null) {
+                view.setProgress(progress);
+            }
+        }
+        return this;
     }
 
 
