@@ -10,6 +10,7 @@
         android:text="@string/balance_details_time"
         android:layout_marginLeft="@dimen/dp_5"
         android:gravity="center_vertical"
+        android:textColor="@color/color_626161"
         android:textSize="@dimen/sp_13"
         android:layout_height="match_parent">
     </TextView>
