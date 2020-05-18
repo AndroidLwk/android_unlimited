@@ -80,6 +80,7 @@ public class BronzeScrollFragment extends MvpFragment<HeroScrollPresenter, HeroS
         super.onClick(v);
         if (v.getId() == R.id.sbt_hecheng) {
             if (id > 0) {
+                showLoading();
                 mPresenter.composeHero(getAppToken(), id + "");
             }
         }

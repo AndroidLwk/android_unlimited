@@ -14,6 +14,8 @@ import com.wuxiantao.wxt.bean.MyLuckyInfoBean;
 import com.wuxiantao.wxt.bean.MyMoneyCashBean;
 import com.wuxiantao.wxt.bean.MySignInfo;
 import com.wuxiantao.wxt.bean.MyTaskInfoBean;
+import com.wuxiantao.wxt.bean.OrderStatusBean;
+import com.wuxiantao.wxt.bean.RandGetCardBean;
 import com.wuxiantao.wxt.bean.RedBagWithdrawInfoBean;
 import com.wuxiantao.wxt.bean.SharePicBean;
 import com.wuxiantao.wxt.bean.StartStrapingBean;
@@ -52,6 +54,7 @@ import static com.wuxiantao.wxt.config.Api.MY_LUCKYINFO;
 import static com.wuxiantao.wxt.config.Api.MY_MONEYCASH;
 import static com.wuxiantao.wxt.config.Api.MY_SCROLL;
 import static com.wuxiantao.wxt.config.Api.NEWEST_ACTIVE;
+import static com.wuxiantao.wxt.config.Api.RANDGET_CARD;
 import static com.wuxiantao.wxt.config.Api.RED_BAG_WITHDRAW;
 import static com.wuxiantao.wxt.config.Api.START_STRAPING;
 import static com.wuxiantao.wxt.config.Api.TASK_INFO;
@@ -171,7 +174,7 @@ public interface CommissionService {
 
     @POST(ADDBOX_BALANCE)
     @FormUrlEncoded
-    Observable<BaseResponse<List>> addbox_balance(@Field("token") String token, @Field("type") String type);
+    Observable<BaseResponse<OrderStatusBean>> addbox_balance(@Field("token") String token, @Field("type") String type);
 
     @POST(ADDBOX_ALIPAY)
     @FormUrlEncoded
@@ -180,4 +183,7 @@ public interface CommissionService {
     @POST(ADDBOX_WX)
     @FormUrlEncoded
     Observable<BaseResponse<WeChatPayBean>> addbox_wx(@Field("token") String token, @Field("type") String type);
+    @POST(RANDGET_CARD)
+    @FormUrlEncoded
+    Observable<BaseResponse<RandGetCardBean>> randGetCard(@Field("token") String token, @Field("type") String type);
 }

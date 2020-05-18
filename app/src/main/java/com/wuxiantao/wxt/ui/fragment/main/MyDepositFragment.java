@@ -23,7 +23,6 @@ import com.wuxiantao.wxt.ui.activity.MineFanSiActivity;
 import com.wuxiantao.wxt.ui.activity.MyInformationActivity;
 import com.wuxiantao.wxt.ui.activity.ScratchCardActivity;
 import com.wuxiantao.wxt.ui.activity.SettingActivity;
-import com.wuxiantao.wxt.ui.activity.SettingPassWordActivity;
 import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.activity.my.MyInvitationCodeActivity;
 import com.wuxiantao.wxt.ui.activity.my.MyMemberActivity;
@@ -233,6 +232,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
 
     @Override
     public void showMyMoneyCash(MyMoneyCashBean info) {
+        this.official_url = info.getQun_img();
         if (TextUtils.isEmpty(getUserInfo(USER_HEAD_IMG))) {
             GlideImgManager.loadCircleImg(getContext(), R.mipmap.default_user_head_img, iv_mine_header);
         } else {

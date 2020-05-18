@@ -9,8 +9,6 @@ import com.wuxiantao.wxt.mvp.contract.BackpackExpansionContract;
 import com.wuxiantao.wxt.mvp.model.BackpackExpansionModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 
-import java.util.List;
-
 import static com.wuxiantao.wxt.config.Constant.RESOURCES;
 
 public class BackpackExpansionPresenter extends BasePresenter<BackpackExpansionContract> {
@@ -39,9 +37,9 @@ public class BackpackExpansionPresenter extends BasePresenter<BackpackExpansionC
         if (view == null) {
             view = getMvpView();
         }
-        BaseObserver<List> observer = new BaseObserver<List>(view) {
+        BaseObserver<OrderStatusBean> observer = new BaseObserver<OrderStatusBean>(view) {
             @Override
-            public void onSuccess(List bean) {
+            public void onSuccess(OrderStatusBean bean) {
             view.addbox_balanceSuccess("支付成功!");
             }
 

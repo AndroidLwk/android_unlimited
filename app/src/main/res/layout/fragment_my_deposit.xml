@@ -42,7 +42,8 @@
 
                     <TextView
                         android:id="@+id/tv_officialGroup"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
+                        android:layout_alignParentRight="true"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_17"
                         android:gravity="right"

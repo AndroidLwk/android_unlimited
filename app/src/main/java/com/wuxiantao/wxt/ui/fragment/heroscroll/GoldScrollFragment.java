@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.ui.fragment.heroscroll;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.bean.HeroScrolllBean;
@@ -11,6 +12,7 @@ import com.wuxiantao.wxt.adapter.recview.HeroScrolllOneAdapter;
 import com.wuxiantao.wxt.mvp.contract.HeroScrollContract;
 import com.wuxiantao.wxt.mvp.presenter.HeroScrollPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
+import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.custom.decoration.GridSpacingItemDecoration;
 import com.wuxiantao.wxt.utils.DensityUtils;
 
@@ -26,6 +28,8 @@ public class GoldScrollFragment extends MvpFragment<HeroScrollPresenter, HeroScr
     RecyclerView recylerview_one;
     @ViewInject(R.id.recylerview_two)
     RecyclerView recylerview_two;
+    @ViewInject(R.id.sbt_hecheng)
+    StateButton sbt_hecheng;
     private List<HeroScrolllBean.ChildBean> mData_one = new ArrayList<>();
     private List<HeroScrolllBean> mData_two = new ArrayList<>();
     private HeroScrolllOneAdapter mAdapter_one;
@@ -33,6 +37,7 @@ public class GoldScrollFragment extends MvpFragment<HeroScrollPresenter, HeroScr
 
     @Override
     protected void initView() {
+        setOnClikListener(sbt_hecheng);
         mPresenter.myScroll(getAppToken(), "25");
         GridLayoutManager manager = new GridLayoutManager(getContext(), 3);
         GridSpacingItemDecoration itemDecoration = new GridSpacingItemDecoration(3, DensityUtils.dip2px(3), true);
@@ -70,11 +75,24 @@ public class GoldScrollFragment extends MvpFragment<HeroScrollPresenter, HeroScr
     }
 
     @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        if (v.getId() == R.id.sbt_hecheng) {
+            if (id > 0) {
+                showLoading();
+                mPresenter.composeHero(getAppToken(), id + "");
+            }
+        }
+    }
+    private int id;//要合成的英雄卡ID
+    @Override
     public void showMyScroll(List<HeroScrolllBean> list) {
         mData_two.clear();
         mData_one.clear();
         if (list.size() > 0) {
             mData_one.addAll(list.get(0).getChild());
+            this.id = list.get(0).getId();
+
         }
         mData_two.addAll(list);
         mAdapter_one.notifyDataSetChanged();

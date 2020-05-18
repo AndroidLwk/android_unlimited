@@ -30,6 +30,16 @@ public class BackpackExpansionActivity extends MvpActivity<BackpackExpansionPres
     TextView tv_content;
     @ViewInject(R.id.statebutton_confirm)
     StateButton statebutton_confirm;
+    @ViewInject(R.id.tv_one)
+    TextView tv_one;
+    @ViewInject(R.id.tv_two)
+    TextView tv_two;
+    @ViewInject(R.id.tv_three)
+    TextView tv_three;
+    @ViewInject(R.id.tv_four)
+    TextView tv_four;
+    @ViewInject(R.id.tv_five)
+    TextView tv_five;
 
     @Override
     protected void initView() {
@@ -102,6 +112,11 @@ public class BackpackExpansionActivity extends MvpActivity<BackpackExpansionPres
     @Override
     public void showKuorongInfo(KuorongInfoBean info) {
         this.info = info;
+        tv_one.setText("用户余额：￥" + info.getMoney());
+        tv_two.setText("我使用的数量：" + info.getNow());
+        tv_three.setText("我拥有的数量：" + info.getTotal());
+        tv_four.setText("暂存格子数量:" + info.getStash());
+        tv_five.setText("扩容价格：" + info.getPrice());
         tv_title.setText(info.getIntro().get(0).getTitle());
         tv_content.setText(info.getIntro().get(0).getContent());
         statebutton_confirm.setText(info.getPrice() + "元扩容");

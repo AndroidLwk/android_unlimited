@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.mvp.model;
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.AlipayBean;
 import com.wuxiantao.wxt.bean.KuorongInfoBean;
+import com.wuxiantao.wxt.bean.OrderStatusBean;
 import com.wuxiantao.wxt.bean.WeChatPayBean;
 import com.wuxiantao.wxt.mvp.pay.OrderPayModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
@@ -10,11 +11,9 @@ import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
 import com.wuxiantao.wxt.net.service.CommissionService;
 
-import java.util.List;
-
 public class BackpackExpansionModel extends OrderPayModel {
     //余额扩容
-    public void addbox_balance(BaseObserver<List> observer, String token, String type) {
+    public void addbox_balance(BaseObserver<OrderStatusBean> observer, String token, String type) {
         HttpManager.newInstance()
                 .createService(CommissionService.class)
                 .addbox_balance(token, type)

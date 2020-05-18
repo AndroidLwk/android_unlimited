@@ -448,4 +448,6 @@ public class Api {
     public static final String ADDBOX_ALIPAY = "payment/addBox";//支付宝
     public static final String ADDBOX_WX = "payment/addBox";//微信
     /*背包扩容 end*/
+    // 看视频浏览商品触发Boss点击广告任务奖励
+    public static final String RANDGET_CARD = "Task/randGetCard";
 }

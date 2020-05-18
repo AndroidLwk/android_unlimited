@@ -105,6 +105,7 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
                     break;
                 case 3:
                 case 4:
+
                     AdUtils.initRewardVideoAd(getActivity(), () -> {
                         //点击广告
                     });
