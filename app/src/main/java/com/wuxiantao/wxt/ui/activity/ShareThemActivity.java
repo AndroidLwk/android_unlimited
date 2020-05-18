@@ -97,12 +97,12 @@ public class ShareThemActivity extends MvpActivity<ShareThemPresenter, ShareThem
         mPresenter.getShareBg(1, 3);
         mPresenter.getFriendNum(getAppToken(), 0);
         boolean isReview = getSPBoolean(IS_REVIEW);
-        if (isReview) {
-            share_them_rule_layout.setVisibility(View.GONE);
-        } else {
-            share_them_rule_layout.setVisibility(View.VISIBLE);
-            initInviteRuleLayout();
-        }
+//        if (isReview) {
+//            share_them_rule_layout.setVisibility(View.GONE);
+//        } else {
+//            share_them_rule_layout.setVisibility(View.VISIBLE);
+//            initInviteRuleLayout();
+//        }
         setOnClikListener(share_them_title_back, share_them_more, share_them_poster, share_them_total_layout);
         WeChatShareListener.getInstance().addListener(this);
     }

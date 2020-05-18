@@ -74,7 +74,7 @@
     <string name="promotion_rate">提升年化利率，加速升钱</string>
     <string name="share_super_man">分享无限淘</string>
     <string name="invite_friend">邀请好友，躺赚好友每单收益</string>
-    <string name="share">分享</string>
+    <string name="share">推广邀请</string>
     <string name="share_cha">分享到</string>
     <string name="friend_boost_">好友助力</string>
     <string name="frequent_shopping">频繁购物</string>
@@ -366,6 +366,7 @@
     <string name="setting_pw">设置密码</string>
     <string name="setting_new_pw">请设置您的新密码</string>
     <string name="udpate_pw">二级密码</string>
+    <string name="udpate_user_pw">用户密码</string>
     <string name="udpate_submit">提交</string>
     <string name="pass_word_rule">密码为3~16位非中文字符，区分大小写</string>
     <string name="confirm_setting">确认设置</string>

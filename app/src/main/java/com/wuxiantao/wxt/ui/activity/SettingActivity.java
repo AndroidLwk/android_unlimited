@@ -84,7 +84,7 @@ public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSu
         RecViewItemDecoration decoration = new RecViewItemDecoration(this, LinearLayoutManager.VERTICAL);
         List<AboutSuperManBean> list = new ArrayList<>();
         AboutSuperManBean cacheBean = new AboutSuperManBean(getString(R.string.phone_cache), CacheDataUtils.getTotalCacheSize());
-        list.add(new AboutSuperManBean(getString(R.string.udpate_pw), null));
+        list.add(new AboutSuperManBean(getString(R.string.udpate_user_pw), null));
         list.add(new AboutSuperManBean(getString(R.string.setting_text1), null));
         list.add(cacheBean);
         list.add(new AboutSuperManBean(getString(R.string.version_update), AppUtils.getVersionName()));

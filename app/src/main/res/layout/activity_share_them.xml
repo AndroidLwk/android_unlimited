@@ -1,190 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50"
-        android:background="@color/white">
+        android:background="@drawable/base_title_background">
+
         <RelativeLayout
             android:id="@+id/share_them_title_back"
             android:layout_width="@dimen/dp_40"
             android:layout_height="match_parent">
+
             <ImageView
                 android:layout_width="@dimen/dp_8"
                 android:layout_height="@dimen/dp_12"
-                android:tint="@color/black"
                 android:layout_centerInParent="true"
-                android:src="@mipmap/base_title_back"/>
+                android:src="@mipmap/base_title_back"
+                android:tint="@color/black" />
         </RelativeLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/sp_17"
-            android:textColor="@color/black"
             android:layout_centerInParent="true"
-            android:text="@string/share"/>
+            android:text="@string/share"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_17" />
     </RelativeLayout>
+
     <com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginLeft="@dimen/dp_15">
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_10">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_17"
+                        android:text="@string/choose_them"
                         android:textColor="#383838"
-                        android:text="@string/choose_them"/>
+                        android:textSize="@dimen/sp_17" />
+
                     <TextView
                         android:id="@+id/share_them_current_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_17"
                         android:text="@string/one"
-                        android:textColor="#383838"/>
+                        android:textColor="#383838"
+                        android:textSize="@dimen/sp_17" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_17"
+                        android:text="@string/separation"
                         android:textColor="#383838"
-                        android:text="@string/separation"/>
+                        android:textSize="@dimen/sp_17" />
+
                     <TextView
                         android:id="@+id/share_them_sum_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_13"
                         android:text="@string/_zero"
-                        android:textColor="#707070"/>
+                        android:textColor="#707070"
+                        android:textSize="@dimen/sp_13" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/share_them_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/dp_15"
                     android:layout_centerVertical="true"
-                    android:textSize="@dimen/sp_15"
+                    android:layout_marginRight="@dimen/dp_15"
+                    android:text="@string/query_more"
                     android:textColor="#6E6E6E"
-                    android:text="@string/query_more"/>
+                    android:textSize="@dimen/sp_15" />
             </RelativeLayout>
+
             <com.wuxiantao.wxt.ui.custom.viewpager.CoverFlowViewPager
                 android:id="@+id/share_them_vp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/dp_15"
-                android:layout_marginBottom="@dimen/dp_15"/>
+                android:layout_marginBottom="@dimen/dp_15" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_white_selector">
+                android:background="@drawable/bg_white_selector"
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginLeft="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="@dimen/dp_13"
                         android:layout_height="@dimen/dp_20"
-                        android:visibility="gone"
-                        android:src="@mipmap/share_them_prompt" />
+                        android:src="@mipmap/share_them_prompt"
+                        android:visibility="gone" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_14"
-                        android:textColor="#4B4B4B"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/dp_3"
-                        android:text="@string/gain_profit"/>
+                        android:text="@string/gain_profit"
+                        android:textColor="#4B4B4B"
+                        android:textSize="@dimen/sp_14" />
                 </LinearLayout>
+
                 <com.wuxiantao.wxt.ui.custom.button.StateButton
                     android:id="@+id/share_them_poster"
                     android:layout_width="@dimen/dp_329"
                     android:layout_height="@dimen/dp_42"
-                    android:padding="0dp"
-                    android:layout_marginTop="@dimen/dp_15"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:padding="0dp"
+                    android:text="@string/share_poster"
                     android:textSize="@dimen/sp_15"
-                    app:round="true"
-                    app:normalTextColor="@color/white"
-                    app:normalBackgroundStartColor="#FD6F57"
                     app:normalBackgroundCenterColor="#FD6F57"
                     app:normalBackgroundEndColor="#FA5758"
+                    app:normalBackgroundStartColor="#FD6F57"
                     app:normalOrientation="BL_TR"
                     app:normalShapeType="LINEAR_GRADIENT"
-                    android:text="@string/share_poster"/>
+                    app:normalTextColor="@color/white"
+                    app:round="true" />
+
                 <LinearLayout
                     android:id="@+id/share_them_total_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginBottom="@dimen/dp_10">
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_14"
+                        android:text="@string/total_invite_success"
                         android:textColor="@color/grey"
-                        android:text="@string/total_invite_success"/>
+                        android:textSize="@dimen/sp_14" />
+
                     <TextView
                         android:id="@+id/share_them_invite_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_23"
-                        android:text="@string/_zero"
                         android:layout_marginLeft="@dimen/dp_2"
-                        android:textColor="#FF6841"/>
+                        android:text="@string/_zero"
+                        android:textColor="#FF6841"
+                        android:textSize="@dimen/sp_23" />
+
                     <ImageView
                         android:layout_width="@dimen/dp_10"
                         android:layout_height="@dimen/dp_12"
-                        android:tint="#434140"
-                        android:rotation="180"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/dp_2"
-                        android:src="@mipmap/base_title_back"/>
+                        android:rotation="180"
+                        android:src="@mipmap/base_title_back"
+                        android:tint="#434140" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/share_them_rule_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
                 android:layout_marginTop="@dimen/dp_10"
-                android:background="@drawable/bg_white_selector">
+                android:background="@drawable/bg_white_selector"
+                android:orientation="vertical"
+                android:visibility="gone">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp_18"
-                    android:textColor="#4D4D4D"
-                    android:text="@string/invite_rule"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/dp_15"/>
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:text="@string/invite_rule"
+                    android:textColor="#4D4D4D"
+                    android:textSize="@dimen/sp_18" />
+
                 <com.wuxiantao.wxt.ui.custom.recyclerview.NestRecyclerView
                     android:id="@+id/share_them_rule_rv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginBottom="@dimen/dp_10"
-                    android:overScrollMode="never"/>
+                    android:overScrollMode="never" />
             </LinearLayout>
         </LinearLayout>
     </com.wuxiantao.wxt.ui.custom.scrollview.ReboundScrollView>

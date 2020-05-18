@@ -111,6 +111,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void initView() {
+        setOnClikListener(menu_tab_high_area_checked_img);
         setStatusBar();
         boolean isReview = getSPBoolean(IS_REVIEW);
         menu_tab_red_envelope.setVisibility(isReview ? View.GONE : View.VISIBLE);
@@ -135,6 +136,16 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
         //注册
         registerReceiver(receiver, filter);
         registerReceiver(netWorkReceiver, netFilter);
+    }
+
+    @Override
+    protected void widgetClick(int id) {
+        switch (id) {
+            case R.id.menu_tab_high_area_checked_img://刮刮卡图片
+                changeFragment(2, null);
+                mScrapingCardFragment.refreshData();
+                break;
+        }
     }
 
     @Override

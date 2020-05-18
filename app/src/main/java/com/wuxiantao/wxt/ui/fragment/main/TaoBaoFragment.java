@@ -22,6 +22,7 @@ import com.wuxiantao.wxt.mvp.presenter.TaoBaoSortPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
 import com.wuxiantao.wxt.ui.activity.HelpCenterActivity;
 import com.wuxiantao.wxt.ui.activity.SearchActivity;
+import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.custom.indicator.VPindicator;
 import com.wuxiantao.wxt.ui.custom.viewpager.LazyViewPager;
 import com.wuxiantao.wxt.ui.popupwindow.newUserGiftPopupWindow;
@@ -69,6 +70,8 @@ public class TaoBaoFragment extends MvpFragment<TaoBaoSortPresenter, TaoBaoSortC
     VPindicator mIndicator;
     @ViewInject(R.id.main_taobao_viewpager)
     LazyViewPager mViewPager;
+    @ViewInject(R.id.sbt_search)
+    StateButton sbt_search;
 
     private List<TaoBaoSubBean> list = new ArrayList<>();
 
@@ -87,7 +90,7 @@ public class TaoBaoFragment extends MvpFragment<TaoBaoSortPresenter, TaoBaoSortC
             showNewUserWindow();
         }
         mPresenter.getTaoBaoSort();
-        setOnClikListener(fragment_tao_bao_search, fragment_tao_bao_save_money, main_taobao_topping);
+        setOnClikListener(sbt_search,fragment_tao_bao_search, fragment_tao_bao_save_money, main_taobao_topping);
         //initMvText();
 
         boolean isReview = getSPBoolean(IS_REVIEW);

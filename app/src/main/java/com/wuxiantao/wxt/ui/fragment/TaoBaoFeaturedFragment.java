@@ -27,14 +27,14 @@ import com.wuxiantao.wxt.mvp.presenter.TaoBaoFeaturedPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
 import com.wuxiantao.wxt.ui.activity.CommodityInfoActivity;
 import com.wuxiantao.wxt.ui.activity.H5GameActivity;
-import com.wuxiantao.wxt.ui.activity.HighAreaActivity;
-import com.wuxiantao.wxt.ui.activity.InviteFriendLoginActivity;
-import com.wuxiantao.wxt.ui.activity.MenuActivity;
 import com.wuxiantao.wxt.ui.activity.MerchandiseDetailsActivity;
+import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
+import com.wuxiantao.wxt.ui.activity.my.MyInvitationCodeActivity;
+import com.wuxiantao.wxt.ui.activity.my.MyMemberActivity;
 import com.wuxiantao.wxt.ui.custom.decoration.GridSpacingItemDecoration;
 import com.wuxiantao.wxt.ui.custom.decoration.SpaceItemDecoration;
 import com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView;
-import com.wuxiantao.wxt.utils.TaoBaoUtils;
+import com.wuxiantao.wxt.ui.popupwindow.TradingHallPopupWindow;
 import com.wuxiantao.wxt.utils.ToastUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -55,7 +55,6 @@ import static com.wuxiantao.wxt.config.Constant.GOOD_TYPE;
 import static com.wuxiantao.wxt.config.Constant.IS_REVIEW;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
 import static com.wuxiantao.wxt.config.Constant.SELF_EMPLOYED;
-import static com.wuxiantao.wxt.config.Constant.SHIFT_ID;
 import static com.wuxiantao.wxt.config.Constant.TAO_BAO_FEATURED_REC_VIEW;
 import static com.wuxiantao.wxt.config.Constant.TAO_BAO_ID;
 
@@ -103,10 +102,10 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
         EventBus.getDefault().register(this);
         initRefreshLoad();
         boolean isReview = getSPBoolean(IS_REVIEW);
-        if (isReview){
+        if (isReview) {
             mBanner.setVisibility(View.GONE);
             tv_tao_bao_featured_layout.setVisibility(View.GONE);
-        }else {
+        } else {
             mBanner.setVisibility(View.VISIBLE);
             tv_tao_bao_featured_layout.setVisibility(View.VISIBLE);
             mPresenter.gainBanner(0);
@@ -114,13 +113,13 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
         }
     }
 
-    private void initRefreshLoad(){
+    private void initRefreshLoad() {
         mPresenter.getSelfEmployed();
         mPresenter.getTaoBaoHome(page);
         mSmartRefreshLayout.setRefreshHeader(mClassicsHeader);
         mSmartRefreshLayout.setRefreshFooter(new BallPulseFooter(
                 Objects.requireNonNull(getContext())).setSpinnerStyle(SpinnerStyle.Scale));
-        mSmartRefreshLayout.setOnRefreshListener(refreshlayout ->{
+        mSmartRefreshLayout.setOnRefreshListener(refreshlayout -> {
             refreshlayout.resetNoMoreData();
             page = 1;
             mPresenter.getSelfEmployed();
@@ -128,11 +127,11 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
             refreshlayout.finishRefresh(REFRESH_LOAD_MORE_TIME);
         });
         mSmartRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            if (datas != null && datas.getMore() == 1){
+            if (datas != null && datas.getMore() == 1) {
                 mPresenter.getSelfEmployed();
                 mPresenter.getTaoBaoHome(++page);
                 refreshLayout.finishLoadMore(REFRESH_LOAD_MORE_TIME);
-            }else {
+            } else {
                 refreshLayout.finishLoadMoreWithNoMoreData();
             }
         });
@@ -140,71 +139,44 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
 
 
     //九宫个菜单布局
-    private void initGridLayout(){
+    private void initGridLayout() {
         TaoBaoFeaturedMenuRecViewAdapter adapter = new TaoBaoFeaturedMenuRecViewAdapter(getContext(), initList());
         int spanCount = 5;
-        GridLayoutManager manager = new GridLayoutManager(getContext(),spanCount);
-        GridSpacingItemDecoration decoration = new GridSpacingItemDecoration(spanCount,20,true);
+        GridLayoutManager manager = new GridLayoutManager(getContext(), spanCount);
+        GridSpacingItemDecoration decoration = new GridSpacingItemDecoration(spanCount, 20, true);
         taobao_featured_grid_rv.setLayoutManager(manager);
         taobao_featured_grid_rv.addItemDecoration(decoration);
         taobao_featured_grid_rv.setAdapter(adapter);
         adapter.setOnBaseViewClickListener(this::setItemClick);
     }
 
-    private void setItemClick(int position){
-        switch (position){
-            //红包大厅
-            case 0:
-                $startActivity(MenuActivity.class,SHIFT_ID,2);
-                break;
-            //游戏分红
-            case 1:
-                $startActivity(MenuActivity.class,SHIFT_ID,3);
-//                     TaoBaoUtils.newInstance().openAliHomeApp(getActivity(),TaoBaoUtils.TMALL_SUPERMARKET);
-                break;
+    private void setItemClick(int position) {
+        switch (position) {
             //推广赚钱
+            case 0:
+                $startActivity(ShareThemActivity.class);
+                break;
+            //淘宝精选
+            case 1:
+                break;
+            //会员中心
             case 2:
-                $startActivity(InviteFriendLoginActivity.class);
-//                     TaoBaoUtils.newInstance().openAliHomeApp(getActivity(),TaoBaoUtils.TMALL_INTERNATIONAL);
+                $startActivity(MyMemberActivity.class);
                 break;
-            //会员中心
+            //邀请码
             case 3:
-                $startActivity(MenuActivity.class,SHIFT_ID,1);
-//                     TaoBaoUtils.newInstance().openAliHomeApp(getActivity(),TaoBaoUtils.POLY_COST_EFFECTIVE);
+                $startActivity(MyInvitationCodeActivity.class);
                 break;
-            //0元商品
+            //交易大厅
             case 4:
-                $startActivity(HighAreaActivity.class);
-//                     TaoBaoUtils.newInstance().openAliHomeApp(getActivity(),TaoBaoUtils.TAOBAO_PANIC_BUYING);
-                break;
-            //我的淘宝
-            case 5:
-                TaoBaoUtils.newInstance().openAliHomeApp(getActivity(),TaoBaoUtils.TAOBAO_MAIN_PAGE);
-                break;
-            //收益大厅
-            case 6:
-                Bundle b = new Bundle();
-                b.putInt(SHIFT_ID,3);
-                $startActivity(MenuActivity.class,b);
-                break;
-            //足迹
-            case 7:
-                TaoBaoUtils.newInstance().openAliHomeApp(getActivity(),TaoBaoUtils.TAOBAO_FOOT_PRINT);
-                break;
-            //淘宝订单
-            case 8:
-                TaoBaoUtils.newInstance().openAliHomeApp(getActivity(),TaoBaoUtils.TAOBAO_ORDER);
-                break;
-            //会员中心
-            case 9:
-                Bundle bundle = new Bundle();
-                bundle.putInt(SHIFT_ID,1);
-                $startActivity(MenuActivity.class,bundle);
+                new TradingHallPopupWindow.Build(getContext())
+                        .setWindowAnimStyle(R.style.custom_dialog)
+                        .builder().showPopupWindow();
                 break;
         }
     }
 
-    private List<TaoBaoFeaturedMenuBean> initList(){
+    private List<TaoBaoFeaturedMenuBean> initList() {
         List<TaoBaoFeaturedMenuBean> list = new ArrayList<>();
         String[] name = getResources().getStringArray(R.array.main_taobao_featured_title);
         TypedArray ta = getResources().obtainTypedArray(R.array.main_taobao_featured_icon);
@@ -215,7 +187,7 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
         }
         ta.recycle();
 
-        for (int i = 0;i < name.length;i++){
+        for (int i = 0; i < name.length; i++) {
             TaoBaoFeaturedMenuBean bean = new TaoBaoFeaturedMenuBean();
             bean.setIcon(icons[i]);
             bean.setName(name[i]);
@@ -230,11 +202,11 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
         initBanner(bean.getList());
     }
 
-    private void initBanner(List<BannerBean.ListBean> listBeans){
-        if (bannerListImg.size() > 0){
+    private void initBanner(List<BannerBean.ListBean> listBeans) {
+        if (bannerListImg.size() > 0) {
             bannerListImg.clear();
         }
-        for (BannerBean.ListBean bean : listBeans){
+        for (BannerBean.ListBean bean : listBeans) {
             bannerListImg.add(bean.getImg());
         }
         mBanner.setVisibility(View.VISIBLE);
@@ -243,7 +215,7 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
         //设置banner样式
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         //设置图片加载器
-        mBanner.setImageLoader(new GlideImageLoader(350,200));
+        mBanner.setImageLoader(new GlideImageLoader(350, 200));
         //设置banner动画效果
         mBanner.setBannerAnimation(Transformer.DepthPage);
         //设置标题集合（当banner样式有显示title时）
@@ -280,46 +252,46 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
     }
 
     //垂直列表
-    private void initTaoBaoLayout(TaoBaoHomeBean bean){
-        if (adapter == null){
+    private void initTaoBaoLayout(TaoBaoHomeBean bean) {
+        if (adapter == null) {
             adapter = new TaoBaoFeaturedVerRecViewAdapter(getContext(), bean.getResult_list());
             LinearLayoutManager manager = new LinearLayoutManager(getContext());
-            SpaceItemDecoration itemDecoration = new SpaceItemDecoration(0,0);
+            SpaceItemDecoration itemDecoration = new SpaceItemDecoration(0, 0);
             taobao_featured_ver_rv.setLayoutManager(manager);
             taobao_featured_ver_rv.addItemDecoration(itemDecoration);
             taobao_featured_ver_rv.setAdapter(adapter);
             adapter.setOnItemClickListener(id -> {
                 Bundle bundle = new Bundle();
-                bundle.putLong(TAO_BAO_ID,id);
-                $startActivity(MerchandiseDetailsActivity.class,bundle);
+                bundle.putLong(TAO_BAO_ID, id);
+                $startActivity(MerchandiseDetailsActivity.class, bundle);
             });
-        }else {
-            adapter.addList(bean.getResult_list(),page);
+        } else {
+            adapter.addList(bean.getResult_list(), page);
         }
     }
 
     //获取自营商品
     @Override
     public void getSelfEmployedSuccess(SelfEmployedBean bean) {
-         initSelfLayout(bean);
+        initSelfLayout(bean);
     }
 
     //垂直列表
-    private void initSelfLayout(SelfEmployedBean bean){
-        if (employedAdapter == null){
+    private void initSelfLayout(SelfEmployedBean bean) {
+        if (employedAdapter == null) {
             LinearLayoutManager manager = new LinearLayoutManager(getContext());
-            SpaceItemDecoration itemDecoration = new SpaceItemDecoration(0,0);
-            employedAdapter = new SelfEmployedAdapter(getContext(),bean.getList());
+            SpaceItemDecoration itemDecoration = new SpaceItemDecoration(0, 0);
+            employedAdapter = new SelfEmployedAdapter(getContext(), bean.getList());
             self_employed_ver_rv.setLayoutManager(manager);
             self_employed_ver_rv.addItemDecoration(itemDecoration);
             self_employed_ver_rv.setAdapter(employedAdapter);
             employedAdapter.setOnBaseViewClickListener(id -> {
                 Bundle bundle = new Bundle();
-                bundle.putInt(GOOD_TYPE,SELF_EMPLOYED);
-                bundle.putInt(GOOD_ID,id);
-                $startActivity(CommodityInfoActivity.class,bundle);
+                bundle.putInt(GOOD_TYPE, SELF_EMPLOYED);
+                bundle.putInt(GOOD_ID, id);
+                $startActivity(CommodityInfoActivity.class, bundle);
             });
-        }else {
+        } else {
             employedAdapter.updataList(bean.getList());
         }
     }
@@ -331,7 +303,7 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
 
     @Override
     public void onDestroy() {
-        if (mBanner != null){
+        if (mBanner != null) {
             mBanner.stopAutoPlay();
         }
         super.onDestroy();
@@ -366,8 +338,8 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent event){
-        if (event.getType() == TAO_BAO_FEATURED_REC_VIEW){
+    public void onMessageEvent(MessageEvent event) {
+        if (event.getType() == TAO_BAO_FEATURED_REC_VIEW) {
             taobao_featured_grid_sl.fullScroll(View.FOCUS_UP);
         }
     }
