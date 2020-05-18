@@ -5,11 +5,13 @@ import com.wuxiantao.wxt.bean.DragonStatusInfoBean;
 import com.wuxiantao.wxt.bean.GameMessageBean;
 import com.wuxiantao.wxt.bean.IncomeHallBean;
 import com.wuxiantao.wxt.bean.IncreaseCountBean;
+import com.wuxiantao.wxt.bean.MyGameInfoBean;
 import com.wuxiantao.wxt.bean.OpenDragonBean;
 import com.wuxiantao.wxt.bean.StartExperienceBean;
 import com.wuxiantao.wxt.bean.VideoDoubleBean;
 import com.wuxiantao.wxt.mvp.contract.IncomeHallContract;
 import com.wuxiantao.wxt.mvp.model.IncomeHallModel;
+import com.wuxiantao.wxt.mvp.model.ScrapingCardFragmentModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 
 import java.util.List;
@@ -199,23 +201,51 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
         model.onVideoDouble(observer,token,dragon_id,num);
     }
 
-    @Override //斩妖之旅
+    /**
+     * 斩妖之旅
+     * @param token
+     */
+    @Override
     public void getMyGameInfo(String token) {
         if (view == null){
             view = getMvpView();
         }
-        BaseObserver<VideoDoubleBean> observer = new BaseObserver<VideoDoubleBean>() {
+        BaseObserver<MyGameInfoBean> observer = new BaseObserver<MyGameInfoBean>() {
             @Override
-            public void onSuccess(VideoDoubleBean msg) {
-                view.onVideoDoubleSuccess(msg);
+            public void onSuccess(MyGameInfoBean bean) {
+                view.onGetMyGameInfoSuccess(bean);
             }
 
             @Override
             public void onFailure(String errorMsg) {
-                view.onVideoDoubleFailure(errorMsg);
+                view.onGetMyGameInfoFailure(errorMsg);
             }
         };
-//        model.onGetMyGameInfo(observer,token);
+        model.onGetMyGameInfo(observer,token);
+    }
+
+    /**
+     * 分红
+     * @param token
+     * @param type
+     */
+    @Override
+    public void enrollBonus(String token, String type) {
+        if (view == null) {
+            view = getMvpView();
+        }
+        BaseObserver<List> observer = new BaseObserver<List>() {
+            @Override
+            public void onSuccess(List bean) {
+                view.enrollBonusSuccess("分红成功");
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.enrollBonusFailure(errorMsg);
+            }
+        };
+        model.enrollBonus(observer, token, type);
     }
 
 }

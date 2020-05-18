@@ -74,6 +74,11 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
         setOnClikListener(mine_balance_back,tv_balance_top_up,tv_balance_withdraw,tv_balance_gogk,mine_balance_details);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.obtainBalance(getAppToken());
+    }
 
     @Override
     public void widgetClick(int viewId) {

@@ -330,6 +330,9 @@ public class Api {
     //用户阶段及收益信息  收益大厅
     public static final String INCOME_HALL_INFO = "card/stageInfo";
 
+    //报名分红
+    public static final String ENROLL_BONUS = "Scratchcard/enrollBonus";
+
     //平台分红龙信息  收益大厅
     public static final String PLATFORM_DRAGON_INFO = "card/redDragonInfo";
 
@@ -397,8 +400,6 @@ public class Api {
     public static final String UM_MESSAGE_SECRECT = "0daccf39fffcbbab9413d9d98ee324eb";
     //刮刮卡页面信息
     public static final String MY_CARDINFO = "Scratchcard/myCardInfo";
-    //报名分红
-    public static final String ENROLL_BONUS = "Scratchcard/enrollBonus";
     //任务大厅信息
     public static final String TASK_INFO = "Task/taskInfo";
     //活跃度奖励领取

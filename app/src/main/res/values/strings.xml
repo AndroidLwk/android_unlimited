@@ -998,8 +998,10 @@
     <string name="game_text1">当前等级：%1$d级</string>
     <string name="game_text2">距离平台分红还差%1$d级</string>
     <string name="game_text3">%1$d级</string>
-    <string name="game_text4">￥%1$s元</string>
+    <string name="game_text4">￥%1$d元</string>
     <string name="game_text5">￥%1$s元</string>
+    <string name="game_text7">￥%1$d元</string>
+    <string name="game_text6">累计分红%1$d天</string>
 
 
     <!-- 我的-->

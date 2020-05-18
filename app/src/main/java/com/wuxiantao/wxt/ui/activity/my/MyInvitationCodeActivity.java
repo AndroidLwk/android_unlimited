@@ -11,6 +11,7 @@ import com.wuxiantao.wxt.imgloader.GlideImgManager;
 import com.wuxiantao.wxt.mvp.contract.MyInvitationContract;
 import com.wuxiantao.wxt.mvp.presenter.MyInvitationPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
+import com.wuxiantao.wxt.ui.popupwindow.ShareInviteCodePopWindow;
 import com.wuxiantao.wxt.ui.popupwindow.SharePosterPopupWindow;
 import com.wuxiantao.wxt.utils.DensityUtils;
 import com.wuxiantao.wxt.utils.QRCodeUtil;
@@ -20,7 +21,10 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 /**
- * 我的邀请码
+ * Copyright (C), 成都都爱玩科技有限公司
+ * Date: 2020/5/18--12:01
+ * Description: 我的邀请码
+ * Author: lht
  */
 @ContentView(R.layout.activity_myinvitationcode)
 public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter, MyInvitationContract> implements MyInvitationContract {
@@ -38,19 +42,21 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
     ImageView iv_header;
     @ViewInject(R.id.iv_centerherader)
     ImageView iv_centerherader;
+    @ViewInject(R.id.img_invateCode_share)
+    ImageView img_invateCode_share;
 
     @Override
     protected void initView() {
         setStatusBar();
         mPresenter.getSharePic(getAppToken());
-        setOnClikListener(mine_fansi_back, iv_invateCode);
+        setOnClikListener(mine_fansi_back, iv_invateCode,img_invateCode_share);
 
     }
 
     private void showSharePosterWindow(Bitmap bitmap) {
-        new SharePosterPopupWindow.Build(this)
+        new ShareInviteCodePopWindow.Build(this)
                 .setRoundImageResource(bitmap)
-                .setOnPopupClickListener(new SharePosterPopupWindow.Build.OnPopupClickListener() {
+                .setOnPopupClickListener(new ShareInviteCodePopWindow.Build.OnPopupClickListener() {
                     @Override
                     public void onShareWechat() {
                         //微信好友
@@ -70,12 +76,13 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
         switch (id) {
             case R.id.mine_fansi_back:
                 finish();
+            case R.id.img_invateCode_share:
+                showSharePosterWindow(mBitmap);
                 break;
             case R.id.iv_invateCode:
                 if (mBitmap == null) {
                     return;
                 }
-                showSharePosterWindow(mBitmap);
                 break;
         }
     }

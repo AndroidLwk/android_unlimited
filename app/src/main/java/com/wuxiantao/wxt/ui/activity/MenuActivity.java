@@ -143,6 +143,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
         switch (id) {
             case R.id.menu_tab_high_area_checked_img://刮刮卡图片
                 changeFragment(2, null);
+                menu_tab_red_envelope.setChecked(true);
                 mScrapingCardFragment.refreshData();
                 break;
         }

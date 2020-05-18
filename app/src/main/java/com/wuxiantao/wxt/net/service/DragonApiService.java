@@ -10,6 +10,7 @@ import com.wuxiantao.wxt.bean.DragonStatusInfoBean;
 import com.wuxiantao.wxt.bean.GameMessageBean;
 import com.wuxiantao.wxt.bean.IncomeHallBean;
 import com.wuxiantao.wxt.bean.IncreaseCountBean;
+import com.wuxiantao.wxt.bean.MyGameInfoBean;
 import com.wuxiantao.wxt.bean.MyIncomeBean;
 import com.wuxiantao.wxt.bean.OpenDragonBean;
 import com.wuxiantao.wxt.bean.StartExperienceBean;
@@ -29,6 +30,7 @@ import static com.wuxiantao.wxt.config.Api.COMPOSITE_DRAGON;
 import static com.wuxiantao.wxt.config.Api.COMPOSITE_SCRAP;
 import static com.wuxiantao.wxt.config.Api.DIVIDED_DRAGON_DETAIL;
 import static com.wuxiantao.wxt.config.Api.DIVIDED_DRAGON_LIST;
+import static com.wuxiantao.wxt.config.Api.ENROLL_BONUS;
 import static com.wuxiantao.wxt.config.Api.GET_DRAGON_INFO;
 import static com.wuxiantao.wxt.config.Api.GET_DRAGON_STATUS_INFO;
 import static com.wuxiantao.wxt.config.Api.GET_MY_INCOME_LIST;
@@ -92,10 +94,14 @@ public interface DragonApiService {
 
     @POST(MY_GAME_INFO)
     @FormUrlEncoded //斩妖之旅
-    Observable<BaseResponse<IncreaseCountBean>> onGetMyGameInfo(@Field("token")String token);
+    Observable<BaseResponse<MyGameInfoBean>> onGetMyGameInfo(@Field("token")String token);
 
 
     @POST(INCOME_HALL_INFO)
+    @FormUrlEncoded  //开始分红
+    Observable<BaseResponse<List>> enrollBonus(@Field("token") String token, @Field("type") String type);
+
+    @POST(ENROLL_BONUS)
     @FormUrlEncoded  //用户阶段及收益信息  收益大厅
     Observable<BaseResponse<IncomeHallBean>> getIncomeHallInfo(@Field("token")String token);
 

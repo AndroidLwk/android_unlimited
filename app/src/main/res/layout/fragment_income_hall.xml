@@ -227,7 +227,7 @@
                         android:layout_marginTop="@dimen/dp_19"
                         android:layout_marginRight="@dimen/dp_15"
                         android:max="100"
-                        android:progress="30"
+                        android:progress="0"
                         android:progressDrawable="@drawable/progressbar_bg_divided_dragon" />
 
                     <TextView
@@ -254,7 +254,7 @@
                         android:textSize="@dimen/sp_14" />
                 </RelativeLayout>
 
-                <com.wuxiantao.wxt.ui.custom.button.StateButton
+                <TextView
                     android:id="@+id/income_hall_experience"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_37"
@@ -262,21 +262,13 @@
                     android:layout_marginLeft="@dimen/dp_43"
                     android:layout_marginTop="@dimen/dp_33"
                     android:layout_marginRight="@dimen/dp_43"
-                    android:enabled="false"
                     android:padding="0dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
                     android:text="@string/click_dividend_experience"
+                    android:background="@drawable/base_title_background_cercle_25dp"
                     android:textSize="@dimen/sp_15"
-                    app:normalBackgroundCenterColor="#FB8E7D"
-                    app:normalBackgroundEndColor="#FF5655"
-                    app:normalBackgroundStartColor="#FB8E7D"
-                    app:normalOrientation="BL_TR"
-                    app:normalShapeType="LINEAR_GRADIENT"
-                    app:normalTextColor="@color/white"
-                    app:round="true"
-                    app:unableBackgroundCenterColor="#FB8E7D"
-                    app:unableBackgroundEndColor="#FB8E7D"
-                    app:unableBackgroundStartColor="#FB8E7D"
-                    app:unableTextColor="@color/white" />
+                    />
             </LinearLayout>
         </com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView>
 

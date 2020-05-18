@@ -203,6 +203,14 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if (!isEmpty(getAppToken())) {
+            mPresenter.myMoneyCash(getAppToken());
+        }
+    }
+
+    @Override
     public void showLoading() {
         loadingDialog.showLoadingDialog();
     }

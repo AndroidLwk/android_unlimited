@@ -1,10 +1,13 @@
 package com.wuxiantao.wxt.ui.fragment.main;
 
 import android.content.Intent;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.umeng.commonsdk.debug.I;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.DividedDragonRecViewAdapter;
 import com.wuxiantao.wxt.bean.AreaChangeInfoBean;
@@ -12,11 +15,13 @@ import com.wuxiantao.wxt.bean.DragonStatusInfoBean;
 import com.wuxiantao.wxt.bean.GameMessageBean;
 import com.wuxiantao.wxt.bean.IncomeHallBean;
 import com.wuxiantao.wxt.bean.IncreaseCountBean;
+import com.wuxiantao.wxt.bean.MyGameInfoBean;
 import com.wuxiantao.wxt.bean.OpenDragonBean;
 import com.wuxiantao.wxt.bean.StartExperienceBean;
 import com.wuxiantao.wxt.bean.VideoDoubleBean;
 import com.wuxiantao.wxt.count_down.CountDownCallBack;
 import com.wuxiantao.wxt.imgloader.GlideImageLoader;
+import com.wuxiantao.wxt.imgloader.GlideImgManager;
 import com.wuxiantao.wxt.mvp.contract.IncomeHallContract;
 import com.wuxiantao.wxt.mvp.presenter.IncomeHallPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
@@ -64,7 +69,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     TextView income_hall_current_area;
 
     @ViewInject(R.id.income_hall_experience)
-    StateButton income_hall_experience;
+    TextView income_hall_experience;
 
     @ViewInject(R.id.income_hall_progress1)
     ProgressBar income_hall_progress1;
@@ -81,12 +86,20 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     TextView tv_benefit;
     @ViewInject(R.id.tv_benefit_money)
     TextView tv_benefit_money;
+    @ViewInject(R.id.iv_game_headerName)
+    TextView iv_game_headerName;
+    @ViewInject(R.id.tv_benefit_dayNum)
+    TextView tv_benefit_dayNum;
+    @ViewInject(R.id.iv_game_header)
+    ImageView iv_game_header;
+
+
     private LoadingDialog loadingDialog;
 
     @Override
     protected void initView() {
         loadingDialog = createLoadingDialog();
-        mPresenter.getIncomeHallInfo(getAppToken());
+//        mPresenter.getIncomeHallInfo(getAppToken());
         mPresenter.onGameMessage(getAppToken());
         mPresenter.getDragonStatusInfo(getAppToken());
         setOnClikListener(income_hall_experience
@@ -97,18 +110,16 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
             onRefreshData();
             refreshLayout.finishRefresh(REFRESH_LOAD_MORE_TIME);
         });
+        mPresenter.getMyGameInfo(getAppToken());
     }
-
-
-
 
     @Override
     protected void widgetClick(int id) {
         switch (id) {
             //体验分红
             case R.id.income_hall_experience:
-                loadingDialog = createLoadingDialog();
-                mPresenter.onStartExperience(getAppToken());
+                loadingDialog.showLoadingDialog();
+                mPresenter.enrollBonus(getAppToken(),"4");
                 break;
             //切换区
             case R.id.income_hall_current_area:
@@ -121,9 +132,9 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     //收益信息获取成功
     @Override
     public void getIncomeHallInfoSuccess(IncomeHallBean bean) {
-        tv_benefit.setText(getString(R.string.game_text4,bean.getActive()));
+//        tv_benefit.setText(getString(R.string.game_text4,bean.getActive()));
         //阶段金额限制
-        tv_benefit_money.setText(getString(R.string.game_text5,bean.getLimit()));
+//        tv_benefit_money.setText(getString(R.string.game_text5,bean.getLimit()));
         //当前阶段以及加倍速度
         String spedd = bean.getMultiple();
         //当前进度
@@ -131,8 +142,8 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         //阶段金额限制
         String limit = bean.getLimit();
         String progress = BigDecimalUtils.div(active, limit, 2);
-        income_hall_progress2.setMax(BigDecimalUtils.roundInt(limit));
-        income_hall_progress2.setProgress(BigDecimalUtils.roundInt(active));
+//        income_hall_progress2.setMax(BigDecimalUtils.roundInt(limit));
+//        income_hall_progress2.setProgress(BigDecimalUtils.roundInt(active));
 
         if (bean.getIs_show() == 1){
             showFinisAimsWindow(active,BigDecimalUtils.roundStr(bean.getMoney()),spedd);
@@ -151,24 +162,25 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     @Override
     public void onGameMessageSuccess(GameMessageBean bean) {
         //type 1:有账号 2.没有账号
-        if (bean.getType() == 2){
-            showDialog(R.string.not_have_game_account, R.string.now_create_account, (dialog, which)
-                    -> $startActivity(H5GameActivity.class));
-        }
+//        if (bean.getType() == 2){
+//            showDialog(R.string.not_have_game_account, R.string.now_create_account, (dialog, which)
+//                    -> $startActivity(H5GameActivity.class));
+//        }
         //初始化banner图
         bannerList.clear();
         for (GameMessageBean.ListBean listBean : bean.getList()){
             bannerList.add(listBean.getImg());
         }
         initBanner(bannerList);
+
         //当前所在区
-        income_hall_current_area.setText(getString(R.string.default_area,bean.getQu_name()));
+//        income_hall_current_area.setText(getString(R.string.default_area,bean.getQu_name()));
         //可体验的次数
         int num = bean.getNum();
         //游戏等级
         int level = bean.getLevel();
         people_level.setText(getString(R.string.game_text3,bean.getLevel()));
-        tv_current_leave.setText(getString(R.string.game_text1,bean.getLevel()));
+//        tv_current_leave.setText(getString(R.string.game_text1,bean.getLevel()));
         income_hall_progress1.setMax(150);
         income_hall_progress1.setProgress(level);
         //体验结束时间
@@ -180,7 +192,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         if (diff > 0) {
             startDividendTime(bean.getInfo().getTiyan_money(),end_time,diff);
         } else {
-            income_hall_next_tv.setText(getString(R.string.game_text2, bean.getCha()));
+//            income_hall_next_tv.setText(getString(R.string.game_text2, bean.getCha()));
             //点击体验分红
             income_hall_experience.setText(getString(R.string.click_dividend_experience));
         }
@@ -339,9 +351,13 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     private void onRefreshData(){
         loadingDialog = createLoadingDialog();
 
+//        mPresenter.onGameMessage(getAppToken());
+//        mPresenter.getIncomeHallInfo(getAppToken());
+//        mPresenter.getDragonStatusInfo(getAppToken());
         mPresenter.onGameMessage(getAppToken());
-        mPresenter.getIncomeHallInfo(getAppToken());
         mPresenter.getDragonStatusInfo(getAppToken());
+
+        mPresenter.getMyGameInfo(getAppToken());
     }
 
     //显示卡牌开启五个之后对话框
@@ -414,13 +430,59 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     }
 
     @Override //斩妖之旅
-    public void onGetMyGameInfoSuccess() {
+    public void onGetMyGameInfoSuccess(MyGameInfoBean bean) {
+        //初始化banner图
+        bannerList.clear();
+        for (MyGameInfoBean.BannerBean listBean : bean.getBanner()){
+            bannerList.add(listBean.getImg());
+        }
+        initBanner(bannerList);
+        //所在区服
+        income_hall_current_area.setText(getString(R.string.default_area,bean.getQu_name()));
+        //游戏昵称
+        iv_game_headerName.setText(bean.getActorname()==null?"":bean.getActorname());
 
+        //游戏等级
+        int level = bean.getLevel();
+        tv_current_leave.setText(getString(R.string.game_text1,bean.getLevel()));
+        //设置进度条
+        income_hall_progress2.setMax(150);
+        income_hall_progress2.setProgress(level);
+        //还差多少分红
+        income_hall_next_tv.setText(getString(R.string.game_text2, bean.getCha()));
+        //头像
+        GlideImgManager.loadCircleImg(getActivity(),bean.getHeadimg(),iv_game_header);
+        //昨日收益
+        tv_benefit.setText(getString(R.string.game_text4,bean.getMoney_yesterday()));
+        //累计收益
+        tv_benefit_money.setText(getString(R.string.game_text7,bean.getMoney_total()));
+        //累计分红
+        tv_benefit_dayNum.setText(getString(R.string.game_text6,bean.getMoney_day()));
     }
 
     @Override
-    public void onGetMyGameInfoFailure() {
+    public void onGetMyGameInfoFailure(String failure) {
+//        showOnlyConfirmDialog(failure);
+        if (failure.equals("网络异常")){
+            showDialog(R.string.not_have_game_account, R.string.now_create_account, (dialog, which)
+                    -> $startActivity(H5GameActivity.class));
+        }
+    }
 
+    /**
+     * 分红
+     * @param msg
+     */
+    @Override
+    public void enrollBonusSuccess(String msg) {
+        loadingDialog.dismissLoadingDialog();
+        showOnlyConfirmDialog(msg);
+    }
+
+    @Override
+    public void enrollBonusFailure(String failure) {
+        loadingDialog.dismissLoadingDialog();
+        showOnlyConfirmDialog(failure);
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.wuxiantao.wxt.bean.DragonStatusInfoBean;
 import com.wuxiantao.wxt.bean.GameMessageBean;
 import com.wuxiantao.wxt.bean.IncomeHallBean;
 import com.wuxiantao.wxt.bean.IncreaseCountBean;
+import com.wuxiantao.wxt.bean.MyGameInfoBean;
 import com.wuxiantao.wxt.bean.OpenDragonBean;
 import com.wuxiantao.wxt.bean.StartExperienceBean;
 import com.wuxiantao.wxt.bean.VideoDoubleBean;
@@ -53,8 +54,12 @@ public interface IncomeHallContract {
         void onVideoDoubleFailure(String failure);
 
         //获取我的游戏信息
-        void onGetMyGameInfoSuccess();
-        void onGetMyGameInfoFailure();
+        void onGetMyGameInfoSuccess(MyGameInfoBean bean);
+        void onGetMyGameInfoFailure(String failure);
+
+        //分红
+        void enrollBonusSuccess(String msg);
+        void enrollBonusFailure(String failure);
     }
 
     interface IIncomeHallPresenter extends MvpPresenter<IIncomeHallView>{
@@ -69,5 +74,7 @@ public interface IncomeHallContract {
         void onVideoDouble(String token,int dragon_id,String num);
 
         void getMyGameInfo(String token);
+        //分红
+        void enrollBonus(String token, String type);
     }
 }
