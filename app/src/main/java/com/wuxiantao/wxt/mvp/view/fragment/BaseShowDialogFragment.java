@@ -2,7 +2,6 @@ package com.wuxiantao.wxt.mvp.view.fragment;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.support.annotation.RawRes;
 import android.support.annotation.StringRes;
 
 import com.wuxiantao.wxt.R;
@@ -36,6 +35,13 @@ public abstract class BaseShowDialogFragment<P extends MvpPresenter,V extends Mv
                 .setDialogTitle(R.string.tips)
                 .setDialogLineColor(Color.GRAY)
                 .setDialogPositiveBtn(getString(confirmText),listener,Color.parseColor("#FF5655"))
+                .setDialogNegativeBtn().build().show();
+    }
+    protected void showDialog(String title, DialogInterface.OnClickListener listener){
+        new DialogBuilder.Builder(getContext())
+                .setDialogTitle(title)
+                .setDialogLineColor(Color.GRAY)
+                .setDialogPositiveBtn(listener)
                 .setDialogNegativeBtn().build().show();
     }
 

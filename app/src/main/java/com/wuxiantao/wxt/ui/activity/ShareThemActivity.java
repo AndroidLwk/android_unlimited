@@ -30,7 +30,6 @@ import com.wuxiantao.wxt.ui.custom.decoration.SpaceItemDecoration;
 import com.wuxiantao.wxt.ui.custom.viewpager.CoverFlowViewPager;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.popupwindow.SharePosterPopupWindow;
-import com.wuxiantao.wxt.utils.StatusBarUtil;
 import com.wuxiantao.wxt.utils.ToastUtils;
 import com.wuxiantao.wxt.wxapi.WXShare;
 
@@ -91,8 +90,9 @@ public class ShareThemActivity extends MvpActivity<ShareThemPresenter, ShareThem
 
     @Override
     public void initView() {
-        StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.white));
-        StatusBarUtil.setStatusBarDarkTheme(this, true);
+        setStatusBar();
+//        StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.white));
+//        StatusBarUtil.setStatusBarDarkTheme(this, true);
         loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.loading).build();
         mPresenter.getShareBg(1, 3);
         mPresenter.getFriendNum(getAppToken(), 0);

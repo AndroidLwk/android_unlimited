@@ -33,6 +33,7 @@ public class BackpackExpansionActivity extends MvpActivity<BackpackExpansionPres
 
     @Override
     protected void initView() {
+        setStatusBar();
         mPresenter.kuorongInfo(getAppToken());
         setOnClikListener(statebutton_confirm);
         PayListener.getInstance().addListener(this);

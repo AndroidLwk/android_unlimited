@@ -49,6 +49,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
 
     @Override
     protected void initView() {
+        setStatusBar();
         mPresenter.isSetPayPassword(getAppToken());
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
         cntoolbar_title.setOnRightButtonClickListener(() -> $startActivity(BackpackExpansionActivity.class));

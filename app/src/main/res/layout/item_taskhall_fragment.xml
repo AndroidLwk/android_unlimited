@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/main_taskhall_g"
-            android:drawablePadding="@dimen/dp_10"
+            android:drawablePadding="@dimen/dp_6"
             android:layout_centerVertical="true"
             android:text="签到奖励 + 1张刮刮卡"
             android:textColor="@color/color_6a6a6a"

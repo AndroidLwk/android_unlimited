@@ -91,9 +91,5 @@
             android:src="@drawable/pointtocard_b" />
     </RelativeLayout>
 
-    <me.yifeiyuan.library.PeriscopeLayout
-        android:id="@+id/periscope"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+
 </RelativeLayout>

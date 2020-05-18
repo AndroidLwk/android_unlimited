@@ -1,12 +1,11 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
+import com.wuxiantao.wxt.bean.StopAppBean;
 import com.wuxiantao.wxt.mvp.contract.AboutSupermanContract;
 import com.wuxiantao.wxt.mvp.model.AboutSupermanModel;
 import com.wuxiantao.wxt.mvp.model.InfomationModel;
 import com.wuxiantao.wxt.mvp.version.BaseVersionPresenter;
 import com.wuxiantao.wxt.net.base.BaseObserver;
-
-import java.util.List;
 
 /**
  * Company:成都可信网络科技有限责任公司
@@ -27,9 +26,9 @@ public class AboutSupermanPresenter extends BaseVersionPresenter<AboutSupermanCo
         if (view == null){
             view = getMvpView();
         }
-        BaseObserver<List<String>> observer = new BaseObserver<List<String>>() {
+        BaseObserver<StopAppBean> observer = new BaseObserver<StopAppBean>() {
             @Override
-            public void onSuccess(List<String> msg) {
+            public void onSuccess(StopAppBean msg) {
                 view.onStopAppSuccess("");
             }
 

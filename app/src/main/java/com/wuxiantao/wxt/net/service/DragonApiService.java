@@ -13,6 +13,7 @@ import com.wuxiantao.wxt.bean.IncreaseCountBean;
 import com.wuxiantao.wxt.bean.MyIncomeBean;
 import com.wuxiantao.wxt.bean.OpenDragonBean;
 import com.wuxiantao.wxt.bean.StartExperienceBean;
+import com.wuxiantao.wxt.bean.StopAppBean;
 import com.wuxiantao.wxt.bean.TaskInfoBean;
 import com.wuxiantao.wxt.bean.VideoDoubleBean;
 import com.wuxiantao.wxt.net.base.BaseResponse;
@@ -118,7 +119,7 @@ public interface DragonApiService {
 
     @POST(ON_STOP_APP)
     @FormUrlEncoded
-    Observable<BaseResponse<List<String>>> onStopApp(@Field("token")String token);
+    Observable<BaseResponse<StopAppBean>> onStopApp(@Field("token")String token);
 
 
     @POST(GET_MY_INCOME_LIST)

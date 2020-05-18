@@ -1,11 +1,13 @@
 package com.wuxiantao.wxt.ui.activity.scrapingcard;
 
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.plattysoft.leonids.ParticleSystem;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.MyLuckyInfoBean;
@@ -19,8 +21,6 @@ import com.wuxiantao.wxt.ui.title.CNToolbar;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
-
-import me.yifeiyuan.library.PeriscopeLayout;
 
 /**
  * 点我刮卡
@@ -37,8 +37,6 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     ImageView iv_openCard;
     @ViewInject(R.id.iv_countDown)
     ImageView iv_countDown;
-    @ViewInject(R.id.periscope)
-    PeriscopeLayout periscope;
     @ViewInject(R.id.rt_pointCard)
     RelativeLayout rt_pointCard;
     private boolean isFirst = true;//是否第 一次获取进度
@@ -46,6 +44,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
     @Override
     protected void initView() {
+        setStatusBar();
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
         cntoolbar_title.setOnRightButtonClickListener(() -> $startActivity(MyBackpackActivity.class));
         setOnClikListener(iv_openCard, rt_pointCard);
@@ -53,26 +52,44 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     }
 
     private void startPlay() {
-        periscope.setVisibility(View.VISIBLE);
-        periscope.addHeart();
-
+        new ParticleSystem(PointToCardActivity.this, 1000, R.drawable.love, 3000)
+                .setSpeedModuleAndAngleRange(0.05f, 0.2f, 0, 360)
+                .setRotationSpeed(30)
+                .setAcceleration(0, 90)
+                .oneShot(iv_openCard, 200);
     }
 
+    private Handler mHandler = new Handler();
 
     private void showSuccessWindow(StartStrapingBean bean) {
         if (bean.getCode() == 2002) {//去扩容
             showOnlyConfirmDialog(bean.getMsg());
             return;
         }
-        new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
-                .setWindowData(bean.getCode() == 200 ? bean.getData().getMsg() : bean.getMsg(), bean.getData().getCard_img())
-                .setWindowAnimStyle(R.style.custom_dialog)
-                .setOnClickListener(() -> {//获取成功
+        if (bean.getCode() == 200) {
+            startPlay();
+            mHandler.postDelayed(() -> {
+                new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
+                        .setWindowData(bean.getCode() == 200 ? bean.getData().getMsg() : bean.getMsg(), bean.getData().getCard_img())
+                        .setWindowAnimStyle(R.style.custom_dialog)
+                        .setOnClickListener(() -> {//获取成功
 //                            showLoading();
 //                            mPresenter.getCard(getAppToken(), "normal");
-                        }
-                )
-                .builder().showPopupWindow();
+                                }
+                        )
+                        .builder().showPopupWindow();
+            }, 3000);
+        } else {
+            new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
+                    .setWindowData(bean.getCode() == 200 ? bean.getData().getMsg() : bean.getMsg(), bean.getData().getCard_img())
+                    .setWindowAnimStyle(R.style.custom_dialog)
+                    .setOnClickListener(() -> {//获取成功
+//                            showLoading();
+//                            mPresenter.getCard(getAppToken(), "normal");
+                            }
+                    )
+                    .builder().showPopupWindow();
+        }
     }
 
     @Override

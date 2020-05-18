@@ -1,7 +1,6 @@
 package com.wuxiantao.wxt.adapter.recview;
 
 import android.content.Context;
-import android.graphics.Color;
 
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.base.BaseViewHolder;
@@ -20,7 +19,8 @@ public class ScrapingCardFragmentTwoAdapter extends RcvBaseAdapter<ScrapingCardB
     protected void convert(BaseViewHolder holder, ScrapingCardBean bean, int position) {
         holder.setText(R.id.tv_num_title, bean.getNumTitle());
         holder.setText(R.id.sbt_finish, bean.getIsFinish() == 0 ? "去完成" : "已完成");
-        holder.setViewBackGroundColor(R.id.sbt_finish, Color.parseColor("#FA5858"));
+        holder.setViewBackGroundColor(R.id.sbt_finish, "#FA5858");
+        holder.setTextColor(R.id.sbt_finish, "#ffffff");
         holder.setViewEnabled(R.id.sbt_finish, bean.getIsFinish() == 0 ? true : false);
         holder.setViewOnClickListener(R.id.sbt_finish, v -> {
             if (listener != null) {

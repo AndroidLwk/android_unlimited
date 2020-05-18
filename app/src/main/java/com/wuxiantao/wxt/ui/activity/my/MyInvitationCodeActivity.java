@@ -5,7 +5,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.SharePicBean;
 import com.wuxiantao.wxt.imgloader.GlideImgManager;
@@ -42,6 +41,7 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
 
     @Override
     protected void initView() {
+        setStatusBar();
         mPresenter.getSharePic(getAppToken());
         setOnClikListener(mine_fansi_back, iv_invateCode);
 
@@ -100,31 +100,11 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
     @Override
     public void showShareCode(SharePicBean info) {
         tv_hearderInfo.setText(info.getNickname());
-        GlideImgManager.loadInitImg(MyInvitationCodeActivity.this, info.getHeadimg(),iv_centerherader );
+        GlideImgManager.loadRoundImg(MyInvitationCodeActivity.this, info.getHeadimg(), iv_centerherader);
         GlideImgManager.loadCircleImg(this, R.mipmap.default_user_head_img, iv_header);
         String imgUrl = info.getSrc() + getLocalUserId();
         mBitmap = QRCodeUtil.createQRCodeBitmap(imgUrl, DensityUtils.dip2px(261), DensityUtils.dip2px(261));
         iv_invateCode.setImageBitmap(mBitmap);
-//        iv_invateCode.setWillNotDraw(false);
-//        getLogo(info.getHeadimg());
-    }
-
-    private void getLogo(String imgUrl) {
-        new Thread() {
-            public void run() {
-                try {
-                    Bitmap myBitmap = Glide.with(MyInvitationCodeActivity.this)
-                            .asBitmap()
-                            .load(imgUrl)
-                            .submit(100, 100).get();
-                    Bitmap logo = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(), myBitmap.getHeight());
-                    iv_invateCode.setImageBitmap(QRCodeUtil.addLogo(mBitmap, logo));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }.start();
     }
 
     @Override

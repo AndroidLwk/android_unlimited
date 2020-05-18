@@ -17,6 +17,7 @@ import com.wuxiantao.wxt.mvp.contract.ScrapingCardFragmentContract;
 import com.wuxiantao.wxt.mvp.presenter.ScrapingCardFragmentPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
 import com.wuxiantao.wxt.ui.activity.H5GameActivity;
+import com.wuxiantao.wxt.ui.activity.HelpCenterActivity;
 import com.wuxiantao.wxt.ui.activity.MenuActivity;
 import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.activity.my.MyInvitationCodeActivity;
@@ -102,7 +103,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
     @Override
     public void initView() {
         setOnClikListener(iv_crapCard, tv_getValue_help, sbt_startHall_scrapCard, tv_heroCard_num,
-                tv_more, tv_myBag, tv_my_heroscroll);
+                tv_more, tv_myBag, tv_my_heroscroll, tv_help);
         mPresenter.getMyCardInfo(getAppToken());
         fragment_member_center_toolbar.setOnRightButtonClickListener(() -> {//交易大厅
             new TradingHallPopupWindow.Build(getContext())
@@ -148,7 +149,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
     }
 
     public void refreshData() {
-        if(mPresenter!=null){
+        if (mPresenter != null) {
             mPresenter.getMyCardInfo(getAppToken());
         }
     }
@@ -180,6 +181,9 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
                 break;
             case R.id.tv_my_heroscroll:
                 $startActivity(HeroScrollActivity.class);
+                break;
+            case R.id.tv_help:
+                $startActivity(HelpCenterActivity.class);
                 break;
         }
     }

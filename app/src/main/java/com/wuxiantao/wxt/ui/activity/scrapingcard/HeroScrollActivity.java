@@ -37,6 +37,7 @@ public class HeroScrollActivity extends MvpActivity<HeroScrollPresenter, HeroScr
 
     @Override
     protected void initView() {
+        setStatusBar();
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
         initFragment();
         initViewPager();

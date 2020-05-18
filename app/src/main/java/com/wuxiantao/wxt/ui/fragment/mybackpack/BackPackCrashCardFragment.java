@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.fragment.mybackpack;
 
+import android.content.DialogInterface;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -118,11 +119,14 @@ public class BackPackCrashCardFragment extends MvpFragment<MyBackpackPrewenter, 
 
                     @Override
                     public void discard() {
-                        mPresenter.discard(getAppToken(), myBackpackBean.getCard_id() + "", "1");
+                        showDisCardDialog("确定销毁卡片？", (dialog, which) -> mPresenter.discard(getAppToken(), myBackpackBean.getCard_id() + "", "1"));
                     }
                 })
                 .builder().showPopupWindow();
+    }
 
+    private void showDisCardDialog(String title, DialogInterface.OnClickListener listener) {
+        showDialog(title, listener);
     }
 
     private void initVerLayout(List<MyBoxInfo.ListBean> list) {
@@ -201,3 +205,4 @@ public class BackPackCrashCardFragment extends MvpFragment<MyBackpackPrewenter, 
 
     }
 }
+

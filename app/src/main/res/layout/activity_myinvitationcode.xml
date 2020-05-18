@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/color_faf6f5"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -93,13 +92,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/dp_45"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/invatecode" />
 
             <ImageView
                 android:id="@+id/iv_centerherader"
                 android:layout_width="@dimen/dp_50"
                 android:layout_height="@dimen/dp_50"
+                android:scaleType="center"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
 

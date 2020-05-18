@@ -2,6 +2,7 @@ package com.wuxiantao.wxt.mvp.presenter;
 
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.PersonalInfoBean;
+import com.wuxiantao.wxt.bean.StopAppBean;
 import com.wuxiantao.wxt.bean.TaoBaoLoginBean;
 import com.wuxiantao.wxt.mvp.contract.MyInfomationContract;
 import com.wuxiantao.wxt.mvp.model.InfomationModel;
@@ -76,9 +77,9 @@ public class InfomationPresenter extends UpLoadFilePresenter<MyInfomationContrac
         if (view == null){
             view = getMvpView();
         }
-        BaseObserver<List<String>> observer = new BaseObserver<List<String>>() {
+        BaseObserver<StopAppBean> observer = new BaseObserver<StopAppBean>() {
             @Override
-            public void onSuccess(List<String> msg) {
+            public void onSuccess(StopAppBean msg) {
                 view.onStopAppSuccess("");
             }
 

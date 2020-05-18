@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.mvp.model;
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.NetSwitchBean;
 import com.wuxiantao.wxt.bean.PersonalInfoBean;
+import com.wuxiantao.wxt.bean.StopAppBean;
 import com.wuxiantao.wxt.mvp.version.VersionModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
@@ -39,7 +40,7 @@ public class InfomationModel extends VersionModel {
                 .subscribe(observer);
     }
 
-    public void onStopApp(BaseObserver<List<String>> observer,String token){
+    public void onStopApp(BaseObserver<StopAppBean> observer, String token){
         HttpManager.newInstance()
                 .createService(DragonApiService.class)
                 .onStopApp(token)
