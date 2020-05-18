@@ -108,7 +108,7 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
     public void showShareCode(SharePicBean info) {
         tv_hearderInfo.setText(info.getNickname());
         GlideImgManager.loadRoundImg(MyInvitationCodeActivity.this, info.getHeadimg(), iv_centerherader);
-        GlideImgManager.loadCircleImg(this, R.mipmap.default_user_head_img, iv_header);
+        GlideImgManager.loadCircleImg(this, info.getHeadimg(), iv_header);
         String imgUrl = info.getSrc() + getLocalUserId();
         mBitmap = QRCodeUtil.createQRCodeBitmap(imgUrl, DensityUtils.dip2px(261), DensityUtils.dip2px(261));
         iv_invateCode.setImageBitmap(mBitmap);

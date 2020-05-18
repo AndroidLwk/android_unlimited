@@ -37,8 +37,7 @@ public class TaoBaoFeaturedVerRecViewAdapter extends RcvBaseAdapter<TaoBaoHomeBe
         String taobao = RESOURCES.getString(R.string.taobao);
         String tianmao = RESOURCES.getString(R.string.tianmao);
         holder.setTaoBaoTagText(R.id.item_taobao_featured_title,bean.getTitle(),type == 1 ? tianmao : taobao);
-        holder.setText(R.id.item_taobao_featured_buy_fanli,mContext.getString(R.string.buy_get_regx,
-                mContext.getString(R.string.buy_get),bean.getCom_rebate()));
+        holder.setText(R.id.item_taobao_featured_buy_fanli,bean.getCoupon_info());
         holder.setText(R.id.item_taobao_featured_share_fanli,mContext.getString(R.string.buy_get_regx,
                 mContext.getString(R.string.share_get),bean.getVip_rebate()));
         holder.setText(R.id.item_taobao_featured_price,bean.getZk_final_price());
@@ -55,7 +54,7 @@ public class TaoBaoFeaturedVerRecViewAdapter extends RcvBaseAdapter<TaoBaoHomeBe
         });
         boolean isReview = (boolean) SPSecuredUtils.newInstance(BaseApplication.getInstance()).get(IS_REVIEW,false);
         holder.setVisibility(R.id.item_taobao_featured_buy_fanli,isReview ? View.GONE : View.VISIBLE);
-        holder.setVisibility(R.id.item_taobao_featured_share_fanli,isReview ? View.GONE : View.VISIBLE);
+//        holder.setVisibility(R.id.item_taobao_featured_share_fanli,isReview ? View.GONE : View.VISIBLE);
     }
 
     @Override

@@ -20,7 +20,7 @@
                 android:layout_width="@dimen/dp_54"
                 android:layout_height="@dimen/dp_54"
                 android:layout_marginLeft="@dimen/dp_18"
-                android:layout_marginTop="@dimen/dp_36"
+                android:layout_marginTop="@dimen/dp_50"
                 android:src="@drawable/mine_header" />
 
             <TextView
@@ -28,9 +28,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_8"
-                android:layout_marginTop="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_55"
                 android:layout_toRightOf="@+id/iv_game_header"
-                android:text="游戏昵称: Bang!"
+                android:text="游戏昵称: 未创建角色"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_19" />
 
@@ -45,7 +45,7 @@
                 android:ellipsize="end"
                 android:maxWidth="@dimen/dp_120"
                 android:maxLines="1"
-                android:text="@string/default_area"
+                android:text="游戏所在区:无"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/sp_12"
                 app:layout_borderBottom="true"
@@ -148,7 +148,9 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_income_profit"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -214,7 +216,12 @@
                         android:text="累计收益"
                         android:textColor="@color/color_636363"
                         android:textSize="@dimen/sp_13" />
-
+                </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/ll_income_profit"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
                     <ProgressBar
                         android:id="@+id/income_hall_progress2"
                         style="?android:attr/progressBarStyleHorizontal"
@@ -229,46 +236,51 @@
                         android:max="100"
                         android:progress="0"
                         android:progressDrawable="@drawable/progressbar_bg_divided_dragon" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_current_leave"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/income_hall_progress2"
+                            android:layout_marginLeft="@dimen/dp_19"
+                            android:layout_marginTop="@dimen/dp_13"
+                            android:text="当前等级：0级"
+                            android:textColor="@color/color_999"
+                            android:textSize="@dimen/sp_12" />
 
+                        <TextView
+                            android:id="@+id/income_hall_next_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/income_hall_progress2"
+                            android:layout_alignParentRight="true"
+                            android:gravity="right"
+                            android:layout_marginTop="@dimen/dp_13"
+                            android:layout_marginRight="@dimen/dp_24"
+                            android:text="距离平台分红还差150级"
+                            android:textColor="@color/color_999"
+                            android:textSize="@dimen/sp_12" />
+                    </LinearLayout>
                     <TextView
-                        android:id="@+id/tv_current_leave"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/income_hall_progress2"
-                        android:layout_marginLeft="@dimen/dp_19"
-                        android:layout_marginTop="@dimen/dp_13"
-                        android:text="@string/game_text1"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/sp_14" />
+                        android:id="@+id/income_hall_experience"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_37"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/dp_43"
+                        android:layout_marginTop="@dimen/dp_33"
+                        android:layout_marginRight="@dimen/dp_43"
+                        android:padding="0dp"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:text="@string/click_dividend_experience"
+                        android:background="@drawable/base_title_bg_white_red_cercle_25dp"
+                        android:textSize="@dimen/sp_15"
+                        />
+                </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/income_hall_next_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/income_hall_progress2"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="@dimen/dp_13"
-                        android:layout_marginRight="@dimen/dp_24"
-                        android:text="@string/game_text2"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/sp_14" />
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/income_hall_experience"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_37"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="@dimen/dp_43"
-                    android:layout_marginTop="@dimen/dp_33"
-                    android:layout_marginRight="@dimen/dp_43"
-                    android:padding="0dp"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:text="@string/click_dividend_experience"
-                    android:background="@drawable/base_title_background_cercle_25dp"
-                    android:textSize="@dimen/sp_15"
-                    />
             </LinearLayout>
         </com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView>
 

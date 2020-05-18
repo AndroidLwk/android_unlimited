@@ -36,8 +36,7 @@ public class SearchResultRecViewAdapter extends RcvBaseAdapter<SearchResultBean.
         String taobao = mContext.getResources().getString(R.string.taobao);
         String tianmao = mContext.getResources().getString(R.string.tianmao);
         holder.setTaoBaoTagText(R.id.item_search_result_title,bean.getTitle(),user_type == 1 ? tianmao : taobao);
-        holder.setText(R.id.item_search_result_profit_buy,mContext.getString(R.string.buy_get_regx,
-                            mContext.getString(R.string.buy_get),bean.getCom_rebate()));
+        holder.setText(R.id.item_search_result_profit_buy,bean.getCoupon_info());
         holder.setText(R.id.item_search_result_profit_share,mContext.getString(R.string.buy_get_regx,
                 mContext.getString(R.string.share_get),bean.getVip_rebate()));
         holder.setText(R.id.item_search_result_price,bean.getZk_final_price());
@@ -55,7 +54,7 @@ public class SearchResultRecViewAdapter extends RcvBaseAdapter<SearchResultBean.
 
         boolean isReview = (boolean) SPSecuredUtils.newInstance(BaseApplication.getInstance()).get(IS_REVIEW,false);
         holder.setVisibility(R.id.item_search_result_profit_buy,isReview ? View.GONE : View.VISIBLE);
-        holder.setVisibility(R.id.item_search_result_profit_share,isReview ? View.GONE : View.VISIBLE);
+//        holder.setVisibility(R.id.item_search_result_profit_share,isReview ? View.GONE : View.VISIBLE);
 
     }
 

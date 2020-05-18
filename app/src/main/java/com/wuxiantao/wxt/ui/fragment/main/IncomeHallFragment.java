@@ -1,9 +1,13 @@
 package com.wuxiantao.wxt.ui.fragment.main;
 
 import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -92,6 +96,10 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     TextView tv_benefit_dayNum;
     @ViewInject(R.id.iv_game_header)
     ImageView iv_game_header;
+    @ViewInject(R.id.rl_income_profit)
+    RelativeLayout rl_income_profit;
+    @ViewInject(R.id.ll_income_profit)
+    LinearLayout ll_income_profit;
 
 
     private LoadingDialog loadingDialog;
@@ -111,20 +119,23 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
             refreshLayout.finishRefresh(REFRESH_LOAD_MORE_TIME);
         });
         mPresenter.getMyGameInfo(getAppToken());
+//        mPresenter.getMyGameInfo("o1voQ1XGQBGDT1F6UjC4xnLbFavc");
     }
-
+    private boolean fenhong = false;
     @Override
     protected void widgetClick(int id) {
         switch (id) {
             //体验分红
             case R.id.income_hall_experience:
-                loadingDialog.showLoadingDialog();
-                mPresenter.enrollBonus(getAppToken(),"4");
+                if (fenhong){
+                    loadingDialog.showLoadingDialog();
+                    mPresenter.enrollBonus(getAppToken(),"4");
+                }
                 break;
             //切换区
             case R.id.income_hall_current_area:
-                loadingDialog = createLoadingDialog();
-                mPresenter.onChangeAreaInfo(getAppToken());
+//                loadingDialog = createLoadingDialog();
+//                mPresenter.onChangeAreaInfo(getAppToken());
                 break;
         }
     }
@@ -444,6 +455,10 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
 
         //游戏等级
         int level = bean.getLevel();
+        if (level==150){
+            fenhong=true;
+            income_hall_experience.setBackground(getResources().getDrawable(R.drawable.base_title_background_cercle_25dp));
+        }
         tv_current_leave.setText(getString(R.string.game_text1,bean.getLevel()));
         //设置进度条
         income_hall_progress2.setMax(150);
@@ -466,6 +481,9 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         if (failure.equals("网络异常")){
             showDialog(R.string.not_have_game_account, R.string.now_create_account, (dialog, which)
                     -> $startActivity(H5GameActivity.class));
+            mBanner.stopAutoPlay();
+            rl_income_profit.setVisibility(View.GONE);
+            ll_income_profit.setVisibility(View.VISIBLE);
         }
     }
 
@@ -477,6 +495,9 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     public void enrollBonusSuccess(String msg) {
         loadingDialog.dismissLoadingDialog();
         showOnlyConfirmDialog(msg);
+        ll_income_profit.setVisibility(View.GONE);
+        rl_income_profit.setVisibility(View.VISIBLE);
+        mPresenter.getMyGameInfo(getAppToken());
     }
 
     @Override

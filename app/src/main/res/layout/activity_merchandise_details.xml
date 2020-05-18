@@ -118,6 +118,7 @@
                     android:id="@+id/merchandise_details_commodity_reward_layout"
                     android:layout_width="@dimen/dp_351"
                     android:layout_height="@dimen/dp_34"
+                    android:visibility="gone"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="@dimen/dp_20"
                     android:layout_below="@id/merchandise_current_price_layout"
@@ -316,6 +317,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp_2"
+                android:visibility="gone"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"

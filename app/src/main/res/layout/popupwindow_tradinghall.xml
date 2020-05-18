@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp_26"
             android:gravity="center_horizontal"
-            android:text="@string/pointtocard_text13"
+            android:text="交易大厅"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_17"
             android:textStyle="bold" />
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp_48"
-            android:layout_marginTop="@dimen/dp_49"
+            android:layout_marginTop="@dimen/dp_30"
             android:text="@string/pointtocard_text14"
             android:textColor="@color/color_333"
             android:textSize="@dimen/sp_12" />
