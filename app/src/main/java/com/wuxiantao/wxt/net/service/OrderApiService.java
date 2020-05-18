@@ -2,6 +2,7 @@ package com.wuxiantao.wxt.net.service;
 
 import com.wuxiantao.wxt.bean.AlipayBean;
 import com.wuxiantao.wxt.bean.CommodityInfoBean;
+import com.wuxiantao.wxt.bean.OrderStatusBean;
 import com.wuxiantao.wxt.bean.OrderTypeBean;
 import com.wuxiantao.wxt.bean.SelfOrderListBean;
 import com.wuxiantao.wxt.bean.TaobaoLatelyOrderBean;
@@ -10,7 +11,6 @@ import com.wuxiantao.wxt.bean.YouXuanLatelyOrderBean;
 import com.wuxiantao.wxt.bean.YouXuanOrderDetailBean;
 import com.wuxiantao.wxt.net.base.BaseResponse;
 
-import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -51,7 +51,7 @@ public interface OrderApiService {
 
     @POST(CHECK_ORDER_STATUS)
     @FormUrlEncoded
-    Observable<BaseResponse<List>> checkOrderStatus(@Field("token") String token, @Field("order_id") String order_id);
+    Observable<BaseResponse<OrderStatusBean>> checkOrderStatus(@Field("token") String token, @Field("order_id") String order_id);
 
     @POST(SELF_ORDER_LIST)
     @FormUrlEncoded

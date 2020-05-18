@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.mvp.presenter;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.AlipayBean;
 import com.wuxiantao.wxt.bean.KuorongInfoBean;
+import com.wuxiantao.wxt.bean.OrderStatusBean;
 import com.wuxiantao.wxt.bean.WeChatPayBean;
 import com.wuxiantao.wxt.mvp.contract.BackpackExpansionContract;
 import com.wuxiantao.wxt.mvp.model.BackpackExpansionModel;
@@ -91,9 +92,9 @@ public class BackpackExpansionPresenter extends BasePresenter<BackpackExpansionC
         if (view == null) {
             view = getMvpView();
         }
-        BaseObserver<List> observer = new BaseObserver<List>() {
+        BaseObserver<OrderStatusBean> observer = new BaseObserver<OrderStatusBean>() {
             @Override
-            public void onSuccess(List s) {
+            public void onSuccess(OrderStatusBean s) {
                 view.onOrderPaySuccess(RESOURCES.getString(R.string.pay_success));
             }
 

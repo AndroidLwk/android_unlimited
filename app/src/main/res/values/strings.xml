@@ -969,7 +969,7 @@
     <string name="pointtocard_text4">Great!</string>
     <string name="pointtocard_text7">领取</string>
     <string name="pointtocard_text6">观看广告可领取双倍奖励！</string>
-    <string name="pointtocard_text5">恭喜你获得%1$s！!</string>
+    <string name="pointtocard_text5">恭喜你%1$s!</string>
     <string name="pointtocard_text8">我的背包</string>
     <string name="pointtocard_text9">英雄卷轴</string>
     <string name="pointtocard_text10">点击合成</string>

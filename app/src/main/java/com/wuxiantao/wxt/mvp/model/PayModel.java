@@ -2,15 +2,14 @@ package com.wuxiantao.wxt.mvp.model;
 
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.AlipayBean;
+import com.wuxiantao.wxt.bean.OrderStatusBean;
 import com.wuxiantao.wxt.bean.WeChatPayBean;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
-import com.wuxiantao.wxt.net.service.GameApiService;
 import com.wuxiantao.wxt.net.service.OrderApiService;
 import com.wuxiantao.wxt.net.service.PayService;
 
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.http.FieldMap;
@@ -54,7 +53,7 @@ public class PayModel extends BaseModel{
      * @param token token
      * @param order_id 订单号
      */
-    public void checkOrderStatus(BaseObserver<List> observer, String token, String order_id){
+    public void checkOrderStatus(BaseObserver<OrderStatusBean> observer, String token, String order_id){
         HttpManager.newInstance()
                 .createService(OrderApiService.class)
                 .checkOrderStatus(token,order_id)

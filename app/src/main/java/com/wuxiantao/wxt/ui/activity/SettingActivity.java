@@ -108,6 +108,7 @@ public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSu
                         list.set(2, cacheBean);
                         adapter.updataList(list, 2, 1);
                     });
+                    break;
                 case 3://版本更新
                     Beta.checkUpgrade();
                     break;

@@ -2,15 +2,12 @@ package com.wuxiantao.wxt.mvp.presenter;
 
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.AlipayBean;
+import com.wuxiantao.wxt.bean.OrderStatusBean;
 import com.wuxiantao.wxt.bean.WeChatPayBean;
-import com.wuxiantao.wxt.mvp.contract.BalanceContract;
-import com.wuxiantao.wxt.mvp.contract.MyMemberContract;
 import com.wuxiantao.wxt.mvp.contract.PayContract;
-import com.wuxiantao.wxt.mvp.model.MyMemberModel;
 import com.wuxiantao.wxt.mvp.model.PayModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 
-import java.util.List;
 import java.util.Map;
 
 import static com.wuxiantao.wxt.config.Constant.RESOURCES;
@@ -70,9 +67,9 @@ public class PayPresenter extends BasePresenter<PayContract.IPayView> implements
         if (view == null) {
             view = getMvpView();
         }
-        BaseObserver<List> observer = new BaseObserver<List>() {
+        BaseObserver<OrderStatusBean> observer = new BaseObserver<OrderStatusBean>() {
             @Override
-            public void onSuccess(List s) {
+            public void onSuccess(OrderStatusBean s) {
                 view.onOrderPaySuccess(RESOURCES.getString(R.string.pay_success));
             }
             @Override

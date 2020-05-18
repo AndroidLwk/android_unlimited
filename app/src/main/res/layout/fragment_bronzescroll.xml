@@ -7,10 +7,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <com.wuxiantao.wxt.ui.custom.recyclerview.NestRecyclerView
                 android:id="@+id/recylerview_one"
@@ -23,7 +23,6 @@
                 android:id="@+id/recylerview_two"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp_12"
                 android:layout_below="@+id/recylerview_one"
                 android:layout_marginTop="@dimen/dp_20" />
         </RelativeLayout>
