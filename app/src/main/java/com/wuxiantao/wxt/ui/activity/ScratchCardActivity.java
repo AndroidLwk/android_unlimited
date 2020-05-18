@@ -22,6 +22,7 @@ import com.wuxiantao.wxt.mvp.presenter.BalanceDetailPresenter;
 import com.wuxiantao.wxt.mvp.presenter.MvpPresenter;
 import com.wuxiantao.wxt.mvp.presenter.ScratchCardDetailPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
+import com.wuxiantao.wxt.utils.StatusBarUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -57,6 +58,8 @@ public class ScratchCardActivity extends MvpActivity<ScratchCardDetailPresenter,
     @Override
     protected void initView() {
         setStatusBar();
+        StatusBarUtil.setStatusBarColor(ScratchCardActivity.this,getResources().getColor(R.color.white));
+        StatusBarUtil.setStatusBarDarkTheme(ScratchCardActivity.this,true);
         initPage();
         img_balance_details_back.setOnClickListener(v -> finish());
         mPresenter.obtainCardDetails(getAppToken(),page);

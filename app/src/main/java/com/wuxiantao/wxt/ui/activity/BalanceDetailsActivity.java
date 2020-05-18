@@ -21,6 +21,7 @@ import com.wuxiantao.wxt.mvp.presenter.BalanceDetailPresenter;
 import com.wuxiantao.wxt.mvp.presenter.MvpPresenter;
 import com.wuxiantao.wxt.mvp.presenter.PayPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
+import com.wuxiantao.wxt.utils.StatusBarUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -60,6 +61,8 @@ public class BalanceDetailsActivity extends MvpActivity<BalanceDetailPresenter, 
     @Override
     protected void initView() {
         setStatusBar();
+        StatusBarUtil.setStatusBarColor(BalanceDetailsActivity.this,getResources().getColor(R.color.white));
+        StatusBarUtil.setStatusBarDarkTheme(BalanceDetailsActivity.this,true);
         initPage();
         img_balance_details_back.setOnClickListener(v -> finish());
         mPresenter.obtainBalanceDetails(getAppToken(),page);

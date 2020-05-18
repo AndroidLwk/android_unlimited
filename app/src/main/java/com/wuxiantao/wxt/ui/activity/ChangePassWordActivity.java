@@ -12,6 +12,7 @@ import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.mvp.contract.SettingPassWordContract;
 import com.wuxiantao.wxt.mvp.presenter.SettingPassWordPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
+import com.wuxiantao.wxt.utils.StatusBarUtil;
 import com.wuxiantao.wxt.utils.ToastUtils;
 
 import org.xutils.view.annotation.ContentView;
@@ -53,6 +54,8 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
     @Override
     protected void initView() {
         setStatusBar();
+        StatusBarUtil.setStatusBarColor(ChangePassWordActivity.this,getResources().getColor(R.color.white));
+        StatusBarUtil.setStatusBarDarkTheme(ChangePassWordActivity.this,true);
         initListener();
     }
 
