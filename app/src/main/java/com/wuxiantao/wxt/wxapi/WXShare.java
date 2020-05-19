@@ -180,6 +180,47 @@ public class WXShare {
     }
 
 
+    public void shareImgMessag(boolean isTimeLine, Bitmap bMap) {
+        try {
+            if (bMap == null) {
+                return;
+            }
+            // 为保证能较为清晰的分享，先按长宽比例压缩大小，再压缩质量，直到缩略图小于32k
+            int thumb_size_height = 600;
+            int bitmapHeight = bMap.getHeight();
+            int bitmapWidth = bMap.getWidth();
+            int thumb_size_width = bitmapWidth * thumb_size_height / bitmapHeight;
+            WXImageObject object = new WXImageObject(bMap);
+            WXMediaMessage msg = new WXMediaMessage();
+            msg.mediaObject = object;
+            //msg.description = "这是图片";
+            Bitmap thumbBmp = Bitmap.createScaledBitmap(bMap, thumb_size_width, thumb_size_height, true);
+            byte[] outByteArray = WeChatImgUtils.compressImage2ByteArray(thumbBmp, true);
+            if (outByteArray.length / 1024 >= 32) {
+                ToastUtils.error(RESOURCES.getString(R.string.img_share_error_big));
+                return;
+            }
+            // 设置缩略图  NOTE: The file size should be within 32KB.
+            msg.thumbData = outByteArray;
+            SendMessageToWX.Req req = new SendMessageToWX.Req();
+            req.transaction = buildTransaction(RESOURCES.getString(R.string.img));
+            req.message = msg;
+            if (!isTimeLine) {
+                req.scene = SendMessageToWX.Req.WXSceneSession;
+            } else {
+                if (isSupportTimeLine()) {
+                    req.scene = SendMessageToWX.Req.WXSceneTimeline;
+                } else {
+                    ToastUtils.error(RESOURCES.getString(R.string.wechat_version_not_share_group));
+                    return;
+                }
+            }
+            api.sendReq(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        bMap.recycle();
+    }
 
     /**
      * 微信分享网页消息

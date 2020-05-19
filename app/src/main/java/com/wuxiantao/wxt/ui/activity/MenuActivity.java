@@ -31,6 +31,7 @@ import com.wuxiantao.wxt.broadcast.NetWorkTimeOutReceiver;
 import com.wuxiantao.wxt.mvp.contract.MenuContract;
 import com.wuxiantao.wxt.mvp.presenter.MenuPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
+import com.wuxiantao.wxt.share.WeChatShareListener;
 import com.wuxiantao.wxt.ui.custom.radiobutton.SiteImgRadioButton;
 import com.wuxiantao.wxt.ui.fragment.main.IncomeHallFragment;
 import com.wuxiantao.wxt.ui.fragment.main.TaskHallFragment;

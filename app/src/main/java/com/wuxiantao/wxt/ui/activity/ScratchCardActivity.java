@@ -50,7 +50,6 @@ public class ScratchCardActivity extends MvpActivity<ScratchCardDetailPresenter,
     SmartRefreshLayout srl_balance_details;
     @ViewInject(R.id.ch_balance_details_header)
     ClassicsHeader ch_balance_details_header;
-
     private CardDetailsRecViewAdapter adapter;
     ArrayList<ScratchCardDetailsBean.ListBean> list = new ArrayList<>();
     private int page = 1;

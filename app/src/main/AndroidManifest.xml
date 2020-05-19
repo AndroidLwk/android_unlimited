@@ -57,8 +57,7 @@
         <activity android:name=".ui.activity.scrapingcard.MyBackpackActivity" />
         <activity android:name=".ui.activity.scrapingcard.BackpackExpansionActivity"/>
         <activity
-            android:name=".ui.activity.my.MyInvitationCodeActivity"
-            android:theme="@style/AppTheme.No" />
+            android:name=".ui.activity.my.MyInvitationCodeActivity" />
         <activity android:name=".ui.activity.scrapingcard.HeroScrollActivity" />
         <!--
  <activity android:name=".ui.activity.TestTwoActivity">
