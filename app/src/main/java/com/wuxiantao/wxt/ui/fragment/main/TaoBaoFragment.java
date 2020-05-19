@@ -42,7 +42,6 @@ import static com.wuxiantao.wxt.config.Constant.IS_STARTED_LOADING;
 import static com.wuxiantao.wxt.config.Constant.MAIN_TAO_BAO_CLOSE;
 import static com.wuxiantao.wxt.config.Constant.MAIN_TAO_BAO_OPEN;
 import static com.wuxiantao.wxt.config.Constant.MAIN_TAO_BAO_REC_VIEW;
-import static com.wuxiantao.wxt.config.Constant.NEW_AWARD_STATUS;
 import static com.wuxiantao.wxt.config.Constant.TAO_BAO_FEATURED_REC_VIEW;
 import static com.wuxiantao.wxt.config.Constant.USER_HEAD_IMG;
 
@@ -86,9 +85,9 @@ public class TaoBaoFragment extends MvpFragment<TaoBaoSortPresenter, TaoBaoSortC
     public void initView() {
         //注册
         EventBus.getDefault().register(this);
-        if (getUserStatus(NEW_AWARD_STATUS) == 0 && getSPBoolean(IS_STARTED_LOADING)) {
-            showNewUserWindow();
-        }
+//        if (getUserStatus(NEW_AWARD_STATUS) == 0 && getSPBoolean(IS_STARTED_LOADING)) {
+//            showNewUserWindow();
+//        }
         mPresenter.getTaoBaoSort();
         setOnClikListener(sbt_search,fragment_tao_bao_search, fragment_tao_bao_save_money, main_taobao_topping);
         //initMvText();

@@ -4,6 +4,7 @@ import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.MySignInfo;
 import com.wuxiantao.wxt.bean.MyTaskInfoBean;
+import com.wuxiantao.wxt.bean.RandGetCardBean;
 import com.wuxiantao.wxt.bean.TaskHallBean;
 import com.wuxiantao.wxt.mvp.contract.TaskHallContract;
 import com.wuxiantao.wxt.mvp.model.TaskHallFragmentModel;
@@ -66,7 +67,6 @@ public class TaskHallPresenter extends BasePresenter<TaskHallContract.ITaskHallV
         };
         model.newestActive(observer, token, type);
     }
-
     /**
      * 签到
      */
@@ -140,5 +140,24 @@ public class TaskHallPresenter extends BasePresenter<TaskHallContract.ITaskHallV
         taskHallBean2 = new TaskHallBean(R.drawable.task_today_code, "好友互扫 上限10次");
         list.add(taskHallBean2);
         return list;
+    }
+    /**
+     * 观看视频
+     */
+    public void randGetCard(String token, String type) {
+        if (view == null) {
+            view = getMvpView();
+        }
+        BaseObserver<RandGetCardBean> observer = new BaseObserver<RandGetCardBean>() {
+            @Override
+            public void onSuccess(RandGetCardBean bean) {
+                view.randGetCardSuccess(bean.getMsg());
+            }
+            @Override
+            public void onFailure(String errorMsg) {
+                view.onFailure(errorMsg);
+            }
+        };
+        model.randGetCard(observer, token, type);
     }
 }

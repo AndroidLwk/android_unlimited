@@ -4,6 +4,7 @@ import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.MySignInfo;
 import com.wuxiantao.wxt.bean.MyTaskInfoBean;
+import com.wuxiantao.wxt.bean.RandGetCardBean;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
@@ -47,5 +48,12 @@ public class TaskHallFragmentModel extends BaseModel {
                 .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
                 .subscribe(observer);
     }
-
+    //看视频
+    public void randGetCard(BaseObserver<RandGetCardBean> observer, String token, String type) {
+        HttpManager.newInstance()
+                .createService(CommissionService.class)
+                .randGetCard(token, type)
+                .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
+                .subscribe(observer);
+    }
 }

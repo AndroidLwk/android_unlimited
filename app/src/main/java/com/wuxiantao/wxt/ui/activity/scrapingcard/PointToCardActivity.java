@@ -18,6 +18,7 @@ import com.wuxiantao.wxt.mvp.presenter.PointToCardPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
 import com.wuxiantao.wxt.ui.popupwindow.ScrapingCardSuccessPopupWindow;
 import com.wuxiantao.wxt.ui.title.CNToolbar;
+import com.wuxiantao.wxt.utils.AdUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -39,7 +40,6 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     ImageView iv_countDown;
     @ViewInject(R.id.rt_pointCard)
     RelativeLayout rt_pointCard;
-    private boolean isFirst = true;//是否第 一次获取进度
     private boolean isCountDowning;//是否正在计时
 
     @Override
@@ -72,9 +72,12 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
                 new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
                         .setWindowData(bean.getCode() == 200 ? bean.getData().getMsg() : bean.getMsg(), bean.getData().getCard_img())
                         .setWindowAnimStyle(R.style.custom_dialog)
-                        .setOnClickListener(() -> {//获取成功
-//                            showLoading();
-//                            mPresenter.getCard(getAppToken(), "normal");
+                        .setOnClickListener((status) -> {//获取成功
+                                    if (status) {
+                                        AdUtils.initRewardVideoAd(this, () -> {
+                                            mPresenter.randGetCard(getAppToken(), "1");
+                                        });
+                                    }
                                 }
                         )
                         .builder().showPopupWindow();
@@ -83,7 +86,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
             new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
                     .setWindowData(bean.getCode() == 200 ? bean.getData().getMsg() : bean.getMsg(), bean.getData().getCard_img())
                     .setWindowAnimStyle(R.style.custom_dialog)
-                    .setOnClickListener(() -> {//获取成功
+                    .setOnClickListener((s) -> {//获取成功
 //                            showLoading();
 //                            mPresenter.getCard(getAppToken(), "normal");
                             }
@@ -96,11 +99,9 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     protected void widgetClick(int id) {
         switch (id) {
             case R.id.rt_pointCard:
-                isFirst = false;
-                mPresenter.myLuckyInfo(getAppToken(), "1");
+                // mPresenter.myLuckyInfo(getAppToken(), "1");
                 break;
             case R.id.iv_openCard:
-                isFirst = false;
                 mPresenter.myLuckyInfo(getAppToken(), "1");
                 if (isCountDowning) {
                     return;
@@ -152,6 +153,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
     @Override
     public void startStrapSuccess(StartStrapingBean bean) {
+        mPresenter.myLuckyInfo(getAppToken(), "1");//每次刮刮卡成功后更新进度
         showSuccessWindow(bean);
     }
 
@@ -169,12 +171,13 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
     @Override
     public void myLuckyInfo(MyLuckyInfoBean info) {
-        if (isFirst) {
-            progress = (int) Double.parseDouble(info.getLucky_value());
-        } else {
-            progress = (int) (info.getRand() + Double.parseDouble(info.getLucky_value()));
-        }
+        progress = (int) (info.getRand() + Double.parseDouble(info.getLucky_value()));
         progress_pointtocard_a.setProgress(progress);
         tv_percent.setText(progress + "%");
+    }
+
+    @Override
+    public void randGetCardSuccess(String msg) {
+        showOnlyConfirmDialog(msg);
     }
 }

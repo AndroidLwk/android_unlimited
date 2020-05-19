@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lt_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_14"
+            android:layout_marginBottom="@dimen/dp_15"
+            android:paddingLeft="@dimen/dp_11"
+            android:paddingRight="@dimen/dp_7">
+
+            <TextView
+                android:id="@+id/tv_name_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/taskhall_text7"
+                android:textColor="@color/color_999"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/tv_bronze_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/taskhall_text11"
+                android:textColor="@color/color_999"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_scrapingcard_b"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_8"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginRight="@dimen/dp_16"
+            android:max="100"
+            android:progress="30"
+            android:progressDrawable="@drawable/progressbar_bg_divided_dragon" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/lt_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_14"
+            android:layout_marginBottom="@dimen/dp_15"
+            android:paddingLeft="@dimen/dp_11"
+            android:paddingRight="@dimen/dp_7">
+
+            <TextView
+                android:id="@+id/tv_name_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/taskhall_text7"
+                android:textColor="@color/color_999"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/tv_gold_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/taskhall_text11"
+                android:textColor="@color/color_999"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+
+        <com.wuxiantao.wxt.ui.custom.button.StateButton
+            android:id="@+id/sbt_startHall_scrapCard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_37"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dp_48"
+            android:layout_marginRight="@dimen/dp_48"
+            android:padding="0dp"
+            android:text="@string/click_dividend_experience"
+            android:textSize="@dimen/sp_15"
+            app:normalBackgroundCenterColor="#FD6F57"
+            app:normalBackgroundEndColor="#FA5858"
+            app:normalBackgroundStartColor="#FD6F57"
+            app:normalOrientation="BL_TR"
+            app:normalShapeType="LINEAR_GRADIENT"
+            app:normalTextColor="@color/white"
+            app:round="true"
+            app:unableBackgroundCenterColor="#FD6F57"
+            app:unableBackgroundEndColor="#FD6F57"
+            app:unableBackgroundStartColor="#FD6F57"
+            app:unableTextColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lt_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:paddingLeft="@dimen/dp_11"
+            android:paddingRight="@dimen/dp_7">
+
+            <TextView
+                android:id="@+id/tv_name_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/taskhall_text20"
+                android:textColor="@color/color_999"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/tv_heroCard_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/taskhall_text13"
+                android:textColor="@color/color_999"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_money"
+                android:layout_width="@dimen/dp_115"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="202.00元"
+                android:textColor="@color/color_fa5858"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/tv_day_num"
+                android:layout_width="@dimen/dp_115"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="7天"
+                android:textColor="@color/color_fa5858"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/dp_12"
+            android:paddingBottom="@dimen/dp_20">
+
+            <TextView
+                android:layout_width="@dimen/dp_115"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/taskhall_text14"
+                android:textColor="@color/color_626161"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:layout_width="@dimen/dp_115"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="@string/taskhall_text15"
+                android:textColor="@color/color_626161"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

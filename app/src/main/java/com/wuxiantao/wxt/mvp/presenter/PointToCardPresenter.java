@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.google.gson.Gson;
 import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.MyLuckyInfoBean;
+import com.wuxiantao.wxt.bean.RandGetCardBean;
 import com.wuxiantao.wxt.bean.StartStrapingBean;
 import com.wuxiantao.wxt.mvp.contract.PointToCardContract;
 import com.wuxiantao.wxt.mvp.model.PointToCardModel;
@@ -23,19 +24,6 @@ import okhttp3.Response;
 public class PointToCardPresenter extends BasePresenter<PointToCardContract> {
     private PointToCardContract view;
     private PointToCardModel model = new PointToCardModel();
-
-    /**
-     * 开始刮卡
-     *
-     * @param token
-     */
-//    public void startStraping(String token) {
-//        if (view == null) {
-//            view = getMvpView();
-//        }
-//
-//        model.startStraping(observer, token);
-//    }
     private StartStrapingBean info;
     private Activity mActivity;
 
@@ -139,5 +127,25 @@ public class PointToCardPresenter extends BasePresenter<PointToCardContract> {
             }
         };
         model.getCard(observer, token, type);
+    }
+
+    /**
+     * 观看视频
+     */
+    public void randGetCard(String token, String type) {
+        if (view == null) {
+            view = getMvpView();
+        }
+        BaseObserver<RandGetCardBean> observer = new BaseObserver<RandGetCardBean>() {
+            @Override
+            public void onSuccess(RandGetCardBean bean) {
+                view.randGetCardSuccess(bean.getMsg());
+            }
+            @Override
+            public void onFailure(String errorMsg) {
+                view.onFailure(errorMsg);
+            }
+        };
+        model.randGetCard(observer, token, type);
     }
 }
