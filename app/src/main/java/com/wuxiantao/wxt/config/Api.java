@@ -430,9 +430,11 @@ public class Api {
     public static final String USE_CARD = "Scratchcard/userCard";
     //销毁卡片
     public static final String DIS_CARD = "Scratchcard/discard";
-    //转赠刮刮卡和碎片
-    public static final String EXCHANGE = "newest/exchange";
-
+    /*转赠刮刮卡和碎片 start*/
+    public static final String EXCHANGE = "newest/exchange";//余额
+    public static final String EXCHANGE_ALIPAY = "newest/exchange";
+    public static final String EXCHANGE_WX = "newest/exchange";
+    /*转赠刮刮卡和碎片 end*/
     //生成充值订单
     public static final String CREATE_CZ_ORDER = "payment/chargeMoney";
 
@@ -450,4 +452,6 @@ public class Api {
     /*背包扩容 end*/
     // 看视频浏览商品触发Boss点击广告任务奖励
     public static final String RANDGET_CARD = "Task/randGetCard";
+    // 签到看视频双倍
+    public static final String SIGN_DOUBLE = "task/signDouble";
 }

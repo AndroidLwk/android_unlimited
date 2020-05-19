@@ -25,6 +25,16 @@ public class MyTaskInfoBean {
      */
 
     private int active_people;
+
+    public int getIs_vip() {
+        return is_vip;
+    }
+
+    public void setIs_vip(int is_vip) {
+        this.is_vip = is_vip;
+    }
+
+    private int is_vip;
     private int is_one;
     private int is_two;
     private int is_three;

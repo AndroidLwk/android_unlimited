@@ -28,20 +28,23 @@ import com.wuxiantao.wxt.bean.NetSwitchBean;
 import com.wuxiantao.wxt.bean.PersonalInfoBean;
 import com.wuxiantao.wxt.broadcast.LoginBroadcastReceiver;
 import com.wuxiantao.wxt.broadcast.NetWorkTimeOutReceiver;
+import com.wuxiantao.wxt.event.MessageEvent;
 import com.wuxiantao.wxt.mvp.contract.MenuContract;
 import com.wuxiantao.wxt.mvp.presenter.MenuPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
-import com.wuxiantao.wxt.share.WeChatShareListener;
 import com.wuxiantao.wxt.ui.custom.radiobutton.SiteImgRadioButton;
 import com.wuxiantao.wxt.ui.fragment.main.IncomeHallFragment;
-import com.wuxiantao.wxt.ui.fragment.main.TaskHallFragment;
 import com.wuxiantao.wxt.ui.fragment.main.MyDepositFragment;
 import com.wuxiantao.wxt.ui.fragment.main.ScrapingCardFragment;
 import com.wuxiantao.wxt.ui.fragment.main.TaoBaoFragment;
+import com.wuxiantao.wxt.ui.fragment.main.TaskHallFragment;
 import com.wuxiantao.wxt.ui.popupwindow.VersionUpdatePopupWindow;
 import com.wuxiantao.wxt.utils.ToastUtils;
 import com.wuxiantao.wxt.utils.VersionUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
@@ -50,6 +53,7 @@ import java.util.List;
 
 import static com.wuxiantao.wxt.config.Api.DKX_SWITCH;
 import static com.wuxiantao.wxt.config.Constant.BUY_STATUS;
+import static com.wuxiantao.wxt.config.Constant.FAIURE_POINTTOCARD_BACK;
 import static com.wuxiantao.wxt.config.Constant.GAME_ACCOUNT;
 import static com.wuxiantao.wxt.config.Constant.IS_REVIEW;
 import static com.wuxiantao.wxt.config.Constant.IS_SHOW_SAMALL_ICON;
@@ -112,6 +116,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void initView() {
+        EventBus.getDefault().register(this);
         setOnClikListener(menu_tab_high_area_checked_img);
         setStatusBar();
         boolean isReview = getSPBoolean(IS_REVIEW);
@@ -344,7 +349,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
                 }
                 break;
         }
-        mTransaction.commit();
+        mTransaction.commitAllowingStateLoss();
     }
 
     //隐藏所有fragment
@@ -409,6 +414,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
 
     @Override
     protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
         //释放百川相应的资源引用
         AlibcTradeSDK.destory();
         if (receiver != null) {
@@ -431,5 +437,14 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     @Override
     public void dismissLoading() {
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if (event.getMessage().equals(FAIURE_POINTTOCARD_BACK)) {
+            changeFragment(3, null);
+            menu_tab_income_hall.setChecked(true);
+
+        }
     }
 }

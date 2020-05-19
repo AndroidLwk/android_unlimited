@@ -113,8 +113,8 @@ public class BackpackExpansionActivity extends MvpActivity<BackpackExpansionPres
     public void showKuorongInfo(KuorongInfoBean info) {
         this.info = info;
         tv_one.setText("用户余额：￥" + info.getMoney());
-        tv_two.setText("总容量：" + info.getNow());
-        tv_three.setText("已使用：" + info.getTotal());
+        tv_two.setText("总容量：" + info.getTotal());
+        tv_three.setText("已使用：" + info.getNow());
         tv_four.setText("暂存:" + info.getStash());
         tv_five.setText("扩容价格：" + info.getPrice());
         tv_title.setText(info.getIntro().get(0).getTitle());

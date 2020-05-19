@@ -23,7 +23,7 @@ public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
         public Build(Context context) {
             super(context, R.layout.layout_popupwindow_scrapcard_success, true);
             AdUtils.initInformationInteractionAd((Activity) context, findViewById(R.id.popup_open_card_ads));
-            setOnButtonListener(R.id.popup_open_card_close, R.id.popup_open_card_confirm
+            setOnButtonListener(R.id.popup_open_card_confirm, R.id.popup_open_card_close
             );
         }
 
@@ -42,11 +42,10 @@ public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
                 setText(getString(R.string.pointtocard_text5, msg), R.id.tv_openCard_name);
                 setViewVisibility(R.id.lt_shuangbei, View.VISIBLE);
             } else {
-                setText(msg, R.id.tv_openCard_name);
+                setText("刮刮卡不足,您和以下卡片插肩而过.\n快去获取刮刮卡吧!!", R.id.tv_openCard_name);
                 setText("好遗憾!", R.id.popup_open_card_title);
                 setText("确定", R.id.popup_open_card_confirm);
                 setViewVisibility(R.id.lt_shuangbei, View.GONE);
-
             }
             if (!TextUtils.isEmpty(img)) {
                 setGlide(R.id.popup_open_card_dragon, img);
@@ -58,6 +57,7 @@ public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
             super.setPopupWindowAnimStyle(animationStyle);
             return this;
         }
+
         @Override
         public void onWindowDismiss() {
             super.onWindowDismiss();
@@ -71,7 +71,14 @@ public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
 
         @Override
         public void onClick(int viewId) {
-            listener.onConfirm(getChecked(R.id.cb_isSeeAds));
+            switch (viewId) {
+                case R.id.popup_open_card_close:
+                    dismiss();
+                    break;
+                case R.id.popup_open_card_confirm:
+                    listener.onConfirm(getChecked(R.id.cb_isSeeAds));
+                    break;
+            }
         }
 
         public interface OnClickListener {

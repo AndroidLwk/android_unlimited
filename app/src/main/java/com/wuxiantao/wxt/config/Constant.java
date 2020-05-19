@@ -22,9 +22,9 @@ public class Constant {
     //无限陶下载地址
     public static final String WUXIANTAO_URL = "https://android.myapp.com//myapp//detail.htm?apkName=com.wuxiantao.wxt&ADTAG=mobile";
     //app下载路径
-    private static  final String  PATH = "/无限淘.apk";
+    private static final String PATH = "/无限淘.apk";
     //指定apk缓存路径和文件名 默认是在SD卡中的Download文件夹
-    public static  final String APK_PATH =  Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + PATH;
+    public static final String APK_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + PATH;
 
     //文件路径 文件名
     private static final String APP_NAME = RESOURCES.getString(R.string.app_name);
@@ -155,11 +155,11 @@ public class Constant {
     //pagesize
     public static final int PAGE_SIZE = 10;
     //刷新加载时间 refresh Loadmore
-    public static final int  REFRESH_LOAD_MORE_TIME = 1000;
+    public static final int REFRESH_LOAD_MORE_TIME = 1000;
     //修改密码 跳转登陆界面时间
-    public static final int  GO_LOGIN_TIME = 5000;
+    public static final int GO_LOGIN_TIME = 5000;
     //进度条持续时间
-    public static final int  PROGRESS_DURATION = 600;
+    public static final int PROGRESS_DURATION = 600;
     //搜索关键词
     public static final String SEARCH_KEYWORD = "search_key_word";
     //邀请玛
@@ -252,9 +252,9 @@ public class Constant {
     public static final int DECIMAL_BIT = 2;
 
     //支付类型:微信支付
-    public static final int  PAY_TYPE_WX =  1;
+    public static final int PAY_TYPE_WX = 1;
     //支付类型:支付宝支付
-    public static final int  PAY_TYPE_ALI  =  2;
+    public static final int PAY_TYPE_ALI = 2;
 
     //中奖名单列表类型 0.铜钥匙  1.银钥匙 2.金钥匙
     public static final String WINNING_LIST_TYPE = "winning_list_type";
@@ -286,7 +286,7 @@ public class Constant {
     public static final String IS_ATTENTION_PUBLIC = "isAttentionPublic";
 
     //提现类型 1.红包提现  2.佣金提现
-    public static final  String MODE = "mode";
+    public static final String MODE = "mode";
 
     //公众号昵称
     public static final String PUBLIC_NICKNAME = "无限淘";
@@ -403,4 +403,6 @@ public class Constant {
     public static final String IS_STARTED_LOADING = "isStartedLoading";
     //是否设置交易密码
     public static final String IS_SETPAY_PASS = "isSetPayPassword";
+    // 刮刮卡界面没有获取到卡弹框返回
+    public static final String FAIURE_POINTTOCARD_BACK = "pointToCardFalureBack";
 }

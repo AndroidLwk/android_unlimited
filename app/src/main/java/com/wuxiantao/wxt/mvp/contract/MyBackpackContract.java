@@ -3,11 +3,11 @@ package com.wuxiantao.wxt.mvp.contract;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
-import com.wuxiantao.wxt.mvp.view.MvpView;
+import com.wuxiantao.wxt.mvp.pay.OrderPayView;
 
 import java.util.List;
 
-public interface MyBackpackContract extends MvpView {
+public interface MyBackpackContract extends OrderPayView {
     void onFailure(String msg);
 
     void exchangeSuccess();

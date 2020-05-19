@@ -81,6 +81,7 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
         mAdapter_one.setOnItemBtnClickListener(potion -> {
             switch (potion) {
                 case 0:
+                    showLoading();
                     mPresenter.taskSign(getAppToken());
                     break;
                 case 1://游戏在线5分钟
@@ -93,31 +94,30 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
         rv_task_two.setAdapter(mAdapter_two);
         mAdapter_two.setOnItemBtnClickListener(potion -> {
             switch (potion) {
-                case 5:
                 case 1:
                     MenuActivity menuActivity = (MenuActivity) getActivity();
-                    menuActivity.changeFragment(0, null);
+                    // menuActivity.changeFragment(0, null);
                     menuActivity.menu_tab_taobao.setChecked(true);
                     break;
                 case 0://
                 case 2:
-                    $startActivity(H5GameActivity.class);
-                    break;
-                case 3://点击激励视频广告
+                    //点击激励视频广告
                     AdUtils.initRewardVideoAd(getActivity(), () -> {
                         //点击广告
                         mPresenter.randGetCard(getAppToken(), "1");
                     });
                     break;
-                case 4://观看视频
+                case 3:
+                    //观看视频
                     AdUtils.initRewardVideoAd(getActivity(), () -> {
                         //点击广告
                         mPresenter.randGetCard(getAppToken(), "4");
                     });
                     break;
-                case 6:
+                case 4:
                     $startActivity(MyInvitationCodeActivity.class);
                     break;
+
             }
         });
     }
@@ -180,16 +180,15 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
 
     @Override
     public void showTaskInfo(MyTaskInfoBean info) {
+        mData_one.get(0).setTaskHallContent(info.getIs_vip() == 1 ? "签到奖励+3张刮刮卡" : "签到奖励+1张刮刮卡");
         mData_one.get(0).setIsFinish(info.getIs_sign());
         mData_one.get(1).setIsFinish(info.getIs_five());
         mData_one.get(2).setIsFinish(info.getOnline_thirty());
         mData_two.get(0).setIsFinish(info.getGame_charge());
         mData_two.get(1).setIsFinish(info.getProduct_charge());
-        mData_two.get(2).setIsFinish(info.getBoss());
-        mData_two.get(3).setIsFinish(info.getAd_click());
-        mData_two.get(4).setIsFinish(info.getVideo());
-        mData_two.get(5).setIsFinish(info.getProduct_see());
-        mData_two.get(6).setIsFinish(info.getHusao());
+        mData_two.get(2).setIsFinish(info.getAd_click());
+        mData_two.get(3).setIsFinish(info.getVideo());
+        mData_two.get(4).setIsFinish(info.getHusao());
         mAdapter_one.notifyDataSetChanged();
         mAdapter_two.notifyDataSetChanged();
         iv_box_a.setImageResource(info.getIs_one() == 0 ? R.drawable.task_baner_close : R.drawable.task_box_open);
@@ -228,6 +227,10 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
         new ScrapingCardSuccessPopupWindow.Build(getContext())
                 .setWindowData(info.getMsg(), "")
                 .setOnClickListener((s) -> {
+                    //签到双倍调接口
+                    if (s) {
+                        mPresenter.signDouble(getAppToken());
+                    }
                 })
                 .setWindowAnimStyle(R.style.custom_dialog)
                 .builder().showPopupWindow();
@@ -240,6 +243,11 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
 
     @Override
     public void randGetCardSuccess(String msg) {
+        showOnlyConfirmDialog(msg);
+    }
+
+    @Override
+    public void signDoubleSuccess(String msg) {
         showOnlyConfirmDialog(msg);
     }
 }

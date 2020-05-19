@@ -13,6 +13,7 @@ import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.MyLuckyInfoBean;
 import com.wuxiantao.wxt.bean.StartStrapingBean;
 import com.wuxiantao.wxt.count_down.CountDownCallBack;
+import com.wuxiantao.wxt.event.MessageEvent;
 import com.wuxiantao.wxt.mvp.contract.PointToCardContract;
 import com.wuxiantao.wxt.mvp.presenter.PointToCardPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
@@ -21,8 +22,11 @@ import com.wuxiantao.wxt.ui.title.CNToolbar;
 import com.wuxiantao.wxt.utils.AdUtils;
 import com.wuxiantao.wxt.utils.AudioUtils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
+
+import static com.wuxiantao.wxt.config.Constant.FAIURE_POINTTOCARD_BACK;
 
 /**
  * 点我刮卡
@@ -64,7 +68,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
     private void showSuccessWindow(StartStrapingBean bean) {
         if (bean.getCode() == 2002) {//去扩容
-            showOnlyConfirmDialog(bean.getMsg());
+            showOnlyConfirmDialog("背包容量不足,您和以下卡片失之交臂.快去扩容吧!!", (dialog, which) -> $startActivity(BackpackExpansionActivity.class));
             return;
         }
         if (bean.getCode() == 200) {
@@ -77,20 +81,20 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
                         .setOnClickListener((status) -> {//获取成功
                                     if (status) {
                                         AdUtils.initRewardVideoAd(this, () -> {
-                                            mPresenter.randGetCard(getAppToken(), "1");
+                                            mPresenter.getCard(getAppToken(), "video");
                                         });
                                     }
                                 }
                         )
                         .builder().showPopupWindow();
             }, 4000);
-        } else {
+        } else {//没的刮刮卡
             new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
                     .setWindowData(bean.getCode() == 200 ? bean.getData().getMsg() : bean.getMsg(), bean.getData().getCard_img())
                     .setWindowAnimStyle(R.style.custom_dialog)
-                    .setOnClickListener((s) -> {//获取成功
-//                            showLoading();
-//                            mPresenter.getCard(getAppToken(), "normal");
+                    .setOnClickListener((s) -> {
+                                finish();
+                                EventBus.getDefault().post(new MessageEvent(FAIURE_POINTTOCARD_BACK));
                             }
                     )
                     .builder().showPopupWindow();
@@ -174,7 +178,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
     @Override
     public void myLuckyInfo(MyLuckyInfoBean info) {
-        if (Double.parseDouble(info.getLucky_value()) == 100) {
+        if (Double.parseDouble(info.getLucky_value()) > 100) {
             progress = 100;
         } else {
             progress = (int) (info.getRand() + Double.parseDouble(info.getLucky_value()));
@@ -183,8 +187,5 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
         tv_percent.setText(progress + "%");
     }
 
-    @Override
-    public void randGetCardSuccess(String msg) {
-        showOnlyConfirmDialog(msg);
-    }
+
 }

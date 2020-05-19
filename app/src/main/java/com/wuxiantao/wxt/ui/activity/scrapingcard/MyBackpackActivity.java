@@ -13,6 +13,7 @@ import com.wuxiantao.wxt.adapter.recview.MyBoxTypeAdapter;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
+import com.wuxiantao.wxt.bean.WeChatPayBean;
 import com.wuxiantao.wxt.mvp.contract.MyBackpackContract;
 import com.wuxiantao.wxt.mvp.presenter.MyBackpackPrewenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
@@ -245,4 +246,43 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
         saveUserInfo(IS_SETPAY_PASS, info.getStatus()+"");
     }
 
+    @Override
+    public void onWeChatPay(WeChatPayBean infoBean) {
+
+    }
+
+    @Override
+    public void onAliPay(String order_id, String res) {
+
+    }
+
+    @Override
+    public void onOrderCreateFailure(String failure) {
+
+    }
+
+    @Override
+    public void onOrderPaySuccess(String msg) {
+
+    }
+
+    @Override
+    public void onOrderPayFailure(String failure) {
+
+    }
+
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPayError() {
+
+    }
+
+    @Override
+    public void onPayCancel() {
+
+    }
 }

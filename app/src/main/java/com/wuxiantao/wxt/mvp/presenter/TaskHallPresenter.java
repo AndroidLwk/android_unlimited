@@ -5,6 +5,7 @@ import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.MySignInfo;
 import com.wuxiantao.wxt.bean.MyTaskInfoBean;
 import com.wuxiantao.wxt.bean.RandGetCardBean;
+import com.wuxiantao.wxt.bean.SignDoubleBean;
 import com.wuxiantao.wxt.bean.TaskHallBean;
 import com.wuxiantao.wxt.mvp.contract.TaskHallContract;
 import com.wuxiantao.wxt.mvp.model.TaskHallFragmentModel;
@@ -67,6 +68,7 @@ public class TaskHallPresenter extends BasePresenter<TaskHallContract.ITaskHallV
         };
         model.newestActive(observer, token, type);
     }
+
     /**
      * 签到
      */
@@ -129,18 +131,15 @@ public class TaskHallPresenter extends BasePresenter<TaskHallContract.ITaskHallV
         list.add(taskHallBean2);
         taskHallBean2 = new TaskHallBean(R.drawable.task_today_home, "每日商品首次下单  +3张刮刮卡");
         list.add(taskHallBean2);
-        taskHallBean2 = new TaskHallBean(R.drawable.main_taskhall_b, "触发boss 有几率掉落刮刮卡");
-        list.add(taskHallBean2);
         taskHallBean2 = new TaskHallBean(R.drawable.task_today_video_a, "点击激励视频广告  +1张");
         list.add(taskHallBean2);
         taskHallBean2 = new TaskHallBean(R.drawable.task_today_video, "观看激励视频  必定掉率刮刮卡");
-        list.add(taskHallBean2);
-        taskHallBean2 = new TaskHallBean(R.drawable.main_taskhall_e, "浏览首页商品10分钟 有几率掉率刮刮卡");
         list.add(taskHallBean2);
         taskHallBean2 = new TaskHallBean(R.drawable.task_today_code, "好友互扫 上限10次");
         list.add(taskHallBean2);
         return list;
     }
+
     /**
      * 观看视频
      */
@@ -153,11 +152,33 @@ public class TaskHallPresenter extends BasePresenter<TaskHallContract.ITaskHallV
             public void onSuccess(RandGetCardBean bean) {
                 view.randGetCardSuccess(bean.getMsg());
             }
+
             @Override
             public void onFailure(String errorMsg) {
                 view.onFailure(errorMsg);
             }
         };
         model.randGetCard(observer, token, type);
+    }
+
+    /**
+     * 签到看视频双倍
+     */
+    public void signDouble(String token) {
+        if (view == null) {
+            view = getMvpView();
+        }
+        BaseObserver<SignDoubleBean> observer = new BaseObserver<SignDoubleBean>() {
+            @Override
+            public void onSuccess(SignDoubleBean bean) {
+                view.signDoubleSuccess(bean.getMsg());
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.onFailure(errorMsg);
+            }
+        };
+        model.signDouble(observer, token);
     }
 }

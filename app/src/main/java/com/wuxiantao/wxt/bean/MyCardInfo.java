@@ -18,6 +18,16 @@ public class MyCardInfo {
 
     private String lucky_value;
     private int unopen_card;
+
+    public int getIs_vip() {
+        return is_vip;
+    }
+
+    public void setIs_vip(int is_vip) {
+        this.is_vip = is_vip;
+    }
+
+    private int is_vip;
     private String jackpot_text;
     private int is_sign;
     private int online_award;

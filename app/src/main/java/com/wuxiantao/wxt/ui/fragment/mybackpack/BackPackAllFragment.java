@@ -15,9 +15,12 @@ import com.wuxiantao.wxt.adapter.recview.MyBackpackRecRecViewAdapter;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
+import com.wuxiantao.wxt.bean.WeChatPayBean;
 import com.wuxiantao.wxt.mvp.contract.MyBackpackContract;
 import com.wuxiantao.wxt.mvp.presenter.MyBackpackPrewenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
+import com.wuxiantao.wxt.pay.PayListener;
+import com.wuxiantao.wxt.pay.PayManager;
 import com.wuxiantao.wxt.ui.activity.ChangePassWordActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.HeroScrollActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.PointToCardActivity;
@@ -31,6 +34,8 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.List;
 
 import static com.wuxiantao.wxt.config.Constant.IS_SETPAY_PASS;
+import static com.wuxiantao.wxt.config.Constant.PAY_TYPE_ALI;
+import static com.wuxiantao.wxt.config.Constant.PAY_TYPE_WX;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
 
 /**
@@ -50,6 +55,7 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
 
     @Override
     protected void initView() {
+        PayListener.getInstance().addListener(this);
         if (getArguments() != null) {
             pid = getArguments().getInt("pid");
         }
@@ -68,6 +74,7 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
     }
 
     private MyBoxInfo.ListBean myBackpackBean;//点击事件的数据
+    private String id, pass, num;//转赠用到的传参
 
     //操作弹框
     private void showOperationDialog(MyBoxInfo.ListBean myBackpackBean) {
@@ -99,6 +106,9 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
                                         showOnlyConfirmDialog("二级密码不能为空");
                                     } else {
                                         //调接口
+                                        BackPackAllFragment.this.id = id;
+                                        BackPackAllFragment.this.pass = pass;
+                                        BackPackAllFragment.this.num = num;
                                         showLoading();
                                         mPresenter.exchange(getAppToken(), myBackpackBean.getCard_id() + "", id, pass, num);
                                     }
@@ -152,17 +162,19 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
     @Override
     public void onFailure(String msg) {
         if (msg.equals("余额不足!")) {
-            showOnlyConfirmDialog(msg + "余额不足，确定用支付宝/微信支付？", (dialog, which) -> {
+            double price = Double.parseDouble(myBackpackBean.getRate()) * Integer.parseInt(num);
+            showOnlyConfirmDialog("余额不足，确定用支付宝/微信支付？", (dialog, which) -> {
                 new OrderPayModePopupWindow.Build(getContext())
                         .setOnItemClickListener(payType -> {
                             if (payType == 1) {//支付宝
-                                // showLoading();
-                                //  mPresenter.addbox_alipay(getAppToken(), "1");
+                                showLoading();
+                                mPresenter.exchange_alipay(getAppToken(), myBackpackBean.getCard_id() + "", id, pass, num);
                             } else {
-                                //showLoading();
-                                // mPresenter.addbox_wx(getAppToken(), "2");
+                                showLoading();
+                                mPresenter.exchange_wx(getAppToken(), myBackpackBean.getCard_id() + "", id, pass, num);
                             }
                         })
+                        .setOrderPayMoney(price + "")
                         .setPopupWindowAnimStyle(R.style.custom_dialog)
                         .builder()
                         .showPopupWindow();
@@ -218,5 +230,60 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
     @Override
     public void dismissLoading() {
 
+    }
+
+    @Override
+    public void onWeChatPay(WeChatPayBean infoBean) {
+        //微信支付
+        order_sn = infoBean.getOrder_id();
+        PayManager.getInstance(getActivity()).pay(PAY_TYPE_WX, infoBean);
+    }
+
+    @Override
+    public void onAliPay(String order_id, String res) {
+        //支付宝支付
+        order_sn = order_id;
+        PayManager.getInstance(getActivity()).pay(PAY_TYPE_ALI, res);
+    }
+
+    @Override
+    public void onOrderCreateFailure(String failure) {
+        showOnlyConfirmDialog(failure);
+    }
+
+    @Override
+    public void onOrderPaySuccess(String msg) {
+        showOnlyConfirmDialog(msg, (dialog, which) -> mPresenter.myBox(getAppToken(), page, pid));
+    }
+
+    @Override
+    public void onOrderPayFailure(String failure) {
+        showOnlyConfirmDialog(failure);
+    }
+
+    //订单号
+    private String order_sn;
+
+    @Override
+    public void onPaySuccess() {
+        if (!isEmpty(order_sn)) {
+            mPresenter.checkOrderStatus(getAppToken(), order_sn);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        PayListener.getInstance().removeListener(this);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPayError() {
+        showOnlyConfirmDialog(getString(R.string.order_pay_error));
+    }
+
+    @Override
+    public void onPayCancel() {
+        showOnlyConfirmDialog(getString(R.string.order_pay_cancel));
     }
 }

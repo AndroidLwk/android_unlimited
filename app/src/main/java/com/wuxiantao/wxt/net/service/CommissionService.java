@@ -19,6 +19,7 @@ import com.wuxiantao.wxt.bean.OrderStatusBean;
 import com.wuxiantao.wxt.bean.RandGetCardBean;
 import com.wuxiantao.wxt.bean.RedBagWithdrawInfoBean;
 import com.wuxiantao.wxt.bean.SharePicBean;
+import com.wuxiantao.wxt.bean.SignDoubleBean;
 import com.wuxiantao.wxt.bean.StartStrapingBean;
 import com.wuxiantao.wxt.bean.WeChatPayBean;
 import com.wuxiantao.wxt.net.base.BaseResponse;
@@ -41,6 +42,8 @@ import static com.wuxiantao.wxt.config.Api.COMPOSE_HERO;
 import static com.wuxiantao.wxt.config.Api.DIS_CARD;
 import static com.wuxiantao.wxt.config.Api.ENROLL_BONUS;
 import static com.wuxiantao.wxt.config.Api.EXCHANGE;
+import static com.wuxiantao.wxt.config.Api.EXCHANGE_ALIPAY;
+import static com.wuxiantao.wxt.config.Api.EXCHANGE_WX;
 import static com.wuxiantao.wxt.config.Api.GET_BOXCATE;
 import static com.wuxiantao.wxt.config.Api.GET_CARD;
 import static com.wuxiantao.wxt.config.Api.GET_CHECK_IN_INFO;
@@ -57,6 +60,7 @@ import static com.wuxiantao.wxt.config.Api.MY_SCROLL;
 import static com.wuxiantao.wxt.config.Api.NEWEST_ACTIVE;
 import static com.wuxiantao.wxt.config.Api.RANDGET_CARD;
 import static com.wuxiantao.wxt.config.Api.RED_BAG_WITHDRAW;
+import static com.wuxiantao.wxt.config.Api.SIGN_DOUBLE;
 import static com.wuxiantao.wxt.config.Api.START_STRAPING;
 import static com.wuxiantao.wxt.config.Api.TASK_INFO;
 import static com.wuxiantao.wxt.config.Api.TASK_SIGN;
@@ -169,6 +173,14 @@ public interface CommissionService {
     @FormUrlEncoded
     Observable<BaseResponse<ExchangeBean>> exchange(@FieldMap Map<String, Object> map);
 
+    @POST(EXCHANGE_ALIPAY)
+    @FormUrlEncoded
+    Observable<BaseResponse<AlipayBean>> exchange_alipay(@FieldMap Map<String, Object> map);
+
+    @POST(EXCHANGE_WX)
+    @FormUrlEncoded
+    Observable<BaseResponse<WeChatPayBean>> exchange_wx(@FieldMap Map<String, Object> map);
+
     @POST(KUORONG_INFO)
     @FormUrlEncoded
     Observable<BaseResponse<KuorongInfoBean>> kuorongInfo(@Field("token") String token);
@@ -184,7 +196,12 @@ public interface CommissionService {
     @POST(ADDBOX_WX)
     @FormUrlEncoded
     Observable<BaseResponse<WeChatPayBean>> addbox_wx(@Field("token") String token, @Field("type") String type);
+
     @POST(RANDGET_CARD)
     @FormUrlEncoded
     Observable<BaseResponse<RandGetCardBean>> randGetCard(@Field("token") String token, @Field("type") String type);
+
+    @POST(SIGN_DOUBLE)
+    @FormUrlEncoded
+    Observable<BaseResponse<SignDoubleBean>> signDouble(@Field("token") String token);
 }

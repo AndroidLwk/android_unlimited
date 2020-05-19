@@ -20,7 +20,6 @@ import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
 import com.wuxiantao.wxt.ui.activity.H5GameActivity;
 import com.wuxiantao.wxt.ui.activity.HelpCenterActivity;
 import com.wuxiantao.wxt.ui.activity.MenuActivity;
-import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.activity.my.MyInvitationCodeActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.HeroScrollActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.MyBackpackActivity;
@@ -130,10 +129,8 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
                     menuActivity.menu_tab_income_hall.setChecked(true);
                     break;
                 case 1://邀请好友
-                    $startActivity(MyInvitationCodeActivity.class);
-                    break;
                 case 2://分享无限淘
-                    $startActivity(ShareThemActivity.class);
+                    $startActivity(MyInvitationCodeActivity.class);
                     break;
                 case 3://在线游戏
                     $startActivity(H5GameActivity.class);
@@ -215,6 +212,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
         mData_c.clear();
         mData_c.addAll(info.getList());
         mAdaper_c.notifyDataSetChanged();
+        mData_b.get(0).setNumTitle(info.getIs_vip() == 1 ? "任务大厅签到  +3张" : "任务大厅签到  +1张");
         mData_b.get(0).setIsFinish(info.getIs_sign());
         mData_b.get(1).setIsFinish(info.getShare());
         mData_b.get(2).setIsFinish(info.getShare_award());
