@@ -2,6 +2,7 @@ package com.wuxiantao.wxt.mvp.presenter;
 
 import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.CardInfoBean;
+import com.wuxiantao.wxt.bean.ExchangeBean;
 import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.mvp.contract.MyBackpackContract;
@@ -67,9 +68,9 @@ public class MyBackpackPrewenter extends BasePresenter<MyBackpackContract> {
         if (view == null) {
             view = getMvpView();
         }
-        BaseObserver<List> observer = new BaseObserver<List>() {
+        BaseObserver<ExchangeBean> observer = new BaseObserver<ExchangeBean>() {
             @Override
-            public void onSuccess(List list) {
+            public void onSuccess(ExchangeBean list) {
                 view.exchangeSuccess();
             }
 

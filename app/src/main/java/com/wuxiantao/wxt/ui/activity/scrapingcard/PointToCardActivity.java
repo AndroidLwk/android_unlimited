@@ -19,6 +19,7 @@ import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
 import com.wuxiantao.wxt.ui.popupwindow.ScrapingCardSuccessPopupWindow;
 import com.wuxiantao.wxt.ui.title.CNToolbar;
 import com.wuxiantao.wxt.utils.AdUtils;
+import com.wuxiantao.wxt.utils.AudioUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -52,7 +53,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     }
 
     private void startPlay() {
-        new ParticleSystem(PointToCardActivity.this, 1000, R.drawable.love, 3000)
+        new ParticleSystem(PointToCardActivity.this, 1000, R.drawable.love, 4000)
                 .setSpeedModuleAndAngleRange(0.05f, 0.2f, 0, 360)
                 .setRotationSpeed(30)
                 .setAcceleration(0, 90)
@@ -67,6 +68,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
             return;
         }
         if (bean.getCode() == 200) {
+            AudioUtils.modeIndicater(this, R.raw.didatwo);//播放音乐
             startPlay();
             mHandler.postDelayed(() -> {
                 new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
@@ -81,7 +83,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
                                 }
                         )
                         .builder().showPopupWindow();
-            }, 3000);
+            }, 4000);
         } else {
             new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
                     .setWindowData(bean.getCode() == 200 ? bean.getData().getMsg() : bean.getMsg(), bean.getData().getCard_img())
@@ -102,11 +104,12 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
                 // mPresenter.myLuckyInfo(getAppToken(), "1");
                 break;
             case R.id.iv_openCard:
-                mPresenter.myLuckyInfo(getAppToken(), "1");
+                // mPresenter.myLuckyInfo(getAppToken(), "1");
                 if (isCountDowning) {
                     return;
                 }
                 isCountDowning = true;//正在计时
+                AudioUtils.modeIndicater(this, R.raw.dida);
                 iv_countDown.setVisibility(View.VISIBLE);
                 addObserverx(6, new CountDownCallBack() {
                     @Override
@@ -171,7 +174,11 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
     @Override
     public void myLuckyInfo(MyLuckyInfoBean info) {
-        progress = (int) (info.getRand() + Double.parseDouble(info.getLucky_value()));
+        if (Double.parseDouble(info.getLucky_value()) == 100) {
+            progress = 100;
+        } else {
+            progress = (int) (info.getRand() + Double.parseDouble(info.getLucky_value()));
+        }
         progress_pointtocard_a.setProgress(progress);
         tv_percent.setText(progress + "%");
     }

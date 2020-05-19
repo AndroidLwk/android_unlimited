@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.mvp.model;
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.CardInfoBean;
+import com.wuxiantao.wxt.bean.ExchangeBean;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
@@ -48,7 +49,7 @@ public class MyBackpackModel extends SettingPassWordModel {
                 .subscribe(observer);
     }
     //转赠刮刮卡和碎片
-    public void exchange(BaseObserver<List> observer, Map<String, Object> map) {
+    public void exchange(BaseObserver<ExchangeBean> observer, Map<String, Object> map) {
         HttpManager.newInstance()
                 .createService(CommissionService.class)
                 .exchange(map)
