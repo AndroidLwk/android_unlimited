@@ -229,7 +229,9 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
                 .setOnClickListener((s) -> {
                     //签到双倍调接口
                     if (s) {
-                        mPresenter.signDouble(getAppToken());
+                        AdUtils.initRewardVideoAd(getActivity(), () -> {
+                            mPresenter.signDouble(getAppToken());
+                        });
                     }
                 })
                 .setWindowAnimStyle(R.style.custom_dialog)
