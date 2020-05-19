@@ -25,5 +25,6 @@ public interface TaskHallContract {
 
         void signSuccess(MySignInfo info);
         void getCardSuccess(String msg);
+        void randGetCardSuccess(String msg);
     }
 }

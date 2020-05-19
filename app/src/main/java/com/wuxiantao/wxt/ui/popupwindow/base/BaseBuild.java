@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -49,20 +50,20 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     //是否点击消失对话框 默认点击消失
     private boolean isClickDisappear;
 
-    public BaseBuild(Context context,@LayoutRes int layoutId){
-        this(context,layoutId,true);
+    public BaseBuild(Context context, @LayoutRes int layoutId) {
+        this(context, layoutId, true);
     }
 
-    public BaseBuild(Context context,@LayoutRes int layoutId,boolean isClickDisappear){
+    public BaseBuild(Context context, @LayoutRes int layoutId, boolean isClickDisappear) {
         this.mContext = context;
         this.mActivity = (Activity) mContext;
         this.isClickDisappear = isClickDisappear;
         init(layoutId);
     }
 
-    private void init(@LayoutRes int layoutId){
-        if (mContext != null && layoutId != 0){
-            mView = LayoutInflater.from(mContext).inflate(layoutId,null);
+    private void init(@LayoutRes int layoutId) {
+        if (mContext != null && layoutId != 0) {
+            mView = LayoutInflater.from(mContext).inflate(layoutId, null);
             //new PopupWindow
             mPopupWindow = new AbsPopupWindow(mContext);
             //设置宽度
@@ -95,11 +96,11 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     // 并且 return true,消费了点击事件,所以不会分发给设置的onkeyListner,因此设置监听无效
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK){
-            if (mOnKeyBackListener != null){
+        if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
+            if (mOnKeyBackListener != null) {
                 mOnKeyBackListener.onKeyBack();
             }
-            if (isClickDisappear){
+            if (isClickDisappear) {
                 dismiss();
             }
             return true;
@@ -110,16 +111,16 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     @Override
     public void onClick(View v) {
         onClick(v.getId());
-        if (isClickDisappear){
+        if (isClickDisappear) {
             dismiss();
         }
     }
 
     //设置setRcvConfig
-    protected <M extends RecyclerView.LayoutManager,I extends RecyclerView.ItemDecoration,
-            A extends RcvBaseAdapter>BaseBuild setRcvConfig(int viewId,M manager,I itemDecoration,A adapter){
+    protected <M extends RecyclerView.LayoutManager, I extends RecyclerView.ItemDecoration,
+            A extends RcvBaseAdapter> BaseBuild setRcvConfig(int viewId, M manager, I itemDecoration, A adapter) {
         RecyclerView rv = findViewById(viewId);
-        if (rv != null){
+        if (rv != null) {
             rv.setLayoutManager(manager);
             rv.addItemDecoration(itemDecoration);
             rv.setAdapter(adapter);
@@ -129,12 +130,12 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
 
 
     //开始倒计时
-    protected BaseBuild startCountDownTime(int viewId,long millisInFuture,OnCountDownCallBack callBack){
-        if (callBack == null){
+    protected BaseBuild startCountDownTime(int viewId, long millisInFuture, OnCountDownCallBack callBack) {
+        if (callBack == null) {
             return this;
         }
-        if (mCountdownManager == null){
-            mCountdownManager = new CountdownManager(millisInFuture,findViewById(viewId)) {
+        if (mCountdownManager == null) {
+            mCountdownManager = new CountdownManager(millisInFuture, findViewById(viewId)) {
                 @Override
                 public void onTimeOver() {
                     callBack.onTimeEnd();
@@ -145,13 +146,13 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
         return this;
     }
 
-    public interface OnCountDownCallBack{
-         void onTimeEnd();
+    public interface OnCountDownCallBack {
+        void onTimeEnd();
     }
 
     //停止倒计时
-    protected BaseBuild stopCountDownTime(){
-        if (mCountdownManager != null){
+    protected BaseBuild stopCountDownTime() {
+        if (mCountdownManager != null) {
             mCountdownManager.cancel();
             mCountdownManager = null;
         }
@@ -159,32 +160,32 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     }
 
     //返回监听
-    protected BaseBuild setOnKeyBackListener(OnKeyBackListener listener){
+    protected BaseBuild setOnKeyBackListener(OnKeyBackListener listener) {
         this.mOnKeyBackListener = listener;
         return this;
     }
 
     //显示或隐藏控件
-    protected BaseBuild setViewVisibility(int viewId,int visibility){
+    protected BaseBuild setViewVisibility(int viewId, int visibility) {
         View view = findViewById(viewId);
-        if (view != null){
+        if (view != null) {
             view.setVisibility(visibility);
         }
         return this;
     }
 
-    protected int getViewVisibility(int viewId){
+    protected int getViewVisibility(int viewId) {
         View view = findViewById(viewId);
-        if (view != null){
+        if (view != null) {
             return view.getVisibility();
         }
         return 0x00000008;
     }
 
     //设置按钮是否可点击
-    protected BaseBuild setButtonEnabled(int viewId,boolean enabled){
+    protected BaseBuild setButtonEnabled(int viewId, boolean enabled) {
         Button btn = findViewById(viewId);
-        if (btn != null){
+        if (btn != null) {
             btn.setEnabled(enabled);
         }
         return this;
@@ -198,13 +199,13 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     }
 
     //设置宽度
-    protected BaseBuild setPopupWindowWidth(int width){
+    protected BaseBuild setPopupWindowWidth(int width) {
         mPopupWindow.setWidth(width);
         return this;
     }
 
     //设置高度
-    protected BaseBuild setPopupWindowHeight(int height){
+    protected BaseBuild setPopupWindowHeight(int height) {
         mPopupWindow.setHeight(height);
         return this;
     }
@@ -228,93 +229,102 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
 //    }
 
 
-
     //获取文本内容
-    protected String getTextString(int resId){
+    protected String getTextString(int resId) {
         TextView tv = findViewById(resId);
-        if (tv != null){
+        if (tv != null) {
             String s = tv.getText().toString().trim();
             return isEmpty(s) ? "null" : s;
         }
         return "null";
     }
 
-    public String getString(@StringRes int id){
+    //获取文本内容
+    protected boolean getChecked(int resId) {
+        CheckBox cb = findViewById(resId);
+        if (cb != null) {
+            return cb.isChecked();
+        }
+        return false;
+    }
+
+    public String getString(@StringRes int id) {
         return mContext.getResources().getString(id);
     }
 
-    public String getString(@StringRes int id,Object... formatArgs){
-        return mContext.getResources().getString(id,formatArgs);
+    public String getString(@StringRes int id, Object... formatArgs) {
+        return mContext.getResources().getString(id, formatArgs);
     }
 
 
     //设置背景颜色
-    protected BaseBuild setBackgroundColor(@IdRes int viewId, @ColorInt int color){
+    protected BaseBuild setBackgroundColor(@IdRes int viewId, @ColorInt int color) {
         View view = findViewById(viewId);
-        if (view != null){
+        if (view != null) {
             view.setBackgroundColor(color);
         }
         return this;
     }
 
     //加载图片
-    protected BaseBuild setImageResource(@IdRes int viewId,@DrawableRes int resid){
+    protected BaseBuild setImageResource(@IdRes int viewId, @DrawableRes int resid) {
         ImageView img = findViewById(viewId);
-        if (img != null && resid != 0){
+        if (img != null && resid != 0) {
             img.setImageResource(resid);
         }
         return this;
     }
 
     //加载圆角矩形图片
-    protected <T>BaseBuild setRoundImageResource(@IdRes int viewId,T url){
+    protected <T> BaseBuild setRoundImageResource(@IdRes int viewId, T url) {
         ImageView img = findViewById(viewId);
-        if (img != null){
-            GlideImgManager.loadRoundImg(mContext,url,img);
+        if (img != null) {
+            GlideImgManager.loadRoundImg(mContext, url, img);
         }
         return this;
     }
 
     //加载图片
-    protected <T>BaseBuild setImageResource(@IdRes int viewId,T url,int w,int h){
+    protected <T> BaseBuild setImageResource(@IdRes int viewId, T url, int w, int h) {
         ImageView img = findViewById(viewId);
-        if (img != null){
-            GlideImgManager.loadImg(mContext,url,img,w,h);
+        if (img != null) {
+            GlideImgManager.loadImg(mContext, url, img, w, h);
         }
         return this;
     }
 
 
     //加载圆角矩形图片
-    protected <T>BaseBuild setRoundImageResource(@IdRes int viewId,float radius,T url){
+    protected <T> BaseBuild setRoundImageResource(@IdRes int viewId, float radius, T url) {
         ImageView img = findViewById(viewId);
-        if (img != null){
-            GlideImgManager.loadRoundImg(mContext,url,img,radius);
+        if (img != null) {
+            GlideImgManager.loadRoundImg(mContext, url, img, radius);
         }
         return this;
     }
 
     //加载圆形图片
-    protected <T>BaseBuild setCircleImageResource(@IdRes int viewId,T url){
+    protected <T> BaseBuild setCircleImageResource(@IdRes int viewId, T url) {
         ImageView img = findViewById(viewId);
-        if (img != null){
-            GlideImgManager.loadCircleImg(mContext,url,img);
+        if (img != null) {
+            GlideImgManager.loadCircleImg(mContext, url, img);
         }
         return this;
     }
 
     //加载圆形图片
-    protected <T>BaseBuild setCircleImageResource(@IdRes int viewId,String url){
+    protected <T> BaseBuild setCircleImageResource(@IdRes int viewId, String url) {
         ImageView img = findViewById(viewId);
-        if (img != null){
-            if (isEmpty(url)){
-                GlideImgManager.loadCircleImg(mContext,R.mipmap.default_user_head_img,img);
-            }else {
-                GlideImgManager.loadCircleImg(mContext,url,img);
+        if (img != null) {
+            if (isEmpty(url)) {
+                GlideImgManager.loadCircleImg(mContext, R.mipmap.default_user_head_img, img);
+            } else {
+                GlideImgManager.loadCircleImg(mContext, url, img);
             }
         }
         return this;
     }
+
     //为ImageView设置圆形图片
     public <T> BaseBuild setGlide(int viewId, T url) {
         ImageView img = findViewById(viewId);
@@ -325,21 +335,22 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     }
 
     //设置文本
-    protected BaseBuild setText(@StringRes int resid,@IdRes int viewId){
-        if (resid != 0){
+    protected BaseBuild setText(@StringRes int resid, @IdRes int viewId) {
+        if (resid != 0) {
             TextView tv = findViewById(viewId);
-            if (tv != null){
+            if (tv != null) {
                 tv.setText(resid);
             }
         }
 
         return this;
     }
+
     //设置文本2
-    protected BaseBuild setText(@IdRes int viewId, Spanned spanned){
-        if (viewId != 0){
+    protected BaseBuild setText(@IdRes int viewId, Spanned spanned) {
+        if (viewId != 0) {
             TextView tv = findViewById(viewId);
-            if (tv != null){
+            if (tv != null) {
                 tv.setText(spanned);
             }
         }
@@ -349,10 +360,10 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
 
 
     //设置文本
-    protected BaseBuild setText(SpannableString ss,@IdRes int viewId){
-        if (ss != null){
+    protected BaseBuild setText(SpannableString ss, @IdRes int viewId) {
+        if (ss != null) {
             TextView tv = findViewById(viewId);
-            if (tv != null){
+            if (tv != null) {
                 tv.setText(ss);
             }
         }
@@ -360,10 +371,10 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     }
 
     //设置文本
-    protected BaseBuild setText(String str,@IdRes int viewId){
-        if (!isEmpty(str)){
+    protected BaseBuild setText(String str, @IdRes int viewId) {
+        if (!isEmpty(str)) {
             TextView tv = findViewById(viewId);
-            if (tv != null){
+            if (tv != null) {
                 tv.setText(str);
             }
         }
@@ -371,10 +382,10 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     }
 
     //设置按钮文本
-    protected BaseBuild setButtonText(String str, int viewId){
-        if (!isEmpty(str)){
+    protected BaseBuild setButtonText(String str, int viewId) {
+        if (!isEmpty(str)) {
             Button btn = findViewById(viewId);
-            if (btn != null){
+            if (btn != null) {
                 btn.setText(str);
             }
         }
@@ -382,10 +393,10 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     }
 
     //设置按钮文本
-    protected BaseBuild setButtonText(@StringRes int resid,@IdRes int viewId){
-        if (resid != 0){
+    protected BaseBuild setButtonText(@StringRes int resid, @IdRes int viewId) {
+        if (resid != 0) {
             Button btn = findViewById(viewId);
-            if (btn != null){
+            if (btn != null) {
                 btn.setText(resid);
             }
         }
@@ -394,10 +405,10 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     }
 
     //设置进度条进度
-    protected BaseBuild setProgress(@IdRes int viewId,int progress){
-        if (viewId != 0){
+    protected BaseBuild setProgress(@IdRes int viewId, int progress) {
+        if (viewId != 0) {
             ProgressBar bar = findViewById(viewId);
-            if (bar != null){
+            if (bar != null) {
                 bar.setProgress(progress);
             }
         }
@@ -406,11 +417,11 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     }
 
     //设置按钮点击事件
-    protected BaseBuild setOnButtonListener(@IdRes int ...viewIds){
-        if (viewIds.length > 0){
-            for (int id : viewIds){
+    protected BaseBuild setOnButtonListener(@IdRes int... viewIds) {
+        if (viewIds.length > 0) {
+            for (int id : viewIds) {
                 View view = findViewById(id);
-                if (view != null){
+                if (view != null) {
                     view.setOnClickListener(this);
                 }
             }
@@ -420,22 +431,20 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     }
 
 
-
-
     //findview
-    protected <T extends View> T findViewById(@IdRes int viewId){
-        if (viewId != 0 && mView != null){
+    protected <T extends View> T findViewById(@IdRes int viewId) {
+        if (viewId != 0 && mView != null) {
             return (T) mView.findViewById(viewId);
         }
-       return null;
+        return null;
     }
 
-    protected boolean isEmpty(String str){
+    protected boolean isEmpty(String str) {
         return str == null || TextUtils.isEmpty(str);
     }
 
-    protected boolean isEmpty(String ...str){
-        if (str.length <= 0){
+    protected boolean isEmpty(String... str) {
+        if (str.length <= 0) {
             return false;
         }
         for (String s : str) {
@@ -446,8 +455,8 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
         return false;
     }
 
-    protected void dismiss(){
-        if (mPopupWindow != null && mPopupWindow.isShowing()){
+    protected void dismiss() {
+        if (mPopupWindow != null && mPopupWindow.isShowing()) {
             stopCountDownTime();
             mPopupWindow.dismiss();
             backGroundAlpha(1.0f);
@@ -456,7 +465,7 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
     }
 
     //设置背景透明度
-    private void backGroundAlpha(float bgAlpha){
+    private void backGroundAlpha(float bgAlpha) {
         WindowManager.LayoutParams wl = mActivity.getWindow().getAttributes();
         // 0.0 - 1.0
         wl.alpha = bgAlpha;
@@ -464,10 +473,11 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
         mActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
     }
 
-    public interface OnKeyBackListener{
+    public interface OnKeyBackListener {
         void onKeyBack();
     }
 
     public abstract BasePopupWindow builder();
+
     public abstract void onClick(int viewId);
 }

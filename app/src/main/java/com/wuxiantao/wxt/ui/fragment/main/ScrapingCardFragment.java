@@ -229,6 +229,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
 
     @Override
     public void enrollBonusSuccess(String msg) {
+        mPresenter.getMyCardInfo(getAppToken());
         showOnlyConfirmDialog(msg);
     }
 

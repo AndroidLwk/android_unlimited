@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.ui.popupwindow;
 import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.ui.popupwindow.base.BaseBuild;
@@ -21,9 +22,9 @@ public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
 
         public Build(Context context) {
             super(context, R.layout.layout_popupwindow_scrapcard_success, true);
+            AdUtils.initInformationInteractionAd((Activity) context, findViewById(R.id.popup_open_card_ads));
             setOnButtonListener(R.id.popup_open_card_close, R.id.popup_open_card_confirm
             );
-            AdUtils.initInformationInteractionAd((Activity) context, findViewById(R.id.popup_open_card_ads));
         }
 
         private ScrapingCardSuccessPopupWindow.Build.OnClickListener listener;
@@ -37,11 +38,15 @@ public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
             if (isEmpty(msg)) {
                 return this;
             }
-            if (msg.contains("成功")||msg.contains("签到")) {
+            if (msg.contains("成功") || msg.contains("签到")) {
                 setText(getString(R.string.pointtocard_text5, msg), R.id.tv_openCard_name);
+                setViewVisibility(R.id.lt_shuangbei, View.VISIBLE);
             } else {
                 setText(msg, R.id.tv_openCard_name);
                 setText("好遗憾!", R.id.popup_open_card_title);
+                setText("确定", R.id.popup_open_card_confirm);
+                setViewVisibility(R.id.lt_shuangbei, View.GONE);
+
             }
             if (!TextUtils.isEmpty(img)) {
                 setGlide(R.id.popup_open_card_dragon, img);
@@ -53,7 +58,6 @@ public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
             super.setPopupWindowAnimStyle(animationStyle);
             return this;
         }
-
         @Override
         public void onWindowDismiss() {
             super.onWindowDismiss();
@@ -67,11 +71,11 @@ public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
 
         @Override
         public void onClick(int viewId) {
-            listener.onConfirm();
+            listener.onConfirm(getChecked(R.id.cb_isSeeAds));
         }
 
         public interface OnClickListener {
-            void onConfirm();
+            void onConfirm(boolean checkboxStatus);
         }
     }
 

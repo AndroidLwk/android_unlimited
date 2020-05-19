@@ -19,9 +19,9 @@ import com.wuxiantao.wxt.mvp.contract.MyBackpackContract;
 import com.wuxiantao.wxt.mvp.presenter.MyBackpackPrewenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
 import com.wuxiantao.wxt.ui.activity.ChangePassWordActivity;
-import com.wuxiantao.wxt.ui.activity.PayActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.HeroScrollActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.PointToCardActivity;
+import com.wuxiantao.wxt.ui.popupwindow.OrderPayModePopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.PackOperationPopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.TransferScratchCardPopupWindow;
 
@@ -108,7 +108,12 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
 
                     @Override
                     public void carUse() {
-                        mPresenter.useCard(getAppToken(), myBackpackBean.getCard_id() + "", "1");
+                        if (myBackpackBean.getPid() == 2) {//皮肤卡使用
+                            $startActivity(KF5ChatActivity.class);
+                            mPresenter.myBox(getAppToken(), page, pid);
+                        } else {//现金卡使用
+                            mPresenter.useCard(getAppToken(), myBackpackBean.getCard_id() + "", "1");
+                        }
                     }
 
                     @Override
@@ -147,7 +152,21 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
     @Override
     public void onFailure(String msg) {
         if (msg.equals("余额不足!")) {
-            showOnlyConfirmDialog(msg + "前往充值？", (dialog, which) -> $startActivity(PayActivity.class));
+            showOnlyConfirmDialog(msg + "余额不足，确定用支付宝/微信支付？", (dialog, which) -> {
+                new OrderPayModePopupWindow.Build(getContext())
+                        .setOnItemClickListener(payType -> {
+                            if (payType == 1) {//支付宝
+                                // showLoading();
+                                //  mPresenter.addbox_alipay(getAppToken(), "1");
+                            } else {
+                                //showLoading();
+                                // mPresenter.addbox_wx(getAppToken(), "2");
+                            }
+                        })
+                        .setPopupWindowAnimStyle(R.style.custom_dialog)
+                        .builder()
+                        .showPopupWindow();
+            });
             return;
         }
         showOnlyConfirmDialog(msg);
@@ -161,12 +180,8 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
 
     @Override
     public void useCardSuccess(String msg) {
-        if (myBackpackBean.getPid() == 2) {//皮肤卡使用
-            $startActivity(KF5ChatActivity.class);
-            mPresenter.myBox(getAppToken(), page, pid);
-        } else {//现金卡使用
-            getActivity().finish();
-        }
+        mPresenter.myBox(getAppToken(), page, pid);
+        showOnlyConfirmDialog(msg);
     }
 
     @Override

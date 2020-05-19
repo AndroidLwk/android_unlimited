@@ -20,14 +20,18 @@ public class ScrapingCardFragmentThreeAdapter extends RcvBaseAdapter<MyCardInfo.
         holder.setVisibility(R.id.lt_one, View.GONE);
         holder.setVisibility(R.id.lt_two, View.GONE);
         holder.setVisibility(R.id.lt_three, View.GONE);
+        holder.setVisibility(R.id.sbt_startHall_scrapCard, bean.getCard() == 0 ? View.VISIBLE : View.GONE);
         holder.setVisibility(R.id.lt_three, bean.getStatus() == 1 ? View.VISIBLE : View.GONE);
         if (bean.getStatus() == 0) {
-            if (bean.getCard_all() <= bean.getCard()) {
-                holder.setVisibility(R.id.lt_one, View.GONE);
+            if (bean.getCard_cha() <= bean.getCard_all()) {
+                holder.setVisibility(R.id.lt_one, View.VISIBLE);
             } else {
-                holder.setVisibility(R.id.lt_two, View.VISIBLE);
+                holder.setVisibility(R.id.lt_two, View.GONE);
             }
         }
+        holder.setText(R.id.tv_name_one, bean.getName());
+        holder.setText(R.id.tv_name_two, bean.getName());
+        holder.setText(R.id.tv_name_three, bean.getName());
         holder.setText(R.id.tv_money, bean.getMoney() + "元");
         holder.setText(R.id.tv_day_num, bean.getDay() + "天");
         holder.setText(R.id.tv_bronze_num, "距离平台分红还差" + bean.getCard_cha() + "张");

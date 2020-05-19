@@ -103,11 +103,16 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
                 case 2:
                     $startActivity(H5GameActivity.class);
                     break;
-                case 3:
-                case 4:
-
+                case 3://点击激励视频广告
                     AdUtils.initRewardVideoAd(getActivity(), () -> {
                         //点击广告
+                        mPresenter.randGetCard(getAppToken(), "1");
+                    });
+                    break;
+                case 4://观看视频
+                    AdUtils.initRewardVideoAd(getActivity(), () -> {
+                        //点击广告
+                        mPresenter.randGetCard(getAppToken(), "4");
                     });
                     break;
                 case 6:
@@ -211,7 +216,8 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
         new ScrapingCardSuccessPopupWindow.Build(getContext())
                 .setWindowData("1张刮刮卡", "")
                 .setWindowAnimStyle(R.style.custom_dialog)
-                .setOnClickListener(() -> {})
+                .setOnClickListener((s) -> {
+                })
                 .builder().showPopupWindow();
 
     }
@@ -221,13 +227,19 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
         mPresenter.getTaskInfo(getAppToken());
         new ScrapingCardSuccessPopupWindow.Build(getContext())
                 .setWindowData(info.getMsg(), "")
-                .setOnClickListener(() -> {})
+                .setOnClickListener((s) -> {
+                })
                 .setWindowAnimStyle(R.style.custom_dialog)
                 .builder().showPopupWindow();
     }
 
     @Override
     public void getCardSuccess(String msg) {//获取成功后提示
+        showOnlyConfirmDialog(msg);
+    }
+
+    @Override
+    public void randGetCardSuccess(String msg) {
         showOnlyConfirmDialog(msg);
     }
 }

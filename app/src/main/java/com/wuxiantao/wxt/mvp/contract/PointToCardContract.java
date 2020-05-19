@@ -13,4 +13,5 @@ public interface PointToCardContract extends MvpView {
     void onFailure(String msg);
 
     void myLuckyInfo(MyLuckyInfoBean info);
+    void randGetCardSuccess(String msg);
 }
