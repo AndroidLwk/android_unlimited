@@ -7,6 +7,7 @@ import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.CheckInInfoBean;
 import com.wuxiantao.wxt.bean.CommissionWithdrawInfoBean;
 import com.wuxiantao.wxt.bean.ComposeHeroBean;
+import com.wuxiantao.wxt.bean.ExchangeBean;
 import com.wuxiantao.wxt.bean.KuorongInfoBean;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.bean.MyCardInfo;
@@ -166,7 +167,7 @@ public interface CommissionService {
 
     @POST(EXCHANGE)
     @FormUrlEncoded
-    Observable<BaseResponse<List>> exchange(@FieldMap Map<String, Object> map);
+    Observable<BaseResponse<ExchangeBean>> exchange(@FieldMap Map<String, Object> map);
 
     @POST(KUORONG_INFO)
     @FormUrlEncoded
