@@ -18,6 +18,7 @@ import com.wuxiantao.wxt.bean.MyTaskInfoBean;
 import com.wuxiantao.wxt.bean.OrderStatusBean;
 import com.wuxiantao.wxt.bean.RandGetCardBean;
 import com.wuxiantao.wxt.bean.RedBagWithdrawInfoBean;
+import com.wuxiantao.wxt.bean.ShareAdBean;
 import com.wuxiantao.wxt.bean.SharePicBean;
 import com.wuxiantao.wxt.bean.SignDoubleBean;
 import com.wuxiantao.wxt.bean.StartStrapingBean;
@@ -60,6 +61,7 @@ import static com.wuxiantao.wxt.config.Api.MY_SCROLL;
 import static com.wuxiantao.wxt.config.Api.NEWEST_ACTIVE;
 import static com.wuxiantao.wxt.config.Api.RANDGET_CARD;
 import static com.wuxiantao.wxt.config.Api.RED_BAG_WITHDRAW;
+import static com.wuxiantao.wxt.config.Api.SHARE_SUCCEED;
 import static com.wuxiantao.wxt.config.Api.SIGN_DOUBLE;
 import static com.wuxiantao.wxt.config.Api.START_STRAPING;
 import static com.wuxiantao.wxt.config.Api.TASK_INFO;
@@ -148,6 +150,10 @@ public interface CommissionService {
     @POST(GET_SHAREPIC)
     @FormUrlEncoded
     Observable<BaseResponse<SharePicBean>> getSharePic(@Field("token") String token);
+
+    @POST(SHARE_SUCCEED)
+    @FormUrlEncoded  //分享成功调用接口
+    Observable<BaseResponse<ShareAdBean>> getShareAward(@Field("token") String token);
 
     @POST(GET_BOXCATE)
     @FormUrlEncoded

@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.ui.fragment.main;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;

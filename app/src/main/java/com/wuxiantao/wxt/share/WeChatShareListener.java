@@ -38,7 +38,6 @@ public class WeChatShareListener {
         return instance;
     }
 
-
     public void addListener(WeChatShareResultListener listener) {
         if (!resultList.contains(listener)) {
             resultList.add(listener);

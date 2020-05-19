@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
+import com.wuxiantao.wxt.bean.ShareAdBean;
 import com.wuxiantao.wxt.bean.SharePicBean;
 import com.wuxiantao.wxt.mvp.contract.MyInvitationContract;
 import com.wuxiantao.wxt.mvp.model.MyInvitationCodeModel;
@@ -29,5 +30,24 @@ public class MyInvitationPresenter extends BasePresenter<MyInvitationContract> {
             }
         };
         model.getSharePic(observer, token);
+    }
+    //分享奖励
+    public void getShareAward(String token) {
+        if (view == null) {
+            view = getMvpView();
+        }
+        BaseObserver<ShareAdBean> observer = new BaseObserver<ShareAdBean>() {
+            @Override
+            public void onSuccess(ShareAdBean bean) {
+                view.shareSucceed(bean);
+
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.onShareFailure(errorMsg);
+            }
+        };
+        model.getShareAward(observer, token);
     }
 }

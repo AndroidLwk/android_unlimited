@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wuxiantao.wxt.R;
+import com.wuxiantao.wxt.bean.ShareAdBean;
 import com.wuxiantao.wxt.bean.SharePicBean;
 import com.wuxiantao.wxt.imgloader.GlideImgManager;
 import com.wuxiantao.wxt.mvp.contract.MyInvitationContract;
@@ -90,7 +91,6 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
     protected void widgetClick(int id) {
         switch (id) {
             case R.id.mine_fansi_back:
-//                back();
                 finish();
             case R.id.img_invateCode_share:
                 runOnUiThread(() -> showSharePosterWindow(mBitmap));
@@ -135,22 +135,31 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
 //        finish();
     }
 
+    @Override
+    public void shareSucceed(ShareAdBean bean) {
+        if (bean.getNum()==1){
+            showOnlyConfirmDialog("恭喜获得1张刮刮卡！");
+        }
+    }
 
     @Override
-    public void onShareSuccess() {
-        showOnlyConfirmDialog("分享成功！");
-        Log.e("33333333", "onShareSuccess: 分享成功");
+    public void onShareFailure(String msg) {
+
+    }
+
+
+    @Override
+    public void onShareSuccess() { //分享成功
+        mPresenter.getShareAward(getAppToken());
     }
 
     @Override
     public void onShareError() {
         showOnlyConfirmDialog("分享失败！");
-        Log.e("33333333", "onShareSuccess: 分享失败");
     }
 
     @Override
     public void onShareCancel() {
         showOnlyConfirmDialog("分享取消！");
-        Log.e("33333333", "onShareSuccess: 分享取消");
     }
 }
