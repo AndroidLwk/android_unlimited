@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.net.service;
 import com.wuxiantao.wxt.bean.BalanceBean;
 import com.wuxiantao.wxt.bean.HandValueBean;
 import com.wuxiantao.wxt.bean.IsSetPayPassword;
+import com.wuxiantao.wxt.bean.ListNullBean;
 import com.wuxiantao.wxt.bean.MyDepositBean;
 import com.wuxiantao.wxt.bean.OnLineServiceBean;
 import com.wuxiantao.wxt.bean.PersonalInfoBean;
@@ -94,5 +95,5 @@ public interface UserApiService {
 
     @POST(SET_CHANGE_PAY_PWD)
     @FormUrlEncoded     //设置或修改交易密码
-    Observable<BaseResponse<List>> setUserPayPassword(@FieldMap Map<String,Object> parameters);
+    Observable<BaseResponse<ListNullBean>> setUserPayPassword(@FieldMap Map<String,Object> parameters);
 }

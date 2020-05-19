@@ -2,6 +2,7 @@ package com.wuxiantao.wxt.mvp.presenter;
 
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.IsSetPayPassword;
+import com.wuxiantao.wxt.bean.ListNullBean;
 import com.wuxiantao.wxt.mvp.contract.SettingPassWordContract;
 import com.wuxiantao.wxt.mvp.model.SettingPassWordModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
@@ -50,10 +51,10 @@ public class SettingPassWordPresenter extends BasePresenter<SettingPassWordContr
         if (view == null){
             view = getMvpView();
         }
-        BaseObserver<List> observer = new BaseObserver<List>(view) {
+        BaseObserver<ListNullBean> observer = new BaseObserver<ListNullBean>(view) {
 
             @Override
-            public void onSuccess(List list) {
+            public void onSuccess(ListNullBean list) {
                 view.setPayPasswordSuccess("密码修改成功！");
             }
 

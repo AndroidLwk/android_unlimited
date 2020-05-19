@@ -294,6 +294,11 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
         } else {
             employedAdapter.updataList(bean.getList());
         }
+        if (bean.getList().size()==0){
+            self_employed_ver_rv.setVisibility(View.GONE);
+        }else {
+            self_employed_ver_rv.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

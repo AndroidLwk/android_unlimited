@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.ui.activity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,7 +45,7 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
     TextView change_password_title;
 
     private int status = 0;
-    private int type = 1;
+    private int type = 1;   //1设置2修改
 
     @Override
     protected SettingPassWordPresenter CreatePresenter() {
@@ -72,8 +73,8 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
                 ToastUtils.showToast("两次密码不一致");
             } else {
                 HashMap<String, Object> map = new HashMap<>();
-//                map.put("token","o1voQ1XGQBGDT1F6UjC4xnLbFavc");
-                map.put("token", getAppToken());
+                map.put("token","o1voQ1XGQBGDT1F6UjC4xnLbFavc");
+//                map.put("token", getAppToken());
                 map.put("type", type);
                 map.put("old_password", change_password_old_input.getText().toString());
                 map.put("pay_password", change_password_new_input.getText().toString());
@@ -98,12 +99,10 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
     }
-
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
 
     }
-
     @Override
     public void afterTextChanged(Editable s) {
 
@@ -111,12 +110,10 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
 
     @Override
     public void setPassWordsSuccess(String msg) {
-
     }
 
     @Override
     public void setPassWordsFailure(String failure) {
-
     }
 
     //设置交易密码成功
@@ -131,7 +128,8 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
     //设置交易密码失败
     @Override
     public void setPayPasswordFailure(String failure) {
-        ToastUtils.showToast(failure);
+
+        showOnlyConfirmDialog(failure);
     }
 
     //获取是否设置交易密码成功
@@ -147,6 +145,10 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
             change_password_title.setText("设置密码");
             change_password_old_input.setVisibility(View.GONE);
         }
+//        status=0;
+//        type = 1;
+//        change_password_title.setText("设置密码");
+//        change_password_old_input.setVisibility(View.GONE);
     }
 
     //获取是否设置交易密码失败

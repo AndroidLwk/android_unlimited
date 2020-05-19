@@ -2,6 +2,7 @@ package com.wuxiantao.wxt.mvp.model;
 
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.IsSetPayPassword;
+import com.wuxiantao.wxt.bean.ListNullBean;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
@@ -27,7 +28,7 @@ public class SettingPassWordModel extends BaseModel{
                 .subscribe(observer);
     }
     //调用设置支付密码
-    public void setUserPayPassword(Map<String,Object> parameters, BaseObserver<List> observer){
+    public void setUserPayPassword(Map<String,Object> parameters, BaseObserver<ListNullBean> observer){
         HttpManager.newInstance()
                 .createService(UserApiService.class)
                 .setUserPayPassword(parameters)
