@@ -88,8 +88,8 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
         loadingDialog = new LoadingDialog.Build(this).build();
         mPresenter.obtainFansiHeadInfo(getAppToken());
 
-        //        parameters.put(TOKEN,getAppToken());
-        parameters.put(TOKEN,"o1voQ1Xik7iCxobahGFXoBpi1KS8");
+        parameters.put(TOKEN,getAppToken());
+//        parameters.put(TOKEN,"o1voQ1Xik7iCxobahGFXoBpi1KS8");
         parameters.put("page","1");
         parameters.put("pagesize",PAGE_SIZE);
         parameters.put("type",FANSI_TYPE_POTENTIAL);

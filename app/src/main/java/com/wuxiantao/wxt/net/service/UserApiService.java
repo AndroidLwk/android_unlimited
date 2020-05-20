@@ -63,7 +63,7 @@ public interface UserApiService {
 
     @POST(SET_USER_PASS_WORD)
     @FormUrlEncoded
-    Observable<BaseResponse<List>> setUserLoginPassWord(@Field("token") String token,
+    Observable<BaseResponse<ListNullBean>> setUserLoginPassWord(@Field("token") String token,
                                                         @Field("password_old") String password_old,
                                                         @Field("password_new") String password_new);
 

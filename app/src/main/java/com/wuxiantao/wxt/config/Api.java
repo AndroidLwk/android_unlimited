@@ -78,6 +78,9 @@ public class Api {
     //刮刮卡明细
     public static final String SCRATCH_CARD_DETAIL = "newest/ggkDetail";
 
+    //互扫奖励
+    public static final String SCAN_HELP = "news/help";
+
     //提现记录 withdraw
     public static final String WITHDRAW_RECORDING = "user/tixianlog";
 

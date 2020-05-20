@@ -4,6 +4,7 @@ import com.wuxiantao.wxt.bean.BalanceDetailBean;
 import com.wuxiantao.wxt.bean.HandValueRecordingBean;
 import com.wuxiantao.wxt.bean.LeaderboardBean;
 import com.wuxiantao.wxt.bean.LogRecordingBean;
+import com.wuxiantao.wxt.bean.ScanBean;
 import com.wuxiantao.wxt.bean.ScratchCardDetailsBean;
 import com.wuxiantao.wxt.bean.TotalDepositBean;
 import com.wuxiantao.wxt.bean.WithdrawRecordingBean;
@@ -18,6 +19,7 @@ import static com.wuxiantao.wxt.config.Api.BALANCE_DETAIL;
 import static com.wuxiantao.wxt.config.Api.DEPOSIT_DETAIL;
 import static com.wuxiantao.wxt.config.Api.HAND_VALUE_RECORDING;
 import static com.wuxiantao.wxt.config.Api.LEADERBOARD_RECORDING;
+import static com.wuxiantao.wxt.config.Api.SCAN_HELP;
 import static com.wuxiantao.wxt.config.Api.SCRATCH_CARD_DETAIL;
 import static com.wuxiantao.wxt.config.Api.SUPER_LOG_RECORDING;
 import static com.wuxiantao.wxt.config.Api.WITHDRAW_RECORDING;
@@ -43,6 +45,11 @@ public interface RecordingApiService {
     Observable<BaseResponse<ScratchCardDetailsBean>> obtainCardDetails(@Field("token") String token,
                                                                        @Field("page") int page,
                                                                        @Field("pagesize") int pagesize);
+
+    @POST(SCAN_HELP)
+    @FormUrlEncoded //互扫奖励
+    Observable<BaseResponse<ScanBean>> scanAward(@Field("token") String token,
+                                                 @Field("pid") String pid);
 
     @POST(WITHDRAW_RECORDING)
     @FormUrlEncoded

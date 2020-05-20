@@ -70,6 +70,12 @@ public class BackPackTemapFragment extends MvpFragment<MyBackpackPrewenter, MyBa
         mPresenter.myBox(getAppToken(), page, pid);
     }
 
+    public void refreshData() {
+        if (mPresenter != null) {
+            mPresenter.myBox(getAppToken(), 1, pid);
+        }
+    }
+
     private MyBoxInfo.ListBean myBackpackBean;//点击事件的数据
     private String id, pass, num;//转赠用到的传参
 

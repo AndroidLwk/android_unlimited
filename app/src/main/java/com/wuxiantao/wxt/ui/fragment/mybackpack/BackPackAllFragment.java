@@ -158,6 +158,11 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
             mAdapter.addList(list == null ? null : list, page);
         }
     }
+    public void refreshData() {
+        if (mPresenter != null) {
+            mPresenter.myBox(getAppToken(), 1, pid);
+        }
+    }
 
     @Override
     public void onFailure(String msg) {

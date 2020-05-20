@@ -47,6 +47,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     RelativeLayout rt_pointCard;
     private boolean isCountDowning;//是否正在计时
 
+    private int isClick=0;
     @Override
     protected void initView() {
         setStatusBar();
@@ -108,6 +109,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
                 // mPresenter.myLuckyInfo(getAppToken(), "1");
                 break;
             case R.id.iv_openCard:
+                ++isClick;
                 // mPresenter.myLuckyInfo(getAppToken(), "1");
                 if (isCountDowning) {
                     return;
@@ -118,13 +120,13 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
                 addObserverx(6, new CountDownCallBack() {
                     @Override
                     public void onNext(Long time) {
-                        if (time == 1) {
+                        if (time == 2) {
                             iv_countDown.setImageResource(R.drawable.pointtocard_countdown_one);
-                        } else if (time == 2) {
-                            iv_countDown.setImageResource(R.drawable.pointtocard_countdown_two);
                         } else if (time == 3) {
-                            iv_countDown.setImageResource(R.drawable.pointtocard_countdown_three);
+                            iv_countDown.setImageResource(R.drawable.pointtocard_countdown_two);
                         } else if (time == 4) {
+                            iv_countDown.setImageResource(R.drawable.pointtocard_countdown_three);
+                        } else if (time == 5) {
                             iv_countDown.setImageResource(R.drawable.pointtocard_countdown_four);
                         } else {
                             iv_countDown.setImageResource(R.drawable.pointtocard_countdown_five);
@@ -133,9 +135,26 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
                     @Override
                     public void onComplete() {//计时完成
-                        isCountDowning = false;
-                        mPresenter.startStraping(getAppToken());
+                        if (isClick>0){
+                            //狂点
+                            mPresenter.startStraping(getAppToken(),"yes");
+                        }else {
+                            //没狂点
+                            mPresenter.startStraping(getAppToken(),"no");
+                        }
+                        isClick=0;
                         iv_countDown.setVisibility(View.GONE);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(1000);
+                                    isCountDowning = false;
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
                     }
                 });
                 break;

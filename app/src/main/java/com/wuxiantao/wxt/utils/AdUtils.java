@@ -89,8 +89,7 @@ public class AdUtils {
             //视频广告加载后，视频资源缓存到本地的回调，在此回调后，播放本地视频，流畅不阻塞。
             @Override
             public void onRewardVideoCached() {
-                ToastUtils.error("视频看完了哈");
-
+//                ToastUtils.error("视频看完了哈");
             }
         });
     }

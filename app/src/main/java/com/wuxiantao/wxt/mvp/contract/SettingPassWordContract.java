@@ -21,7 +21,7 @@ public interface SettingPassWordContract {
         void setPassWordsFailure(String failure);
 
         //设置支付密码
-        void setPayPasswordSuccess(String msg);
+        void setPayPasswordSuccess();
         void setPayPasswordFailure(String failure);
 
         //是否设置交易密码

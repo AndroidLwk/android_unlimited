@@ -390,19 +390,27 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_12" />
 
-
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/ll_mine_scan"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableTop="@drawable/mine_freedback"
-                        android:drawablePadding="@dimen/dp_8"
-                        android:gravity="center"
+                        android:visibility="invisible"
                         android:orientation="vertical"
-                        android:text="我的订单"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/sp_12"
-                        android:visibility="invisible" />
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:src="@mipmap/my_scan"
+                            android:layout_height="@dimen/dp_20">
+                        </ImageView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:text="扫一扫"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_12"
+                            android:gravity="bottom|center_horizontal"
+                            android:layout_height="match_parent">
+                        </TextView>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

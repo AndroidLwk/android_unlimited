@@ -156,4 +156,25 @@ public class PersonalInfoBean {
     public void setBuy_status(int buy_status) {
         this.buy_status = buy_status;
     }
+
+    @Override
+    public String toString() {
+        return "PersonalInfoBean{" +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
+                ", headimg='" + headimg + '\'' +
+                ", phone='" + phone + '\'' +
+                ", alicode='" + alicode + '\'' +
+                ", aliname='" + aliname + '\'' +
+                ", is_taobao=" + is_taobao +
+                ", password=" + password +
+                ", vip=" + vip +
+                ", partner=" + partner +
+                ", share_code='" + share_code + '\'' +
+                ", new_award_status=" + new_award_status +
+                ", buy_status=" + buy_status +
+                ", accountname='" + accountname + '\'' +
+                ", wechat='" + wechat + '\'' +
+                '}';
+    }
 }

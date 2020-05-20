@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.ui.activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -61,7 +62,7 @@ public class SettingPassWordActivity extends MvpActivity<SettingPassWordPresente
             isSettingPassWord = bundle.getBoolean(IS_SETTING_PW);
             number = bundle.getString(NUMBER);
             setting_pass_word_forget.setVisibility(isSettingPassWord ? View.GONE : View.VISIBLE);
-            setting_pass_word_type.setText(isSettingPassWord ? R.string.setting_pw : R.string.udpate_pw);
+            setting_pass_word_type.setText(isSettingPassWord ? R.string.setting_pw : R.string.setting_pw1);
             setting_pass_word_confirm_setting.setText(isSettingPassWord ? R.string.confirm_setting : R.string.confirm_update);
             setting_pass_word_old_input.setHint(isSettingPassWord ? R.string.input_pw : R.string.input_old_pw);
             setting_pass_word_new_input.setVisibility(isSettingPassWord ? View.GONE : View.VISIBLE);
@@ -182,9 +183,10 @@ public class SettingPassWordActivity extends MvpActivity<SettingPassWordPresente
     }
 
     @Override
-    public void setPayPasswordSuccess(String msg) {
+    public void setPayPasswordSuccess() {
 
     }
+
 
     @Override
     public void setPayPasswordFailure(String failure) {

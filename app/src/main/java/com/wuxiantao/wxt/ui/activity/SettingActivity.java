@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -18,6 +20,7 @@ import com.wuxiantao.wxt.adapter.bean.AboutSuperManBean;
 import com.wuxiantao.wxt.adapter.recview.AboutSupermanRecViewAdapter;
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.CurrentVersionBean;
+import com.wuxiantao.wxt.bean.PersonalInfoBean;
 import com.wuxiantao.wxt.mvp.contract.AboutSupermanContract;
 import com.wuxiantao.wxt.mvp.presenter.AboutSupermanPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
@@ -36,9 +39,14 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.wuxiantao.wxt.config.Constant.IS_SETTING_PW;
 import static com.wuxiantao.wxt.config.Constant.MESSAGE_OUT_LOGIN;
+import static com.wuxiantao.wxt.config.Constant.NUMBER;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
 import static com.wuxiantao.wxt.config.Constant.TOKEN;
+import static com.wuxiantao.wxt.config.Constant.WEB_VIEW_CONTENT_TYPE;
+import static com.wuxiantao.wxt.config.Constant.WEB_VIEW_TYPE_URL;
+import static com.wuxiantao.wxt.config.Constant.WEB_VIEW_URL;
 
 /**
  * Company:成都可信网络科技有限责任公司
@@ -96,7 +104,14 @@ public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSu
         adapter.setOnBaseViewClickListener(position -> {
             switch (position) {
                 case 0://修改密码
-                    $startActivity(SettingPassWordActivity.class);
+                    Bundle bundle = new Bundle();
+                    if (bean!=null){
+                        if (bean.getPhone()!=null){
+                            bundle.putString(NUMBER,bean.getPhone());
+                        }
+                        bundle.putBoolean(IS_SETTING_PW,bean.getPassword()==1?false:true);
+                    }
+                    $startActivity(SettingPassWordActivity.class,bundle);
                     break;
                 case 1://客服服务
                     $startActivity(HelpCenterActivity.class);
@@ -116,6 +131,7 @@ public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSu
                     break;
             }
         });
+        mPresenter.getPersonalInfo(getAppToken());
     }
 
     //版本获取成功
@@ -191,5 +207,16 @@ public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSu
     @Override
     public void onStopAppFailure(String failure) {
         showOnlyConfirmDialog(failure);
+    }
+    PersonalInfoBean bean;
+    @Override
+    public void getPersonalInfoSuccess(PersonalInfoBean bean) {
+        this.bean=bean;
+        Log.e("88888888", "getPersonalInfoSuccess: "+bean.toString());
+    }
+
+    @Override
+    public void getPersonalInfoFailure(String failure) {
+
     }
 }

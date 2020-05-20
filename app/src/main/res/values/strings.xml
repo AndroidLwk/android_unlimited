@@ -365,6 +365,7 @@
     <string name="count_q">数量:</string>
     <string name="number_error">手机号格式错误,请重新输入</string>
     <string name="setting_pw">设置密码</string>
+    <string name="setting_pw1">修改密码</string>
     <string name="setting_new_pw">请设置您的新密码</string>
     <string name="udpate_pw">二级密码</string>
     <string name="udpate_user_pw">用户密码</string>

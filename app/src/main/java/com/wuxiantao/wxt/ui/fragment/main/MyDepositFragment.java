@@ -1,9 +1,11 @@
 package com.wuxiantao.wxt.ui.fragment.main;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import com.wuxiantao.wxt.ui.activity.HelpCenterActivity;
 import com.wuxiantao.wxt.ui.activity.MineBalanceActivity;
 import com.wuxiantao.wxt.ui.activity.MineFanSiActivity;
 import com.wuxiantao.wxt.ui.activity.MyInformationActivity;
+import com.wuxiantao.wxt.ui.activity.ScanActivity;
 import com.wuxiantao.wxt.ui.activity.ScratchCardActivity;
 import com.wuxiantao.wxt.ui.activity.SettingActivity;
 import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
@@ -32,6 +35,9 @@ import com.wuxiantao.wxt.ui.popupwindow.ImagePopupWindow;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
+
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
 import static com.wuxiantao.wxt.config.Constant.IS_ATTENTION_PUBLIC;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
@@ -107,6 +113,10 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
     StateButton sbt_moreInfo;
     @ViewInject(R.id.iv_isvip)
     ImageView iv_isvip;
+    @ViewInject(R.id.ll_mine_scan)
+    LinearLayout ll_mine_scan;
+
+
     private LoadingDialog loadingDialog;
 
     @Override
@@ -117,7 +127,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
     @Override
     public void initView() {
         setOnClikListener(sbt_moreInfo, tv_mine_member, tv_mine_set, tv_blanseValue, tv_officialGroup, tv_money_title, tv_crashMoney_title, tv_crashValue,
-                tv_mine_friend, tv_mine_code, tv_promotioninvitation, tv_mine_second_pass, tv_mine_freedback, rt_personInfo);
+                tv_mine_friend, tv_mine_code, tv_promotioninvitation, tv_mine_second_pass, tv_mine_freedback, rt_personInfo,ll_mine_scan);
         loadingDialog = createLoadingDialog();
         mPresenter.myMoneyCash(getAppToken());
         initRefreshLoad();
@@ -181,7 +191,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
                 break;
             case R.id.tv_promotioninvitation:
                 $startActivity(ShareThemActivity.class);
-                break;
+            break;
             case R.id.tv_mine_second_pass:
 //                $startActivity(SettingPassWordActivity.class);
                 $startActivity(ChangePassWordActivity.class);
@@ -198,7 +208,25 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
             case R.id.sbt_moreInfo://更多详情
                 $startActivity(ScratchCardActivity.class);
                 break;
+            case R.id.ll_mine_scan://扫一扫
+                requestCodeQRCodePermissions();
+                break;
         }
+    }
+
+    private static final int REQUEST_CODE_QRCODE_PERMISSIONS = 1;
+    @AfterPermissionGranted(REQUEST_CODE_QRCODE_PERMISSIONS)
+    private void requestCodeQRCodePermissions() {
+        String[] perms = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE};
+        if (!EasyPermissions.hasPermissions(getActivity(), perms)) {
+            EasyPermissions.requestPermissions(this, "扫描二维码需要打开相机和散光灯的权限", REQUEST_CODE_QRCODE_PERMISSIONS, perms);
+        }else {
+            $startActivity(ScanActivity.class);
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
     @Override

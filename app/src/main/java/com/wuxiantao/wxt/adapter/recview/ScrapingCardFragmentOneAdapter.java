@@ -18,6 +18,7 @@ public class ScrapingCardFragmentOneAdapter extends RcvBaseAdapter<MyCardInfo.Ja
     @Override
     protected void convert(BaseViewHolder holder, MyCardInfo.JackpotImgsBean bean, int position) {
         holder.setRoundImageResource(R.id.iv_scapingcard_icon, bean.getImg());
+        holder.setText(R.id.itv_scapingcard_name, bean.getName());
     }
 
 

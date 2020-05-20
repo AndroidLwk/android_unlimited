@@ -104,14 +104,14 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
                     //点击激励视频广告
                     AdUtils.initRewardVideoAd(getActivity(), () -> {
                         //点击广告
-                        mPresenter.randGetCard(getAppToken(), "1");
+                        mPresenter.randGetCard(getAppToken(), "4");
                     });
                     break;
                 case 3:
                     //观看视频
                     AdUtils.initRewardVideoAd(getActivity(), () -> {
                         //点击广告
-                        mPresenter.randGetCard(getAppToken(), "4");
+                        mPresenter.randGetCard(getAppToken(), "1");
                     });
                     break;
                 case 4:

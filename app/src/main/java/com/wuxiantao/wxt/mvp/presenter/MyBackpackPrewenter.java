@@ -1,5 +1,7 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
+import android.util.Log;
+
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.AlipayBean;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
@@ -45,7 +47,7 @@ public class MyBackpackPrewenter extends BasePresenter<MyBackpackContract> {
         Map<String, Object> map = new HashMap<>();
         map.put("token", token);
         map.put("page", page);
-        map.put("pageSize", 200);
+        map.put("pagesize", 200);
         map.put("pid", pid);
         if (view == null) {
             view = getMvpView();

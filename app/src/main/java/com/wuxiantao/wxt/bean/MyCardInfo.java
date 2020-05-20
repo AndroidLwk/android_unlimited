@@ -222,6 +222,22 @@ public class MyCardInfo {
         public void setBid(int bid) {
             this.bid = bid;
         }
+
+        @Override
+        public String toString() {
+            return "ListBean{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", card=" + card +
+                    ", card_cha=" + card_cha +
+                    ", card_all=" + card_all +
+                    ", status=" + status +
+                    ", status_total=" + status_total +
+                    ", money=" + money +
+                    ", day=" + day +
+                    ", bid=" + bid +
+                    '}';
+        }
     }
 
     public static class BannerBean {
@@ -238,6 +254,13 @@ public class MyCardInfo {
         public void setImg(String img) {
             this.img = img;
         }
+
+        @Override
+        public String toString() {
+            return "BannerBean{" +
+                    "img='" + img + '\'' +
+                    '}';
+        }
     }
 
     public static class JackpotImgsBean {
@@ -246,6 +269,7 @@ public class MyCardInfo {
          */
 
         private String img;
+        private String name;
 
         public String getImg() {
             return img;
@@ -254,5 +278,38 @@ public class MyCardInfo {
         public void setImg(String img) {
             this.img = img;
         }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return "JackpotImgsBean{" +
+                    "img='" + img + '\'' +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "MyCardInfo{" +
+                "lucky_value='" + lucky_value + '\'' +
+                ", unopen_card=" + unopen_card +
+                ", is_vip=" + is_vip +
+                ", jackpot_text='" + jackpot_text + '\'' +
+                ", is_sign=" + is_sign +
+                ", online_award=" + online_award +
+                ", share_award=" + share_award +
+                ", share=" + share +
+                ", list=" + list +
+                ", banner=" + banner +
+                ", jackpot_imgs=" + jackpot_imgs +
+                '}';
     }
 }

@@ -29,7 +29,7 @@ public class PointToCardPresenter extends BasePresenter<PointToCardContract> {
     /**
      * 开始刮卡
      */
-    public void startStraping(String token) {
+    public void startStraping(String token,String type) {
         if (view == null) {
             view = getMvpView();
         }
@@ -37,6 +37,7 @@ public class PointToCardPresenter extends BasePresenter<PointToCardContract> {
         OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象。
         FormBody.Builder formBody = new FormBody.Builder();//创建表单请求体
         formBody.add("token", token);//传递键值对参数
+        formBody.add("type", type);//传递键值对参数
         okhttp3.Request request = new okhttp3.Request.Builder()
                 .url("https://chaoren.haowusong.com/api/Scratchcard/startStraping")
                 .post(formBody.build())//传递请求体

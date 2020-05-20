@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.mvp.contract;
 
+import com.wuxiantao.wxt.bean.PersonalInfoBean;
 import com.wuxiantao.wxt.mvp.version.VersionMvpPresenter;
 import com.wuxiantao.wxt.mvp.version.VersionView;
 
@@ -16,10 +17,14 @@ public interface AboutSupermanContract {
     interface IAboutSupermanView extends VersionView {
         void onStopAppSuccess(String msg);
         void onStopAppFailure(String failure);
+
+        void getPersonalInfoSuccess(PersonalInfoBean bean);
+        void getPersonalInfoFailure(String failure);
     }
 
     interface IAboutSupermanPresenter extends VersionMvpPresenter<IAboutSupermanView> {
 
+        void getPersonalInfo(String token);
     }
 
 

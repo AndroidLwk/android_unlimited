@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.wuxiantao.wxt.R;
@@ -127,6 +128,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
                 if (bundle != null) {
                     mBackPackAllFragment.setArguments(bundle);
                 }
+                mBackPackAllFragment.refreshData();
                 break;
             //刮刮卡
             case 1:
@@ -139,6 +141,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
                 if (bundle != null) {
                     mBackpackScreptCardFragment.setArguments(bundle);
                 }
+                mBackpackScreptCardFragment.refreshData();
                 break;
             //英雄碎片
             case 2:
@@ -151,6 +154,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
                 if (bundle != null) {
                     mBackPackHerFragment.setArguments(bundle);
                 }
+                mBackPackHerFragment.refreshData();
                 break;
             case 3://英雄卡
                 if (mBackPackHeroCardFragment == null) {
@@ -162,6 +166,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
                 if (bundle != null) {
                     mBackPackHeroCardFragment.setArguments(bundle);
                 }
+                mBackPackHeroCardFragment.refreshData();
                 break;
             //皮肤卡
             case 4:
@@ -174,6 +179,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
                 if (bundle != null) {
                     mBackPackSkinCardFragment.setArguments(bundle);
                 }
+                mBackPackSkinCardFragment.refreshData();
                 break;
             case 5://现金卡
                 if (mBackPackCrashCardFragment == null) {
@@ -185,6 +191,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
                 if (bundle != null) {
                     mBackPackCrashCardFragment.setArguments(bundle);
                 }
+                mBackPackCrashCardFragment.refreshData();
                 break;
             case 6://暂存
                 if (mBackPackTemapFragment == null) {
@@ -196,6 +203,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
                 if (bundle != null) {
                     mBackPackTemapFragment.setArguments(bundle);
                 }
+                mBackPackTemapFragment.refreshData();
                 break;
 
         }

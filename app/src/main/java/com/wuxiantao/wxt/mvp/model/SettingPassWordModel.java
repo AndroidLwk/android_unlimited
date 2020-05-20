@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class SettingPassWordModel extends BaseModel{
 
-    public void setUserLoginPassWord(String token, BaseObserver<List> observer, String password_old, String password_new){
+    public void setUserLoginPassWord(String token, BaseObserver<ListNullBean> observer, String password_old, String password_new){
         HttpManager.newInstance()
                 .createService(UserApiService.class)
                 .setUserLoginPassWord(token,password_old,password_new)

@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
+import com.wuxiantao.wxt.bean.PersonalInfoBean;
 import com.wuxiantao.wxt.bean.StopAppBean;
 import com.wuxiantao.wxt.mvp.contract.AboutSupermanContract;
 import com.wuxiantao.wxt.mvp.model.AboutSupermanModel;
@@ -22,6 +23,7 @@ public class AboutSupermanPresenter extends BaseVersionPresenter<AboutSupermanCo
     public void getAppCurrentVersion() {
         super.getAppCurrentVersion(new AboutSupermanModel());
     }
+
     public void onStopApp(String token) {
         if (view == null){
             view = getMvpView();
@@ -38,5 +40,26 @@ public class AboutSupermanPresenter extends BaseVersionPresenter<AboutSupermanCo
             }
         };
         model.onStopApp(observer,token);
+    }
+
+    @Override
+    public void getPersonalInfo(String token) {
+        if (view == null){
+            view = getMvpView();
+        }
+        BaseObserver<PersonalInfoBean> observer = new BaseObserver<PersonalInfoBean>() {
+            @Override
+            public void onSuccess(PersonalInfoBean bean) {
+                if (bean != null){
+                    view.getPersonalInfoSuccess(bean);
+                }
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.getPersonalInfoFailure(errorMsg);
+            }
+        };
+        model.obtainPersonal(observer,token);
     }
 }

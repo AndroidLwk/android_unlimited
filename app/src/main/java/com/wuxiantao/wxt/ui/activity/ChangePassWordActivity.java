@@ -73,7 +73,7 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
                 ToastUtils.showToast("两次密码不一致");
             } else {
                 HashMap<String, Object> map = new HashMap<>();
-                map.put("token","o1voQ1XGQBGDT1F6UjC4xnLbFavc");
+                map.put("token",getAppToken());
 //                map.put("token", getAppToken());
                 map.put("type", type);
                 map.put("old_password", change_password_old_input.getText().toString());
@@ -118,10 +118,15 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
 
     //设置交易密码成功
     @Override
-    public void setPayPasswordSuccess(String msg) {
+    public void setPayPasswordSuccess() {
         //保存设置密码状态
         saveUserInfo(IS_SETPAY_PASS, "1");
-        ToastUtils.showToast(msg);
+        if (type==1) {
+            ToastUtils.showToast("密码设置成功！");
+        }
+        if (type==2) {
+            ToastUtils.showToast("密码修改成功！");
+        }
         finish();
     }
 

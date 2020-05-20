@@ -31,9 +31,9 @@ public class SettingPassWordPresenter extends BasePresenter<SettingPassWordContr
         if (view == null){
             view = getMvpView();
         }
-        BaseObserver<List> observer = new BaseObserver<List>(view) {
+        BaseObserver<ListNullBean> observer = new BaseObserver<ListNullBean>(view) {
             @Override
-            public void onSuccess(List s) {
+            public void onSuccess(ListNullBean s) {
                 view.setPassWordsSuccess(RESOURCES.getString(R.string.password_set_success));
             }
 
@@ -55,7 +55,7 @@ public class SettingPassWordPresenter extends BasePresenter<SettingPassWordContr
 
             @Override
             public void onSuccess(ListNullBean list) {
-                view.setPayPasswordSuccess("密码修改成功！");
+                view.setPayPasswordSuccess();
             }
 
             @Override
