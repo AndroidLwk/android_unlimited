@@ -74,7 +74,7 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
     private Map<String, Object> parameters = new HashMap<>();
 
     private String[] Stars = new String[]{"", "", "", ""};
-    private int[] number = new int[]{1, 1};
+    private int[] number = new int[2];
     @Override
     protected MineFansiPresenter CreatePresenter() {
         return new MineFansiPresenter();
@@ -95,7 +95,6 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
         parameters.put("type",FANSI_TYPE_POTENTIAL);
         mPresenter.obtainDirectlyFansi(parameters);
         initViewPager();
-        initVie();
     }
 
     /**
@@ -182,6 +181,9 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
     //获取
     @Override
     public void obtainFansSuccess(FansiDirectlyBean bean) {
+        number[1]=bean.getTotal_zhitui()==0?1:bean.getTotal_zhitui();
+        number[0]=bean.getTotal_jianjie()==0?1:bean.getTotal_jianjie();
+        initVie();
         tv_fansi_total.setText("￥"+bean.getTotal()+"元");
         tv_fansi_total_zhitui.setText("￥"+bean.getTotal_zhitui()+"元");
         tv_fansi_total_jianjie.setText("￥"+bean.getTotal_jianjie()+"元");
