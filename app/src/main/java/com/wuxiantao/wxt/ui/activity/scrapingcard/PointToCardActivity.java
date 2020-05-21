@@ -148,7 +148,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
                             @Override
                             public void run() {
                                 try {
-                                    Thread.sleep(1000);
+                                    Thread.sleep(4000);
                                     isCountDowning = false;
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
