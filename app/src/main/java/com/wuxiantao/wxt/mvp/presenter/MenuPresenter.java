@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
 import com.wuxiantao.wxt.bean.NetSwitchBean;
+import com.wuxiantao.wxt.bean.NoticeBean;
 import com.wuxiantao.wxt.bean.PersonalInfoBean;
 import com.wuxiantao.wxt.bean.StopAppBean;
 import com.wuxiantao.wxt.mvp.contract.MenuContract;
@@ -25,7 +26,7 @@ public class MenuPresenter extends BaseVersionPresenter<MenuContract.IMenuView> 
 
     @Override
     public void onStartApp(String token) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<List<String>> observer = new BaseObserver<List<String>>() {
@@ -39,12 +40,12 @@ public class MenuPresenter extends BaseVersionPresenter<MenuContract.IMenuView> 
                 view.onStartAppFailure(errorMsg);
             }
         };
-        model.onStartApp(observer,token);
+        model.onStartApp(observer, token);
     }
 
     @Override
     public void onStopApp(String token) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<StopAppBean> observer = new BaseObserver<StopAppBean>() {
@@ -58,18 +59,18 @@ public class MenuPresenter extends BaseVersionPresenter<MenuContract.IMenuView> 
                 view.onStopAppFailure(errorMsg);
             }
         };
-        model.onStopApp(observer,token);
+        model.onStopApp(observer, token);
     }
 
     @Override
     public void getSwitchType(String url) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<NetSwitchBean> observer = new BaseObserver<NetSwitchBean>() {
             @Override
             public void onSuccess(NetSwitchBean bean) {
-                 view.getSwitchTypeSuccess(bean);
+                view.getSwitchTypeSuccess(bean);
             }
 
             @Override
@@ -77,7 +78,7 @@ public class MenuPresenter extends BaseVersionPresenter<MenuContract.IMenuView> 
                 view.getSwitchTypeFailure(errorMsg);
             }
         };
-        model.getSwitchType(observer,url);
+        model.getSwitchType(observer, url);
     }
 
     @Override
@@ -87,13 +88,13 @@ public class MenuPresenter extends BaseVersionPresenter<MenuContract.IMenuView> 
 
     @Override
     public void getPersonalInfo(String token) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<PersonalInfoBean> observer = new BaseObserver<PersonalInfoBean>() {
             @Override
             public void onSuccess(PersonalInfoBean bean) {
-                if (bean != null){
+                if (bean != null) {
                     view.getPersonalInfoSuccess(bean);
                 }
             }
@@ -103,8 +104,25 @@ public class MenuPresenter extends BaseVersionPresenter<MenuContract.IMenuView> 
                 view.getPersonalInfoFailure(errorMsg);
             }
         };
-        model.obtainPersonal(observer,token);
+        model.obtainPersonal(observer, token);
     }
 
+    public void notice(String token) {
+        if (view == null) {
+            view = getMvpView();
+        }
+        BaseObserver<NoticeBean> observer = new BaseObserver<NoticeBean>() {
+            @Override
+            public void onSuccess(NoticeBean bean) {
+                view.noticeSuccess(bean.getContent());
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                view.noticeFailure(errorMsg);
+            }
+        };
+        model.notice(observer, token);
+    }
 
 }

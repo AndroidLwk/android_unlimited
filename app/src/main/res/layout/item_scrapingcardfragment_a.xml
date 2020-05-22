@@ -52,7 +52,7 @@
                     android:id="@+id/tv_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5"
+                    android:text="0"
                     android:textColor="@color/color_3a3a3a"
                     android:textSize="@dimen/sp_15" />
 
@@ -78,7 +78,7 @@
                     android:id="@+id/tv_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="52"
+                    android:text="0"
                     android:textColor="@color/color_3a3a3a"
                     android:textSize="@dimen/sp_15" />
 
@@ -101,9 +101,10 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_mytoday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="125"
+                    android:text="0"
                     android:textColor="@color/color_3a3a3a"
                     android:textSize="@dimen/sp_15" />
 
@@ -119,18 +120,37 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dp_62"
+                android:layout_height="@dimen/dp_80"
                 android:layout_marginTop="@dimen/dp_30"
                 android:layout_marginRight="@dimen/dp_16"
                 android:layout_weight="1.3"
-                android:gravity="center"
+                android:gravity="right"
                 android:orientation="vertical">
 
-                <com.wuxiantao.wxt.ui.custom.progress.RoundProgressBar
-                    android:id="@+id/roundProgressBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:style="FILL" />
+                <com.wuxiantao.wxt.ui.custom.progress.CircleProgressBar
+                    android:id="@+id/circleIndicator"
+                    android:layout_width="@dimen/dp_62"
+                    android:layout_height="@dimen/dp_62"
+                    android:minWidth="@dimen/dp_62"
+                    android:minHeight="@dimen/dp_62"
+                    app:maxx="100"
+                    app:progress="0"
+                    app:progressBackgroundColor="@color/color_edd2e0"
+                    app:progressColor="@color/color_fb5e58"
+                    app:progressStrokeWidth="@dimen/dp_4"
+                    app:progressTextColor="@color/color_fb5e58"
+                    app:progressTextSize="@dimen/sp_14" />
+
+                <TextView
+                    android:id="@+id/tv_round_text_scrap"
+                    android:layout_width="@dimen/dp_62"
+                    android:layout_height="@dimen/dp_62"
+                    android:background="@drawable/shape_round_main"
+                    android:text="开始分红"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16"
+                    android:visibility="gone" />
+
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

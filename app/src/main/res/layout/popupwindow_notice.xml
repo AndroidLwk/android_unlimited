@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0" />
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_267"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dp_16">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_44"
+            android:background="@drawable/shape_popwindow_transscratchcard_a"
+            android:gravity="center"
+            android:text="@string/setting_text4"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_17"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:minHeight="@dimen/dp_200"
+            android:padding="@dimen/dp_12"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+            <com.wuxiantao.wxt.ui.custom.button.StateButton
+                android:id="@+id/sbt_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_31"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_marginRight="@dimen/dp_16"
+                android:layout_marginBottom="@dimen/dp_16"
+                android:gravity="center"
+                android:text="@string/i_know"
+                android:textSize="@dimen/sp_12"
+                app:normalBackgroundCenterColor="#FD6F57"
+                app:normalBackgroundEndColor="#FA5758"
+                app:normalBackgroundStartColor="#FD6F57"
+                app:normalOrientation="BL_TR"
+                app:normalShapeType="LINEAR_GRADIENT"
+                app:normalTextColor="@color/white"
+                app:round="true" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

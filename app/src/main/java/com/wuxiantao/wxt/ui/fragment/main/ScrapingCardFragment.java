@@ -19,7 +19,6 @@ import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
 import com.wuxiantao.wxt.ui.activity.H5GameActivity;
 import com.wuxiantao.wxt.ui.activity.HelpCenterActivity;
 import com.wuxiantao.wxt.ui.activity.MenuActivity;
-import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.activity.my.MyInvitationCodeActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.HeroScrollActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.MyBackpackActivity;
@@ -114,10 +113,8 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
                     menuActivity.menu_tab_income_hall.setChecked(true);
                     break;
                 case 1://邀请好友
-                    $startActivity(MyInvitationCodeActivity.class);
-                    break;
                 case 2://分享无限淘
-                    $startActivity(ShareThemActivity.class);
+                    $startActivity(MyInvitationCodeActivity.class);
                     break;
                 case 3://在线游戏
                     $startActivity(H5GameActivity.class);
@@ -195,10 +192,20 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
         mData_c.addAll(info.getList());
         mAdaper_c.notifyDataSetChanged();
         mData_b.get(0).setNum(info.getIs_vip() == 1 ? 3 : 1);
+        if (info.getIs_vip() == 1 && info.getIs_sign() == 1) {
+            mData_b.get(0).setFinishText("完成3/3");
+        } else if (info.getIs_vip() == 0 && info.getIs_sign() == 1) {
+            mData_b.get(0).setFinishText("完成1/1");
+        } else {
+            mData_b.get(0).setFinishText("完成0/1");
+        }
+        mData_b.get(1).setFinishText("完成" + info.getHusao() + "/" + info.getHusao_total());
+        mData_b.get(2).setFinishText(info.getShare() == 1 ? "完成1/1" : "完成0/1");
+        mData_b.get(3).setFinishText(info.getOnline_award() == 1 ? "完成1/1" : "完成0/1");
         mData_b.get(0).setIsFinish(info.getIs_sign());
-        mData_b.get(1).setIsFinish(info.getShare());
-        mData_b.get(2).setIsFinish(info.getShare_award());
-        mData_b.get(3).setIsFinish(info.getOnline_award());
+        mData_b.get(1).setIsFinish(info.getShare_award());//互扫
+        mData_b.get(2).setIsFinish(info.getShare());//邀请
+        mData_b.get(3).setIsFinish(info.getOnline_award());//在线
         mAdapter_b.notifyDataSetChanged();
     }
 

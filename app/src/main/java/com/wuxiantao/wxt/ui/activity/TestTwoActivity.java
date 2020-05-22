@@ -8,6 +8,7 @@ import com.wuxiantao.wxt.bean.PhoneLoginBean;
 import com.wuxiantao.wxt.mvp.contract.TestContract;
 import com.wuxiantao.wxt.mvp.presenter.TestPrensenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
+import com.wuxiantao.wxt.ui.custom.progress.CircleProgressBar;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.utils.LogUtils;
 import com.wuxiantao.wxt.utils.ToastUtils;
@@ -21,9 +22,12 @@ public class TestTwoActivity extends MvpActivity<TestPrensenter, TestContract.IT
     TextView tv_test;
     @ViewInject(R.id.bt_test)
     Button bt_test;
+    @ViewInject(R.id.circleIndicator)
+    CircleProgressBar circleIndicator;
     @Override
     protected void initView() {
         super.initView();
+        circleIndicator.setProgress(20);
         setOnClikListener(tv_test,bt_test);
     }
     private LoadingDialog loadingDialog;

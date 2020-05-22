@@ -127,7 +127,7 @@ public class TaskHallPresenter extends BasePresenter<TaskHallContract.ITaskHallV
 
     public List<TaskHallBean> getData_two() {
         List<TaskHallBean> list = new ArrayList<>();
-        TaskHallBean taskHallBean2 = new TaskHallBean(R.drawable.main_taskhall_d, "今日游戏充值 +1张刮刮卡");
+        TaskHallBean taskHallBean2 = new TaskHallBean(R.drawable.main_taskhall_d, "今日游戏充值 +5张刮刮卡");
         list.add(taskHallBean2);
         taskHallBean2 = new TaskHallBean(R.drawable.task_today_home, "每日商品首次下单  +3张刮刮卡");
         list.add(taskHallBean2);
@@ -150,7 +150,9 @@ public class TaskHallPresenter extends BasePresenter<TaskHallContract.ITaskHallV
         BaseObserver<RandGetCardBean> observer = new BaseObserver<RandGetCardBean>() {
             @Override
             public void onSuccess(RandGetCardBean bean) {
-                view.randGetCardSuccess(bean.getMsg());
+                if (bean.getNum() > 0) {
+                    view.randGetCardSuccess(bean.getMsg());
+                }
             }
 
             @Override

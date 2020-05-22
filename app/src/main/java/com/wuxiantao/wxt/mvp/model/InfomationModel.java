@@ -2,12 +2,14 @@ package com.wuxiantao.wxt.mvp.model;
 
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.NetSwitchBean;
+import com.wuxiantao.wxt.bean.NoticeBean;
 import com.wuxiantao.wxt.bean.PersonalInfoBean;
 import com.wuxiantao.wxt.bean.StopAppBean;
 import com.wuxiantao.wxt.mvp.version.VersionModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
+import com.wuxiantao.wxt.net.service.CommissionService;
 import com.wuxiantao.wxt.net.service.DragonApiService;
 import com.wuxiantao.wxt.net.service.NetSwitchService;
 import com.wuxiantao.wxt.net.service.UserApiService;
@@ -55,5 +57,11 @@ public class InfomationModel extends VersionModel {
                 .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
                 .subscribe(observer);
     }
-
+    public void notice(BaseObserver<NoticeBean> observer, String token){
+        HttpManager.newInstance()
+                .createService(CommissionService.class)
+                .notice(token)
+                .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
+                .subscribe(observer);
+    }
 }

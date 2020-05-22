@@ -461,4 +461,6 @@ public class Api {
     public static final String RANDGET_CARD = "Task/randGetCard";
     // 签到看视频双倍
     public static final String SIGN_DOUBLE = "task/signDouble";
+    // 获取公告
+    public static final String NOTICE = "newest/notice";
 }

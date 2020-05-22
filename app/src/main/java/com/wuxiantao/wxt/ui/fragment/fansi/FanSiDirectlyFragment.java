@@ -30,7 +30,6 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_DIRECTLY;
 import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_POTENTIAL;
 import static com.wuxiantao.wxt.config.Constant.PAGE_SIZE;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
@@ -123,7 +122,7 @@ public class FanSiDirectlyFragment extends MvpFragment<FanSiDirectlyPresenter, F
             adapter.setOnItemClickListener(new FanSiDirectlyRecViewAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int uid) {
-                    mPresenter.obtainFansiDetail(uid);
+                    //mPresenter.obtainFansiDetail(uid);
                 }
 
                 @Override

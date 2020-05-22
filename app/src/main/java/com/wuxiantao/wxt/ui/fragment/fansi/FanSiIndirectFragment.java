@@ -11,10 +11,8 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.FanSiDirectlyRecViewAdapter;
-import com.wuxiantao.wxt.adapter.recview.FanSiIndirectlyRecViewAdapter;
 import com.wuxiantao.wxt.bean.FansiDetailBean;
 import com.wuxiantao.wxt.bean.FansiDirectlyBean;
-import com.wuxiantao.wxt.bean.FansiIndirectBean;
 import com.wuxiantao.wxt.mvp.fansi.c.FansiIndirectContract;
 import com.wuxiantao.wxt.mvp.fansi.p.FanSiIndirectPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
@@ -29,14 +27,10 @@ import com.wuxiantao.wxt.utils.ToastUtils;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_DIRECTLY;
-import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_INDIRECT;
-import static com.wuxiantao.wxt.config.Constant.FANSI_TYPE_POTENTIAL;
 import static com.wuxiantao.wxt.config.Constant.PAGE_SIZE;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
 import static com.wuxiantao.wxt.config.Constant.TOKEN;
@@ -129,7 +123,7 @@ public class FanSiIndirectFragment extends MvpFragment<FanSiIndirectPresenter, F
             adapter.setOnItemClickListener(new FanSiDirectlyRecViewAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int uid) {
-                    mPresenter.obtainFansiDetail(uid);
+                  //  mPresenter.obtainFansiDetail(uid);
                 }
 
                 @Override

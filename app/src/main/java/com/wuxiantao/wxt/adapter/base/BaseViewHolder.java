@@ -14,12 +14,14 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Checkable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -27,6 +29,7 @@ import com.donkingliang.labels.LabelsView;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.imgloader.GlideImgManager;
 import com.wuxiantao.wxt.ui.custom.button.StateButton;
+import com.wuxiantao.wxt.ui.custom.progress.CircleProgressBar;
 import com.wuxiantao.wxt.ui.custom.switchbutton.SwitchButton;
 import com.wuxiantao.wxt.ui.custom.textview.BuyZeroTagTextView;
 import com.wuxiantao.wxt.ui.custom.textview.RuleTagTextView;
@@ -100,6 +103,15 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
             } else {
                 view.setText(text);
             }
+        }
+        return this;
+    }
+
+    //为TextView设置字符串
+    public BaseViewHolder setCircleProgress(int viewId, int progress) {
+        CircleProgressBar view = findView(viewId);
+        if (view != null) {
+            view.setProgress(progress);
         }
         return this;
     }
@@ -253,6 +265,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         }
         return this;
     }
+
     //为ImageView设置圆形图片
     public <T> BaseViewHolder setImageDrawable(int viewId) {
         ImageView img = findView(viewId);
@@ -261,6 +274,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         }
         return this;
     }
+
     //为ImageView设置圆形图片
     public <T> BaseViewHolder setGlide(int viewId, T url) {
         ImageView img = findView(viewId);
@@ -521,6 +535,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         }
         return false;
     }
+
     //设置进度条
     public BaseViewHolder setProgress(int viewId, int progress) {
         if (viewId != 0) {
@@ -562,6 +577,16 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
                 view.setVisibility(visibility);
             }
         }
+        return this;
+    }
+
+    public BaseViewHolder setViewSize(int viewId, int widthpx, int heightpx) {
+        CircleProgressBar view = findView(viewId);
+        LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) view.getLayoutParams();
+
+        linearParams.width = ((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, widthpx, mContext.getResources().getDisplayMetrics()));
+        linearParams.height = ((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, heightpx, mContext.getResources().getDisplayMetrics()));
+        view.setLayoutParams(linearParams);
         return this;
     }
 

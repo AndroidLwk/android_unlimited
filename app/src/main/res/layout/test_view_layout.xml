@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <TextView
@@ -18,4 +19,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="测试按钮" />
+
+
+    <com.wuxiantao.wxt.ui.custom.progress.CircleProgressBar
+        android:id="@+id/circleIndicator"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        app:progress="60"
+        app:progressColor="@color/color_fb5e58"
+        app:maxx="100"
+        app:progressStrokeWidth="@dimen/dp_10"
+        app:progressTextColor="@color/color_fb5e58"
+        app:progressTextSize="@dimen/sp_16"
+        app:progressBackgroundColor="@color/color_f9adac"
+        />
 </LinearLayout>

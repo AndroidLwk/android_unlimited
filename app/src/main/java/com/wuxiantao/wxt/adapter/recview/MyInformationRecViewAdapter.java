@@ -74,12 +74,12 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
                     l.onChangeHeadImg();
                 }
             });
-            holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
+          //  holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
             holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
         }
         //id
         if (position == 1 && !isEmpty(userId)) {
-            holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
+           // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
             holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
             holder.setText(R.id.item_my_information_content, userId);
             holder.setViewOnClickListener(R.id.item_my_information_layout, v -> {
@@ -97,12 +97,12 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
                     l.onChangeNickName(nickName);
                 }
             });
-            holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
+           // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
             holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
         }
         //手机号
         if (position == 4) {
-            holder.setVisibility(R.id.item_my_information_prize_icon, isBindingNumber ? View.GONE : View.VISIBLE);
+           // holder.setVisibility(R.id.item_my_information_prize_icon, isBindingNumber ? View.GONE : View.VISIBLE);
             holder.setVisibility(R.id.item_my_information_prize_money, isBindingNumber ? View.GONE : View.VISIBLE);
             if (isBindingNumber) {
                 String sub = NumberFormatUtils.phoneNumberSub(number);
@@ -161,7 +161,7 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
 //                holder.setVisibility(R.id.item_my_information_prize_money,View.GONE);
 //            }
             if (position == 3) {
-                holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
+               // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
                 holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
             }
             //淘宝授权
@@ -210,7 +210,7 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
                 }
             });
         }
-        holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
+       // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
         holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
     }
 
@@ -253,7 +253,7 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
     }
 
     private void setAboutWXTItem(BaseViewHolder holder, String verName) {
-        holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
+       // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
         holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
         holder.setText(R.id.item_my_information_content, verName);
         holder.setViewOnClickListener(R.id.item_my_information_layout, v -> {

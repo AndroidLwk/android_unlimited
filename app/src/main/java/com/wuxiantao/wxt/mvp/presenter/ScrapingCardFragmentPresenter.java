@@ -93,7 +93,7 @@ public class ScrapingCardFragmentPresenter extends BasePresenter<ScrapingCardFra
         scrapingCardBean_b = new ScrapingCardBean();
         scrapingCardBean_b.setNumTitle("好友助力，分享互扫！");
         scrapingCardBean_b.setNum(1);
-        scrapingCardBean_b.setFinishText("完成0/1");
+        scrapingCardBean_b.setFinishText("完成0/10");
 
         scrapingCardBean_b.setImg_res(R.drawable.main_scrapcard_sao);
 

@@ -17,19 +17,33 @@ public interface MenuContract {
 
     interface IMenuView extends VersionView {
         void onStartAppSuccess(String msg);
+
         void onStartAppFailure(String failure);
+
         void onStopAppSuccess(String msg);
+
         void onStopAppFailure(String failure);
+
         void getSwitchTypeSuccess(NetSwitchBean bean);
+
         void getSwitchTypeFailure(String failure);
+
         void getPersonalInfoSuccess(PersonalInfoBean bean);
+
         void getPersonalInfoFailure(String failure);
+
+        void noticeFailure(String failure);
+
+        void noticeSuccess(String content);
     }
 
     interface IMenuPresenter extends VersionMvpPresenter<IMenuView> {
         void onStartApp(String token);
+
         void onStopApp(String token);
+
         void getSwitchType(String url);
+
         void getPersonalInfo(String token);
     }
 

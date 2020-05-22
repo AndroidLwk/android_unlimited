@@ -17,7 +17,7 @@ import com.wuxiantao.wxt.mvp.presenter.TaskHallPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
 import com.wuxiantao.wxt.ui.activity.H5GameActivity;
 import com.wuxiantao.wxt.ui.activity.MenuActivity;
-import com.wuxiantao.wxt.ui.activity.my.MyInvitationCodeActivity;
+import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.custom.recyclerview.NestRecyclerView;
 import com.wuxiantao.wxt.ui.popupwindow.ScrapingCardSuccessPopupWindow;
 import com.wuxiantao.wxt.utils.AdUtils;
@@ -99,7 +99,9 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
                     // menuActivity.changeFragment(0, null);
                     menuActivity.menu_tab_taobao.setChecked(true);
                     break;
-                case 0://
+                case 0://游戏充值
+                    $startActivity(H5GameActivity.class);
+                    break;
                 case 2:
                     //点击激励视频广告
                     AdUtils.initRewardVideoAd(getActivity(), () -> {
@@ -115,7 +117,7 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
                     });
                     break;
                 case 4:
-                    $startActivity(MyInvitationCodeActivity.class);
+                    $startActivity(ShareThemActivity.class);
                     break;
 
             }

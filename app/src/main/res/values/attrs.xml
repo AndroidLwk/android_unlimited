@@ -371,7 +371,7 @@
         <attr name="tv_number" format="float" />
         <attr name="tv_is_auto" format="boolean" />
     </declare-styleable>
-    <declare-styleable name="RoundProgressBar">
+   <!-- <declare-styleable name="RoundProgressBar">
         <attr name="roundColor" format="color"/>
         <attr name="roundProgressColor" format="color"/>
         <attr name="roundWidth" format="dimension"> </attr>
@@ -383,5 +383,32 @@
             <enum name="STROKE" value="0"></enum>
             <enum name="FILL" value="1"></enum>
         </attr>
+    </declare-styleable>-->
+    <!--圆圈进度-->
+    <declare-styleable name="CircleProgressBar">
+        <!--进度值-->
+        <attr name="progress" format="integer" />
+        <!--进度最大值-->
+        <attr name="maxx" format="integer" />
+        <!--进度颜色-->
+        <attr name="progressColor" format="color" />
+        <!--进度文字-->
+        <attr name="progressTextVisibility" format="enum">
+            <enum name="visible" value="0"></enum>
+            <enum name="invisible" value="4"></enum>
+        </attr>
+        <!--进度文字-->
+        <attr name="progressTextSize" format="dimension" />
+        <!--进度文字颜色-->
+        <attr name="progressTextColor" format="color" />
+        <!--进度背景色-->
+        <attr name="progressBackgroundColor" format="color" />
+        <!--进度开始角度 0-360-->
+        <attr name="progressStartAngle" format="float" />
+        <!--圆圈线宽度-->
+        <attr name="progressStrokeWidth" format="dimension" />
+        <!--圆圈半径-->
+        <attr name="progressRadius" format="dimension" />
     </declare-styleable>
+
 </resources>

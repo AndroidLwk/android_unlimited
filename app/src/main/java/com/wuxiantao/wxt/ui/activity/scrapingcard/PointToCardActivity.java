@@ -47,7 +47,8 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     RelativeLayout rt_pointCard;
     private boolean isCountDowning;//是否正在计时
 
-    private int isClick=0;
+    private int isClick = 0;
+
     @Override
     protected void initView() {
         setStatusBar();
@@ -135,14 +136,14 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
                     @Override
                     public void onComplete() {//计时完成
-                        if (isClick>0){
+                        if (isClick > 0) {
                             //狂点
-                            mPresenter.startStraping(getAppToken(),"yes");
-                        }else {
+                            mPresenter.startStraping(getAppToken(), "yes");
+                        } else {
                             //没狂点
-                            mPresenter.startStraping(getAppToken(),"no");
+                            mPresenter.startStraping(getAppToken(), "no");
                         }
-                        isClick=0;
+                        isClick = 0;
                         iv_countDown.setVisibility(View.GONE);
                         new Thread(new Runnable() {
                             @Override
@@ -197,6 +198,12 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
     @Override
     public void myLuckyInfo(MyLuckyInfoBean info) {
+        if (info.getIs_full() == 1) {//格子满了
+            showDialog("背包格子已经满了，是否去扩容？", (dialog, which) -> {
+                finish();
+                $startActivity(BackpackExpansionActivity.class);
+            });
+        }
         if (Double.parseDouble(info.getLucky_value()) > 100) {
             progress = 100;
         } else {

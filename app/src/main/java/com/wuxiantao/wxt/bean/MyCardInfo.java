@@ -4,20 +4,34 @@ import java.util.List;
 
 public class MyCardInfo {
 
+
     /**
-     * lucky_value : 21.00
-     * unopen_card : 0
-     * list : [{"id":1,"name":"青铜英雄卡分红","card":0,"card_cha":10,"card_all":10,"status":0,"status_total":1,"money":0,"day":0,"bid":1},{"id":2,"name":"黄金英雄卡分红","card":0,"card_cha":10,"card_all":10,"status":0,"status_total":1,"money":0,"day":0,"bid":2},{"id":3,"name":"整套英雄卡分红","card":0,"card_cha":20,"card_all":20,"status":0,"status_total":1,"money":0,"day":0,"bid":3}]
-     * banner : [{"img":"http://super-tao.oss-cn-beijing.aliyuncs.com/a0519bd76b3e651a/3921655ced58bfb3.png"}]
-     * jackpot_imgs : [{"img":"http://super-tao.oss-cn-beijing.aliyuncs.com/384c6c100dc3587f/0dc0a974e5595724.png"},{"img":"http://super-tao.oss-cn-beijing.aliyuncs.com/f34f6a8a4c31db6e/f451729a0eb0adc1.png"},{"img":"http://super-tao.oss-cn-beijing.aliyuncs.com/fac9738759751d43/313a64f54db8a3a2.png"}]
-     * jackpot_text : 6-128元王者皮肤兑换卷1-50元王者皮肤兑换卷集齐英雄卡得平台分红
+     * is_vip : 1
+     * lucky_value : 25.00
+     * unopen_card : 46
+     * list : [{"id":1,"name":"青铜英雄卡分红","card":1,"card_cha":9,"card_all":10,"status":1,"status_total":1,"fen_today":1298.3999999999999,"my_today":"1298.39","rate":"0.3","bid":1},{"id":2,"name":"黄金英雄卡分红","card":0,"card_cha":10,"card_all":10,"status":1,"status_total":1,"fen_today":865.6,"my_today":"865.6","rate":"0.2","bid":2},{"id":3,"name":"整套英雄卡分红","card":1,"card_cha":19,"card_all":20,"status":1,"status_total":1,"fen_today":432.8,"my_today":"1298.39","rate":"0.1","bid":3}]
+     * banner : [{"img":"http://super-tao.oss-cn-beijing.aliyuncs.com/a084c7038d937435/952a6d580f1fa356.png"}]
+     * jackpot_imgs : [{"img":"http://super-tao.oss-cn-beijing.aliyuncs.com/384c6c100dc3587f/0dc0a974e5595724.png","name":"1-50元现金红包"},{"img":"http://super-tao.oss-cn-beijing.aliyuncs.com/f34f6a8a4c31db6e/f451729a0eb0adc1.png","name":"集齐可平台分红"},{"img":"http://super-tao.oss-cn-beijing.aliyuncs.com/fac9738759751d43/313a64f54db8a3a2.png","name":"6-168王者皮肤卷"}]
      * is_sign : 0
-     * online_award : 0
+     * share : 0
+     * online_award : 1
      * share_award : 0
+     * husao_total : 10
+     * husao : 0
      */
 
+    private int is_vip;
     private String lucky_value;
     private int unopen_card;
+    private int is_sign;
+    private int share;
+    private int online_award;
+    private int share_award;
+    private int husao_total;
+    private int husao;
+    private List<ListBean> list;
+    private List<BannerBean> banner;
+    private List<JackpotImgsBean> jackpot_imgs;
 
     public int getIs_vip() {
         return is_vip;
@@ -26,25 +40,6 @@ public class MyCardInfo {
     public void setIs_vip(int is_vip) {
         this.is_vip = is_vip;
     }
-
-    private int is_vip;
-    private String jackpot_text;
-    private int is_sign;
-    private int online_award;
-    private int share_award;
-
-    public int getShare() {
-        return share;
-    }
-
-    public void setShare(int share) {
-        this.share = share;
-    }
-
-    private int share;
-    private List<ListBean> list;
-    private List<BannerBean> banner;
-    private List<JackpotImgsBean> jackpot_imgs;
 
     public String getLucky_value() {
         return lucky_value;
@@ -62,20 +57,20 @@ public class MyCardInfo {
         this.unopen_card = unopen_card;
     }
 
-    public String getJackpot_text() {
-        return jackpot_text;
-    }
-
-    public void setJackpot_text(String jackpot_text) {
-        this.jackpot_text = jackpot_text;
-    }
-
     public int getIs_sign() {
         return is_sign;
     }
 
     public void setIs_sign(int is_sign) {
         this.is_sign = is_sign;
+    }
+
+    public int getShare() {
+        return share;
+    }
+
+    public void setShare(int share) {
+        this.share = share;
     }
 
     public int getOnline_award() {
@@ -92,6 +87,22 @@ public class MyCardInfo {
 
     public void setShare_award(int share_award) {
         this.share_award = share_award;
+    }
+
+    public int getHusao_total() {
+        return husao_total;
+    }
+
+    public void setHusao_total(int husao_total) {
+        this.husao_total = husao_total;
+    }
+
+    public int getHusao() {
+        return husao;
+    }
+
+    public void setHusao(int husao) {
+        this.husao = husao;
     }
 
     public List<ListBean> getList() {
@@ -122,13 +133,14 @@ public class MyCardInfo {
         /**
          * id : 1
          * name : 青铜英雄卡分红
-         * card : 0
-         * card_cha : 10
+         * card : 1
+         * card_cha : 9
          * card_all : 10
-         * status : 0
+         * status : 1
          * status_total : 1
-         * money : 0
-         * day : 0
+         * fen_today : 1298.3999999999999
+         * my_today : 1298.39
+         * rate : 0.3
          * bid : 1
          */
 
@@ -139,8 +151,9 @@ public class MyCardInfo {
         private int card_all;
         private int status;
         private int status_total;
-        private int money;
-        private int day;
+        private double fen_today;
+        private String my_today;
+        private String rate;
         private int bid;
 
         public int getId() {
@@ -199,20 +212,28 @@ public class MyCardInfo {
             this.status_total = status_total;
         }
 
-        public int getMoney() {
-            return money;
+        public double getFen_today() {
+            return fen_today;
         }
 
-        public void setMoney(int money) {
-            this.money = money;
+        public void setFen_today(double fen_today) {
+            this.fen_today = fen_today;
         }
 
-        public int getDay() {
-            return day;
+        public String getMy_today() {
+            return my_today;
         }
 
-        public void setDay(int day) {
-            this.day = day;
+        public void setMy_today(String my_today) {
+            this.my_today = my_today;
+        }
+
+        public String getRate() {
+            return rate;
+        }
+
+        public void setRate(String rate) {
+            this.rate = rate;
         }
 
         public int getBid() {
@@ -222,27 +243,11 @@ public class MyCardInfo {
         public void setBid(int bid) {
             this.bid = bid;
         }
-
-        @Override
-        public String toString() {
-            return "ListBean{" +
-                    "id=" + id +
-                    ", name='" + name + '\'' +
-                    ", card=" + card +
-                    ", card_cha=" + card_cha +
-                    ", card_all=" + card_all +
-                    ", status=" + status +
-                    ", status_total=" + status_total +
-                    ", money=" + money +
-                    ", day=" + day +
-                    ", bid=" + bid +
-                    '}';
-        }
     }
 
     public static class BannerBean {
         /**
-         * img : http://super-tao.oss-cn-beijing.aliyuncs.com/a0519bd76b3e651a/3921655ced58bfb3.png
+         * img : http://super-tao.oss-cn-beijing.aliyuncs.com/a084c7038d937435/952a6d580f1fa356.png
          */
 
         private String img;
@@ -254,18 +259,12 @@ public class MyCardInfo {
         public void setImg(String img) {
             this.img = img;
         }
-
-        @Override
-        public String toString() {
-            return "BannerBean{" +
-                    "img='" + img + '\'' +
-                    '}';
-        }
     }
 
     public static class JackpotImgsBean {
         /**
          * img : http://super-tao.oss-cn-beijing.aliyuncs.com/384c6c100dc3587f/0dc0a974e5595724.png
+         * name : 1-50元现金红包
          */
 
         private String img;
@@ -286,30 +285,5 @@ public class MyCardInfo {
         public void setName(String name) {
             this.name = name;
         }
-
-        @Override
-        public String toString() {
-            return "JackpotImgsBean{" +
-                    "img='" + img + '\'' +
-                    ", name='" + name + '\'' +
-                    '}';
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "MyCardInfo{" +
-                "lucky_value='" + lucky_value + '\'' +
-                ", unopen_card=" + unopen_card +
-                ", is_vip=" + is_vip +
-                ", jackpot_text='" + jackpot_text + '\'' +
-                ", is_sign=" + is_sign +
-                ", online_award=" + online_award +
-                ", share_award=" + share_award +
-                ", share=" + share +
-                ", list=" + list +
-                ", banner=" + banner +
-                ", jackpot_imgs=" + jackpot_imgs +
-                '}';
     }
 }

@@ -15,6 +15,7 @@ import com.wuxiantao.wxt.bean.MyLuckyInfoBean;
 import com.wuxiantao.wxt.bean.MyMoneyCashBean;
 import com.wuxiantao.wxt.bean.MySignInfo;
 import com.wuxiantao.wxt.bean.MyTaskInfoBean;
+import com.wuxiantao.wxt.bean.NoticeBean;
 import com.wuxiantao.wxt.bean.OrderStatusBean;
 import com.wuxiantao.wxt.bean.RandGetCardBean;
 import com.wuxiantao.wxt.bean.RedBagWithdrawInfoBean;
@@ -59,6 +60,7 @@ import static com.wuxiantao.wxt.config.Api.MY_LUCKYINFO;
 import static com.wuxiantao.wxt.config.Api.MY_MONEYCASH;
 import static com.wuxiantao.wxt.config.Api.MY_SCROLL;
 import static com.wuxiantao.wxt.config.Api.NEWEST_ACTIVE;
+import static com.wuxiantao.wxt.config.Api.NOTICE;
 import static com.wuxiantao.wxt.config.Api.RANDGET_CARD;
 import static com.wuxiantao.wxt.config.Api.RED_BAG_WITHDRAW;
 import static com.wuxiantao.wxt.config.Api.SHARE_SUCCEED;
@@ -210,4 +212,7 @@ public interface CommissionService {
     @POST(SIGN_DOUBLE)
     @FormUrlEncoded
     Observable<BaseResponse<SignDoubleBean>> signDouble(@Field("token") String token);
+    @POST(NOTICE)
+    @FormUrlEncoded
+    Observable<BaseResponse<NoticeBean>> notice(@Field("token") String token);
 }

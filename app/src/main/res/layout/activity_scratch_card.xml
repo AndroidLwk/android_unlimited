@@ -46,8 +46,9 @@
         android:id="@+id/srl_balance_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlAccentColor="@color/color_faf6f5"
-        app:srlPrimaryColor="@color/color_faf6f5">
+        app:srlAccentColor="#00000000"
+        app:srlPrimaryColor="#00000000"
+       >
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:id="@+id/ch_balance_details_header"

@@ -14,6 +14,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ import com.wuxiantao.wxt.ui.fragment.main.MyDepositFragment;
 import com.wuxiantao.wxt.ui.fragment.main.ScrapingCardFragment;
 import com.wuxiantao.wxt.ui.fragment.main.TaoBaoFragment;
 import com.wuxiantao.wxt.ui.fragment.main.TaskHallFragment;
+import com.wuxiantao.wxt.ui.popupwindow.NoticePopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.VersionUpdatePopupWindow;
 import com.wuxiantao.wxt.utils.ToastUtils;
 import com.wuxiantao.wxt.utils.VersionUtils;
@@ -116,6 +118,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void initView() {
+       // mPresenter.notice(getAppToken());
         EventBus.getDefault().register(this);
         setOnClikListener(menu_tab_high_area_checked_img);
         setStatusBar();
@@ -400,6 +403,22 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     @Override
     public void getPersonalInfoFailure(String failure) {
         showOnlyConfirmDialog(failure);
+    }
+
+    @Override
+    public void noticeFailure(String failure) {
+
+    }
+
+    @Override
+    public void noticeSuccess(String content) {
+        if (TextUtils.isEmpty(content)) {
+            return;
+        }
+        new NoticePopupWindow.Build(this)
+                .setWindowAnimStyle(R.style.custom_dialog)
+                .setContent(content)
+                .builder().showPopupWindow();
     }
 
     @Override

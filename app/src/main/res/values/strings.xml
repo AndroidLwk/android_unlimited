@@ -373,7 +373,7 @@
     <string name="pass_word_rule">密码为3~16位非中文字符，区分大小写</string>
     <string name="confirm_setting">确认设置</string>
     <string name="confirm_update">确认修改</string>
-    <string name="go_binding">去绑定</string>
+    <string name="go_binding">去绑定+1张刮刮卡</string>
     <string name="go_input">去填写</string>
     <string name="please_set_nick_name">请设置昵称</string>
     <string name="please_set_pw">请设置密码</string>
@@ -1030,6 +1030,7 @@
     <string name="setting_text1">客服服务</string>
     <string name="setting_text2">关于我们</string>
     <string name="setting_text3">设置</string>
+    <string name="setting_text4">公告</string>
 
     <!-- 任务大厅-->
     <string name="taskhall_text1">去完成</string>

@@ -18,10 +18,12 @@ public class MyGameInfoBean {
      * actorname : 天枢儒罗
      * headimg : http://super-tao.oss-cn-beijing.aliyuncs.com/uploads/20200324/e3a511f908cfba923a050ef6d4065c6c.jpg
      * game_status : 0
-     * money_yesterday : 0
-     * money_total : 0
-     * money_day : 0
+     * game_status_all : 0
+     * rate : 0.05
+     * game_fenhong_all : 215.8
+     * game_fenhong_me : 0
      * banner : [{"img":"http://super-tao.oss-cn-beijing.aliyuncs.com/4584255e1e164cc0/1947964c97cbf26f.png"},{"img":"http://super-tao.oss-cn-beijing.aliyuncs.com/9fb45d455ff7133e/337f6c18fd6f8e64.png"},{"img":"http://super-tao.oss-cn-beijing.aliyuncs.com/60d2520e6f10b1e7/f2a5767499b23e24.png"}]
+     * info : {"tiyan_money":"0.00","tiyan_level":0,"tiyan_starttime":0,"tiyan_endtime":0,"num":0,"cha_next":27,"tiyan_count":4,"tiyan_total":9,"tiyan_today_me":9}
      */
 
     private int qu_id;
@@ -31,9 +33,11 @@ public class MyGameInfoBean {
     private String actorname;
     private String headimg;
     private int game_status;
-    private int money_yesterday;
-    private int money_total;
-    private int money_day;
+    private int game_status_all;
+    private String rate;
+    private double game_fenhong_all;
+    private int game_fenhong_me;
+    private InfoBean info;
     private List<BannerBean> banner;
 
     public int getQu_id() {
@@ -92,28 +96,44 @@ public class MyGameInfoBean {
         this.game_status = game_status;
     }
 
-    public int getMoney_yesterday() {
-        return money_yesterday;
+    public int getGame_status_all() {
+        return game_status_all;
     }
 
-    public void setMoney_yesterday(int money_yesterday) {
-        this.money_yesterday = money_yesterday;
+    public void setGame_status_all(int game_status_all) {
+        this.game_status_all = game_status_all;
     }
 
-    public int getMoney_total() {
-        return money_total;
+    public String getRate() {
+        return rate;
     }
 
-    public void setMoney_total(int money_total) {
-        this.money_total = money_total;
+    public void setRate(String rate) {
+        this.rate = rate;
     }
 
-    public int getMoney_day() {
-        return money_day;
+    public double getGame_fenhong_all() {
+        return game_fenhong_all;
     }
 
-    public void setMoney_day(int money_day) {
-        this.money_day = money_day;
+    public void setGame_fenhong_all(double game_fenhong_all) {
+        this.game_fenhong_all = game_fenhong_all;
+    }
+
+    public int getGame_fenhong_me() {
+        return game_fenhong_me;
+    }
+
+    public void setGame_fenhong_me(int game_fenhong_me) {
+        this.game_fenhong_me = game_fenhong_me;
+    }
+
+    public InfoBean getInfo() {
+        return info;
+    }
+
+    public void setInfo(InfoBean info) {
+        this.info = info;
     }
 
     public List<BannerBean> getBanner() {
@@ -122,6 +142,102 @@ public class MyGameInfoBean {
 
     public void setBanner(List<BannerBean> banner) {
         this.banner = banner;
+    }
+
+    public static class InfoBean {
+        /**
+         * tiyan_money : 0.00
+         * tiyan_level : 0
+         * tiyan_starttime : 0
+         * tiyan_endtime : 0
+         * num : 0
+         * cha_next : 27
+         * tiyan_count : 4
+         * tiyan_total : 9
+         * tiyan_today_me : 9
+         */
+
+        private String tiyan_money;
+        private int tiyan_level;
+        private int tiyan_starttime;
+        private int tiyan_endtime;
+        private int num;
+        private int cha_next;
+        private int tiyan_count;
+        private int tiyan_total;
+        private int tiyan_today_me;
+
+        public String getTiyan_money() {
+            return tiyan_money;
+        }
+
+        public void setTiyan_money(String tiyan_money) {
+            this.tiyan_money = tiyan_money;
+        }
+
+        public int getTiyan_level() {
+            return tiyan_level;
+        }
+
+        public void setTiyan_level(int tiyan_level) {
+            this.tiyan_level = tiyan_level;
+        }
+
+        public int getTiyan_starttime() {
+            return tiyan_starttime;
+        }
+
+        public void setTiyan_starttime(int tiyan_starttime) {
+            this.tiyan_starttime = tiyan_starttime;
+        }
+
+        public int getTiyan_endtime() {
+            return tiyan_endtime;
+        }
+
+        public void setTiyan_endtime(int tiyan_endtime) {
+            this.tiyan_endtime = tiyan_endtime;
+        }
+
+        public int getNum() {
+            return num;
+        }
+
+        public void setNum(int num) {
+            this.num = num;
+        }
+
+        public int getCha_next() {
+            return cha_next;
+        }
+
+        public void setCha_next(int cha_next) {
+            this.cha_next = cha_next;
+        }
+
+        public int getTiyan_count() {
+            return tiyan_count;
+        }
+
+        public void setTiyan_count(int tiyan_count) {
+            this.tiyan_count = tiyan_count;
+        }
+
+        public int getTiyan_total() {
+            return tiyan_total;
+        }
+
+        public void setTiyan_total(int tiyan_total) {
+            this.tiyan_total = tiyan_total;
+        }
+
+        public int getTiyan_today_me() {
+            return tiyan_today_me;
+        }
+
+        public void setTiyan_today_me(int tiyan_today_me) {
+            this.tiyan_today_me = tiyan_today_me;
+        }
     }
 
     public static class BannerBean {

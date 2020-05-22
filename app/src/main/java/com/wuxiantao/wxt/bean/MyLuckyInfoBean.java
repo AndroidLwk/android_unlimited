@@ -10,6 +10,16 @@ public class MyLuckyInfoBean {
     private String lucky_value;
     private int rand;
 
+    public int getIs_full() {
+        return is_full;
+    }
+
+    public void setIs_full(int is_full) {
+        this.is_full = is_full;
+    }
+
+    private int is_full;
+
     public String getLucky_value() {
         return lucky_value;
     }
