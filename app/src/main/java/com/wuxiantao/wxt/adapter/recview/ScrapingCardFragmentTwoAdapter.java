@@ -17,7 +17,10 @@ public class ScrapingCardFragmentTwoAdapter extends RcvBaseAdapter<ScrapingCardB
 
     @Override
     protected void convert(BaseViewHolder holder, ScrapingCardBean bean, int position) {
+        holder.setImageResource(R.id.iv_icon, bean.getImg_res());
         holder.setText(R.id.tv_num_title, bean.getNumTitle());
+        holder.setText(R.id.tv_scrapcard_num, "+" + bean.getNum() + "刮刮卡");
+        holder.setText(R.id.tv_finish_info, bean.getFinishText());
         holder.setText(R.id.sbt_finish, bean.getIsFinish() == 0 ? "去完成" : "已完成");
         holder.setViewBackGroundColor(R.id.sbt_finish, "#FA5858");
         holder.setTextColor(R.id.sbt_finish, "#ffffff");

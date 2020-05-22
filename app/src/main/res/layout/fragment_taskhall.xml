@@ -243,7 +243,7 @@
             <LinearLayout
                 android:id="@+id/lt_task_two"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_400"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/lt_task_one"
                 android:layout_marginLeft="@dimen/dp_22"
                 android:layout_marginTop="@dimen/dp_11"

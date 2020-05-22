@@ -51,7 +51,6 @@ import static com.wuxiantao.wxt.config.Constant.BINDIND_ALIPAY;
 import static com.wuxiantao.wxt.config.Constant.BINDIND_WECHAT;
 import static com.wuxiantao.wxt.config.Constant.CONFIRM_WITHDRAW;
 import static com.wuxiantao.wxt.config.Constant.IS_ATTENTION_PUBLIC;
-import static com.wuxiantao.wxt.config.Constant.MODE;
 import static com.wuxiantao.wxt.config.Constant.MORE_THAN_THE_INPUT;
 import static com.wuxiantao.wxt.config.Constant.REQUEST_CODE_BINDING_ALIPAY;
 import static com.wuxiantao.wxt.config.Constant.RESULT_CODE_BINDING_ALIPAY;
@@ -128,11 +127,11 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     //获取提现信息成功
     @Override
     public void getWithdrawInfoSuccess(RedBagWithdrawInfoBean bean) {
-        balance = bean.getVolumes();
+        balance = bean.getMoney();
         balance_with_draw_able_money.setText(balance);
         scarcity = isEmpty(balance) || BigDecimalUtils.compare("0", balance);
         isBindingAlipay = !isEmpty(bean.getAlicode());
-        isBindingWeChat = !isEmpty(bean.getNickname());
+        isBindingWeChat = bean.getIs_wx() == 1 ? true : false;
 
         initEnabledText();
         balance_with_draw_input.addTextChangedListener(new TextWatcher() {
@@ -353,7 +352,7 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
                     map.put(TOKEN, getAppToken());
                     map.put("money", getEdtText(balance_with_draw_input));
                     map.put("type", withdrawType);
-                    map.put(MODE, 1);
+                 //   map.put(MODE, 1);
                     mPresenter.withdraw(map);
                 }
                 break;

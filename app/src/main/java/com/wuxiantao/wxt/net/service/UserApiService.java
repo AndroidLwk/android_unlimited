@@ -4,6 +4,7 @@ import com.wuxiantao.wxt.bean.BalanceBean;
 import com.wuxiantao.wxt.bean.HandValueBean;
 import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.bean.ListNullBean;
+import com.wuxiantao.wxt.bean.ModifyPersonalBean;
 import com.wuxiantao.wxt.bean.MyDepositBean;
 import com.wuxiantao.wxt.bean.OnLineServiceBean;
 import com.wuxiantao.wxt.bean.PersonalInfoBean;
@@ -55,7 +56,7 @@ public interface UserApiService {
 
     @POST(UPDATE_PERSONAL_CENTER)
     @FormUrlEncoded
-    Observable<BaseResponse<List>> modifyPersonal(@FieldMap Map<String,Object> parameters);
+    Observable<BaseResponse<ModifyPersonalBean>> modifyPersonal(@FieldMap Map<String,Object> parameters);
 
     @Multipart
     @POST(UPLOAD_FILE)

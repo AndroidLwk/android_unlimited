@@ -95,8 +95,6 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
     TextView tv_num_title;
     @ViewInject(R.id.tv_yesterday_num)
     TextView tv_yesterday_num;
-    @ViewInject(R.id.sbt_startHall_scrapCard)
-    StateButton sbt_startHall_scrapCard;
     @ViewInject(R.id.tv_dirver)
     TextView tv_dirver;
     @ViewInject(R.id.tv_bag_title)
@@ -127,7 +125,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
     @Override
     public void initView() {
         setOnClikListener(sbt_moreInfo, tv_mine_member, tv_mine_set, tv_blanseValue, tv_officialGroup, tv_money_title, tv_crashMoney_title, tv_crashValue,
-                tv_mine_friend, tv_mine_code, tv_promotioninvitation, tv_mine_second_pass, tv_mine_freedback, rt_personInfo,ll_mine_scan);
+                tv_mine_friend, tv_mine_code, tv_promotioninvitation, tv_mine_second_pass, tv_mine_freedback, rt_personInfo, ll_mine_scan);
         loadingDialog = createLoadingDialog();
         mPresenter.myMoneyCash(getAppToken());
         initRefreshLoad();
@@ -191,7 +189,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
                 break;
             case R.id.tv_promotioninvitation:
                 $startActivity(ShareThemActivity.class);
-            break;
+                break;
             case R.id.tv_mine_second_pass:
 //                $startActivity(SettingPassWordActivity.class);
                 $startActivity(ChangePassWordActivity.class);
@@ -215,15 +213,17 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
     }
 
     private static final int REQUEST_CODE_QRCODE_PERMISSIONS = 1;
+
     @AfterPermissionGranted(REQUEST_CODE_QRCODE_PERMISSIONS)
     private void requestCodeQRCodePermissions() {
         String[] perms = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE};
         if (!EasyPermissions.hasPermissions(getActivity(), perms)) {
             EasyPermissions.requestPermissions(this, "扫描二维码需要打开相机和散光灯的权限", REQUEST_CODE_QRCODE_PERMISSIONS, perms);
-        }else {
+        } else {
             $startActivity(ScanActivity.class);
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
@@ -261,9 +261,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
     @Override
     public void showMyMoneyCash(MyMoneyCashBean info) {
         this.official_url = info.getQun_img();
-        if (TextUtils.isEmpty(getUserInfo(USER_HEAD_IMG))) {
-            GlideImgManager.loadCircleImg(getContext(), R.mipmap.default_user_head_img, iv_mine_header);
-        } else {
+        if (!TextUtils.isEmpty(getUserInfo(USER_HEAD_IMG))) {
             GlideImgManager.loadCircleImg(getContext(), getUserInfo(USER_HEAD_IMG), iv_mine_header);
         }
         iv_headerName.setText(info.getUp_nickname());

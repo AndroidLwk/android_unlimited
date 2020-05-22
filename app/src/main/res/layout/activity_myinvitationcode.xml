@@ -42,25 +42,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_3"
                 android:layout_marginLeft="@dimen/dp_3"
+                android:layout_marginTop="@dimen/dp_10"
                 android:ellipsize="end"
                 android:maxEms="6"
-                android:layout_marginTop="@dimen/dp_10"
                 android:maxLines="1"
                 android:text="@string/mine_text2"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_18" />
 
         </LinearLayout>
+
         <ImageView
             android:id="@+id/img_invateCode_share"
             android:layout_width="@dimen/dp_28"
             android:layout_height="@dimen/dp_28"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/share"
-            android:tint="@color/white"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginRight="@dimen/dp_10"
-            android:layout_gravity="center_vertical" />
+            android:src="@mipmap/share"
+            android:tint="@color/white" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -79,7 +80,7 @@
             android:layout_marginLeft="@dimen/dp_23"
             android:layout_marginTop="@dimen/dp_14"
             android:scaleType="centerCrop"
-            android:src="@drawable/mine_header" />
+            android:src="@drawable/header_default" />
 
         <TextView
             android:id="@+id/tv_hearderInfo"
@@ -103,16 +104,17 @@
                 android:id="@+id/iv_invateCode"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/dp_45"
                 android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/dp_45"
                 android:src="@drawable/invatecode" />
 
             <ImageView
                 android:id="@+id/iv_centerherader"
                 android:layout_width="@dimen/dp_50"
                 android:layout_height="@dimen/dp_50"
+                android:layout_centerInParent="true"
                 android:scaleType="center"
-                android:layout_centerInParent="true"/>
+                android:src="@drawable/header_default" />
         </RelativeLayout>
 
         <TextView

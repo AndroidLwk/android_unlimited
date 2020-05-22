@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
+import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.MyCardInfo;
 import com.wuxiantao.wxt.bean.MySignInfo;
 import com.wuxiantao.wxt.bean.ScrapingCardBean;
@@ -84,16 +85,31 @@ public class ScrapingCardFragmentPresenter extends BasePresenter<ScrapingCardFra
     public List<ScrapingCardBean> getScarapCasdTask() {
         List<ScrapingCardBean> mData_b = new ArrayList<>();
         ScrapingCardBean scrapingCardBean_b = new ScrapingCardBean();
-        scrapingCardBean_b.setNumTitle("任务大厅签到  +3张");
+        scrapingCardBean_b.setNumTitle("任务大厅签到");
+        scrapingCardBean_b.setFinishText("完成0/1");
+        scrapingCardBean_b.setImg_res(R.drawable.main_scrapcard_sign);
+        scrapingCardBean_b.setNum(1);
         mData_b.add(scrapingCardBean_b);
         scrapingCardBean_b = new ScrapingCardBean();
-        scrapingCardBean_b.setNumTitle("二维码邀请好友  +1张");
+        scrapingCardBean_b.setNumTitle("好友助力，分享互扫！");
+        scrapingCardBean_b.setNum(1);
+        scrapingCardBean_b.setFinishText("完成0/1");
+
+        scrapingCardBean_b.setImg_res(R.drawable.main_scrapcard_sao);
+
         mData_b.add(scrapingCardBean_b);
         scrapingCardBean_b = new ScrapingCardBean();
-        scrapingCardBean_b.setNumTitle("分享无限淘  +1张");
+        scrapingCardBean_b.setNumTitle("推广邀请，红包皮肤一起拿！");
+        scrapingCardBean_b.setNum(1);
+        scrapingCardBean_b.setFinishText("完成0/1");
+
+        scrapingCardBean_b.setImg_res(R.drawable.main_scrapcard_tuiguang);
         mData_b.add(scrapingCardBean_b);
         scrapingCardBean_b = new ScrapingCardBean();
-        scrapingCardBean_b.setNumTitle("登录斩妖诀游戏且在线5分钟  +1张");
+        scrapingCardBean_b.setNum(1);
+        scrapingCardBean_b.setFinishText("完成0/1");
+        scrapingCardBean_b.setNumTitle("斩妖之旅，在线5分钟！");
+        scrapingCardBean_b.setImg_res(R.drawable.main_scrapcard_video);
         mData_b.add(scrapingCardBean_b);
         return mData_b;
     }

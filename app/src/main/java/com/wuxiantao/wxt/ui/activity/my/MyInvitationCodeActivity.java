@@ -1,11 +1,7 @@
 package com.wuxiantao.wxt.ui.activity.my;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.KeyEvent;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,22 +15,13 @@ import com.wuxiantao.wxt.mvp.presenter.MyInvitationPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
 import com.wuxiantao.wxt.share.WeChatShareListener;
 import com.wuxiantao.wxt.share.WeChatShareResultListener;
-import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.popupwindow.ShareInviteCodePopWindow;
-import com.wuxiantao.wxt.ui.popupwindow.SharePosterPopupWindow;
 import com.wuxiantao.wxt.utils.DensityUtils;
 import com.wuxiantao.wxt.utils.QRCodeUtil;
 import com.wuxiantao.wxt.wxapi.WXShare;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
-
-import static com.wuxiantao.wxt.config.Constant.IS_SHARE_SUCCESS;
-import static com.wuxiantao.wxt.config.Constant.REQUEST_SHARE_MORE_THEM;
-import static com.wuxiantao.wxt.config.Constant.RESULT_CODE_SHARE;
-import static com.wuxiantao.wxt.config.Constant.RESULT_SHARE_MORE_THEM;
-import static com.wuxiantao.wxt.config.Constant.REWARD_MONEY;
-import static com.wuxiantao.wxt.config.Constant.SHARE_THEM_ID;
 
 /**
  * Copyright (C), 成都都爱玩科技有限公司
@@ -65,7 +52,7 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
     protected void initView() {
         setStatusBar();
         mPresenter.getSharePic(getAppToken());
-        setOnClikListener(mine_fansi_back, iv_invateCode,img_invateCode_share);
+        setOnClikListener(mine_fansi_back, iv_invateCode, img_invateCode_share);
         WeChatShareListener.getInstance().addListener(this);
     }
 
@@ -79,6 +66,7 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
                         //微信好友
                         WXShare.getInstance().shareImgMessag(false, bitmap);
                     }
+
                     @Override
                     public void onShareFriends() {
                         //微信朋友圈
@@ -121,8 +109,10 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
     public void showShareCode(SharePicBean info) {
         runOnUiThread(() -> {
             tv_hearderInfo.setText(info.getNickname());
-            GlideImgManager.loadRoundImg(MyInvitationCodeActivity.this, info.getHeadimg(), iv_centerherader);
-            GlideImgManager.loadCircleImg(this, info.getHeadimg(), iv_header);
+            if (!TextUtils.isEmpty(info.getHeadimg())) {
+                GlideImgManager.loadRoundImg(MyInvitationCodeActivity.this, info.getHeadimg(), iv_centerherader);
+                GlideImgManager.loadCircleImg(this, info.getHeadimg(), iv_header);
+            }
             String imgUrl = info.getSrc() + getLocalUserId();
             mBitmap = QRCodeUtil.createQRCodeBitmap(imgUrl, DensityUtils.dip2px(261), DensityUtils.dip2px(261));
             iv_invateCode.setImageBitmap(mBitmap);
@@ -137,7 +127,7 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
 
     @Override
     public void shareSucceed(ShareAdBean bean) {
-        if (bean.getNum()==1){
+        if (bean.getNum() == 1) {
             showOnlyConfirmDialog("恭喜获得1张刮刮卡！");
         }
     }

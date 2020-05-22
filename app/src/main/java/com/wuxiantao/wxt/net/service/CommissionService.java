@@ -101,7 +101,7 @@ public interface CommissionService {
 
     @POST(COMMISSION_WITHDRAW)
     @FormUrlEncoded
-    Observable<BaseResponse<List>> commissionWithdraw(@FieldMap Map<String, Object> map);
+    Observable<BaseResponse<RedBagWithdrawInfoBean>> commissionWithdraw(@FieldMap Map<String, Object> map);
 
     @POST(MY_CARDINFO)
     @FormUrlEncoded

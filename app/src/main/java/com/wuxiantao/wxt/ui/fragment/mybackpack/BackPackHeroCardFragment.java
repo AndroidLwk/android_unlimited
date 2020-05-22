@@ -24,6 +24,7 @@ import com.wuxiantao.wxt.pay.PayManager;
 import com.wuxiantao.wxt.ui.activity.ChangePassWordActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.HeroScrollActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.PointToCardActivity;
+import com.wuxiantao.wxt.ui.popupwindow.MyPackNumPoupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.OrderPayModePopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.PackOperationPopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.TransferScratchCardPopupWindow;
@@ -72,11 +73,7 @@ public class BackPackHeroCardFragment extends MvpFragment<MyBackpackPrewenter, M
         rv_myBackpack.setLayoutManager(manager);
         mPresenter.myBox(getAppToken(), page, pid);
     }
-    public void refreshData() {
-        if (mPresenter != null) {
-            mPresenter.myBox(getAppToken(), 1, pid);
-        }
-    }
+
     private MyBoxInfo.ListBean myBackpackBean;//点击事件的数据
     private String id, pass, num;//转赠用到的传参
 
@@ -126,7 +123,11 @@ public class BackPackHeroCardFragment extends MvpFragment<MyBackpackPrewenter, M
                             $startActivity(KF5ChatActivity.class);
                             mPresenter.myBox(getAppToken(), page, pid);
                         } else {//现金卡使用
-                            mPresenter.useCard(getAppToken(), myBackpackBean.getCard_id() + "", "1");
+                            new MyPackNumPoupWindow.Build(getContext())
+                                    .setWindowAnimStyle(R.style.custom_dialog)
+                                    .setTitle("使用", "使用数量")
+                                    .setConfirmClickListener(num1 -> mPresenter.useCard(getAppToken(), myBackpackBean.getCard_id() + "", num1))
+                                    .builder().showPopupWindow();
                         }
                     }
 
@@ -138,7 +139,13 @@ public class BackPackHeroCardFragment extends MvpFragment<MyBackpackPrewenter, M
 
                     @Override
                     public void discard() {
-                        showDisCardDialog("确定销毁卡片？", (dialog, which) -> mPresenter.discard(getAppToken(), myBackpackBean.getCard_id() + "", "1"));
+                        new MyPackNumPoupWindow.Build(getContext())
+                                .setWindowAnimStyle(R.style.custom_dialog)
+                                .setTitle("销毁", "销毁数量")
+                                .setConfirmClickListener(num1 -> {
+                                    showDisCardDialog("确定销毁？", (dialog, which) -> mPresenter.discard(getAppToken(), myBackpackBean.getCard_id() + "", num1));
+                                })
+                                .builder().showPopupWindow();
                     }
                 })
                 .builder().showPopupWindow();
@@ -163,9 +170,16 @@ public class BackPackHeroCardFragment extends MvpFragment<MyBackpackPrewenter, M
         }
     }
 
+    public void refreshData() {
+        if (mPresenter != null) {
+            mPresenter.myBox(getAppToken(), 1, pid);
+        }
+    }
+
     @Override
     public void onFailure(String msg) {
         if (msg.equals("余额不足!")) {
+            double price = Double.parseDouble(myBackpackBean.getRate()) * Integer.parseInt(num);
             showOnlyConfirmDialog("余额不足，确定用支付宝/微信支付？", (dialog, which) -> {
                 new OrderPayModePopupWindow.Build(getContext())
                         .setOnItemClickListener(payType -> {
@@ -177,6 +191,7 @@ public class BackPackHeroCardFragment extends MvpFragment<MyBackpackPrewenter, M
                                 mPresenter.exchange_wx(getAppToken(), myBackpackBean.getCard_id() + "", id, pass, num);
                             }
                         })
+                        .setOrderPayMoney(price + "")
                         .setPopupWindowAnimStyle(R.style.custom_dialog)
                         .builder()
                         .showPopupWindow();

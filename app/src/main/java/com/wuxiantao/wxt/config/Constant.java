@@ -405,4 +405,6 @@ public class Constant {
     public static final String IS_SETPAY_PASS = "isSetPayPassword";
     // 刮刮卡界面没有获取到卡弹框返回
     public static final String FAIURE_POINTTOCARD_BACK = "pointToCardFalureBack";
+    // 扩容界面支付成功返回
+    public static final String SUCCESS_EXPANSION_BACK = "successExpansionBack";
 }

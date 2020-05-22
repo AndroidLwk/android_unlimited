@@ -61,7 +61,7 @@
                         android:layout_height="@dimen/dp_58"
                         android:layout_below="@+id/tv_title"
                         android:layout_marginTop="@dimen/dp_19"
-                        android:src="@drawable/mine_header" />
+                        android:src="@drawable/header_default" />
 
                     <TextView
                         android:id="@+id/iv_headerName"

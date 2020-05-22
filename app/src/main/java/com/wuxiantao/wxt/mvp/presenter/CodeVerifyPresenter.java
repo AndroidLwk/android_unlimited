@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
 import com.wuxiantao.wxt.R;
+import com.wuxiantao.wxt.bean.ModifyPersonalBean;
 import com.wuxiantao.wxt.bean.PhoneLoginBean;
 import com.wuxiantao.wxt.mvp.contract.CodeVerifyContract;
 import com.wuxiantao.wxt.mvp.login.BaseLoginPresenter;
@@ -68,9 +69,9 @@ public class CodeVerifyPresenter extends BaseLoginPresenter<CodeVerifyContract.I
         if (view == null){
             view = getMvpView();
         }
-        BaseObserver<List> observer = new BaseObserver<List>(view) {
+        BaseObserver<ModifyPersonalBean> observer = new BaseObserver<ModifyPersonalBean>(view) {
             @Override
-            public void onSuccess(List list) {
+            public void onSuccess(ModifyPersonalBean list) {
                 view.bindingNumberSuccess("绑定成功");
             }
 

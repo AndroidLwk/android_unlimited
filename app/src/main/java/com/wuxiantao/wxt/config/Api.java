@@ -271,7 +271,8 @@ public class Api {
     public static final String GET_COMMISSION_WITHDRAW_INFO = "user/tixianList";
 
     //获取红包提现信息
-    public static final String GET_RED_BAG_WITHDRAW_INFO = "user/redList";
+    //public static final String GET_RED_BAG_WITHDRAW_INFO = "user/redList";
+    public static final String GET_RED_BAG_WITHDRAW_INFO = "newest/moneyList";//可提现金额
 
     //签到8/15 Check in
     public static final String CHECK_IN = "user/taskSign";
@@ -283,7 +284,8 @@ public class Api {
     public static final String RED_BAG_WITHDRAW = "user/redWithdraw";
 
     //佣金提现
-    public static final String COMMISSION_WITHDRAW = "user/rateWithdraw";
+    //public static final String COMMISSION_WITHDRAW = "user/rateWithdraw";
+    public static final String COMMISSION_WITHDRAW = "newest/withdraw";//余额提现
 
     // 0元购和高拥专区
     public static final String HIGH_AREA_ZERO = "goods/zeroBuy";

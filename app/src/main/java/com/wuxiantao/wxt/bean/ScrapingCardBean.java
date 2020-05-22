@@ -18,7 +18,27 @@ public class ScrapingCardBean {
     }
 
     private String numTitle;
+
+    public String getFinishText() {
+        return finishText;
+    }
+
+    public void setFinishText(String finishText) {
+        this.finishText = finishText;
+    }
+
+    private String finishText;
     private int num;
+
+    public int getNum_finish() {
+        return num_finish;
+    }
+
+    public void setNum_finish(int num_finish) {
+        this.num_finish = num_finish;
+    }
+
+    private int num_finish;
 
     public int getImg_res() {
         return img_res;

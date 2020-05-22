@@ -5,6 +5,7 @@ import android.widget.TextView;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.KuorongInfoBean;
 import com.wuxiantao.wxt.bean.WeChatPayBean;
+import com.wuxiantao.wxt.event.MessageEvent;
 import com.wuxiantao.wxt.mvp.contract.BackpackExpansionContract;
 import com.wuxiantao.wxt.mvp.presenter.BackpackExpansionPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
@@ -14,11 +15,13 @@ import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.popupwindow.OrderPayModePopupWindow;
 import com.wuxiantao.wxt.ui.title.CNToolbar;
 
+import org.greenrobot.eventbus.EventBus;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 import static com.wuxiantao.wxt.config.Constant.PAY_TYPE_ALI;
 import static com.wuxiantao.wxt.config.Constant.PAY_TYPE_WX;
+import static com.wuxiantao.wxt.config.Constant.SUCCESS_EXPANSION_BACK;
 
 @ContentView(R.layout.activity_backpackexpansion)
 public class BackpackExpansionActivity extends MvpActivity<BackpackExpansionPresenter, BackpackExpansionContract> implements BackpackExpansionContract {
@@ -182,6 +185,6 @@ public class BackpackExpansionActivity extends MvpActivity<BackpackExpansionPres
      * 通知刷新列表
      */
     public void noTifyrefreshData() {
-
+        EventBus.getDefault().post(new MessageEvent(SUCCESS_EXPANSION_BACK));
     }
 }

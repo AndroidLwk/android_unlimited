@@ -17,6 +17,7 @@ import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.title.TitleBuilder;
 import com.wuxiantao.wxt.utils.NumberFormatUtils;
+import com.wuxiantao.wxt.utils.ToastUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -38,14 +39,14 @@ import static com.wuxiantao.wxt.config.Constant.TOKEN;
  * Description:${DESCRIPTION} 绑定支付宝
  */
 @ContentView(R.layout.activity_binding_alipay)
-public class BinddingAlipayActivity extends MvpActivity<BindingAlipayPresenter, BindingAlipayContract.IBindingView> implements View.OnKeyListener,TextWatcher,BindingAlipayContract.IBindingView {
+public class BinddingAlipayActivity extends MvpActivity<BindingAlipayPresenter, BindingAlipayContract.IBindingView> implements View.OnKeyListener, TextWatcher, BindingAlipayContract.IBindingView {
     @ViewInject(R.id.change_alipay_rl)
     SmartRefreshLayout change_alipay_rl;
     @ViewInject(R.id.binding_alipay_type)
     TextView binding_type;
 
     @ViewInject(R.id.binding_alipay_account_input)
-    EditText  binding_account_input;
+    EditText binding_account_input;
     @ViewInject(R.id.binding_alipay_name_input)
     EditText binding_name_input;
 
@@ -62,16 +63,16 @@ public class BinddingAlipayActivity extends MvpActivity<BindingAlipayPresenter, 
         change_alipay_rl.setEnableLoadMore(false);
         loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.binding_ing).build();
         Bundle bundle = getBundle();
-        if (bundle != null){
+        if (bundle != null) {
             alicode = bundle.getString(ALI_CODE);
             aliname = bundle.getString(ALI_NAME);
-            if (!isEmpty(alicode) && !isEmpty(aliname)){
+            if (!isEmpty(alicode) && !isEmpty(aliname)) {
                 binding_account_input.setText(alicode);
                 binding_name_input.setText(aliname);
                 binding_account_input.setSelection(alicode.length());
                 binding_type.setText(R.string.alipay_change);
             }
-        }else {
+        } else {
             binding_type.setText(R.string.alipay_bangding);
         }
         binding_account_input.setOnKeyListener(this);
@@ -90,7 +91,7 @@ public class BinddingAlipayActivity extends MvpActivity<BindingAlipayPresenter, 
 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_DEL){
+        if (keyCode == KeyEvent.KEYCODE_DEL) {
             int accountLen = getEdtText(binding_account_input).length();
             int nameLen = getEdtText(binding_name_input).length();
             binding_confrim_banding.setEnabled(accountLen > 0 && nameLen > 0);
@@ -100,23 +101,23 @@ public class BinddingAlipayActivity extends MvpActivity<BindingAlipayPresenter, 
 
     @Override
     public void widgetClick(int viewId) {
-        if (viewId == R.id.binding_alipay_confrim_banding){
+        if (viewId == R.id.binding_alipay_confrim_banding) {
             alicode = getEdtText(binding_account_input);
             aliname = getEdtText(binding_name_input);
-            if (NumberFormatUtils.isVerificationNo(alicode)){
-                Map<String,Object> maps = new HashMap<>();
-                maps.put(TOKEN,getAppToken());
-                maps.put("aliname",aliname);
-                maps.put("alicode",alicode);
+            if (NumberFormatUtils.isVerificationNo(alicode)) {
+                Map<String, Object> maps = new HashMap<>();
+                maps.put(TOKEN, getAppToken());
+                maps.put("aliname", aliname);
+                maps.put("alicode", alicode);
                 mPresenter.modifyPersonal(maps);
-            }else {
+            } else {
                 showNumberError();
             }
         }
     }
 
-    private void showNumberError(){
-        showDialog(getString(R.string.number_error),(dialog, which) ->binding_account_input.setText(""));
+    private void showNumberError() {
+        showDialog(getString(R.string.number_error), (dialog, which) -> binding_account_input.setText(""));
     }
 
     @Override
@@ -142,11 +143,12 @@ public class BinddingAlipayActivity extends MvpActivity<BindingAlipayPresenter, 
 
     @Override
     public void modifySuccess(String msg) {
-        if (!isEmpty(alicode) && !isEmpty(aliname)){
+        if (!isEmpty(alicode) && !isEmpty(aliname)) {
             Bundle bundle = new Bundle();
-            bundle.putString(ALI_CODE,alicode);
-            bundle.putString(ALI_NAME,aliname);
-            getResult(RESULT_CODE_BINDING_ALIPAY,bundle);
+            bundle.putString(ALI_CODE, alicode);
+            bundle.putString(ALI_NAME, aliname);
+            getResult(RESULT_CODE_BINDING_ALIPAY, bundle);
+            ToastUtils.showToast(msg);
         }
     }
 

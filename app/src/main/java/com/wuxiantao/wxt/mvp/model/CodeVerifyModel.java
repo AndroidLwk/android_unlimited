@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.mvp.model;
 
 import com.wuxiantao.wxt.app.BaseApplication;
+import com.wuxiantao.wxt.bean.ModifyPersonalBean;
 import com.wuxiantao.wxt.bean.PhoneLoginBean;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
@@ -38,7 +39,7 @@ public class CodeVerifyModel extends LoginModel{
     }
 
 
-    public void bindingNumber(BaseObserver<List> observer,Map<String,Object> parameters){
+    public void bindingNumber(BaseObserver<ModifyPersonalBean> observer, Map<String,Object> parameters){
         HttpManager.newInstance()
                 .createService(UserApiService.class)
                 .modifyPersonal(parameters)

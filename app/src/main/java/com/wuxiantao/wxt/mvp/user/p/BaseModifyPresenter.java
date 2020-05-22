@@ -1,12 +1,12 @@
 package com.wuxiantao.wxt.mvp.user.p;
 
 import com.wuxiantao.wxt.R;
+import com.wuxiantao.wxt.bean.ModifyPersonalBean;
 import com.wuxiantao.wxt.mvp.presenter.BasePresenter;
 import com.wuxiantao.wxt.mvp.user.m.ModifyModel;
 import com.wuxiantao.wxt.mvp.user.v.ModifyView;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 
-import java.util.List;
 import java.util.Map;
 
 import static com.wuxiantao.wxt.config.Constant.RESOURCES;
@@ -28,9 +28,9 @@ public class BaseModifyPresenter<V extends ModifyView> extends BasePresenter<V> 
         if (view == null){
             view = getMvpView();
         }
-        BaseObserver<List> observer = new BaseObserver<List>(view) {
+        BaseObserver<ModifyPersonalBean> observer = new BaseObserver<ModifyPersonalBean>(view) {
             @Override
-            public void onSuccess(List s) {
+            public void onSuccess(ModifyPersonalBean s) {
                 view.modifySuccess(RESOURCES.getString(R.string.modify_success));
             }
 

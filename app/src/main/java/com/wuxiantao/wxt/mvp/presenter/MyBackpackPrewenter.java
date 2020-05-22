@@ -1,7 +1,5 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
-import android.util.Log;
-
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.AlipayBean;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
@@ -232,4 +230,20 @@ public class MyBackpackPrewenter extends BasePresenter<MyBackpackContract> {
         }
         return list;
     }
+
+    /**
+     * 获取选重的 选项
+     *
+     * @param mData
+     * @return
+     */
+    public int getSeletedPotion(List<BoxTypeBean> mData) {
+        for (int i = 0; i < mData.size(); i++) {
+            if (mData.get(i).isSeleted()) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
 }

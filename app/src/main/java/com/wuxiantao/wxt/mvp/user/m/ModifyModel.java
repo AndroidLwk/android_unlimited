@@ -1,13 +1,13 @@
 package com.wuxiantao.wxt.mvp.user.m;
 
 import com.wuxiantao.wxt.app.BaseApplication;
+import com.wuxiantao.wxt.bean.ModifyPersonalBean;
 import com.wuxiantao.wxt.mvp.model.BaseModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
 import com.wuxiantao.wxt.net.service.UserApiService;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class ModifyModel extends BaseModel {
 
-    public void modifyPersonal(BaseObserver<List> observer,Map<String,Object> parameters){
+    public void modifyPersonal(BaseObserver<ModifyPersonalBean> observer, Map<String,Object> parameters){
         HttpManager.newInstance()
                 .createService(UserApiService.class)
                 .modifyPersonal(parameters)

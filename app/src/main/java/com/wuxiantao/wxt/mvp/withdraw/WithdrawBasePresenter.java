@@ -1,10 +1,10 @@
 package com.wuxiantao.wxt.mvp.withdraw;
 
 import com.wuxiantao.wxt.R;
+import com.wuxiantao.wxt.bean.RedBagWithdrawInfoBean;
 import com.wuxiantao.wxt.mvp.presenter.BasePresenter;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 
-import java.util.List;
 import java.util.Map;
 
 import static com.wuxiantao.wxt.config.Constant.RESOURCES;
@@ -25,9 +25,9 @@ public class WithdrawBasePresenter<V extends WithdrawView> extends BasePresenter
         if (v == null){
             v= getMvpView();
         }
-        BaseObserver<List> observer = new BaseObserver<List>(v) {
+        BaseObserver<RedBagWithdrawInfoBean> observer = new BaseObserver<RedBagWithdrawInfoBean>(v) {
             @Override
-            public void onSuccess(List msg) {
+            public void onSuccess(RedBagWithdrawInfoBean msg) {
                 v.withdrawSuccess(RESOURCES.getString(R.string.withdraw_processed));
             }
 

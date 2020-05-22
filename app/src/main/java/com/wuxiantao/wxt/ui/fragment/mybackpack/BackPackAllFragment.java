@@ -24,6 +24,7 @@ import com.wuxiantao.wxt.pay.PayManager;
 import com.wuxiantao.wxt.ui.activity.ChangePassWordActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.HeroScrollActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.PointToCardActivity;
+import com.wuxiantao.wxt.ui.popupwindow.MyPackNumPoupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.OrderPayModePopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.PackOperationPopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.TransferScratchCardPopupWindow;
@@ -122,7 +123,11 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
                             $startActivity(KF5ChatActivity.class);
                             mPresenter.myBox(getAppToken(), page, pid);
                         } else {//现金卡使用
-                            mPresenter.useCard(getAppToken(), myBackpackBean.getCard_id() + "", "1");
+                            new MyPackNumPoupWindow.Build(getContext())
+                                    .setWindowAnimStyle(R.style.custom_dialog)
+                                    .setTitle("使用", "使用数量")
+                                    .setConfirmClickListener(num1 -> mPresenter.useCard(getAppToken(), myBackpackBean.getCard_id() + "", num1))
+                                    .builder().showPopupWindow();
                         }
                     }
 
@@ -134,7 +139,13 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
 
                     @Override
                     public void discard() {
-                        showDisCardDialog("确定销毁卡片？", (dialog, which) -> mPresenter.discard(getAppToken(), myBackpackBean.getCard_id() + "", "1"));
+                        new MyPackNumPoupWindow.Build(getContext())
+                                .setWindowAnimStyle(R.style.custom_dialog)
+                                .setTitle("销毁", "销毁数量")
+                                .setConfirmClickListener(num1 -> {
+                                    showDisCardDialog("确定销毁？", (dialog, which) -> mPresenter.discard(getAppToken(), myBackpackBean.getCard_id() + "", num1));
+                                })
+                                .builder().showPopupWindow();
                     }
                 })
                 .builder().showPopupWindow();
@@ -158,6 +169,7 @@ public class BackPackAllFragment extends MvpFragment<MyBackpackPrewenter, MyBack
             mAdapter.addList(list == null ? null : list, page);
         }
     }
+
     public void refreshData() {
         if (mPresenter != null) {
             mPresenter.myBox(getAppToken(), 1, pid);

@@ -984,6 +984,7 @@
     <string name="pointtocard_text17">确定</string>
     <string name="pointtocard_text19">背包扩容</string>
     <string name="pointtocard_text20">一元扩容</string>
+    <string name="pointtocard_text21">玩法介绍</string>
     <string name="pointtocard_text12">幸运值初始值\n游戏等级/是否会员将影响幸运值的初始值;\n普通用户初始幸运值为5，会员为15;\n
         初始游戏等级0-50 获得5点</string>
     <!-- 我的会员-->

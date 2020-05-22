@@ -3,7 +3,6 @@ package com.wuxiantao.wxt.ui.activity;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
@@ -69,7 +68,7 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
         map.put("longTime", "2小时");
         map.put("enterNum", "10次");
         MobclickAgent.onEventObject(BaseApplication.getAppContext(), "event_enterToGame", map);//进入游戏页面统计
-        Toast.makeText(mContext, "已完成数值型统计", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mContext, "已完成数值型统计", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -186,14 +185,14 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd("H5GameActivity");
+      //  MobclickAgent.onPageEnd("H5GameActivity");
         h5_game_web_view.webViewOnPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart("H5GameActivity");
+       // MobclickAgent.onPageStart("H5GameActivity");
         h5_game_web_view.webViewOnResume();
 
     }

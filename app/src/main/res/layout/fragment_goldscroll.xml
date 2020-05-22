@@ -23,9 +23,8 @@
                 android:id="@+id/recylerview_two"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp_12"
                 android:layout_below="@+id/recylerview_one"
-                android:layout_marginTop="@dimen/dp_20" />
+                android:layout_marginTop="@dimen/dp_18" />
         </RelativeLayout>
     </ScrollView>
     <com.wuxiantao.wxt.ui.custom.button.StateButton
@@ -37,7 +36,7 @@
         android:layout_marginLeft="@dimen/dp_48"
         android:layout_marginTop="@dimen/dp_12"
         android:layout_marginRight="@dimen/dp_48"
-        android:layout_marginBottom="@dimen/dp_29"
+        android:layout_marginBottom="@dimen/dp_12"
         android:padding="0dp"
         android:text="@string/pointtocard_text10"
         android:textSize="@dimen/sp_16"

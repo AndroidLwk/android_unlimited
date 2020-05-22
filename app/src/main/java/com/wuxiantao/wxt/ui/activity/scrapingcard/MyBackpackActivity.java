@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.wuxiantao.wxt.R;
@@ -15,6 +14,7 @@ import com.wuxiantao.wxt.bean.BoxTypeBean;
 import com.wuxiantao.wxt.bean.IsSetPayPassword;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
 import com.wuxiantao.wxt.bean.WeChatPayBean;
+import com.wuxiantao.wxt.event.MessageEvent;
 import com.wuxiantao.wxt.mvp.contract.MyBackpackContract;
 import com.wuxiantao.wxt.mvp.presenter.MyBackpackPrewenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
@@ -27,6 +27,9 @@ import com.wuxiantao.wxt.ui.fragment.mybackpack.BackPackTemapFragment;
 import com.wuxiantao.wxt.ui.fragment.mybackpack.BackpackScreptCardFragment;
 import com.wuxiantao.wxt.ui.title.CNToolbar;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
@@ -34,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.wuxiantao.wxt.config.Constant.IS_SETPAY_PASS;
+import static com.wuxiantao.wxt.config.Constant.SUCCESS_EXPANSION_BACK;
 
 /**
  * 我的背包
@@ -51,6 +55,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
 
     @Override
     protected void initView() {
+        EventBus.getDefault().register(this);
         setStatusBar();
         mPresenter.isSetPayPassword(getAppToken());
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
@@ -81,6 +86,12 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
     @Override
     public void dismissLoading() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 
     private FragmentTransaction mTransaction;
@@ -209,8 +220,6 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
         }
         mTransaction.commit();
     }
-
-
     @Override
     public void onFailure(String msg) {
 
@@ -251,7 +260,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
     @Override
     public void isSetPayPasswordSuccess(IsSetPayPassword info) {
         //保存设置密码状态
-        saveUserInfo(IS_SETPAY_PASS, info.getStatus()+"");
+        saveUserInfo(IS_SETPAY_PASS, info.getStatus() + "");
     }
 
     @Override
@@ -292,5 +301,34 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
     @Override
     public void onPayCancel() {
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessage(MessageEvent messageEvent) {
+        if (messageEvent.getMessage().equals(SUCCESS_EXPANSION_BACK)) {
+            switch (mPresenter.getSeletedPotion(mData)) {
+                case 0:
+                    mBackPackAllFragment.refreshData();
+                    break;
+                case 1:
+                    mBackpackScreptCardFragment.refreshData();
+                    break;
+                case 2:
+                    mBackPackHerFragment.refreshData();
+                    break;
+                case 3:
+                    mBackPackHeroCardFragment.refreshData();
+                    break;
+                case 4:
+                    mBackPackSkinCardFragment.refreshData();
+                    break;
+                case 5:
+                    mBackPackCrashCardFragment.refreshData();
+                    break;
+                case 6:
+                    mBackPackTemapFragment.refreshData();
+                    break;
+            }
+        }
     }
 }
