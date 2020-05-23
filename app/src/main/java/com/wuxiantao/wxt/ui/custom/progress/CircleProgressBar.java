@@ -135,16 +135,16 @@ public class CircleProgressBar extends View {
         height = getMeasuredHeight();
         circleX = width / 2;
         circleY = height / 2;
-        if (progressRadius == 0) {
-            progressRadius = circleX > circleY ? circleY : circleX;
-        } else {
-            float limit = circleX > circleY ? circleY : circleX;
-            progressRadius = progressRadius > limit ? limit : progressRadius;
-        }
-        float paddingVertical = getPaddingLeft() + getPaddingRight();
-        float paddingHorizontal = getPaddingTop() + getPaddingBottom();
-        float paddingSum = paddingHorizontal > paddingVertical ? paddingVertical : paddingHorizontal;
-        progressRadius -= paddingSum + (progressStrokeWidth / 4);
+//        if (progressRadius == 0) {
+//            progressRadius = circleX > circleY ? circleY : circleX;
+//        } else {
+//            float limit = circleX > circleY ? circleY : circleX;
+//            progressRadius = progressRadius > limit ? limit : progressRadius;
+//        }
+     //   float paddingVertical = getPaddingLeft() + getPaddingRight();
+     //   float paddingHorizontal = getPaddingTop() + getPaddingBottom();
+     //   float paddingSum = paddingHorizontal > paddingVertical ? paddingVertical : paddingHorizontal;
+//        progressRadius -= paddingSum + (progressStrokeWidth / 4);
     }
 
     @Override

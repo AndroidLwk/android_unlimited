@@ -32,16 +32,12 @@ public class ScrapingCardFragmentThreeAdapter extends RcvBaseAdapter<MyCardInfo.
         holder.setText(R.id.tv_cha, "距离享受平台" + pr + "%收益分红，只差" + bean.getCard_cha() + "张!");
         holder.setText(R.id.tv_num, bean.getStatus_total() + "");
         int progress_one = 0;
-//        if (bean.getCard_all() + bean.getCard_cha() > 0) {
-//            progress_one = bean.getCard_all() / (bean.getCard_all() + bean.getCard_cha());
-//        }
         if (bean.getCard_all() > 0) {
             progress_one = bean.getCard() / bean.getCard_all() * 100;
         }
         holder.setVisibility(R.id.circleIndicator, progress_one < 100 ? View.VISIBLE : View.GONE);
         holder.setVisibility(R.id.tv_round_text_scrap, progress_one == 100 ? View.VISIBLE : View.GONE);
         holder.setCircleProgress(R.id.circleIndicator, progress_one);
-        holder.setViewSize(R.id.circleIndicator, 62, 62);
         holder.setViewOnClickListener(R.id.tv_round_text_scrap, (view) -> listener.Onclick(bean));
     }
 

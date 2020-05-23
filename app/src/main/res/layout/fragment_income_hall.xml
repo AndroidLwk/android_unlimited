@@ -239,6 +239,7 @@
                     app:progressBackgroundColor="@color/color_edd2e0"
                     app:progressColor="@color/color_fb5e58"
                     app:progressStrokeWidth="@dimen/dp_4"
+                    app:progressRadius="@dimen/dp_26"
                     app:progressTextColor="@color/color_fb5e58"
                     app:progressTextSize="@dimen/sp_16" />
 
@@ -247,8 +248,9 @@
                     android:layout_width="@dimen/dp_62"
                     android:layout_height="@dimen/dp_62"
                     android:text="开始分红"
+                    android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp_16"
+                    android:textSize="@dimen/sp_12"
                     android:background="@drawable/shape_round_main"
                     android:visibility="gone" />
 
@@ -386,6 +388,7 @@
                     android:visibility="gone"
                     app:maxx="100"
                     app:progress="0"
+                    app:progressRadius="@dimen/dp_26"
                     app:progressBackgroundColor="@color/color_edd2e0"
                     app:progressColor="@color/color_fb5e58"
                     app:progressStrokeWidth="@dimen/dp_4"
@@ -398,8 +401,9 @@
                     android:layout_height="@dimen/dp_62"
                     android:background="@drawable/shape_round_main"
                     android:text="开始分红"
+                    android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp_16"
+                    android:textSize="@dimen/sp_12"
                     android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
