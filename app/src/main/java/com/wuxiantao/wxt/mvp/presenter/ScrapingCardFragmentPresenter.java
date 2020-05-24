@@ -1,7 +1,5 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
-import android.util.Log;
-
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.MyCardInfo;
 import com.wuxiantao.wxt.bean.MySignInfo;
@@ -10,7 +8,6 @@ import com.wuxiantao.wxt.mvp.contract.ScrapingCardFragmentContract;
 import com.wuxiantao.wxt.mvp.model.ScrapingCardFragmentModel;
 import com.wuxiantao.wxt.mvp.model.TaskHallFragmentModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
-import com.wuxiantao.wxt.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
