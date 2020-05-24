@@ -154,7 +154,7 @@ public class MyMemberActivity extends MvpActivity<MyMemberPresenter, MyMemberCon
         if (!isEmpty(head_img)) {
             GlideImgManager.loadCircleImg(this, head_img, iv_mine_header);
         } else {
-            GlideImgManager.loadCircleImg(this, R.drawable.ic_person_outline_black_24dp, iv_mine_header);
+            GlideImgManager.loadCircleImg(this, R.drawable.header_default, iv_mine_header);
         }
         iv_headerName.setText(info.getNickname());
         //0不是会员 1年会会员 2月会会员 -1会员已过期

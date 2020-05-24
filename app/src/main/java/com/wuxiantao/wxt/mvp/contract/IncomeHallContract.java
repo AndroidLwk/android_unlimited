@@ -72,8 +72,6 @@ public interface IncomeHallContract {
         void onBindingArea(String token,int id);
         void onIncreaseCount(String token);
         void onVideoDouble(String token,int dragon_id,String num);
-
-        void getMyGameInfo(String token);
         //分红
         void enrollBonus(String token, String type);
     }

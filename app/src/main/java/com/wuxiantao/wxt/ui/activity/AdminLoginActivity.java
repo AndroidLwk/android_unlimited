@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -142,6 +143,7 @@ public class AdminLoginActivity extends MvpActivity<LoginPresenter, LoginContrac
         //登录im客服系统
         IMUtils.createUser(response.getId(),this);
         $startActivity(MenuActivity.class,SHIFT_ID,0,true);
+        Log.e("用户id:"+response.getId(),"token:"+response.getUnionid());
     }
 
     @Override

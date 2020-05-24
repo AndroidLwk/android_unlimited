@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.net.service;
 
 import com.wuxiantao.wxt.bean.PhoneLoginBean;
+import com.wuxiantao.wxt.bean.ResetPassBean;
 import com.wuxiantao.wxt.bean.WeChatLoginBean;
 import com.wuxiantao.wxt.net.base.BaseResponse;
 
@@ -50,6 +51,6 @@ public interface LoginApiSerVice {
 
     @POST(RESET_PASS_WORD)
     @FormUrlEncoded
-    Observable<BaseResponse<List>> resetPassWord(@Field("mobile") String mobile, @Field("code") String code, @Field("password") String newPassWord);
+    Observable<BaseResponse<ResetPassBean>> resetPassWord(@Field("mobile") String mobile, @Field("code") String code, @Field("password") String newPassWord);
 
 }

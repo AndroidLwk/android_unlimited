@@ -44,9 +44,6 @@ import static com.wuxiantao.wxt.config.Constant.MESSAGE_OUT_LOGIN;
 import static com.wuxiantao.wxt.config.Constant.NUMBER;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
 import static com.wuxiantao.wxt.config.Constant.TOKEN;
-import static com.wuxiantao.wxt.config.Constant.WEB_VIEW_CONTENT_TYPE;
-import static com.wuxiantao.wxt.config.Constant.WEB_VIEW_TYPE_URL;
-import static com.wuxiantao.wxt.config.Constant.WEB_VIEW_URL;
 
 /**
  * Company:成都可信网络科技有限责任公司
@@ -105,15 +102,16 @@ public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSu
             switch (position) {
                 case 0://修改密码
                     Bundle bundle = new Bundle();
-                    if (bean!=null){
-                        if (bean.getPhone()!=null){
-                            bundle.putString(NUMBER,bean.getPhone());
+                    if (bean != null) {
+                        if (bean.getPhone() != null) {
+                            bundle.putString(NUMBER, bean.getPhone());
                         }
-                        bundle.putBoolean(IS_SETTING_PW,bean.getPassword()==1?false:true);
+                        bundle.putBoolean(IS_SETTING_PW, bean.getPassword() == 1 ? false : true);
                     }
-                    $startActivity(SettingPassWordActivity.class,bundle);
+                    $startActivity(SettingPassWordActivity.class, bundle);
                     break;
                 case 1://客服服务
+                case 4://关于我们
                     $startActivity(HelpCenterActivity.class);
                     break;
                 case 2://清除缓存
@@ -127,8 +125,7 @@ public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSu
                 case 3://版本更新
                     Beta.checkUpgrade();
                     break;
-                case 4://关于我们
-                    break;
+
             }
         });
         mPresenter.getPersonalInfo(getAppToken());
@@ -183,6 +180,7 @@ public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSu
     public void dismissLoading() {
 
     }
+
     @SuppressLint("HandlerLeak")
     private Handler exitHandler = new Handler() {
         @Override
@@ -195,6 +193,7 @@ public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSu
         }
     };
     private LoadingDialog loadingDialog;
+
     @Override
     public void onStopAppSuccess(String msg) {
         loadingDialog = new LoadingDialog.Build(mContext)
@@ -208,11 +207,13 @@ public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSu
     public void onStopAppFailure(String failure) {
         showOnlyConfirmDialog(failure);
     }
+
     PersonalInfoBean bean;
+
     @Override
     public void getPersonalInfoSuccess(PersonalInfoBean bean) {
-        this.bean=bean;
-        Log.e("88888888", "getPersonalInfoSuccess: "+bean.toString());
+        this.bean = bean;
+        Log.e("88888888", "getPersonalInfoSuccess: " + bean.toString());
     }
 
     @Override

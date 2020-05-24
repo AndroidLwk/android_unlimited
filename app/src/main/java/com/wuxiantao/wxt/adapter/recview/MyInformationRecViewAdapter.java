@@ -21,6 +21,7 @@ import static com.wuxiantao.wxt.config.Constant.IS_TAO_BAO_AUTH;
 import static com.wuxiantao.wxt.config.Constant.NICK_NAME;
 import static com.wuxiantao.wxt.config.Constant.NUMBER;
 import static com.wuxiantao.wxt.config.Constant.USER_HEAD_IMG;
+import static com.wuxiantao.wxt.config.Constant.VIP_STATUS;
 import static com.wuxiantao.wxt.config.Constant.WECHAT_NO;
 
 /**
@@ -58,6 +59,7 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
         String wechat_id = (String) map.get(WECHAT_NO);
         String name = (String) map.get(ALI_NAME);
         String verName = (String) map.get(ABOUT_SUPER);
+        String vip_status = (String) map.get(VIP_STATUS);
         boolean isSettingPassWord = map.get(IS_SETTING_PW) == null || (boolean) map.get(IS_SETTING_PW);
         boolean isVer = map.get(IS_TAO_BAO_AUTH) != null && (boolean) map.get(IS_TAO_BAO_AUTH);
         boolean isBindingNumber = !isEmpty(number);
@@ -68,18 +70,18 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
         //头像
         if (position == 0) {
             holder.setCircleImageResource(R.id.item_my_information_head_img,
-                    !isEmpty(headImg) ? headImg : R.drawable.ic_person_outline_black_24dp);
+                    !isEmpty(headImg) ? headImg : R.drawable.header_default);
             holder.setViewOnClickListener(R.id.item_my_information_layout, v -> {
                 if (l != null) {
                     l.onChangeHeadImg();
                 }
             });
-          //  holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
+            //  holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
             holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
         }
         //id
         if (position == 1 && !isEmpty(userId)) {
-           // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
+            // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
             holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
             holder.setText(R.id.item_my_information_content, userId);
             holder.setViewOnClickListener(R.id.item_my_information_layout, v -> {
@@ -97,12 +99,19 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
                     l.onChangeNickName(nickName);
                 }
             });
-           // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
+            // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
             holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
+        }
+        if (position == 3) {//当前会员
+            holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
+            holder.setVisibility(R.id.item_my_information_back_img, View.GONE);
+            holder.setVisibility(R.id.item_my_information_sb, View.GONE);
+            holder.setVisibility(R.id.item_my_information_content, View.VISIBLE);
+            holder.setText(R.id.item_my_information_content, vip_status);
         }
         //手机号
         if (position == 4) {
-           // holder.setVisibility(R.id.item_my_information_prize_icon, isBindingNumber ? View.GONE : View.VISIBLE);
+            // holder.setVisibility(R.id.item_my_information_prize_icon, isBindingNumber ? View.GONE : View.VISIBLE);
             holder.setVisibility(R.id.item_my_information_prize_money, isBindingNumber ? View.GONE : View.VISIBLE);
             if (isBindingNumber) {
                 String sub = NumberFormatUtils.phoneNumberSub(number);
@@ -113,7 +122,7 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
                     }
                 });
             } else {
-                holder.setText(R.id.item_my_information_prize_money, String.valueOf(20));
+                holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
                 holder.setText(R.id.item_my_information_content, R.string.go_binding);
                 holder.setViewOnClickListener(R.id.item_my_information_layout, v -> {
                     if (l != null) {
@@ -147,41 +156,25 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
         //已绑定手机号
         if (isBindingNumber) {
             setViewVisibility(holder, position, 7);
-            //登陆密码
-//            if (position == 7){
-//                String set = mContext.getResources().getString(R.string.please_set_pw);
-//                String seted = mContext.getResources().getString(R.string.seted);
-//                holder.setText(R.id.item_my_information_content,isSettingPassWord ? set : seted);
-//                holder.setViewOnClickListener(R.id.item_my_information_layout, v -> {
-//                    if (l != null){
-//                        l.onSettingPassWord(isSettingPassWord,number);
-//                    }
-//                });
-//                holder.setVisibility(R.id.item_my_information_prize_icon,View.GONE);
-//                holder.setVisibility(R.id.item_my_information_prize_money,View.GONE);
-//            }
-            if (position == 3) {
-               // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
-                holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
-            }
             //淘宝授权
-            if (position == 7) {
-                setTaoBaoVerItem(holder, isVer);
-            }
-            //关于无限淘
-//            if (position == 9){
-//                setAboutWXTItem(holder,verName);
+//            if (position == 7) {
+//                setTaoBaoVerItem(holder, isVer);
 //            }
         } else {
             setViewVisibility(holder, position, 7);
             //淘宝授权
-            if (position == 7) {
-                setTaoBaoVerItem(holder, isVer);
-            }
-            //关于无限淘
-//            if (position == 8){
-//                setAboutWXTItem(holder,verName);
+//            if (position == 7) {
+//                setTaoBaoVerItem(holder, isVer);
 //            }
+        }
+        setTaoBaoVerItem(holder, isVer);
+        if (position == 0) {
+            holder.setVisibility(R.id.item_my_information_content, View.GONE);
+
+        }
+        if(position==3){
+            holder.setViewOnClickListener(R.id.item_my_information_layout, v -> {
+            });
         }
     }
 
@@ -204,19 +197,20 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
             });
         } else {
             holder.setText(R.id.item_my_information_content, R.string.go_binding);
+            holder.setTextColor(R.id.item_my_information_content, Color.RED);
             holder.setViewOnClickListener(R.id.item_my_information_layout, v -> {
                 if (l != null) {
                     l.onBindAlipay();
                 }
             });
         }
-       // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
+        // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
         holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
     }
 
     private void setWeChatItem(BaseViewHolder holder, String wechat_id) {
-       // holder.setVisibility(R.id.item_my_information_prize_icon, !isEmpty(wechat_id) ? View.GONE : View.VISIBLE);
-       // holder.setVisibility(R.id.item_my_information_prize_money, !isEmpty(wechat_id) ? View.GONE : View.VISIBLE);
+        // holder.setVisibility(R.id.item_my_information_prize_icon, !isEmpty(wechat_id) ? View.GONE : View.VISIBLE);
+        // holder.setVisibility(R.id.item_my_information_prize_money, !isEmpty(wechat_id) ? View.GONE : View.VISIBLE);
 
         if (!isEmpty(wechat_id)) {
             holder.setText(R.id.item_my_information_content, wechat_id);
@@ -226,8 +220,8 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
                 }
             });
         } else {
-            holder.setText(R.id.item_my_information_prize_money, String.valueOf(20));
-            holder.setText(R.id.item_my_information_content, R.string.go_input);
+            //holder.setText(R.id.item_my_information_prize_money, String.valueOf(20));
+            holder.setText(R.id.item_my_information_content, R.string.go_binding);
             holder.setViewOnClickListener(R.id.item_my_information_layout, v -> {
                 if (l != null) {
                     l.onWriteWeChatId(wechat_id);
@@ -238,8 +232,8 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
 
 
     private void setTaoBaoVerItem(BaseViewHolder holder, boolean isVer) {
-        //holder.setVisibility(R.id.item_my_information_prize_icon, isVer ? View.GONE : View.VISIBLE);
-       // holder.setVisibility(R.id.item_my_information_prize_money, isVer ? View.GONE : View.VISIBLE);
+        holder.setVisibility(R.id.item_my_information_content, isVer ? View.GONE : View.VISIBLE);
+        // holder.setVisibility(R.id.item_my_information_prize_money, isVer ? View.GONE : View.VISIBLE);
         holder.setViewChecked(R.id.item_my_information_sb, isVer);
         holder.setOnCheckedChangeListener(R.id.item_my_information_sb, (view, isChecked) -> {
             if (l != null) {
@@ -248,12 +242,15 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
         });
         //未授权
         if (!isVer) {
-            holder.setText(R.id.item_my_information_prize_money, String.valueOf(10));
+            //holder.setText(R.id.item_my_information_prize_money, String.valueOf(10));
+            holder.setVisibility(R.id.item_my_information_content, View.VISIBLE);
+            holder.setTextColor(R.id.item_my_information_content, Color.RED);
+
         }
     }
 
     private void setAboutWXTItem(BaseViewHolder holder, String verName) {
-       // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
+        // holder.setVisibility(R.id.item_my_information_prize_icon, View.GONE);
         holder.setVisibility(R.id.item_my_information_prize_money, View.GONE);
         holder.setText(R.id.item_my_information_content, verName);
         holder.setViewOnClickListener(R.id.item_my_information_layout, v -> {

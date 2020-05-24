@@ -3,13 +3,13 @@ package com.wuxiantao.wxt.mvp.model;
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.ModifyPersonalBean;
 import com.wuxiantao.wxt.bean.PhoneLoginBean;
+import com.wuxiantao.wxt.bean.ResetPassBean;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
 import com.wuxiantao.wxt.net.service.LoginApiSerVice;
 import com.wuxiantao.wxt.net.service.UserApiService;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class CodeVerifyModel extends LoginModel{
 
-    public void resetPassWord(BaseObserver<List> observer,String mobile, String code,String newPassWord){
+    public void resetPassWord(BaseObserver<ResetPassBean> observer, String mobile, String code, String newPassWord){
         HttpManager.newInstance()
                 .createService(LoginApiSerVice.class)
                 .resetPassWord(mobile,code,newPassWord)

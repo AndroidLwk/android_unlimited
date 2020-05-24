@@ -34,6 +34,7 @@ import com.wuxiantao.wxt.ui.custom.switchbutton.SwitchButton;
 import com.wuxiantao.wxt.ui.custom.textview.BuyZeroTagTextView;
 import com.wuxiantao.wxt.ui.custom.textview.RuleTagTextView;
 import com.wuxiantao.wxt.ui.custom.textview.TaoBaoTagTextView;
+import com.wuxiantao.wxt.utils.DensityUtils;
 import com.wuxiantao.wxt.utils.TextViewUtils;
 
 import java.util.List;
@@ -466,6 +467,16 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
             } else {
                 view.setBackgroundColor(color);
             }
+        }
+        return this;
+    }
+
+    //为View设置背景色
+    public BaseViewHolder setStateButtonBackGroundColor(int viewId,  String color) {
+        StateButton view = findView(viewId);
+        if (view != null ) {
+            view.setNormalStrokeColor(Color.parseColor(color));
+            view.setNormalStrokeWidth(DensityUtils.dip2px(1));
         }
         return this;
     }

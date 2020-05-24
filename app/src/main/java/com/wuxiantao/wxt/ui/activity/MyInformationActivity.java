@@ -78,6 +78,7 @@ import static com.wuxiantao.wxt.config.Constant.USER_HEAD_IMG;
 import static com.wuxiantao.wxt.config.Constant.VERCODE_BINDING_NUMBER;
 import static com.wuxiantao.wxt.config.Constant.VERCODE_CHANGE_NUMBER;
 import static com.wuxiantao.wxt.config.Constant.VERCODE_TYPE;
+import static com.wuxiantao.wxt.config.Constant.VIP_STATUS;
 import static com.wuxiantao.wxt.config.Constant.WECHAT_NO;
 
 /**
@@ -98,15 +99,15 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
 
     private PhotoUtils photoUtils;
     private MyInformationRecViewAdapter adapter;
-    private Map<String,Object> parameters = new HashMap<>();
+    private Map<String, Object> parameters = new HashMap<>();
     private LoadingDialog loadingDialog;
 
     @Override
     public void initView() {
-        if (!isEmpty(getAppToken())){
+        if (!isEmpty(getAppToken())) {
             loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.loading).build();
             mPresenter.obtainPersonal(getAppToken());
-            parameters.put(TOKEN,getAppToken());
+            parameters.put(TOKEN, getAppToken());
         }
         setOnClikListener(exitButton);
         photoUtils = new PhotoUtils(this);
@@ -114,7 +115,7 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
 
 
     //更换头像
-    private void changeHeadImg(){
+    private void changeHeadImg() {
         new TakePhotoPopupWindow.Build(this)
                 .setOnItemClickListener(new TakePhotoPopupWindow.Build.OnItemClickListener() {
                     @Override
@@ -131,14 +132,14 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
 
 
     //更换头像
-    private void changeHeadImg(boolean isCamera){
-        if (photoUtils != null){
+    private void changeHeadImg(boolean isCamera) {
+        if (photoUtils != null) {
             //开启裁剪 比例 1:3 宽高 350 350  (默认不裁剪)
-            photoUtils.setTailor(3,3,350,350);
-            if (isCamera){
+            photoUtils.setTailor(3, 3, 350, 350);
+            if (isCamera) {
                 //拍照方式
                 photoUtils.startTakeWayByCarema();
-            }else {
+            } else {
                 //打开手机相册
                 photoUtils.startTakeWayByAlbum();
             }
@@ -152,6 +153,7 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
                     loadingDialog = new LoadingDialog.Build(MyInformationActivity.this).setLoadingText(R.string.headimg_uploading).build();
                     mPresenter.upLoadFile(outFile);
                 }
+
                 @Override
                 public void failed(int errorCode, List<String> deniedPermissions) {
                     //失败回调
@@ -163,7 +165,7 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
     //退出登陆
     @Override
     public void widgetClick(int viewId) {
-        if (viewId == R.id.my_information_exit){
+        if (viewId == R.id.my_information_exit) {
             showDropOutLoginDialog(getResources().getString(R.string.are_you_quit), (dialog, which) ->
                     mPresenter.onStopApp(getAppToken()));
         }
@@ -175,7 +177,7 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
         loadingDialog = new LoadingDialog.Build(MyInformationActivity.this)
                 .setLoadingText(R.string.exit_loading_).build();
         showLoading();
-        exitHandler.sendEmptyMessageDelayed(MESSAGE_OUT_LOGIN,REFRESH_LOAD_MORE_TIME);
+        exitHandler.sendEmptyMessageDelayed(MESSAGE_OUT_LOGIN, REFRESH_LOAD_MORE_TIME);
         SPSecuredUtils.newInstance(BaseApplication.getInstance()).remove(TOKEN);
     }
 
@@ -185,71 +187,70 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
     }
 
     @SuppressLint("HandlerLeak")
-    private Handler exitHandler = new Handler(){
+    private Handler exitHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what == MESSAGE_OUT_LOGIN){
+            if (msg.what == MESSAGE_OUT_LOGIN) {
                 loadingDialog.dismissLoadingDialog();
-                $startActivity(WeChatLoginActivity.class,true);
+                $startActivity(WeChatLoginActivity.class, true);
                 finish();
             }
         }
     };
 
-    private void showDropOutLoginDialog(String title,DialogInterface.OnClickListener listener){
-        showDialog(title,listener);
+    private void showDropOutLoginDialog(String title, DialogInterface.OnClickListener listener) {
+        showDialog(title, listener);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (data == null){
+        if (data == null) {
             return;
         }
         //设置昵称
-        if (requestCode == REQUEST_CODE_UPDATE_NICK_NAME && resultCode == RESULT_CODE_UPDATE_NICK_NAME){
-            String nickName = data.getStringExtra(NICK_NAME) ;
-            if (!isEmpty(nickName)){
-                adapter.updataMap(NICK_NAME,nickName);
-                saveUserInfo(NICK_NAME,nickName);
+        if (requestCode == REQUEST_CODE_UPDATE_NICK_NAME && resultCode == RESULT_CODE_UPDATE_NICK_NAME) {
+            String nickName = data.getStringExtra(NICK_NAME);
+            if (!isEmpty(nickName)) {
+                adapter.updataMap(NICK_NAME, nickName);
+                saveUserInfo(NICK_NAME, nickName);
             }
         }
         //绑定手机号 更换手机号
         else if (requestCode == REQUEST_CODE_BINDING_NUMBER && resultCode == RESULT_CODE_BINDING_NUMBER
-                || requestCode == REQUEST_CODE_CHANGE_NUMBER && resultCode == RESULT_CODE_CHANGE_NUMBER){
+                || requestCode == REQUEST_CODE_CHANGE_NUMBER && resultCode == RESULT_CODE_CHANGE_NUMBER) {
             String number = data.getStringExtra(NUMBER);
-            if (!isEmpty(number)){
-                adapter.updataMap(NUMBER,number);
-                saveUserInfo(NUMBER,number);
+            if (!isEmpty(number)) {
+                adapter.updataMap(NUMBER, number);
+                saveUserInfo(NUMBER, number);
             }
         }
         //绑定支付宝
-        else if (requestCode == REQUEST_CODE_BINDING_ALIPAY && resultCode == RESULT_CODE_BINDING_ALIPAY){
+        else if (requestCode == REQUEST_CODE_BINDING_ALIPAY && resultCode == RESULT_CODE_BINDING_ALIPAY) {
             String account = data.getStringExtra(ALI_CODE);
             String name = data.getStringExtra(ALI_NAME);
-            if (!isEmpty(account) && !isEmpty(name)){
-                adapter.updataMap(ALI_CODE,account);
-                adapter.updataMap(ALI_NAME,name);
+            if (!isEmpty(account) && !isEmpty(name)) {
+                adapter.updataMap(ALI_CODE, account);
+                adapter.updataMap(ALI_NAME, name);
             }
         }
         //填写微信号
-        else if (requestCode == REQUEST_CODE_WECHAT_ID && resultCode == RESULT_CODE_WECHAT_ID){
+        else if (requestCode == REQUEST_CODE_WECHAT_ID && resultCode == RESULT_CODE_WECHAT_ID) {
             String wechat_id = data.getStringExtra(WECHAT_NO);
-            if (!isEmpty(wechat_id)){
-                adapter.updataMap(WECHAT_NO,wechat_id);
-                saveUserInfo(WECHAT_NO,wechat_id);
+            if (!isEmpty(wechat_id)) {
+                adapter.updataMap(WECHAT_NO, wechat_id);
+                saveUserInfo(WECHAT_NO, wechat_id);
             }
         }
         //设置或修改登陆密码
-        else if (requestCode == REQUEST_CODE_SET_LOGIN_PW && resultCode == RESULT_CODE_SET_LOGIN_PW){
+        else if (requestCode == REQUEST_CODE_SET_LOGIN_PW && resultCode == RESULT_CODE_SET_LOGIN_PW) {
             String password_old = data.getStringExtra(OLD_PASS_WORD);
             String password_new = data.getStringExtra(NEW_PASS_WORD);
-            if (!isEmpty(password_new) || !isEmpty(password_old)){
-                adapter.updataMap(IS_SETTING_PW,false);
+            if (!isEmpty(password_new) || !isEmpty(password_old)) {
+                adapter.updataMap(IS_SETTING_PW, false);
             }
-        }
-        else {
-            photoUtils.attachToActivityForResult(requestCode,resultCode,data);
+        } else {
+            photoUtils.attachToActivityForResult(requestCode, resultCode, data);
         }
     }
 
@@ -260,44 +261,44 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
 
     @Override
     public void obtainPersonalSuccess(PersonalInfoBean bean) {
-        saveUserInfo(SHARE_CODE,bean.getShare_code());
+        saveUserInfo(SHARE_CODE, bean.getShare_code());
         initMap(bean);
         initLayout(bean);
         boolean isAuth = bean.getIs_taobao() == 0;
-        if (isAuth){
+        if (isAuth) {
             showApproveWindow();
         }
     }
 
     //显示淘宝授权对话框
-    private void showApproveWindow(){
+    private void showApproveWindow() {
         new ApprovePopupWindow.Build(this)
                 .setPopupWindowWidth(ViewGroup.LayoutParams.WRAP_CONTENT)
                 .setPopupWindowAnimStyle(R.style.popupwindow_anim)
                 .setOnPopupClickListener(new ApprovePopupWindow.Build.OnPopupClickListener() {
                     @Override
                     public void onApprove() {
-                        adapter.updataMap(IS_TAO_BAO_AUTH,true);
+                        adapter.updataMap(IS_TAO_BAO_AUTH, true);
                         TaoBaoUtils.newInstance().authorAliLogin(new TaobaoLoginCallback() {
                             @Override
                             public void onLoginSuccess(AlibcLoginBean bean) {
-                                Map<String,Object> p = new HashMap<>();
-                                p.put(TOKEN,getAppToken());
-                                p.put("access_token",bean.getTopAccessToken());
-                                p.put("open_uid",bean.getOpenId());
-                                p.put("avatarurl",bean.getAvatarUrl());
-                                p.put("opensid",bean.getOpenSid());
-                                p.put("userid",bean.getUserid());
-                                p.put("nick",bean.getNick());
+                                Map<String, Object> p = new HashMap<>();
+                                p.put(TOKEN, getAppToken());
+                                p.put("access_token", bean.getTopAccessToken());
+                                p.put("open_uid", bean.getOpenId());
+                                p.put("avatarurl", bean.getAvatarUrl());
+                                p.put("opensid", bean.getOpenSid());
+                                p.put("userid", bean.getUserid());
+                                p.put("nick", bean.getNick());
                                 //1.android 2.ios
-                                p.put("device",1);
+                                p.put("device", 1);
                                 mPresenter.taoBaoLogin(p);
                             }
 
                             @Override
                             public void onLoginFailure(int errorCode, String errorMsg) {
                                 showOnlyConfirmDialog(errorMsg, (dialog, which) ->
-                                        adapter.updataMap(IS_TAO_BAO_AUTH,false));
+                                        adapter.updataMap(IS_TAO_BAO_AUTH, false));
                             }
                         });
 
@@ -305,19 +306,19 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
 
                     @Override
                     public void onClose() {
-                        adapter.updataMap(IS_TAO_BAO_AUTH,false);
+                        adapter.updataMap(IS_TAO_BAO_AUTH, false);
                     }
                 })
-                .setOnKeyBackListener(() -> adapter.updataMap(IS_TAO_BAO_AUTH,false))
+                .setOnKeyBackListener(() -> adapter.updataMap(IS_TAO_BAO_AUTH, false))
                 .builder().showPopupWindow(Gravity.CENTER);
     }
 
-    private void initLayout(PersonalInfoBean bean){
+    private void initLayout(PersonalInfoBean bean) {
         List<String> list = Arrays.asList(getResources().getStringArray(!isEmpty(bean.getPhone())
                 ? R.array.my_information_title1 : R.array.my_information_title2));
         LinearLayoutManager manager = new LinearLayoutManager(this);
-        SpaceItemDecoration itemDecoration = new SpaceItemDecoration(0,0);
-        adapter = new MyInformationRecViewAdapter(this,list,initMap(bean));
+        SpaceItemDecoration itemDecoration = new SpaceItemDecoration(0, 0);
+        adapter = new MyInformationRecViewAdapter(this, list, initMap(bean));
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.addItemDecoration(itemDecoration);
         mRecyclerView.setAdapter(adapter);
@@ -352,46 +353,48 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
             @Override
             public void onChangeNickName(String nickName) {
                 Bundle bundle = new Bundle();
-                bundle.putString(NICK_NAME,nickName);
-                $startActivityForResult(SettingNickNameActivity.class,bundle,REQUEST_CODE_UPDATE_NICK_NAME);
+                bundle.putString(NICK_NAME, nickName);
+                $startActivityForResult(SettingNickNameActivity.class, bundle, REQUEST_CODE_UPDATE_NICK_NAME);
             }
+
             //绑定手机号
             @Override
             public void onBindNumber() {
                 Bundle bundle = new Bundle();
-                bundle.putInt(VERCODE_TYPE,VERCODE_BINDING_NUMBER);
-                $startActivityForResult(BinddingNumberActivity.class,bundle,REQUEST_CODE_BINDING_NUMBER);
+                bundle.putInt(VERCODE_TYPE, VERCODE_BINDING_NUMBER);
+                $startActivityForResult(BinddingNumberActivity.class, bundle, REQUEST_CODE_BINDING_NUMBER);
             }
+
             //更换手机号
             @Override
             public void onChangeNumber(String number) {
                 Bundle bundle = new Bundle();
-                bundle.putInt(VERCODE_TYPE,VERCODE_CHANGE_NUMBER);
-                bundle.putString(NUMBER,number);
-                $startActivityForResult(BinddingNumberActivity.class,bundle,REQUEST_CODE_CHANGE_NUMBER);
+                bundle.putInt(VERCODE_TYPE, VERCODE_CHANGE_NUMBER);
+                bundle.putString(NUMBER, number);
+                $startActivityForResult(BinddingNumberActivity.class, bundle, REQUEST_CODE_CHANGE_NUMBER);
             }
 
             //绑定支付宝
             @Override
             public void onBindAlipay() {
-                $startActivityForResult(BinddingAlipayActivity.class,REQUEST_CODE_BINDING_ALIPAY);
+                $startActivityForResult(BinddingAlipayActivity.class, REQUEST_CODE_BINDING_ALIPAY);
             }
 
             //查看我的支付宝信息支付宝
             @Override
-            public void onChangeAlipay(String alicode,String aliname) {
+            public void onChangeAlipay(String alicode, String aliname) {
                 Bundle bundle = new Bundle();
-                bundle.putString(ALI_CODE,alicode);
-                bundle.putString(ALI_NAME,aliname);
-                $startActivityForResult(MyAlipayInfoActivity.class,bundle,REQUEST_CODE_BINDING_ALIPAY);
+                bundle.putString(ALI_CODE, alicode);
+                bundle.putString(ALI_NAME, aliname);
+                $startActivityForResult(MyAlipayInfoActivity.class, bundle, REQUEST_CODE_BINDING_ALIPAY);
             }
 
             //填写微信号
             @Override
             public void onWriteWeChatId(String wechat_id) {
                 Bundle bundle = new Bundle();
-                bundle.putString(WECHAT_NO,wechat_id);
-                $startActivityForResult(WriteWeChatIdActivity.class,bundle,REQUEST_CODE_WECHAT_ID);
+                bundle.putString(WECHAT_NO, wechat_id);
+                $startActivityForResult(WriteWeChatIdActivity.class, bundle, REQUEST_CODE_WECHAT_ID);
             }
 
             //收货地址管理
@@ -402,62 +405,64 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
 
             //设置或修改登陆密码
             @Override
-            public void onSettingPassWord(boolean isSettingPassWord,String number) {
+            public void onSettingPassWord(boolean isSettingPassWord, String number) {
                 Bundle bundle = new Bundle();
-                bundle.putBoolean(IS_SETTING_PW,isSettingPassWord);
-                bundle.putString(NUMBER,number);
-                $startActivityForResult(SettingPassWordActivity.class,bundle,REQUEST_CODE_SET_LOGIN_PW);
+                bundle.putBoolean(IS_SETTING_PW, isSettingPassWord);
+                bundle.putString(NUMBER, number);
+                $startActivityForResult(SettingPassWordActivity.class, bundle, REQUEST_CODE_SET_LOGIN_PW);
             }
 
             //开启或关闭授权
             @Override
             public void onAuthorization(boolean isAllow) {
-                if (isAllow){
+                if (isAllow) {
                     showApproveWindow();
-                }else {
-                    showDialog(getString(R.string.cancel_auth), getString(R.string.cancel_msg), (dialog, which) -> {
-                        isModiyfTaobao = true;
-                        parameters.put(IS_TAO_BAO_AUTH, 0);
-                        mPresenter.modifyPersonal(parameters);
-                    }, (dialog, which) -> adapter.updataMap(IS_TAO_BAO_AUTH,true));
+                } else {
+//                    showDialog(getString(R.string.cancel_auth), getString(R.string.cancel_msg), (dialog, which) -> {
+//                        isModiyfTaobao = true;
+//                        parameters.put(IS_TAO_BAO_AUTH, 0);
+//                        mPresenter.modifyPersonal(parameters);
+//                    }, (dialog, which) -> adapter.updataMap(IS_TAO_BAO_AUTH, true));
                 }
             }
+
             //关于
             @Override
             public void onAboutSuperman(String verName) {
                 Bundle bundle = new Bundle();
-                bundle.putString(ABOUT_SUPER,verName);
-                $startActivity(SettingActivity.class,bundle);
+                bundle.putString(ABOUT_SUPER, verName);
+                $startActivity(SettingActivity.class, bundle);
             }
         });
     }
 
     private boolean isModiyfTaobao;
 
-    private Map<String,Object>  initMap(PersonalInfoBean bean){
-        Map<String,Object> map = new HashMap<>();
+    private Map<String, Object> initMap(PersonalInfoBean bean) {
+        Map<String, Object> map = new HashMap<>();
         String headimg = bean.getHeadimg();
         String nickname = bean.getNickname();
         String number = bean.getPhone();
 
-        saveUserInfo(APP_USER_ID,bean.getId());
-        saveUserInfo(USER_HEAD_IMG,headimg);
-        saveUserInfo(NICK_NAME,nickname);
-        saveUserInfo(WECHAT_NO,bean.getWechat());
-        saveUserInfo(NUMBER,number);
-        saveUserInfo(IS_TAO_BAO_AUTH,bean.getIs_taobao() == 1);
+        saveUserInfo(APP_USER_ID, bean.getId());
+        saveUserInfo(USER_HEAD_IMG, headimg);
+        saveUserInfo(NICK_NAME, nickname);
+        saveUserInfo(WECHAT_NO, bean.getWechat());
+        saveUserInfo(NUMBER, number);
+        saveUserInfo(IS_TAO_BAO_AUTH, bean.getIs_taobao() == 1);
 
-        map.put(USER_HEAD_IMG,headimg);
-        map.put(APP_USER_ID,String.valueOf(bean.getId()));
-        map.put(NICK_NAME,nickname);
-        map.put(NUMBER,number);
-        if (!isEmpty(number)){
-            map.put(IS_SETTING_PW,bean.getPassword() == 0);
+        map.put(USER_HEAD_IMG, headimg);
+        map.put(APP_USER_ID, String.valueOf(bean.getId()));
+        map.put(NICK_NAME, nickname);
+        map.put(NUMBER, number);
+        if (!isEmpty(number)) {
+            map.put(IS_SETTING_PW, bean.getPassword() == 0);
         }
-        map.put(ALI_CODE,bean.getAlicode());
-        map.put(ALI_NAME,bean.getAliname());
-        map.put(WECHAT_NO,bean.getWechat());
-        map.put(IS_TAO_BAO_AUTH,bean.getIs_taobao() == 1);
+        map.put(ALI_CODE, bean.getAlicode());
+        map.put(ALI_NAME, bean.getAliname());
+        map.put(WECHAT_NO, bean.getWechat());
+        map.put(IS_TAO_BAO_AUTH, bean.getIs_taobao() == 1);
+        map.put(VIP_STATUS, "VIP"+bean.getVip());
         //map.put(ABOUT_SUPER,String.valueOf(AppUtils.getVersionName()));
         return map;
     }
@@ -470,21 +475,21 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
     @Override
     public void taoBaoLoginSuccess(TaoBaoLoginBean bean) {
         showOnlyConfirmDialog(getString(R.string.taobao_auth_success), (dialog, which) -> {
-            saveUserInfo(IS_TAO_BAO_AUTH,true);
+            saveUserInfo(IS_TAO_BAO_AUTH, true);
             mPresenter.obtainPersonal(getAppToken());
         });
     }
 
     @Override
     public void taoBaoLoginFailure(String failure) {
-        showOnlyConfirmDialog(failure, (dialog, which) -> adapter.updataMap(IS_TAO_BAO_AUTH,false));
+        showOnlyConfirmDialog(failure, (dialog, which) -> adapter.updataMap(IS_TAO_BAO_AUTH, false));
     }
 
     @Override
     public void upLoadFileSuccess(String url) {
-        adapter.updataMap(USER_HEAD_IMG,url);
-        saveUserInfo(USER_HEAD_IMG,url);
-        parameters.put("file",url);
+        adapter.updataMap(USER_HEAD_IMG, url);
+        saveUserInfo(USER_HEAD_IMG, url);
+        parameters.put("file", url);
         mPresenter.modifyPersonal(parameters);
     }
 
@@ -512,23 +517,23 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
 
     @Override
     public void modifySuccess(String msg) {
-        if (isModiyfTaobao){
+        if (isModiyfTaobao) {
             //淘宝退出登陆
             TaoBaoUtils.newInstance().authorAliLoginOut(new TaobaoLogoutCallback() {
                 @Override
                 public void onSuccess() {
-                    saveUserInfo(IS_TAO_BAO_AUTH,false);
+                    saveUserInfo(IS_TAO_BAO_AUTH, false);
                     isModiyfTaobao = false;
-                    adapter.updataMap(IS_TAO_BAO_AUTH,false);
+                    adapter.updataMap(IS_TAO_BAO_AUTH, false);
                     mPresenter.obtainPersonal(getAppToken());
                 }
 
                 @Override
                 public void onFailure(int code, String msg) {
-                       showOnlyConfirmDialog(msg);
+                    showOnlyConfirmDialog(msg);
                 }
             });
-        }else {
+        } else {
             ToastUtils.success(msg);
         }
     }

@@ -91,11 +91,11 @@
     <string name="my_balance">我的余额</string>
 
     <string name="withdraw_red_bag">%1$s提现%2$4.2f元</string>
-    <string name="quit_login">退出登陆</string>
+    <string name="quit_login">退出登录</string>
     <string name="alipay_nick_name">支付宝账号</string>
     <string name="city">城市</string>
     <string name="change_alipay">更换支付宝</string>
-    <string name="frist_wechat_login">*你需要先用微信登陆，在【我的】-【个人信息】中绑定手 机号码，才能使用手机号登陆。</string>
+    <string name="frist_wechat_login">*你需要先用微信登录，在【我的】-【个人信息】中绑定手 机号码，才能使用手机号登录。</string>
     <string name="find_order">找回丢失订单</string>
     <string name="confirm_super_man_order">请确认是通过无限淘去淘宝下的单</string>
     <string name="input_tao_bao_order_sn">请输入淘宝订单号</string>
@@ -133,11 +133,11 @@
     <string name="phone_cache">清除缓存</string>
     <string name="send_sms">验证码已通过短信发送至:</string>
     <string name="input_ver_code">输入获取的验证码</string>
-    <string name="wechat_login">微信登陆</string>
-    <string name="vercode_login">验证码登陆</string>
-    <string name="pw_login">密码登陆</string>
-    <string name="other_login_type">其他登陆方式</string>
-    <string name="login_agree">登陆即代表同意</string>
+    <string name="wechat_login">微信登录</string>
+    <string name="vercode_login">验证码登录</string>
+    <string name="pw_login">密码登录</string>
+    <string name="other_login_type">其他登录方式</string>
+    <string name="login_agree">登录即代表同意</string>
     <string name="service_terms">《无限淘服务条款》</string>
     <string name="welcome">欢迎界面</string>
     <string name="search">搜索</string>
@@ -182,7 +182,7 @@
     <string name="panic_buying">立即抢购</string>
     <string name="album">从手机相册选择</string>
     <string name="takea_photo">拍照</string>
-    <string name="are_you_quit">确定退出登陆吗?</string>
+    <string name="are_you_quit">确定退出登录吗?</string>
     <string name="person_info">个人信息</string>
     <string name="about_wxt">关于无限淘</string>
     <string name="help_center">帮助中心</string>
@@ -216,7 +216,7 @@
     <string name="ggk_detail">刮刮卡明细</string>
     <string name="know_rate">更多收益</string>
     <string name="withdraw_recording">提现记录</string>
-    <string name="number_login">手机号登陆</string>
+    <string name="number_login">手机号登录</string>
     <string name="share_more_them">更多主题</string>
     <string name="retrieve_order">找回订单</string>
     <string name="find_order_error">订单找回失败</string>
@@ -286,9 +286,9 @@
     <string name="income_legend">收益说明</string>
     <string name="my_income">我的收益</string>
     <string name="play">玩法</string>
-    <string name="admin_login">账号密码登陆</string>
-    <string name="code_login_registered">验证码登陆/注册</string>
-    <string name="login">登陆</string>
+    <string name="admin_login">账号密码登录</string>
+    <string name="code_login_registered">验证码登录/注册</string>
+    <string name="login">登录</string>
     <string name="red_pg">红包:</string>
     <string name="red_bg">红包</string>
     <string name="forget_pw">忘记密码</string>
@@ -373,13 +373,13 @@
     <string name="pass_word_rule">密码为3~16位非中文字符，区分大小写</string>
     <string name="confirm_setting">确认设置</string>
     <string name="confirm_update">确认修改</string>
-    <string name="go_binding">去绑定+1张刮刮卡</string>
+    <string name="go_binding">绑定+1张刮刮卡</string>
     <string name="go_input">去填写</string>
     <string name="please_set_nick_name">请设置昵称</string>
     <string name="please_set_pw">请设置密码</string>
     <string name="seted">已设置</string>
     <string name="ver_code_ver">验证码验证</string>
-    <string name="ver_code_login">验证码登陆</string>
+    <string name="ver_code_login">验证码登录</string>
     <string name="ver_code_reg">正在注册</string>
     <string name="profit_recording">收益记录</string>
     <string name="total_shouyi">累计收益(元)</string>
@@ -394,7 +394,7 @@
     <string name="activi_description">活动说明</string>
     <string name="to_daoy">今日</string>
 
-    <string name="_2000">邀请的好友登陆无限淘APP后可以领取系统发放的200元 现金红包，好友领取红包后你也可以获得20元现金。每天通过邀请可领取的现金上限为1200元。</string>
+    <string name="_2000">邀请的好友登录无限淘APP后可以领取系统发放的200元 现金红包，好友领取红包后你也可以获得20元现金。每天通过邀请可领取的现金上限为1200元。</string>
 
     <string name="_365">好友每天登录app活跃，你都可以获得好友的活动收益！</string>
     <string name="find">办理会员后，专属好友购物获得佣金时，你也可以获得 50%的佣金奖励，还可享受无限代下级普通好友购物佣 金的10%</string>
@@ -428,9 +428,9 @@
     <string name="not_has_friend_refuel">今天还没有好友为你加油，快邀请好友提升收益吧！</string>
     <string name="sms_success">短信已发送</string>
     <string name="number_format_error">手机号格式错误,请重新输入</string>
-    <string name="login_prompt">登陆提示</string>
-    <string name="is_login">是否立即前往登陆</string>
-    <string name="immediately_login">立即登陆</string>
+    <string name="login_prompt">登录提示</string>
+    <string name="is_login">是否立即前往登录</string>
+    <string name="immediately_login">立即登录</string>
     <string name="taobao_price_">淘宝价</string>
     <string name="tianmao_price">天猫价</string>
     <string name="commodity_price">%1$s￥%2$3.2f</string>
@@ -487,16 +487,16 @@
     <string name="reset_pw_success">已成功重置密码</string>
     <string name="reset_pw_loading">正在重置密码…</string>
     <string name="binding_loading">绑定中…</string>
-    <string name="login_loading">登陆中…</string>
+    <string name="login_loading">登录中…</string>
     <string name="register_loading">注册中…</string>
     <string name="sms_loading">短信获取中…</string>
     <string name="not_reg">未注册</string>
     <string name="exit_loading_">正在退出…</string>
     <string name="pw_reset_success">密码重置成功</string>
     <string name="will">将于</string>
-    <string name="goto_login">秒后跳转登陆界面重新登陆</string>
+    <string name="goto_login">秒后跳转登录界面重新登录</string>
     <string name="wechat_bingding_success">微信绑定成功</string>
-    <string name="wecha_login_loading">微信登陆中…</string>
+    <string name="wecha_login_loading">微信登录中…</string>
     <string name="weichat_bingding_loading">微信绑定中…</string>
     <string name="wechat_accout_banding">该微信号已被其他账号绑定</string>
     <string name="hand_value_a_little">3000+</string>
@@ -681,12 +681,12 @@
     <string name="apply_auth">申请淘宝授权</string>
     <string name="official_shouq">应淘宝要求，获得返佣前请先进行 官方授权</string>
     <string name="app_safety">无限淘APP是淘宝联盟“官方优质 合作伙伴”,查优惠券、赚佣金，使 用更安心！</string>
-    <string name="to_taobao">前往淘宝授权</string>
+    <string name="to_taobao">前往淘宝授权+1张刮刮卡</string>
     <string name="friend_rule">好友规则</string>
     <string name="potential_friend">(1)潜在好友</string>
-    <string name="potential_friend_msg">扫描你的邀请码后没有登陆无限淘APP的好友为潜在好友,潜在好友具有7天的锁粉时间,好友在锁粉时间内登陆无限淘APP就会成功激活,成为你的直属好友,你将享受好友的进贡;</string>
+    <string name="potential_friend_msg">扫描你的邀请码后没有登录无限淘APP的好友为潜在好友,潜在好友具有7天的锁粉时间,好友在锁粉时间内登录无限淘APP就会成功激活,成为你的直属好友,你将享受好友的进贡;</string>
     <string name="direct_friend">(2)直属好友</string>
-    <string name="direct_friend_msg">直属好友也叫专属好友,是扫描你的二维码后及时登陆无限淘APP的好友,是你直接邀请的好友;</string>
+    <string name="direct_friend_msg">直属好友也叫专属好友,是扫描你的二维码后及时登录无限淘APP的好友,是你直接邀请的好友;</string>
     <string name="indirect_friend">(3)间接好友</string>
     <string name="indirect_friend_msg">间接好友也叫普通好友,是你的直属好友或其他间接好友所邀请的好友;</string>
     <string name="ordinary_friend">普通好友</string>
@@ -1005,6 +1005,7 @@
     <string name="game_text5">￥%1$s元</string>
     <string name="game_text7">￥%1$d元</string>
     <string name="game_text6">累计分红%1$d天</string>
+    <string name="game_text8">网络错误</string>
 
 
     <!-- 我的-->

@@ -10,37 +10,28 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_26">
+
         <TextView
             android:id="@+id/tv_taskhall_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:drawableLeft="@drawable/main_taskhall_g"
             android:drawablePadding="@dimen/dp_6"
-            android:layout_centerVertical="true"
             android:text="签到奖励 + 1张刮刮卡"
             android:textColor="@color/color_6a6a6a"
             android:textSize="@dimen/sp_12" />
 
-        <com.wuxiantao.wxt.ui.custom.button.StateButton
+        <Button
             android:id="@+id/sbt_finish"
             android:layout_width="@dimen/dp_55"
             android:layout_height="@dimen/dp_18"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shape_round_button_finish"
             android:text="@string/taskhall_text1"
             android:textColor="@color/color_fa5858"
-            android:textSize="@dimen/sp_10"
-            android:padding="0dp"
-            android:layout_centerVertical="true"
-            app:normalBackgroundCenterColor="@color/white"
-            app:normalBackgroundEndColor="@color/white"
-            app:normalBackgroundStartColor="@color/white"
-            app:normalOrientation="BL_TR"
-            app:normalShapeType="LINEAR_GRADIENT"
-            app:normalStrokeColor="@color/color_fd6f57"
-            app:normalStrokeWidth="@dimen/dp_1"
-            app:normalTextColor="@color/color_fa5858"
-            app:radius="@dimen/dp_6"
-            app:round="true" />
+            android:textSize="@dimen/sp_10" />
     </RelativeLayout>
 
 

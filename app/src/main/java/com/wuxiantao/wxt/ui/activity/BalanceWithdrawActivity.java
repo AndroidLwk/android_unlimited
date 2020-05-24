@@ -29,7 +29,7 @@ import com.wuxiantao.wxt.ui.custom.decoration.GridSpacingItemDecoration;
 import com.wuxiantao.wxt.ui.custom.decoration.SpaceItemDecoration;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.popupwindow.CopyNoPublicPopupWindow;
-import com.wuxiantao.wxt.ui.title.CNToolbar;
+import com.wuxiantao.wxt.ui.title.TitleBuilder;
 import com.wuxiantao.wxt.utils.BigDecimalUtils;
 import com.wuxiantao.wxt.utils.TextViewUtils;
 import com.wuxiantao.wxt.utils.WeChatUtils;
@@ -83,8 +83,8 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     StateButton balance_with_draw_btn;
     @ViewInject(R.id.balance_with_draw_rv)
     RecyclerView balance_with_draw_rv;
-    @ViewInject(R.id.fragment_member_center_toolbar)
-    CNToolbar fragment_member_center_toolbar;
+    @ViewInject(R.id.mine_balancewithdraw_back)
+    ImageView mine_balancewithdraw_back;
 
     private LoadingDialog loadingDialog;
     private boolean isAttentionPublic;
@@ -116,12 +116,11 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
         mPresenter.getWithdrawInfo(getAppToken());
         balance_with_draw_input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12)});
         setOnClikListener(balance_with_draw_clear,
-                balance_with_draw_all_money, balance_with_draw_btn);
-        fragment_member_center_toolbar.setOnLeftButtonClickListener(() -> {
-            finish();
-        });
+                balance_with_draw_all_money, balance_with_draw_btn,mine_balancewithdraw_back);
+
         initWithdrawList();
     }
+
 
 
     //获取提现信息成功
@@ -303,6 +302,9 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     @Override
     public void widgetClick(int viewId) {
         switch (viewId) {
+            case R.id.mine_balancewithdraw_back://返回
+                finish();
+                break;
             //清空
             case R.id.balance_with_draw_clear:
                 if (list != null && adapter != null) {
@@ -352,7 +354,7 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
                     map.put(TOKEN, getAppToken());
                     map.put("money", getEdtText(balance_with_draw_input));
                     map.put("type", withdrawType);
-                 //   map.put(MODE, 1);
+                    //   map.put(MODE, 1);
                     mPresenter.withdraw(map);
                 }
                 break;

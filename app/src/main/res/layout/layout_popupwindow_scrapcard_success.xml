@@ -105,7 +105,7 @@
         <com.wuxiantao.wxt.ui.custom.button.StateButton
             android:id="@+id/popup_open_card_confirm"
             android:layout_width="@dimen/dp_184"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_34"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dp_12"
             android:layout_marginBottom="@dimen/dp_17"

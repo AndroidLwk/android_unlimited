@@ -29,6 +29,7 @@ public class TaskHallFragmentAdapter extends RcvBaseAdapter<TaskHallBean> {
         holder.setViewEnabled(R.id.sbt_finish, bean.getIsFinish() == 0 ? true : false);
         holder.setDrawableLeftRes(R.id.tv_taskhall_content, bean.getResIcon());
         holder.setText(R.id.tv_taskhall_content, bean.getTaskHallContent());
+       // holder.setStateButtonBackGroundColor(R.id.sbt_finish,"#FD6F57");
         holder.setViewOnClickListener(R.id.sbt_finish, v -> {
             if (listener != null) {
                 listener.onItemClick(position);

@@ -1,5 +1,9 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
+import android.app.Activity;
+
+import com.google.gson.Gson;
+import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.AreaChangeInfoBean;
 import com.wuxiantao.wxt.bean.DragonStatusInfoBean;
 import com.wuxiantao.wxt.bean.GameMessageBean;
@@ -9,12 +13,21 @@ import com.wuxiantao.wxt.bean.MyGameInfoBean;
 import com.wuxiantao.wxt.bean.OpenDragonBean;
 import com.wuxiantao.wxt.bean.StartExperienceBean;
 import com.wuxiantao.wxt.bean.VideoDoubleBean;
+import com.wuxiantao.wxt.config.Api;
 import com.wuxiantao.wxt.mvp.contract.IncomeHallContract;
 import com.wuxiantao.wxt.mvp.model.IncomeHallModel;
-import com.wuxiantao.wxt.mvp.model.ScrapingCardFragmentModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
 
 /**
  * Company:成都可信网络科技有限责任公司
@@ -31,7 +44,7 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
 
     @Override
     public void getIncomeHallInfo(String token) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<IncomeHallBean> observer = new BaseObserver<IncomeHallBean>() {
@@ -45,13 +58,13 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
                 view.getIncomeHallInfoFailure(errorMsg);
             }
         };
-        model.getIncomeHallInfo(observer,token);
+        model.getIncomeHallInfo(observer, token);
     }
 
 
     @Override
     public void getDragonStatusInfo(String token) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<DragonStatusInfoBean> observer = new BaseObserver<DragonStatusInfoBean>() {
@@ -65,12 +78,12 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
                 view.getDragonStatusInfoFailure(errorMsg);
             }
         };
-        model.getDragonStatusInfo(observer,token);
+        model.getDragonStatusInfo(observer, token);
     }
 
     @Override
-    public void onOpenDragon(String token,int card_id) {
-        if (view == null){
+    public void onOpenDragon(String token, int card_id) {
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<OpenDragonBean> observer = new BaseObserver<OpenDragonBean>(view) {
@@ -84,12 +97,12 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
                 view.onOpenDragonFailure(errorMsg);
             }
         };
-        model.onOpenDragon(observer,token,card_id);
+        model.onOpenDragon(observer, token, card_id);
     }
 
     @Override
     public void onGameMessage(String token) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<GameMessageBean> observer = new BaseObserver<GameMessageBean>(view) {
@@ -103,12 +116,12 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
                 view.onGameMessageFailure(errorMsg);
             }
         };
-        model.onGameMessage(observer,token);
+        model.onGameMessage(observer, token);
     }
 
     @Override
     public void onStartExperience(String token) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<StartExperienceBean> observer = new BaseObserver<StartExperienceBean>(view) {
@@ -122,12 +135,12 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
                 view.onStartExperienceFailure(errorMsg);
             }
         };
-        model.onStartExperience(observer,token);
+        model.onStartExperience(observer, token);
     }
 
     @Override
     public void onChangeAreaInfo(String token) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<AreaChangeInfoBean> observer = new BaseObserver<AreaChangeInfoBean>(view) {
@@ -141,12 +154,12 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
                 view.onChangeAreaInfoFailure(errorMsg);
             }
         };
-        model.onChangeAreaInfo(observer,token);
+        model.onChangeAreaInfo(observer, token);
     }
 
     @Override
     public void onBindingArea(String token, int id) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<List<String>> observer = new BaseObserver<List<String>>(view) {
@@ -160,12 +173,12 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
                 view.onBindingAreaFailure(errorMsg);
             }
         };
-        model.onBindingArea(observer,token,id);
+        model.onBindingArea(observer, token, id);
     }
 
     @Override
     public void onIncreaseCount(String token) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<IncreaseCountBean> observer = new BaseObserver<IncreaseCountBean>(view) {
@@ -179,12 +192,12 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
                 view.onIncreaseCountFailure(errorMsg);
             }
         };
-        model.onIncreaseCount(observer,token);
+        model.onIncreaseCount(observer, token);
     }
 
     @Override
-    public void onVideoDouble(String token,int dragon_id, String num) {
-        if (view == null){
+    public void onVideoDouble(String token, int dragon_id, String num) {
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<VideoDoubleBean> observer = new BaseObserver<VideoDoubleBean>() {
@@ -198,34 +211,76 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
                 view.onVideoDoubleFailure(errorMsg);
             }
         };
-        model.onVideoDouble(observer,token,dragon_id,num);
+        model.onVideoDouble(observer, token, dragon_id, num);
     }
-
     /**
      * 斩妖之旅
+     *
      * @param token
      */
-    @Override
-    public void getMyGameInfo(String token) {
-        if (view == null){
+    public void getMyGameInfo(String token,Activity activity) {
+        if (view == null) {
             view = getMvpView();
         }
-        BaseObserver<MyGameInfoBean> observer = new BaseObserver<MyGameInfoBean>() {
+//        BaseObserver<MyGameInfoBean> observer = new BaseObserver<MyGameInfoBean>() {
+//            @Override
+//            public void onSuccess(MyGameInfoBean bean) {
+//                view.onGetMyGameInfoSuccess(bean);
+//            }
+//
+//            @Override
+//            public void onFailure(String errorMsg) {
+//                view.onGetMyGameInfoFailure(errorMsg);
+//            }
+//        };
+//        model.onGetMyGameInfo(observer, token);
+        OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象。
+        FormBody.Builder formBody = new FormBody.Builder();//创建表单请求体
+        formBody.add("token", token);//传递键值对参数
+        okhttp3.Request request = new okhttp3.Request.Builder()
+                .url(Api.BASE_URL + Api.MY_GAME_INFO)
+                .post(formBody.build())//传递请求体
+                .build();
+        client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onSuccess(MyGameInfoBean bean) {
-                view.onGetMyGameInfoSuccess(bean);
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String responseString = null;
+                    try {
+                        responseString = response.body().string();
+                    } catch (IOException e) {
+                        return;
+                    }
+                    try {
+                        MyGameInfoBean info = new Gson().fromJson(responseString, MyGameInfoBean.class);
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                view.onGetMyGameInfoSuccess(info);
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return;
+                    }
+                }
             }
 
             @Override
-            public void onFailure(String errorMsg) {
-                view.onGetMyGameInfoFailure(errorMsg);
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.onGetMyGameInfoFailure(activity.getString(R.string.game_text8));
+                    }
+                });
             }
-        };
-        model.onGetMyGameInfo(observer,token);
+        });
     }
 
     /**
      * 分红
+     *
      * @param token
      * @param type
      */
