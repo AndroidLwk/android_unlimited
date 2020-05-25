@@ -83,7 +83,7 @@ public class WelcomeActivity extends BaseActivity {
     private void loadSplashAd() {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
         String str1 = df.format(new Date());// new Date()为获取当前系统时间
-        String str2 = "2020-05-28 12:01";
+        String str2 = "2020-05-28 08:00";
         try {
             Date date1 = df.parse(str1);
             Date date2 = df.parse(str2);
