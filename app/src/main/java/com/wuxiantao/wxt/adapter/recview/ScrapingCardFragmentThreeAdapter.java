@@ -20,6 +20,7 @@ public class ScrapingCardFragmentThreeAdapter extends RcvBaseAdapter<MyCardInfo.
     protected void convert(BaseViewHolder holder, MyCardInfo.ListBean bean, int position) {
         holder.setVisibility(R.id.circleIndicator, View.GONE);
         holder.setVisibility(R.id.tv_round_text_scrap, View.GONE);
+        holder.setViewEnabled(R.id.tv_round_text_scrap, true);
         holder.setText(R.id.tv_name_one, bean.getName());
         BigDecimal bd = new BigDecimal(bean.getFen_today());
         double fen_today = bd.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
@@ -35,10 +36,22 @@ public class ScrapingCardFragmentThreeAdapter extends RcvBaseAdapter<MyCardInfo.
         if (bean.getCard_all() > 0) {
             progress_one = bean.getCard() / bean.getCard_all() * 100;
         }
-        holder.setVisibility(R.id.circleIndicator, progress_one < 100 ? View.VISIBLE : View.GONE);
-        holder.setVisibility(R.id.tv_round_text_scrap, progress_one == 100 ? View.VISIBLE : View.GONE);
+        if (bean.getStatus() == 1) {//已经与分红
+            holder.setVisibility(R.id.tv_round_text_scrap, View.VISIBLE);
+            holder.setText(R.id.tv_round_text_scrap, "正在分红中...");
+            holder.setViewEnabled(R.id.tv_round_text_scrap, false);
+            holder.setVisibility(R.id.circleIndicator, View.GONE);
+        } else if (bean.getStatus() == 0 && progress_one < 100) {//未与分红
+            holder.setVisibility(R.id.tv_round_text_scrap, View.GONE);
+            holder.setVisibility(R.id.circleIndicator, View.VISIBLE);
+        } else if (bean.getStatus() == 0 && progress_one == 100) {
+            holder.setVisibility(R.id.tv_round_text_scrap, View.VISIBLE);
+            holder.setViewEnabled(R.id.tv_round_text_scrap, true);
+            holder.setVisibility(R.id.circleIndicator, View.GONE);
+        }
         holder.setCircleProgress(R.id.circleIndicator, progress_one);
         holder.setViewOnClickListener(R.id.tv_round_text_scrap, (view) -> listener.Onclick(bean));
+        holder.setViewOnClickListener(R.id.lt_detail, v -> listener.OnDetail(position));
     }
 
     @Override
@@ -53,6 +66,8 @@ public class ScrapingCardFragmentThreeAdapter extends RcvBaseAdapter<MyCardInfo.
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void Onclick(MyCardInfo.ListBean bean);
+        void Onclick(MyCardInfo.ListBean bean);//开始分红点击事件
+
+        void OnDetail(int postion);//详情
     }
 }

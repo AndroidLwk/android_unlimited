@@ -36,7 +36,8 @@ public class ImagePopupWindow extends BasePopupWindow {
 
         public Build setImageUrl(String url){
             if (!isEmpty(url)){
-                setImageResource(R.id.popup_img_img,url,320,320);
+              //  setImageResource(R.id.popup_img_img,url,320,320);
+                setRoundImageResource(R.id.popup_img_img,url);
             }
             return this;
         }

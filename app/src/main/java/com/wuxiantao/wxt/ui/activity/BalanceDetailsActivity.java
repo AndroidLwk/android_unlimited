@@ -1,11 +1,7 @@
 package com.wuxiantao.wxt.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -16,10 +12,7 @@ import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.BalanceDetailsRecViewAdapter;
 import com.wuxiantao.wxt.bean.BalanceDetailBean;
 import com.wuxiantao.wxt.mvp.contract.BalanceDetailContract;
-import com.wuxiantao.wxt.mvp.contract.PayContract;
 import com.wuxiantao.wxt.mvp.presenter.BalanceDetailPresenter;
-import com.wuxiantao.wxt.mvp.presenter.MvpPresenter;
-import com.wuxiantao.wxt.mvp.presenter.PayPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
 import com.wuxiantao.wxt.utils.StatusBarUtil;
 
@@ -53,6 +46,8 @@ public class BalanceDetailsActivity extends MvpActivity<BalanceDetailPresenter, 
     private BalanceDetailsRecViewAdapter adapter;
     ArrayList<BalanceDetailBean.ListBean> list = new ArrayList<>();
     private int page = 1;
+    private int type;
+
     @Override
     protected BalanceDetailPresenter CreatePresenter() {
         return new BalanceDetailPresenter();
@@ -60,27 +55,28 @@ public class BalanceDetailsActivity extends MvpActivity<BalanceDetailPresenter, 
 
     @Override
     protected void initView() {
+        type = getIntent().getIntExtra("type", 0);
         setStatusBar();
-        StatusBarUtil.setStatusBarColor(BalanceDetailsActivity.this,getResources().getColor(R.color.white));
-        StatusBarUtil.setStatusBarDarkTheme(BalanceDetailsActivity.this,true);
+        StatusBarUtil.setStatusBarColor(BalanceDetailsActivity.this, getResources().getColor(R.color.white));
+        StatusBarUtil.setStatusBarDarkTheme(BalanceDetailsActivity.this, true);
         initPage();
         img_balance_details_back.setOnClickListener(v -> finish());
-        mPresenter.obtainBalanceDetails(getAppToken(),page);
+        mPresenter.obtainBalanceDetails(getAppToken(), page, type);
     }
 
     private void initPage() {
-        adapter = new BalanceDetailsRecViewAdapter(mContext,list);
+        adapter = new BalanceDetailsRecViewAdapter(mContext, list);
         rv_balance_details_list.setLayoutManager(new LinearLayoutManager(mContext));
         rv_balance_details_list.setAdapter(adapter);
 
         srl_balance_details.setRefreshHeader(ch_balance_details_header);
         srl_balance_details.setRefreshFooter(new BallPulseFooter(
                 Objects.requireNonNull(mContext)).setSpinnerStyle(SpinnerStyle.Scale));
-        srl_balance_details.setOnRefreshListener(refreshlayout ->{
+        srl_balance_details.setOnRefreshListener(refreshlayout -> {
             refreshlayout.resetNoMoreData();
             page = 1;
             list.clear();
-            mPresenter.obtainBalanceDetails(getAppToken(),page);
+            mPresenter.obtainBalanceDetails(getAppToken(), page,type);
             refreshlayout.finishRefresh(REFRESH_LOAD_MORE_TIME);
         });
     }

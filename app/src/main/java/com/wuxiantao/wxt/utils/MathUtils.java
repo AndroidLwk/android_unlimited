@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.utils;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
@@ -144,6 +145,23 @@ public class MathUtils {
         return str;
     }
 
+    public static double add(double d1, double d2) {
+        BigDecimal b1 = new BigDecimal(Double.toString(d1));
+        BigDecimal b2 = new BigDecimal(Double.toString(d2));
+        return b1.add(b2).doubleValue();
 
+    }
+
+    /**
+     * 两个数相减
+     *
+     * @return
+     */
+    public static double sub(double d1, double d2) {
+        BigDecimal b1 = new BigDecimal(Double.toString(d1));
+        BigDecimal b2 = new BigDecimal(Double.toString(d2));
+        return b1.subtract(b2).doubleValue();
+
+    }
 
 }

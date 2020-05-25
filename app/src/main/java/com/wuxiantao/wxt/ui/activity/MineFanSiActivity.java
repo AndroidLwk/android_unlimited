@@ -3,13 +3,11 @@ package com.wuxiantao.wxt.ui.activity;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -74,7 +72,8 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
     private Map<String, Object> parameters = new HashMap<>();
 
     private String[] Stars = new String[]{"", "", "", ""};
-    private int[] number = new int[2];
+    private double[] number = new double[2];
+
     @Override
     protected MineFansiPresenter CreatePresenter() {
         return new MineFansiPresenter();
@@ -88,11 +87,11 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
         loadingDialog = new LoadingDialog.Build(this).build();
         mPresenter.obtainFansiHeadInfo(getAppToken());
 
-        parameters.put(TOKEN,getAppToken());
+        parameters.put(TOKEN, getAppToken());
 //        parameters.put(TOKEN,"o1voQ1Xik7iCxobahGFXoBpi1KS8");
-        parameters.put("page","1");
-        parameters.put("pagesize",PAGE_SIZE);
-        parameters.put("type",FANSI_TYPE_POTENTIAL);
+        parameters.put("page", "1");
+        parameters.put("pagesize", PAGE_SIZE);
+        parameters.put("type", FANSI_TYPE_POTENTIAL);
         mPresenter.obtainDirectlyFansi(parameters);
         initViewPager();
     }
@@ -107,12 +106,12 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
         }
         ArrayList<PieEntry> entrys = new ArrayList<>();
         for (int i = 0; i < number.length; i++) {
-            entrys.add(new PieEntry(number[i], i));
+            entrys.add(new PieEntry((float) number[i], i));
         }
         PieDataSet dataset = new PieDataSet(entrys, "");
         dataset.setSelectionShift(10f);
         //颜色填充
-        dataset.setColors(new int[]{getResources().getColor(R.color.orange),getResources().getColor(R.color.tomato)});
+        dataset.setColors(new int[]{getResources().getColor(R.color.orange), getResources().getColor(R.color.tomato)});
         //数据填充
         PieData piedata = new PieData(dataset);
         //设置饼图上显示数据的字体大小
@@ -164,6 +163,7 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
                 break;
         }
     }
+
     private void initFragment() {
         mFragments.add(new FanSiDirectlyFragment());
         mFragments.add(new FanSiIndirectFragment());
@@ -181,12 +181,12 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
     //获取
     @Override
     public void obtainFansSuccess(FansiDirectlyBean bean) {
-        number[1]=bean.getTotal_zhitui()==0?1:bean.getTotal_zhitui();
-        number[0]=bean.getTotal_jianjie()==0?1:bean.getTotal_jianjie();
+        number[1] = bean.getTotal_zhitui() == 0 ? 1 : bean.getTotal_zhitui();
+        number[0] = bean.getTotal_jianjie() == 0 ? 1 : bean.getTotal_jianjie();
         initVie();
-        tv_fansi_total.setText("￥"+bean.getTotal()+"元");
-        tv_fansi_total_zhitui.setText("￥"+bean.getTotal_zhitui()+"元");
-        tv_fansi_total_jianjie.setText("￥"+bean.getTotal_jianjie()+"元");
+        tv_fansi_total.setText("￥" + bean.getTotal() + "元");
+        tv_fansi_total_zhitui.setText("￥" + bean.getTotal_zhitui() + "元");
+        tv_fansi_total_jianjie.setText("￥" + bean.getTotal_jianjie() + "元");
     }
 
     @Override

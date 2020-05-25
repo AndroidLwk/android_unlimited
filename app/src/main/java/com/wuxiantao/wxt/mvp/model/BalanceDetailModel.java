@@ -9,8 +9,6 @@ import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
 import com.wuxiantao.wxt.net.service.RecordingApiService;
 
-import static com.wuxiantao.wxt.config.Constant.PAGE_SIZE;
-
 /**
  * Copyright (C), 成都都爱玩科技有限公司
  * Date: 2020/5/17--15:02
@@ -21,10 +19,10 @@ import static com.wuxiantao.wxt.config.Constant.PAGE_SIZE;
 public class BalanceDetailModel extends BaseModel{
 
 
-    public void obtainBalanceDetails(BaseObserver<BalanceDetailBean> observer, String token, int page){
+    public void obtainBalanceDetails(BaseObserver<BalanceDetailBean> observer, String token, int page,int type){
         HttpManager.newInstance()
                 .createService(RecordingApiService.class)
-                .obtainBalanceDetails(token,page,20)
+                .obtainBalanceDetails(token,page,20,type)
                 .compose(RxHelper.observableIO2Main(BaseApplication.getAppContext()))
                 .subscribe(observer);
     }

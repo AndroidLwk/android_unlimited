@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.TaskHallFragmentAdapter;
 import com.wuxiantao.wxt.bean.BannerBean;
@@ -65,9 +66,13 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
     private List<TaskHallBean> mData_one = new ArrayList<>();
     private List<TaskHallBean> mData_two = new ArrayList<>();
     private TaskHallFragmentAdapter mAdapter_one, mAdapter_two;
+    private List<TTNativeExpressAd> list_ad;//广告
 
     @Override
     public void initView() {
+        new Thread(() -> {
+            list_ad = AdUtils.initAd(getActivity());
+        }).start();
         mPresenter.getTaskInfo(getAppToken());
         setOnClikListener(tv_help, tv_refresh, iv_box_a, iv_box_b, iv_box_c, iv_box_d, iv_box_e);
         rv_task_one.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -184,7 +189,7 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
     public void showTaskInfo(MyTaskInfoBean info) {
         mData_one.get(0).setTaskHallContent(info.getIs_vip() == 1 ? "签到奖励+3张刮刮卡" : "签到奖励+1张刮刮卡");
         mData_one.get(0).setIsFinish(info.getIs_sign());
-        mData_one.get(1).setIsFinish(info.getIs_five());
+        mData_one.get(1).setIsFinish(info.getOnline_five());
         mData_one.get(2).setIsFinish(info.getOnline_thirty());
         mData_two.get(0).setIsFinish(info.getGame_charge());
         mData_two.get(1).setIsFinish(info.getProduct_charge());
@@ -209,12 +214,15 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
     public void refreshData() {//切换界面时刷新数据
         if (mPresenter != null) {
             mPresenter.getTaskInfo(getAppToken());
+            new Thread(() -> {
+                list_ad = AdUtils.initAd(getActivity());
+            }).start();
         }
     }
 
     @Override
     public void showNewestActive() {//活跃度奖励领取成功业务处理
-        new ScrapingCardSuccessPopupWindow.Build(getContext())
+        new ScrapingCardSuccessPopupWindow.Build(getContext(), list_ad)
                 .setWindowData("1张刮刮卡", "")
                 .setWindowAnimStyle(R.style.custom_dialog)
                 .setOnClickListener((s) -> {
@@ -226,7 +234,7 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
     @Override
     public void signSuccess(MySignInfo info) {//签到成功业务处理
         mPresenter.getTaskInfo(getAppToken());
-        new ScrapingCardSuccessPopupWindow.Build(getContext())
+        new ScrapingCardSuccessPopupWindow.Build(getContext(), list_ad)
                 .setWindowData(info.getMsg(), "")
                 .setOnClickListener((s) -> {
                     //签到双倍调接口

@@ -186,5 +186,6 @@ public class BackpackExpansionActivity extends MvpActivity<BackpackExpansionPres
      */
     public void noTifyrefreshData() {
         EventBus.getDefault().post(new MessageEvent(SUCCESS_EXPANSION_BACK));
+        mPresenter.kuorongInfo(getAppToken());
     }
 }

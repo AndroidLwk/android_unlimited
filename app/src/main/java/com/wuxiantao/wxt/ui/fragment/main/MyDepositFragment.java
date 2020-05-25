@@ -40,6 +40,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
 import static com.wuxiantao.wxt.config.Constant.IS_ATTENTION_PUBLIC;
+import static com.wuxiantao.wxt.config.Constant.NICKNAME;
 import static com.wuxiantao.wxt.config.Constant.REFRESH_LOAD_MORE_TIME;
 import static com.wuxiantao.wxt.config.Constant.USER_HEAD_IMG;
 
@@ -264,7 +265,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
         if (!TextUtils.isEmpty(getUserInfo(USER_HEAD_IMG))) {
             GlideImgManager.loadCircleImg(getContext(), getUserInfo(USER_HEAD_IMG), iv_mine_header);
         }
-        iv_headerName.setText(info.getUp_nickname());
+        iv_headerName.setText(getUserInfo(NICKNAME));
         iv_isvip.setVisibility(info.getIs_vip() != 0 ? View.VISIBLE : View.INVISIBLE);
         String time = "";
         switch (info.getIs_vip()) {
@@ -281,7 +282,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
                 time = getString(R.string.month_member);
                 break;
         }
-        tv_mynickname.setText(time);
+        tv_mynickname.setText(info.getUp_nickname());
         tv_scrapcard_num.setText(info.getUnopen_card() + "");
         tv_total_num.setText("累计刮卡" + info.getTotal_use() + "张");
         tv_yesterday_num.setText("昨日获得" + info.getTotal_yesterday() + "张");

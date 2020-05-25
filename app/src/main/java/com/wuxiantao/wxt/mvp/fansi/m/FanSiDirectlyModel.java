@@ -2,6 +2,7 @@ package com.wuxiantao.wxt.mvp.fansi.m;
 
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.FansiDirectlyBean;
+import com.wuxiantao.wxt.mvp.model.BaseModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
@@ -17,7 +18,7 @@ import java.util.Map;
  * Date:19-7-5 下午6:24
  * Description:${DESCRIPTION} 直属粉丝
  */
- public class FanSiDirectlyModel extends BaseFansiModel {
+ public class FanSiDirectlyModel extends BaseModel {
 
     public   void obtainDirectlyFansi(BaseObserver<FansiDirectlyBean> observer, Map<String,Object> parameters){
         HttpManager.newInstance()

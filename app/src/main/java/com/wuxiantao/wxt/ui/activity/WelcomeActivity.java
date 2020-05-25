@@ -21,6 +21,10 @@ import com.wuxiantao.wxt.utils.AdUtils;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.wuxiantao.wxt.config.Constant.IS_STARTED_LOADING;
 
 /**
@@ -43,8 +47,8 @@ public class WelcomeActivity extends BaseActivity {
     public void initView() {
         setMissionBoard();
         //启动倒计时
-        CountDownTimeService.enqueueWork(getApplicationContext(),new Intent());
-        SPSecuredUtils.newInstance(BaseApplication.getInstance()).put(IS_STARTED_LOADING,true);
+        CountDownTimeService.enqueueWork(getApplicationContext(), new Intent());
+        SPSecuredUtils.newInstance(BaseApplication.getInstance()).put(IS_STARTED_LOADING, true);
         requestPermission(new String[]{
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -77,7 +81,22 @@ public class WelcomeActivity extends BaseActivity {
 
     //加载开屏广告
     private void loadSplashAd() {
-        AdUtils.initSplashAd(this, welcome_adsRl, welcome_img, this::goToMainActivity);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
+        String str1 = df.format(new Date());// new Date()为获取当前系统时间
+        String str2 = "2020-05-28 12:01";
+        try {
+            Date date1 = df.parse(str1);
+            Date date2 = df.parse(str2);
+            int i = date1.compareTo(date2);//0 相等 小于0 之前 大于0 之后
+            if (i > 0 || i == 0) {//加载广告
+                AdUtils.initSplashAd(this, welcome_adsRl, welcome_img, this::goToMainActivity);
+            } else {//不加载广告
+                goToMainActivity();
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            goToMainActivity();
+        }
     }
 
 

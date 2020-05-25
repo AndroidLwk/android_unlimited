@@ -71,12 +71,11 @@ public class ScrapingCardFragmentPresenter extends BasePresenter<ScrapingCardFra
             @Override
             public void onSuccess(List bean) {
                 view.enrollBonusSuccess("分红成功");
-
             }
 
             @Override
             public void onFailure(String errorMsg) {
-                view.getMyCardInfoFailure(errorMsg);
+                view.enrollBonusFailure(errorMsg);
             }
         };
         new ScrapingCardFragmentModel().enrollBonus(observer, token, type);

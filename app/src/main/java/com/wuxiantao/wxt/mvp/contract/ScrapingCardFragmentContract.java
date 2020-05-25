@@ -18,6 +18,7 @@ public interface ScrapingCardFragmentContract {
         //将一些操作界面的方法在这里声明
         void showMyCardInfo(MyCardInfo info);
         void getMyCardInfoFailure(String errorMsg);
+        void enrollBonusFailure(String errorMsg);
         void enrollBonusSuccess(String msg);
 
         void signFailure(String msg);

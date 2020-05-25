@@ -5,10 +5,13 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.ui.popupwindow.base.BaseBuild;
 import com.wuxiantao.wxt.ui.popupwindow.base.BasePopupWindow;
 import com.wuxiantao.wxt.utils.AdUtils;
+
+import java.util.List;
 
 public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
 
@@ -20,9 +23,9 @@ public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
 
     public static class Build extends BaseBuild {
 
-        public Build(Context context) {
+        public Build(Context context, List<TTNativeExpressAd> list) {
             super(context, R.layout.layout_popupwindow_scrapcard_success, true);
-            AdUtils.initInformationInteractionAd((Activity) context, findViewById(R.id.popup_open_card_ads));
+            AdUtils.showInformationInteractionAd((Activity) context, list, findViewById(R.id.popup_open_card_ads));
             setOnButtonListener(R.id.popup_open_card_confirm, R.id.popup_open_card_close
             );
         }
@@ -74,6 +77,7 @@ public class ScrapingCardSuccessPopupWindow extends BasePopupWindow {
             switch (viewId) {
                 case R.id.popup_open_card_close:
                     dismiss();
+
                     break;
                 case R.id.popup_open_card_confirm:
                     listener.onConfirm(getChecked(R.id.cb_isSeeAds));

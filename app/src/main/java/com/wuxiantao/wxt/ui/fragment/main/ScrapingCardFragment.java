@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.fragment.main;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,9 +17,11 @@ import com.wuxiantao.wxt.bean.ScrapingCardBean;
 import com.wuxiantao.wxt.mvp.contract.ScrapingCardFragmentContract;
 import com.wuxiantao.wxt.mvp.presenter.ScrapingCardFragmentPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
+import com.wuxiantao.wxt.ui.activity.BalanceDetailsActivity;
 import com.wuxiantao.wxt.ui.activity.H5GameActivity;
 import com.wuxiantao.wxt.ui.activity.HelpCenterActivity;
 import com.wuxiantao.wxt.ui.activity.MenuActivity;
+import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.activity.my.MyInvitationCodeActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.HeroScrollActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.MyBackpackActivity;
@@ -113,8 +116,10 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
                     menuActivity.menu_tab_income_hall.setChecked(true);
                     break;
                 case 1://邀请好友
-                case 2://分享无限淘
                     $startActivity(MyInvitationCodeActivity.class);
+                    break;
+                case 2://分享无限淘
+                    $startActivity(ShareThemActivity.class);
                     break;
                 case 3://在线游戏
                     $startActivity(H5GameActivity.class);
@@ -125,7 +130,32 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
         nrv_info.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdaper_c = new ScrapingCardFragmentThreeAdapter(getContext(), mData_c);
         nrv_info.setAdapter(mAdaper_c);
-        mAdaper_c.setOnItemClickListener(bean -> mPresenter.enrollBonus(getAppToken(), "1"));
+        mAdaper_c.setOnItemClickListener(new ScrapingCardFragmentThreeAdapter.OnItemClickListener() {
+            @Override
+            public void Onclick(MyCardInfo.ListBean bean) {
+                mPresenter.enrollBonus(getAppToken(), bean.getBid() + "");
+            }
+
+            @Override
+            public void OnDetail(int postion) {
+                Bundle bundle = new Bundle();
+                switch (postion) {
+                    case 0:
+                        bundle.putInt("type", 1);
+                        break;
+                    case 1:
+                        bundle.putInt("type", 2);
+                        break;
+                    case 2:
+                        bundle.putInt("type", 3);
+                        break;
+                    default:
+                        bundle.putInt("type", 0);
+                        break;
+                }
+                $startActivity(BalanceDetailsActivity.class, bundle);
+            }
+        });
     }
 
     public void refreshData() {
@@ -200,11 +230,11 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
             mData_b.get(0).setFinishText("完成0/1");
         }
         mData_b.get(1).setFinishText("完成" + info.getHusao() + "/" + info.getHusao_total());
-        mData_b.get(2).setFinishText(info.getShare() == 1 ? "完成1/1" : "完成0/1");
+        mData_b.get(2).setFinishText(info.getShare_award() == 1 ? "完成1/1" : "完成0/1");
         mData_b.get(3).setFinishText(info.getOnline_award() == 1 ? "完成1/1" : "完成0/1");
         mData_b.get(0).setIsFinish(info.getIs_sign());
-        mData_b.get(1).setIsFinish(info.getShare_award());//互扫
-        mData_b.get(2).setIsFinish(info.getShare());//邀请
+        mData_b.get(1).setIsFinish(info.getShare());//互扫
+        mData_b.get(2).setIsFinish(info.getShare_award());//邀请
         mData_b.get(3).setIsFinish(info.getOnline_award());//在线
         mAdapter_b.notifyDataSetChanged();
     }
@@ -212,6 +242,12 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
     @Override
     public void getMyCardInfoFailure(String errorMsg) {
         showOnlyConfirmDialog(errorMsg);
+    }
+
+    @Override
+    public void enrollBonusFailure(String errorMsg) {
+        showOnlyConfirmDialog(errorMsg);
+        mPresenter.getMyCardInfo(getAppToken());
     }
 
     @Override

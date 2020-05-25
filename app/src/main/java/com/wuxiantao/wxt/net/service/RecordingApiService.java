@@ -38,7 +38,8 @@ public interface RecordingApiService {
     @FormUrlEncoded  //余额明细
     Observable<BaseResponse<BalanceDetailBean>> obtainBalanceDetails(@Field("token") String token,
                                                                      @Field("page") int page,
-                                                                     @Field("pagesize") int pagesize);
+                                                                     @Field("pagesize") int pagesize,
+                                                                     @Field("type") int type);
 
     @POST(SCRATCH_CARD_DETAIL)
     @FormUrlEncoded //刮刮卡明细

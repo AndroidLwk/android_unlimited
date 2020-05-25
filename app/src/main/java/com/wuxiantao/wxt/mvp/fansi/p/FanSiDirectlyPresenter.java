@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.mvp.fansi.p;
 import com.wuxiantao.wxt.bean.FansiDirectlyBean;
 import com.wuxiantao.wxt.mvp.fansi.c.FansiDirectlyContract;
 import com.wuxiantao.wxt.mvp.fansi.m.FanSiDirectlyModel;
+import com.wuxiantao.wxt.mvp.presenter.BasePresenter;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 
 import java.util.Map;
@@ -15,18 +16,18 @@ import java.util.Map;
  * Date:19-7-5 下午6:26
  * Description:${DESCRIPTION} 好友列表
  */
-public class FanSiDirectlyPresenter extends FansiPresenter<FansiDirectlyContract.IFansiView> implements FansiDirectlyContract.IFansiPresenter {
+public class FanSiDirectlyPresenter extends BasePresenter<FansiDirectlyContract.IFansiView> {
 
     private FansiDirectlyContract.IFansiView view;
     private FanSiDirectlyModel model = new FanSiDirectlyModel();
 
     /**
      * 好友列表
+     *
      * @param parameters
      */
-    @Override
     public void obtainFansi(Map<String, Object> parameters) {
-        if (view == null){
+        if (view == null) {
             view = getMvpView();
         }
         BaseObserver<FansiDirectlyBean> observer = new BaseObserver<FansiDirectlyBean>(view) {
@@ -40,12 +41,6 @@ public class FanSiDirectlyPresenter extends FansiPresenter<FansiDirectlyContract
                 view.obtainFansFailure(errorMsg);
             }
         };
-        model.obtainDirectlyFansi(observer,parameters);
-    }
-
-
-    @Override
-    public void obtainFansiDetail(int uid) {
-        super.obtainFansiDetail(model,uid);
+        model.obtainDirectlyFansi(observer, parameters);
     }
 }

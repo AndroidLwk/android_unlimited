@@ -462,7 +462,20 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
         map.put(ALI_NAME, bean.getAliname());
         map.put(WECHAT_NO, bean.getWechat());
         map.put(IS_TAO_BAO_AUTH, bean.getIs_taobao() == 1);
-        map.put(VIP_STATUS, "VIP"+bean.getVip());
+        String vipName = "";
+        switch (bean.getVip()) {
+            case -1:
+            case 0:
+                vipName = "普通会员";
+                break;
+            case 1:
+                vipName = "年费会员";
+                break;
+            case 2:
+                vipName = "月费会员";
+                break;
+        }
+        map.put(VIP_STATUS, vipName);
         //map.put(ABOUT_SUPER,String.valueOf(AppUtils.getVersionName()));
         return map;
     }

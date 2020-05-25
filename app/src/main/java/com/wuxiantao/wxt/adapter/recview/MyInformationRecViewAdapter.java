@@ -167,7 +167,9 @@ public class MyInformationRecViewAdapter extends RcvBaseAdapter<String> {
 //                setTaoBaoVerItem(holder, isVer);
 //            }
         }
-        setTaoBaoVerItem(holder, isVer);
+        if(position==7){
+            setTaoBaoVerItem(holder, isVer);
+        }
         if (position == 0) {
             holder.setVisibility(R.id.item_my_information_content, View.GONE);
 

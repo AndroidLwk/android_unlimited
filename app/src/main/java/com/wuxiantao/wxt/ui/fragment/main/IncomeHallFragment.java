@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.ui.fragment.main;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,6 +27,7 @@ import com.wuxiantao.wxt.imgloader.GlideImgManager;
 import com.wuxiantao.wxt.mvp.contract.IncomeHallContract;
 import com.wuxiantao.wxt.mvp.presenter.IncomeHallPresenter;
 import com.wuxiantao.wxt.mvp.view.fragment.MvpFragment;
+import com.wuxiantao.wxt.ui.activity.BalanceDetailsActivity;
 import com.wuxiantao.wxt.ui.activity.H5GameActivity;
 import com.wuxiantao.wxt.ui.custom.progress.CircleProgressBar;
 import com.wuxiantao.wxt.ui.dialog.ChangeAreaDialog;
@@ -37,6 +39,7 @@ import com.wuxiantao.wxt.ui.popupwindow.OperatePromptPopupWindow;
 import com.wuxiantao.wxt.utils.AdUtils;
 import com.wuxiantao.wxt.utils.BigDecimalUtils;
 import com.wuxiantao.wxt.utils.DateUtils;
+import com.wuxiantao.wxt.utils.MathUtils;
 import com.wuxiantao.wxt.utils.ToastUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -134,13 +137,17 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     TextView tv_round_text;
     @ViewInject(R.id.tv_round_text_2)
     TextView tv_round_text_2;
-
-
+    @ViewInject(R.id.rt_one)
+    RelativeLayout rt_one;
+    @ViewInject(R.id.rt_two)
+    RelativeLayout rt_two;
+    @ViewInject(R.id.sft_one)
+    SmartRefreshLayout sft_one;
     private LoadingDialog loadingDialog;
 
     @Override
     protected void initView() {
-        setOnClikListener(tv_round_text, tv_round_text_2);
+        setOnClikListener(tv_round_text, tv_round_text_2, rt_one, rt_two);
         loadingDialog = createLoadingDialog();
 //        mPresenter.getIncomeHallInfo(getAppToken());
         // mPresenter.onGameMessage(getAppToken());
@@ -153,7 +160,16 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
             onRefreshData();
             refreshLayout.finishRefresh(REFRESH_LOAD_MORE_TIME);
         });
-        mPresenter.getMyGameInfo(getAppToken(),getActivity());
+        /**
+         * 下拉刷新
+         */
+        sft_one.setEnableLoadMore(false);
+        sft_one.setOnRefreshListener(refreshLayout -> {
+            refreshLayout.resetNoMoreData();
+            onRefreshData();
+            refreshLayout.finishRefresh(REFRESH_LOAD_MORE_TIME);
+        });
+        mPresenter.getMyGameInfo(getAppToken(), getActivity());
 //        mPresenter.getMyGameInfo("o1voQ1XGQBGDT1F6UjC4xnLbFavc");
     }
 
@@ -178,6 +194,12 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
             case R.id.tv_round_text_2:
                 loadingDialog.showLoadingDialog();
                 mPresenter.onStartExperience(getAppToken());
+                break;
+            case R.id.rt_one:
+            case R.id.rt_two:
+                Bundle bundle = new Bundle();
+                bundle.putInt("type", 4);
+                $startActivity(BalanceDetailsActivity.class, bundle);
                 break;
         }
     }
@@ -412,7 +434,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
 //        mPresenter.onGameMessage(getAppToken());
 //        mPresenter.getDragonStatusInfo(getAppToken());
 
-        mPresenter.getMyGameInfo(getAppToken(),getActivity());
+        mPresenter.getMyGameInfo(getAppToken(), getActivity());
     }
 
     //显示卡牌开启五个之后对话框
@@ -530,25 +552,58 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         tv_amount.setText(bean.getData().getGame_fenhong_all() + "");
         tv_mytoday.setText(bean.getData().getGame_fenhong_me() + "");
         int prgoress_1 = 0;
-        prgoress_1 = (bean.getData().getLevel() / 150) * 100;
+        double aa = MathUtils.sub(150, bean.getData().getCha());
+        prgoress_1 = (int) (aa / 150 * 100);
         circleIndicator_a.setProgress(prgoress_1);
         tv_chax.setText("距离享受下一次的体验分红，只差" + bean.getData().getInfo().getCha_next() + "级！");
         tv_numx.setText(bean.getData().getInfo().getTiyan_count() + "");
         tv_amountx.setText(bean.getData().getInfo().getTiyan_total() + "");
         tv_mytodayx.setText(bean.getData().getInfo().getTiyan_today_me() + "");
         int progress_2 = 0;
-        if (bean.getData().getInfo().getTiyan_endtime() > 0) {
-            progress_2 = 100;
-        } else if (bean.getData().getGame_status() > 0) {
-            progress_2 = 100;
-        } else {
-            progress_2 = (int) (Double.parseDouble(bean.getData().getRate()) * 100);
-        }
+        double bb = MathUtils.sub(50, bean.getData().getInfo().getCha_next());
+        progress_2 = (int) (bb / 50 * 100);
         circleIndicator_b.setProgress(progress_2);
-        circleIndicator_a.setVisibility(prgoress_1 < 100 ? View.VISIBLE : View.GONE);
-        tv_round_text.setVisibility(prgoress_1 == 100 ? View.VISIBLE : View.GONE);
-        circleIndicator_b.setVisibility(progress_2 < 100 ? View.VISIBLE : View.GONE);
-        tv_round_text_2.setVisibility(progress_2 == 100 ? View.VISIBLE : View.GONE);
+
+        /**
+         * 控制按钮展示
+         */
+        circleIndicator_a.setVisibility(View.GONE);
+        tv_round_text.setVisibility(View.GONE);
+        tv_round_text.setEnabled(false);
+        if (bean.getData().getGame_status() == 1) {//已经与分红
+            tv_round_text.setVisibility(View.VISIBLE);
+            tv_round_text.setText("正在分红中...");
+            tv_round_text.setEnabled(false);
+            circleIndicator_a.setVisibility(View.GONE);
+        } else if (bean.getData().getGame_status() == 0 && prgoress_1 < 100) {//未与分红
+            tv_round_text.setVisibility(View.GONE);
+            circleIndicator_a.setVisibility(View.VISIBLE);
+        } else if (bean.getData().getGame_status() == 0 && prgoress_1 == 100) {
+            tv_round_text.setVisibility(View.VISIBLE);
+            tv_round_text.setEnabled(true);
+            circleIndicator_a.setVisibility(View.GONE);
+        }
+        circleIndicator_b.setVisibility(View.GONE);
+        tv_round_text_2.setVisibility(View.GONE);
+        tv_round_text_2.setEnabled(false);
+
+
+        if (Long.parseLong(DateUtils.getStringTimestamp(DateUtils.getCurrentTimeToday())) < bean.getData().getInfo().getTiyan_endtime()) {//分红中
+            circleIndicator_b.setVisibility(View.GONE);
+            tv_round_text_2.setVisibility(View.VISIBLE);
+            tv_round_text_2.setText("正在分红中...");
+            tv_round_text_2.setEnabled(false);
+        }
+        if (bean.getData().getInfo().getNum() <= 0) {//不可分红 显示 百分比
+            circleIndicator_b.setVisibility(View.VISIBLE);
+            tv_round_text_2.setVisibility(View.GONE);
+        } else if (bean.getData().getInfo().getNum() > 0 && progress_2 == 100) {//开始分红按钮显示
+            tv_round_text_2.setVisibility(View.VISIBLE);
+            tv_round_text_2.setText("开始分红");
+            tv_round_text_2.setEnabled(true);
+            circleIndicator_b.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -567,7 +622,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         showOnlyConfirmDialog(msg);
         ll_income_profit.setVisibility(View.GONE);
         rl_income_profit.setVisibility(View.VISIBLE);
-        mPresenter.getMyGameInfo(getAppToken(),getActivity());
+        mPresenter.getMyGameInfo(getAppToken(), getActivity());
     }
 
     @Override

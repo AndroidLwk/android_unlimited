@@ -309,6 +309,8 @@ public class Constant {
 
     //会员状态:-1会员过期，0未注册会员，1年会员，2月会员
     public static final String VIP_STATUS = "vip_status";
+    //昵称
+    public static final String NICKNAME = "nickname";
     // 0元购购物状态：0未购，1已购
     public static final String BUY_STATUS = "buy_status";
     //领取新手红包状态：0未领取，1已领取

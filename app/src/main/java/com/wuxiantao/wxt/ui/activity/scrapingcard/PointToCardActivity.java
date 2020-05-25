@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.plattysoft.leonids.ParticleSystem;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.CardInfoBean;
@@ -25,6 +26,8 @@ import com.wuxiantao.wxt.utils.AudioUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
+
+import java.util.List;
 
 import static com.wuxiantao.wxt.config.Constant.FAIURE_POINTTOCARD_BACK;
 
@@ -48,9 +51,13 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     private boolean isCountDowning;//是否正在计时
 
     private int isClick = 0;
+    private List<TTNativeExpressAd> list_ad;//广告
 
     @Override
     protected void initView() {
+        new Thread(() -> {
+            list_ad = AdUtils.initAd(this);
+        }).start();
         setStatusBar();
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
         cntoolbar_title.setOnRightButtonClickListener(() -> $startActivity(MyBackpackActivity.class));
@@ -77,7 +84,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
             AudioUtils.modeIndicater(this, R.raw.didatwo);//播放音乐
             startPlay();
             mHandler.postDelayed(() -> {
-                new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
+                new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this, list_ad)
                         .setWindowData(bean.getCode() == 200 ? bean.getData().getMsg() : bean.getMsg(), bean.getData().getCard_img())
                         .setWindowAnimStyle(R.style.custom_dialog)
                         .setOnClickListener((status) -> {//获取成功
@@ -91,7 +98,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
                         .builder().showPopupWindow();
             }, 4000);
         } else {//没的刮刮卡
-            new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this)
+            new ScrapingCardSuccessPopupWindow.Build(PointToCardActivity.this, list_ad)
                     .setWindowData(bean.getCode() == 200 ? bean.getData().getMsg() : bean.getMsg(), bean.getData().getCard_img())
                     .setWindowAnimStyle(R.style.custom_dialog)
                     .setOnClickListener((s) -> {
@@ -187,6 +194,9 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     @Override
     public void getCardSuccess(CardInfoBean bean) {
         showOnlyConfirmDialog(bean.getMsg());
+        new Thread(() -> {
+            list_ad = AdUtils.initAd(this);
+        }).start();
     }
 
     @Override
@@ -207,7 +217,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
         if (Double.parseDouble(info.getLucky_value()) > 100) {
             progress = 100;
         } else {
-            progress = (int) (info.getRand() + Double.parseDouble(info.getLucky_value()));
+            progress = (int) (Double.parseDouble(info.getLucky_value()));
         }
         progress_pointtocard_a.setProgress(progress);
         tv_percent.setText(progress + "%");

@@ -18,7 +18,7 @@ public class BalanceDetailPresenter extends BasePresenter<BalanceDetailContract.
 
 
     @Override
-    public void obtainBalanceDetails(String token, int page) {
+    public void obtainBalanceDetails(String token, int page,int type) {
         if (view == null){
             view = getMvpView();
         }
@@ -33,6 +33,6 @@ public class BalanceDetailPresenter extends BasePresenter<BalanceDetailContract.
                 view.obtainBalanceDetailFailure(errorMsg);
             }
         };
-        model.obtainBalanceDetails(observer,token,page);
+        model.obtainBalanceDetails(observer,token,page,type);
     }
 }

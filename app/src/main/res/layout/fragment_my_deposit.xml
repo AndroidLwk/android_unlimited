@@ -71,7 +71,7 @@
                         android:layout_marginLeft="@dimen/dp_12"
                         android:layout_marginTop="@dimen/dp_31"
                         android:layout_toRightOf="@+id/iv_mine_header"
-                        android:text=""
+                        android:text="sdfs"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_17" />
 
@@ -91,7 +91,7 @@
                         android:layout_marginLeft="@dimen/dp_12"
                         android:layout_marginTop="@dimen/dp_8"
                         android:layout_toRightOf="@+id/iv_mine_header"
-                        android:text=""
+                        android:text="sdfdsfsdf"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_13" />
 

@@ -61,6 +61,7 @@ import static com.wuxiantao.wxt.config.Constant.IS_REVIEW;
 import static com.wuxiantao.wxt.config.Constant.IS_SHOW_SAMALL_ICON;
 import static com.wuxiantao.wxt.config.Constant.IS_TAO_BAO_AUTH;
 import static com.wuxiantao.wxt.config.Constant.NEW_AWARD_STATUS;
+import static com.wuxiantao.wxt.config.Constant.NICKNAME;
 import static com.wuxiantao.wxt.config.Constant.RECEIVE_LOGIN;
 import static com.wuxiantao.wxt.config.Constant.SHIFT_ID;
 import static com.wuxiantao.wxt.config.Constant.USER_HEAD_IMG;
@@ -229,6 +230,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
             saveUserInfo(WECHAT_NO, bean.getWechat());
             saveUserInfo(GAME_ACCOUNT, bean.getAccountname());
             saveUserInfo(USER_HEAD_IMG, bean.getHeadimg());
+            saveUserInfo(NICKNAME, bean.getNickname());
             //isShowSmallIcon
             initRadioButton();
             Bundle bundle = getBundle();

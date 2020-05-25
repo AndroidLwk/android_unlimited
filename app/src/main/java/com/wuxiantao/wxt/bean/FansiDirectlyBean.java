@@ -12,41 +12,42 @@ import java.util.List;
  */
 public class FansiDirectlyBean {
 
+
     /**
-     * total : 0
-     * total_zhitui : 0
-     * total_jianjie : 0
-     * list : [{"id":84,"headimg":"","nickname":"朱古力👿","level":148,"gongxian":0,"is_task":0},{"id":58,"headimg":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epPkRJOceZ3wRF9uhice7BfRZVqPXDD1umVXubMHL1tiaFu6gobJgm7nBEGaibbz0YGtib9KQzXIb9tvw/132","nickname":"🐲 领航晓瀚 🐲","level":93,"gongxian":0,"is_task":0},{"id":34981,"headimg":"https://wx.qlogo.cn/mmopen/vi_32/EyQxj5PiczTgQ0VOqnpcemsX73iaiady6ojfO6T9P8XLHxhFENicqOZJbLibKtXmCB5l3jbicibFbgg4d97pic1PnO3p1Q/132","nickname":"最初的梦","level":85,"gongxian":0,"is_task":0}]
-     * count : 9
+     * total : 3.35
+     * total_zhitui : 3.1
+     * total_jianjie : 0.25
+     * list : [{"id":199903,"headimg":"http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqkUDSbrAX3iaPtuxz32bqtBsMex5rich4QoKIUbb1NDianoK2ayGZrhOPlezOs0S9n4MkceZL68Ecsw/132","nickname":"chuhao","level":0,"gongxian":0,"is_task":0},{"id":199995,"headimg":"http://thirdwx.qlogo.cn/mmopen/vi_32/xyjORojkoLyrG7WOFCZPlb9e5aAQ4tEia89icuaohkRMtd5ibWBwCGtRh100zNmZZ6OPeUwTFZJSJ48PUNDiclUmRA/132","nickname":"South","level":0,"gongxian":3.1,"is_task":0}]
+     * count : 2
      */
 
-    private int total;
-    private int total_zhitui;
-    private int total_jianjie;
+    private double total;
+    private double total_zhitui;
+    private double total_jianjie;
     private int count;
     private List<ListBean> list;
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
-    public int getTotal_zhitui() {
+    public double getTotal_zhitui() {
         return total_zhitui;
     }
 
-    public void setTotal_zhitui(int total_zhitui) {
+    public void setTotal_zhitui(double total_zhitui) {
         this.total_zhitui = total_zhitui;
     }
 
-    public int getTotal_jianjie() {
+    public double getTotal_jianjie() {
         return total_jianjie;
     }
 
-    public void setTotal_jianjie(int total_jianjie) {
+    public void setTotal_jianjie(double total_jianjie) {
         this.total_jianjie = total_jianjie;
     }
 
@@ -68,10 +69,10 @@ public class FansiDirectlyBean {
 
     public static class ListBean {
         /**
-         * id : 84
-         * headimg :
-         * nickname : 朱古力👿
-         * level : 148
+         * id : 199903
+         * headimg : http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqkUDSbrAX3iaPtuxz32bqtBsMex5rich4QoKIUbb1NDianoK2ayGZrhOPlezOs0S9n4MkceZL68Ecsw/132
+         * nickname : chuhao
+         * level : 0
          * gongxian : 0
          * is_task : 0
          */
@@ -80,7 +81,7 @@ public class FansiDirectlyBean {
         private String headimg;
         private String nickname;
         private int level;
-        private int gongxian;
+        private double gongxian;
         private int is_task;
 
         public int getId() {
@@ -115,11 +116,11 @@ public class FansiDirectlyBean {
             this.level = level;
         }
 
-        public int getGongxian() {
+        public double getGongxian() {
             return gongxian;
         }
 
-        public void setGongxian(int gongxian) {
+        public void setGongxian(double gongxian) {
             this.gongxian = gongxian;
         }
 

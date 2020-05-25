@@ -22,6 +22,6 @@ public interface BalanceDetailContract {
 
     interface IDetailPresenter extends MvpPresenter<IDetailView> {
         //将一些逻辑处理的方法在此声明
-        void obtainBalanceDetails(String token,int page);
+        void obtainBalanceDetails(String token,int page,int type);
     }
 }
