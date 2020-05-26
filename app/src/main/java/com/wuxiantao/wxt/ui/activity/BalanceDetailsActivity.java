@@ -1,8 +1,10 @@
 package com.wuxiantao.wxt.ui.activity;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -41,6 +43,8 @@ public class BalanceDetailsActivity extends MvpActivity<BalanceDetailPresenter, 
     SmartRefreshLayout srl_balance_details;
     @ViewInject(R.id.ch_balance_details_header)
     ClassicsHeader ch_balance_details_header;
+    @ViewInject(R.id.tv_detail)
+    TextView tv_detail;
 
 
     private BalanceDetailsRecViewAdapter adapter;
@@ -54,8 +58,22 @@ public class BalanceDetailsActivity extends MvpActivity<BalanceDetailPresenter, 
     }
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         type = getIntent().getIntExtra("type", 0);
+        switch (type) {
+            case 1:
+                tv_detail.setText("青铜英雄卡分红明细");
+                break;
+            case 2:
+                tv_detail.setText("黄金英雄卡分红明细");
+                break;
+            case 3:
+                tv_detail.setText("整套英雄卡分红明细");
+                break;
+            case 4:
+                tv_detail.setText("游戏分红明细");
+                break;
+        }
         setStatusBar();
         StatusBarUtil.setStatusBarColor(BalanceDetailsActivity.this, getResources().getColor(R.color.white));
         StatusBarUtil.setStatusBarDarkTheme(BalanceDetailsActivity.this, true);
@@ -76,7 +94,7 @@ public class BalanceDetailsActivity extends MvpActivity<BalanceDetailPresenter, 
             refreshlayout.resetNoMoreData();
             page = 1;
             list.clear();
-            mPresenter.obtainBalanceDetails(getAppToken(), page,type);
+            mPresenter.obtainBalanceDetails(getAppToken(), page, type);
             refreshlayout.finishRefresh(REFRESH_LOAD_MORE_TIME);
         });
     }

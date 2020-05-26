@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity.my;
 
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.Button;
@@ -81,7 +82,7 @@ public class MyMemberActivity extends MvpActivity<MyMemberPresenter, MyMemberCon
     private MymemberAdapter mAdapter;
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         mPresenter.getVipStatusInfo(getAppToken());
         setOnClikListener(bt_openMember);
         PayListener.getInstance().addListener(this);

@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.ui.activity.my;
 
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -49,7 +50,7 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
     ImageView img_invateCode_share;
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         setStatusBar();
         mPresenter.getSharePic(getAppToken());
         setOnClikListener(mine_fansi_back, iv_invateCode, img_invateCode_share);

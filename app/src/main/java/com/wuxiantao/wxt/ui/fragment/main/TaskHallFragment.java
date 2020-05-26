@@ -214,9 +214,6 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
     public void refreshData() {//切换界面时刷新数据
         if (mPresenter != null) {
             mPresenter.getTaskInfo(getAppToken());
-            new Thread(() -> {
-                list_ad = AdUtils.initAd(getActivity());
-            }).start();
         }
     }
 

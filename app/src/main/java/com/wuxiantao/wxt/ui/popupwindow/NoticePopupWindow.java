@@ -23,8 +23,8 @@ public class NoticePopupWindow extends BasePopupWindow {
         }
 
         public Build setContent(String content) {
-            setText(content,R.id.tv_content);
-            return  this;
+            setHtml(content, R.id.tv_content);
+            return this;
         }
 
         @Override

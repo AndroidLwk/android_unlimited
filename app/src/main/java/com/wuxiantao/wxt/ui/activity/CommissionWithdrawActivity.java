@@ -137,7 +137,7 @@ public class CommissionWithdrawActivity extends MvpActivity<CommissionWithdrawPr
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
         Bundle bundle = getBundle();
         if (bundle != null){

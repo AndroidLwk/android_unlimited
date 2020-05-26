@@ -1,7 +1,6 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
 import com.wuxiantao.wxt.bean.NetSwitchBean;
-import com.wuxiantao.wxt.bean.NoticeBean;
 import com.wuxiantao.wxt.bean.PersonalInfoBean;
 import com.wuxiantao.wxt.bean.StopAppBean;
 import com.wuxiantao.wxt.mvp.contract.MenuContract;
@@ -107,22 +106,6 @@ public class MenuPresenter extends BaseVersionPresenter<MenuContract.IMenuView> 
         model.obtainPersonal(observer, token);
     }
 
-    public void notice(String token) {
-        if (view == null) {
-            view = getMvpView();
-        }
-        BaseObserver<NoticeBean> observer = new BaseObserver<NoticeBean>() {
-            @Override
-            public void onSuccess(NoticeBean bean) {
-                view.noticeSuccess(bean.getContent());
-            }
 
-            @Override
-            public void onFailure(String errorMsg) {
-                view.noticeFailure(errorMsg);
-            }
-        };
-        model.notice(observer, token);
-    }
 
 }

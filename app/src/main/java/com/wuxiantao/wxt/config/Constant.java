@@ -409,4 +409,8 @@ public class Constant {
     public static final String FAIURE_POINTTOCARD_BACK = "pointToCardFalureBack";
     // 扩容界面支付成功返回
     public static final String SUCCESS_EXPANSION_BACK = "successExpansionBack";
+    //显示版本时间
+    public static final String VISIABLE_TIME = "2020-05-28 15:00";
+    //第一次显示公告
+    public static final String NOTICE_FIRST = "noticeFirst";
 }

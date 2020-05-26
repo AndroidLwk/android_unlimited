@@ -17,13 +17,10 @@ import com.wuxiantao.wxt.base.BaseActivity;
 import com.wuxiantao.wxt.listener.PermissionListener;
 import com.wuxiantao.wxt.service.CountDownTimeService;
 import com.wuxiantao.wxt.utils.AdUtils;
+import com.wuxiantao.wxt.utils.AppUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static com.wuxiantao.wxt.config.Constant.IS_STARTED_LOADING;
 
@@ -81,20 +78,25 @@ public class WelcomeActivity extends BaseActivity {
 
     //加载开屏广告
     private void loadSplashAd() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
-        String str1 = df.format(new Date());// new Date()为获取当前系统时间
-        String str2 = "2020-05-28 08:00";
-        try {
-            Date date1 = df.parse(str1);
-            Date date2 = df.parse(str2);
-            int i = date1.compareTo(date2);//0 相等 小于0 之前 大于0 之后
-            if (i > 0 || i == 0) {//加载广告
-                AdUtils.initSplashAd(this, welcome_adsRl, welcome_img, this::goToMainActivity);
-            } else {//不加载广告
-                goToMainActivity();
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
+//        String str1 = df.format(new Date());// new Date()为获取当前系统时间
+//        String str2 = "2020-05-28 08:00";
+//        try {
+//            Date date1 = df.parse(str1);
+//            Date date2 = df.parse(str2);
+//            int i = date1.compareTo(date2);//0 相等 小于0 之前 大于0 之后
+//            if (i > 0 || i == 0) {//加载广告
+//                AdUtils.initSplashAd(this, welcome_adsRl, welcome_img, this::goToMainActivity);
+//            } else {//不加载广告
+//                goToMainActivity();
+//            }
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//            goToMainActivity();
+//        }
+        if (AppUtils.isVisiableView()) {//是否显示广告
+            AdUtils.initSplashAd(this, welcome_adsRl, welcome_img, this::goToMainActivity);
+        } else {
             goToMainActivity();
         }
     }

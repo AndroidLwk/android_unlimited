@@ -68,7 +68,7 @@ public class HighAreaActivity extends MvpActivity<HighAreaPresenter, HighAreaCon
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         setStatusBar();
         //注册
         EventBus.getDefault().register(this);

@@ -31,10 +31,6 @@ public interface MenuContract {
         void getPersonalInfoSuccess(PersonalInfoBean bean);
 
         void getPersonalInfoFailure(String failure);
-
-        void noticeFailure(String failure);
-
-        void noticeSuccess(String content);
     }
 
     interface IMenuPresenter extends VersionMvpPresenter<IMenuView> {

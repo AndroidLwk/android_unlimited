@@ -8,6 +8,7 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -376,6 +377,17 @@ public abstract class BaseBuild implements View.OnClickListener, View.OnKeyListe
             TextView tv = findViewById(viewId);
             if (tv != null) {
                 tv.setText(str);
+            }
+        }
+        return this;
+    }
+
+    //设置文本
+    protected BaseBuild setHtml(String str, @IdRes int viewId) {
+        if (!isEmpty(str)) {
+            TextView tv = findViewById(viewId);
+            if (tv != null) {
+                tv.setText(Html.fromHtml(str));
             }
         }
         return this;

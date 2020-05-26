@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity;
 
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -61,7 +62,7 @@ public class SearchActivity  extends MvpActivity<SearchPresenter, SearchContract
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         StatusBarUtil.setStatusBarColor(this,getResources().getColor(R.color.whitesmoke));
         StatusBarUtil.setStatusBarDarkTheme(this,true);
         mPresenter.getSearchHot();

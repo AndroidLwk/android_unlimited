@@ -45,7 +45,7 @@ public class VipBeneficialActivity extends MvpActivity<VipBeneficialPresenter, V
     private int status = -2;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         Bundle bundle = getBundle();
         if (bundle != null) {
             status = bundle.getInt(TASK_STATUS);

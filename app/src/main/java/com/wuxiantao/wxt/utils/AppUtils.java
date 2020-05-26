@@ -11,6 +11,12 @@ import android.graphics.drawable.Drawable;
 import com.umeng.commonsdk.statistics.common.DeviceConfig;
 import com.wuxiantao.wxt.app.BaseApplication;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static com.wuxiantao.wxt.config.Constant.VISIABLE_TIME;
+
 /**
  * Company:成都可信网络科技有限责任公司
  * FileName:AppUtils
@@ -129,5 +135,27 @@ public class AppUtils {
         } catch (Exception e) {
         }
         return deviceInfo;
+    }
+
+    /**
+     * 规定的时间是否显示view
+     */
+    public static boolean isVisiableView() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
+        String str1 = df.format(new Date());// new Date()为获取当前系统时间
+        String str2 = VISIABLE_TIME;
+        try {
+            Date date1 = df.parse(str1);
+            Date date2 = df.parse(str2);
+            int i = date1.compareTo(date2);//0 相等 小于0 之前 大于0 之后
+            if (i > 0 || i == 0) {//显示
+                return true;
+            } else {//不显示
+                return false;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

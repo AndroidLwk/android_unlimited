@@ -18,6 +18,11 @@
                android:background="@color/whitesmoke"
                android:layout_height="0dp"
                android:layout_weight="1"/>
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="0.8dp"
+               android:layout_above="@+id/main_menu_radiogroup"
+               android:background="@color/gainsboro"/>
            <RadioGroup
                android:id="@+id/main_menu_radiogroup"
                android:layout_width="match_parent"
@@ -64,5 +69,6 @@
            android:scaleType="centerCrop"
            android:visibility="visible"
            android:src="@drawable/main_tab_car"/>
+
    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

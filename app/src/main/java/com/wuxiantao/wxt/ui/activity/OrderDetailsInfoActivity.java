@@ -69,7 +69,7 @@ public class OrderDetailsInfoActivity extends MvpActivity<OrderDetailPresenter, 
     private LoadingDialog loadingDialog;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         Bundle bundle = getBundle();
         if (bundle != null){
             int orderType = bundle.getInt(ORDER_TYPE);

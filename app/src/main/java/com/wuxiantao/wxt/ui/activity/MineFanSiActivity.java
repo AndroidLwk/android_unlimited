@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.ui.activity;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.widget.ImageView;
@@ -80,7 +81,7 @@ public class MineFanSiActivity extends MvpActivity<MineFansiPresenter, MineFansi
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         setOnClikListener(mine_fansi_back, mine_fansi_title_text, mine_fansi_title_img);
         setStatusBar();
         initFragment();

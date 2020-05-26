@@ -58,7 +58,7 @@ public class BinddingAlipayActivity extends MvpActivity<BindingAlipayPresenter, 
     private String aliname;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         change_alipay_rl.setEnableRefresh(false);
         change_alipay_rl.setEnableLoadMore(false);
         loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.binding_ing).build();

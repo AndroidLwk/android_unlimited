@@ -1,6 +1,5 @@
 package com.wuxiantao.wxt.mvp.view.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -30,7 +29,6 @@ import com.wuxiantao.wxt.mvp.delegate.ActivityMvpDelegateCallback;
 import com.wuxiantao.wxt.mvp.delegate.ActyvityDelegate;
 import com.wuxiantao.wxt.mvp.presenter.MvpPresenter;
 import com.wuxiantao.wxt.mvp.view.MvpView;
-import com.wuxiantao.wxt.utils.OSUtils;
 
 import org.xutils.x;
 
@@ -78,7 +76,7 @@ public abstract class BaseMvpActivity<P extends MvpPresenter,V extends MvpView> 
         mActyvityDelegate.onCreate();
         mContext = this.getApplication();
         mDbManagement = DbManagement.newInstance();
-        initView();
+        initView(savedInstanceState);
         setTitle();
         //禁止横屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -297,7 +295,7 @@ public abstract class BaseMvpActivity<P extends MvpPresenter,V extends MvpView> 
     //暴露一个创建的方法用于创建presenter
     protected abstract P CreatePresenter();
 
-    protected   void initView(){}
+    protected   void initView(Bundle savedInstanceState){}
 
     protected  void widgetClick(int id){}
 

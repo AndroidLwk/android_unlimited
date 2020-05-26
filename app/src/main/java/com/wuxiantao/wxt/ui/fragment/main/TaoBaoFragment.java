@@ -5,6 +5,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.FragmentManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ import com.wuxiantao.wxt.ui.activity.SearchActivity;
 import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.custom.indicator.VPindicator;
 import com.wuxiantao.wxt.ui.custom.viewpager.LazyViewPager;
+import com.wuxiantao.wxt.ui.popupwindow.NoticePopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.newUserGiftPopupWindow;
 import com.wuxiantao.wxt.utils.ToastUtils;
 
@@ -42,6 +44,7 @@ import static com.wuxiantao.wxt.config.Constant.IS_STARTED_LOADING;
 import static com.wuxiantao.wxt.config.Constant.MAIN_TAO_BAO_CLOSE;
 import static com.wuxiantao.wxt.config.Constant.MAIN_TAO_BAO_OPEN;
 import static com.wuxiantao.wxt.config.Constant.MAIN_TAO_BAO_REC_VIEW;
+import static com.wuxiantao.wxt.config.Constant.NOTICE_FIRST;
 import static com.wuxiantao.wxt.config.Constant.TAO_BAO_FEATURED_REC_VIEW;
 import static com.wuxiantao.wxt.config.Constant.USER_HEAD_IMG;
 
@@ -83,13 +86,14 @@ public class TaoBaoFragment extends MvpFragment<TaoBaoSortPresenter, TaoBaoSortC
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void initView() {
+        mPresenter.notice(getAppToken());
         //注册
         EventBus.getDefault().register(this);
 //        if (getUserStatus(NEW_AWARD_STATUS) == 0 && getSPBoolean(IS_STARTED_LOADING)) {
 //            showNewUserWindow();
 //        }
         mPresenter.getTaoBaoSort();
-        setOnClikListener(sbt_search,fragment_tao_bao_search, fragment_tao_bao_save_money, main_taobao_topping);
+        setOnClikListener(sbt_search, fragment_tao_bao_search, fragment_tao_bao_save_money, main_taobao_topping);
         //initMvText();
 
         boolean isReview = getSPBoolean(IS_REVIEW);
@@ -97,7 +101,7 @@ public class TaoBaoFragment extends MvpFragment<TaoBaoSortPresenter, TaoBaoSortC
     }
 
     //跑马灯
-    private void initMvText(){
+    private void initMvText() {
         //https://github.com/gongwen/MarqueeViewLibrary
         List<String> list = new ArrayList<>();
         list.add(getString(R.string.paste_taobao_title));
@@ -209,6 +213,23 @@ public class TaoBaoFragment extends MvpFragment<TaoBaoSortPresenter, TaoBaoSortC
     @Override
     public void receiveRedBagFailure(String failure) {
         ToastUtils.error(failure);
+    }
+
+    @Override
+    public void noticeFailure(String failure) {
+
+    }
+
+    @Override
+    public void noticeSuccess(String content) {
+        if (TextUtils.isEmpty(content) || getUserInfo(NOTICE_FIRST).equals("1")) {
+            return;
+        }
+        new NoticePopupWindow.Build(getContext())
+                .setWindowAnimStyle(R.style.custom_dialog)
+                .setContent(content)
+                .builder().showPopupWindow();
+        saveUserInfo(NOTICE_FIRST, "1");//0：第一次 1：不是第一次
     }
 
 

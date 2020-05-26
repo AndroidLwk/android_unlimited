@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity.scrapingcard;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
@@ -54,7 +55,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     private List<TTNativeExpressAd> list_ad;//广告
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         new Thread(() -> {
             list_ad = AdUtils.initAd(this);
         }).start();
@@ -194,9 +195,6 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
     @Override
     public void getCardSuccess(CardInfoBean bean) {
         showOnlyConfirmDialog(bean.getMsg());
-        new Thread(() -> {
-            list_ad = AdUtils.initAd(this);
-        }).start();
     }
 
     @Override

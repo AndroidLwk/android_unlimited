@@ -35,6 +35,7 @@ import com.wuxiantao.wxt.ui.custom.decoration.GridSpacingItemDecoration;
 import com.wuxiantao.wxt.ui.custom.decoration.SpaceItemDecoration;
 import com.wuxiantao.wxt.ui.custom.scrollview.CustomScrollView;
 import com.wuxiantao.wxt.ui.popupwindow.TradingHallPopupWindow;
+import com.wuxiantao.wxt.utils.AppUtils;
 import com.wuxiantao.wxt.utils.ToastUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -111,6 +112,7 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
             mPresenter.gainBanner(0);
             initGridLayout();
         }
+
     }
 
     private void initRefreshLoad() {
@@ -200,6 +202,11 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
     @Override
     public void gainBannerSuccess(BannerBean bean) {
         initBanner(bean.getList());
+        if (AppUtils.isVisiableView()) {
+            mBanner.setVisibility(View.VISIBLE);
+        } else {
+            mBanner.setVisibility(View.GONE);
+        }
     }
 
     private void initBanner(List<BannerBean.ListBean> listBeans) {
@@ -294,9 +301,9 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
         } else {
             employedAdapter.updataList(bean.getList());
         }
-        if (bean.getList().size()==0){
+        if (bean.getList().size() == 0) {
             self_employed_ver_rv.setVisibility(View.GONE);
-        }else {
+        } else {
             self_employed_ver_rv.setVisibility(View.VISIBLE);
         }
     }

@@ -1,22 +1,16 @@
 package com.wuxiantao.wxt.ui.activity;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.ScanBean;
 import com.wuxiantao.wxt.mvp.contract.ScanContract;
-import com.wuxiantao.wxt.mvp.presenter.MvpPresenter;
 import com.wuxiantao.wxt.mvp.presenter.ScannerPresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
-import com.wuxiantao.wxt.utils.StatusBarUtil;
 import com.wuxiantao.wxt.utils.ToastUtils;
 
 import org.xutils.view.annotation.ContentView;
@@ -24,8 +18,6 @@ import org.xutils.view.annotation.ViewInject;
 
 import cn.bingoogolapple.qrcode.core.QRCodeView;
 import cn.bingoogolapple.qrcode.zbar.ZBarView;
-import pub.devrel.easypermissions.AfterPermissionGranted;
-import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * Copyright (C), 成都都爱玩科技有限公司
@@ -42,7 +34,7 @@ public class ScanActivity extends MvpActivity<ScannerPresenter, ScanContract.ISc
 
     private static final int REQUEST_CODE_CHOOSE_QRCODE_FROM_GALLERY = 666;
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         setStatusBar();
 //        StatusBarUtil.setStatusBarColor(ScanActivity.this,getResources().getColor(R.color.white));
 //        StatusBarUtil.setStatusBarDarkTheme(ScanActivity.this,true);

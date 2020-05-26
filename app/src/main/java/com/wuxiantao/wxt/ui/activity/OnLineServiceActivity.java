@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.ui.activity;
 
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.ImageView;
 
@@ -50,7 +51,7 @@ public class OnLineServiceActivity extends MvpActivity<OnLineServicePresenter, O
     private DownLoadPopupWindow.Build build;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         setStatusBar();
         StatusBarUtils.setDarkMode(this);
         service_on_line_rl.setEnableLoadMore(false);

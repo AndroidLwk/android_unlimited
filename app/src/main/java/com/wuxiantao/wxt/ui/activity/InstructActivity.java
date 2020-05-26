@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.ui.activity;
 
 import android.graphics.PointF;
+import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
@@ -33,7 +34,7 @@ public class InstructActivity extends MvpActivity<InstructPresenter, InstructCon
     SubsamplingScaleImageView instruct_img;
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         StatusBarUtil.setStatusBarColor(this,getResources().getColor(R.color.white));
         StatusBarUtil.setStatusBarDarkTheme(this,true);
         mPresenter.instruct();

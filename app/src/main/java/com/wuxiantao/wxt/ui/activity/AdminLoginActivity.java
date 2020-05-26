@@ -60,7 +60,7 @@ public class AdminLoginActivity extends MvpActivity<LoginPresenter, LoginContrac
     private LoadingDialog loadingDialog;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         StatusBarUtil.setStatusBarColor(this,getResources().getColor(R.color.white));
         StatusBarUtil.setStatusBarDarkTheme(this,true);
 

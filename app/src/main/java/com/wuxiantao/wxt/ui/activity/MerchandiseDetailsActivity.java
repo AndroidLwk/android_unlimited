@@ -107,7 +107,7 @@ public class MerchandiseDetailsActivity extends MvpActivity<MerchandiseDetailPre
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         setStatusBar();
         loadingDialog = new LoadingDialog.Build(this).build();
         Bundle bundle = getBundle();

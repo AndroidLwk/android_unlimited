@@ -29,7 +29,6 @@ import com.wuxiantao.wxt.ui.custom.decoration.GridSpacingItemDecoration;
 import com.wuxiantao.wxt.ui.custom.decoration.SpaceItemDecoration;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
 import com.wuxiantao.wxt.ui.popupwindow.CopyNoPublicPopupWindow;
-import com.wuxiantao.wxt.ui.title.TitleBuilder;
 import com.wuxiantao.wxt.utils.BigDecimalUtils;
 import com.wuxiantao.wxt.utils.TextViewUtils;
 import com.wuxiantao.wxt.utils.WeChatUtils;
@@ -105,7 +104,7 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     private boolean isBindingWeChat;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         setStatusBar();
         EventBus.getDefault().register(this);
         Bundle bundle = getBundle();

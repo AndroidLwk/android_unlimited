@@ -44,7 +44,7 @@ public class ResetPassWordInputActivity extends MvpActivity<ResetPassWordPresent
     private String newPassWord;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         Bundle bundle = getBundle();
         if (bundle != null){
             type = bundle.getInt(VERCODE_TYPE);

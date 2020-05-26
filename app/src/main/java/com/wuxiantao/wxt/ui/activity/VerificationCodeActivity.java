@@ -76,7 +76,7 @@ public class VerificationCodeActivity extends MvpActivity<CodeVerifyPresenter, C
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         Bundle bundle = getBundle();
         if (bundle != null){
             type = bundle.getInt(VERCODE_TYPE);

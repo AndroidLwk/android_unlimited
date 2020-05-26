@@ -21,6 +21,9 @@ public interface TaoBaoSortContract {
         void getTaoBaoSortFailure(String failure);
         void receiveRedBagSuccess(String msg);
         void receiveRedBagFailure(String failure);
+        void noticeFailure(String failure);
+
+        void noticeSuccess(String content);
     }
 
     interface ITaoBaoSortPresenter extends MvpPresenter<ITaoBaoSortView>{

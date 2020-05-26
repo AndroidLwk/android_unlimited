@@ -120,7 +120,7 @@ public class ConfirmOrderActivity extends MvpActivity<ConfirmOrderPresenter, Con
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         //注册EventBus
         EventBus.getDefault().register(this);
         StatusBarUtil.setStatusBarColor(this,getResources().getColor(R.color.white));

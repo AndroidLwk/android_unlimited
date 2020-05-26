@@ -63,7 +63,7 @@ public class SettingActivity extends MvpActivity<AboutSupermanPresenter, AboutSu
     StateButton my_information_exit;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         setOnClikListener(my_information_exit);
         super_man_about_rl.setEnableRefresh(false);
         super_man_about_rl.setEnableLoadMore(false);

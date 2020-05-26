@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity.scrapingcard;
 
+import android.os.Bundle;
 import android.widget.TextView;
 
 import com.wuxiantao.wxt.R;
@@ -45,7 +46,7 @@ public class BackpackExpansionActivity extends MvpActivity<BackpackExpansionPres
     TextView tv_five;
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         setStatusBar();
         mPresenter.kuorongInfo(getAppToken());
         setOnClikListener(statebutton_confirm);

@@ -38,7 +38,7 @@ public class ScrapingCardFragmentThreeAdapter extends RcvBaseAdapter<MyCardInfo.
         }
         if (bean.getStatus() == 1) {//已经与分红
             holder.setVisibility(R.id.tv_round_text_scrap, View.VISIBLE);
-            holder.setText(R.id.tv_round_text_scrap, "正在分红中...");
+            holder.setText(R.id.tv_round_text_scrap, "分红中");
             holder.setViewEnabled(R.id.tv_round_text_scrap, false);
             holder.setVisibility(R.id.circleIndicator, View.GONE);
         } else if (bean.getStatus() == 0 && progress_one < 100) {//未与分红

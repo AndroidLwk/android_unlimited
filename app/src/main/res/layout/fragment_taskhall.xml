@@ -216,11 +216,11 @@
             <LinearLayout
                 android:id="@+id/lt_task_one"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_199"
+                android:layout_height="@dimen/dp_189"
                 android:layout_below="@+id/lt_percent"
-                android:layout_marginLeft="@dimen/dp_22"
+                android:layout_marginLeft="@dimen/dp_16"
                 android:layout_marginTop="@dimen/dp_22"
-                android:layout_marginRight="@dimen/dp_22"
+                android:layout_marginRight="@dimen/dp_16"
                 android:background="@drawable/shape_taskhall_background"
                 android:orientation="vertical">
 
@@ -229,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/dp_13"
                     android:paddingTop="@dimen/dp_10"
-                    android:paddingBottom="@dimen/dp_32"
+                    android:paddingBottom="@dimen/dp_22"
                     android:text="签到任务"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_15" />
@@ -245,9 +245,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lt_task_one"
-                android:layout_marginLeft="@dimen/dp_22"
+                android:layout_marginLeft="@dimen/dp_16"
                 android:layout_marginTop="@dimen/dp_11"
-                android:layout_marginRight="@dimen/dp_22"
+                android:layout_marginRight="@dimen/dp_16"
+                android:layout_marginBottom="@dimen/dp_20"
                 android:background="@drawable/shape_taskhall_background"
                 android:orientation="vertical">
 
@@ -256,7 +257,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_13"
                     android:layout_marginTop="@dimen/dp_15"
-                    android:layout_marginBottom="@dimen/dp_32"
+                    android:layout_marginBottom="@dimen/dp_22"
                     android:orientation="horizontal">
 
                     <TextView

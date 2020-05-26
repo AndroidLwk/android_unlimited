@@ -2,24 +2,18 @@ package com.wuxiantao.wxt.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.BalanceBean;
 import com.wuxiantao.wxt.event.MessageEvent;
 import com.wuxiantao.wxt.mvp.contract.BalanceContract;
-import com.wuxiantao.wxt.mvp.contract.PointToCardContract;
 import com.wuxiantao.wxt.mvp.presenter.BalancePresenter;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.PointToCardActivity;
-import com.wuxiantao.wxt.ui.custom.button.StateButton;
 import com.wuxiantao.wxt.ui.dialog.LoadingDialog;
-import com.wuxiantao.wxt.utils.BigDecimalUtils;
-import com.wuxiantao.wxt.utils.StatusBarUtil;
 import com.wuxiantao.wxt.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -28,8 +22,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
-import static com.wuxiantao.wxt.config.Constant.DECIMAL_BIT;
-import static com.wuxiantao.wxt.config.Constant.IS_ATTENTION_PUBLIC;
 import static com.wuxiantao.wxt.config.Constant.UPDATE_MINE_BALANCE;
 
 /**
@@ -61,7 +53,7 @@ public class MineBalanceActivity extends MvpActivity<BalancePresenter, BalanceCo
     private BalanceBean datas;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         setStatusBar();
 //        StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.white)); 设置状态栏颜色
 //        StatusBarUtil.setStatusBarDarkTheme(this, true);  设置状态栏图标是否深色切换

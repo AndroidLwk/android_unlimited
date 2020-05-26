@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity;
 
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
@@ -51,7 +52,7 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
     }
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         //去掉信息栏
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);

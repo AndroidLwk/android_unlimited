@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
@@ -68,7 +69,7 @@ public class DividendDetailsActivity extends MvpActivity<DividendPresenter, Divi
     private DividedDragonListBean datas;
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         initRefreshLoadMore();
         mPresenter.getDragonDetail(getAppToken());
         setOnClikListener(dividend_detail_prompt1,dividend_detail_prompt2);

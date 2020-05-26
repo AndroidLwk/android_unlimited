@@ -387,7 +387,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     //开始体验分红
     @Override
     public void onStartExperienceSuccess(StartExperienceBean bean) {
-        showGameRewardWindow(1, String.valueOf(bean.getTiyan_endtime()));
+       // showGameRewardWindow(1, String.valueOf(bean.getTiyan_endtime()));
     }
 
     //开始分红/分红体验结束显示对话框 type:类型 1.体验前  2.体验后
@@ -572,7 +572,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         tv_round_text.setEnabled(false);
         if (bean.getData().getGame_status() == 1) {//已经与分红
             tv_round_text.setVisibility(View.VISIBLE);
-            tv_round_text.setText("正在分红中...");
+            tv_round_text.setText("分红中");
             tv_round_text.setEnabled(false);
             circleIndicator_a.setVisibility(View.GONE);
         } else if (bean.getData().getGame_status() == 0 && prgoress_1 < 100) {//未与分红
@@ -591,7 +591,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         if (Long.parseLong(DateUtils.getStringTimestamp(DateUtils.getCurrentTimeToday())) < bean.getData().getInfo().getTiyan_endtime()) {//分红中
             circleIndicator_b.setVisibility(View.GONE);
             tv_round_text_2.setVisibility(View.VISIBLE);
-            tv_round_text_2.setText("正在分红中...");
+            tv_round_text_2.setText("分红中");
             tv_round_text_2.setEnabled(false);
         }
         if (bean.getData().getInfo().getNum() <= 0) {//不可分红 显示 百分比

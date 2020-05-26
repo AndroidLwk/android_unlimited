@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.ui.activity;
 
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.wuxiantao.wxt.R;
@@ -27,7 +28,7 @@ public class MainActivity extends MvpActivity<MainPresenter, MainContract.IMainV
     ImageView main_img;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         mPresenter.downLoadImage();
     }
 

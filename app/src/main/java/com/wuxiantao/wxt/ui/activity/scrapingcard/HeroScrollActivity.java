@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.ui.activity.scrapingcard;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
@@ -36,7 +37,7 @@ public class HeroScrollActivity extends MvpActivity<HeroScrollPresenter, HeroScr
     private List<Fragment> mFragments = new ArrayList<>();
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         setStatusBar();
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
         initFragment();

@@ -1,29 +1,18 @@
 package com.wuxiantao.wxt.ui.activity;
 
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.kf5.sdk.system.utils.ToastUtil;
 import com.wuxiantao.wxt.R;
-import com.wuxiantao.wxt.base.BaseActivity;
 import com.wuxiantao.wxt.bean.WeChatPayBean;
-import com.wuxiantao.wxt.mvp.contract.BalanceContract;
 import com.wuxiantao.wxt.mvp.contract.PayContract;
-import com.wuxiantao.wxt.mvp.presenter.BalancePresenter;
-import com.wuxiantao.wxt.mvp.presenter.MvpPresenter;
 import com.wuxiantao.wxt.mvp.presenter.PayPresenter;
-import com.wuxiantao.wxt.mvp.view.activity.BaseMvpActivity;
 import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
 import com.wuxiantao.wxt.pay.PayListener;
 import com.wuxiantao.wxt.pay.PayManager;
@@ -67,7 +56,7 @@ public class PayActivity extends MvpActivity<PayPresenter, PayContract.IPayView>
 
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         PayListener.getInstance().addListener(this);
         setStatusBar();
         initListener();

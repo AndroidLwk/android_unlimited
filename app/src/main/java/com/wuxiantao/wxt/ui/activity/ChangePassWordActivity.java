@@ -1,9 +1,9 @@
 package com.wuxiantao.wxt.ui.activity;
 
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,7 +53,7 @@ public class ChangePassWordActivity extends MvpActivity<SettingPassWordPresenter
     }
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         setStatusBar();
         StatusBarUtil.setStatusBarColor(ChangePassWordActivity.this,getResources().getColor(R.color.white));
         StatusBarUtil.setStatusBarDarkTheme(ChangePassWordActivity.this,true);

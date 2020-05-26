@@ -93,7 +93,7 @@ public class MyRedBagFriendActivity extends MvpActivity<RedBagFriendPresenter, R
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         setStatusBar();
         Bundle bundle = getBundle();
         int type = 1;

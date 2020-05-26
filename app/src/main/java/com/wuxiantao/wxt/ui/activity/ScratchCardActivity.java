@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
@@ -47,7 +48,7 @@ public class ScratchCardActivity extends MvpActivity<ScratchCardDetailPresenter,
     private int page = 1;
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         setStatusBar();
         StatusBarUtil.setStatusBarColor(ScratchCardActivity.this, getResources().getColor(R.color.white));
         StatusBarUtil.setStatusBarDarkTheme(ScratchCardActivity.this, true);

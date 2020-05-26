@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity;
 
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -25,8 +26,7 @@ public class TestTwoActivity extends MvpActivity<TestPrensenter, TestContract.IT
     @ViewInject(R.id.circleIndicator)
     CircleProgressBar circleIndicator;
     @Override
-    protected void initView() {
-        super.initView();
+    protected void initView(Bundle savedInstanceState) {
         circleIndicator.setProgress(20);
         setOnClikListener(tv_test,bt_test);
     }

@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -47,7 +48,7 @@ public class WithdrawRecordingActivity extends MvpActivity<WithdrawRecordingPres
     private WithdrawRecordingBean datas;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.loading).build();
         mPresenter.obtainRecording(getAppToken(),page);
         initRefreshLoadMore();

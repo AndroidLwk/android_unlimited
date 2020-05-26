@@ -75,7 +75,7 @@ public class ReceiptAddressActivity extends MvpActivity<ReceiptPresenter, Receip
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         StatusBarUtil.setStatusBarColor(this,getResources().getColor(R.color.white));
         StatusBarUtil.setStatusBarDarkTheme(this,true);
         edit_address_person.setFilters(new InputFilter[]{new MaxTextLengthFilter(5)});

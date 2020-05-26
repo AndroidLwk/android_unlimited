@@ -103,7 +103,7 @@ public class MyInformationActivity extends MvpActivity<InfomationPresenter, MyIn
     private LoadingDialog loadingDialog;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         if (!isEmpty(getAppToken())) {
             loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.loading).build();
             mPresenter.obtainPersonal(getAppToken());

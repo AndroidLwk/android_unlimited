@@ -48,7 +48,7 @@ public class SuperManBeneficialActivity extends MvpActivity<SuperManBeneficialPr
     private SuperManVipRecViewAdapter adapter;
     private int page = 1;
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         mPresenter.getShoppingList(page,5);
         initBanner();
     }

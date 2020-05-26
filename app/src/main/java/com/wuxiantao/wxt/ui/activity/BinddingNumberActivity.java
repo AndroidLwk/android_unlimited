@@ -60,7 +60,7 @@ public class BinddingNumberActivity extends MvpActivity<BindNumberPresenter, Bin
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         Bundle bundle = getBundle();
         if (bundle != null){
             type = bundle.getInt(VERCODE_TYPE);

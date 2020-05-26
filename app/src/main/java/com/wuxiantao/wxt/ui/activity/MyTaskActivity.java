@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -83,7 +84,7 @@ public class MyTaskActivity extends MvpActivity<MyTaskPresenter, MyTaskContract.
     LinearLayout my_task_recommended_task_layout;
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
         setStatusBar();
         initRefreshLoad();

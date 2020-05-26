@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.ui.activity;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -68,7 +69,7 @@ public class ProfitRecordingActivity extends MvpActivity<ProfitRecordingPresente
     private List<Float> valueList = new ArrayList<>();
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         loadingDialog = new LoadingDialog.Build(this).build();
         mPresenter.getProfitRecording(getAppToken(), page);
         profit_recording_rl.setRefreshHeader(profit_recording_classic_header);

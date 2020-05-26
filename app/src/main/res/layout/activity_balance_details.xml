@@ -23,6 +23,7 @@
                 android:tint="@color/gray"
                 android:layout_centerVertical="true"/>
             <TextView
+                android:id="@+id/tv_detail"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:textSize="@dimen/sp_18"

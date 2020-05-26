@@ -50,7 +50,7 @@ public class MoreThemActivity extends MvpActivity<ShareMoreThemPresenter, ShareM
     private int page = 1;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         loadingDialog = new LoadingDialog.Build(this).setLoadingText(R.string.loading).build();
         mPresenter.getShareBg(page,PAGE_SIZE);
         more_them_rl.setRefreshHeader(more_them_classics_header);

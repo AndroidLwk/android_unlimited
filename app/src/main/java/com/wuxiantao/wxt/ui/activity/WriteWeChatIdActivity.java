@@ -59,7 +59,7 @@ public class WriteWeChatIdActivity extends MvpActivity<SettingNamePresenter, Set
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         StatusBarUtil.setStatusBarColor(this,getResources().getColor(R.color.white));
         StatusBarUtil.setStatusBarDarkTheme(this,true);
         write_wechatid_rl.setEnableRefresh(false);

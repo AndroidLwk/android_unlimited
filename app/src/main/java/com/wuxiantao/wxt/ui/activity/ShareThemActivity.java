@@ -89,7 +89,7 @@ public class ShareThemActivity extends MvpActivity<ShareThemPresenter, ShareThem
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         setStatusBar();
 //        StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.white));
 //        StatusBarUtil.setStatusBarDarkTheme(this, true);

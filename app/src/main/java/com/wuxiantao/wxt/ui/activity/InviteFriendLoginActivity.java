@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity;
 
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -67,7 +68,7 @@ public class InviteFriendLoginActivity extends MvpActivity<InviteFriendLoginPres
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         setStatusBar();
         loadingDialog = new LoadingDialog.Build(this).build();
         mPresenter.depositDay(getAppToken());

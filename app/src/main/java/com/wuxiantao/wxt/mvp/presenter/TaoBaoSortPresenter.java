@@ -1,7 +1,9 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
+import com.wuxiantao.wxt.bean.NoticeBean;
 import com.wuxiantao.wxt.bean.TaoBaoSortBean;
 import com.wuxiantao.wxt.mvp.contract.TaoBaoSortContract;
+import com.wuxiantao.wxt.mvp.model.InfomationModel;
 import com.wuxiantao.wxt.mvp.model.TaoBaoSortModel;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 
@@ -19,6 +21,8 @@ public class TaoBaoSortPresenter extends BasePresenter<TaoBaoSortContract.ITaoBa
 
     private TaoBaoSortContract.ITaoBaoSortView view;
     private TaoBaoSortModel model = new TaoBaoSortModel();
+    private InfomationModel model2 = new InfomationModel();
+
 
     @Override
     public void getTaoBaoSort() {
@@ -57,5 +61,21 @@ public class TaoBaoSortPresenter extends BasePresenter<TaoBaoSortContract.ITaoBa
         };
         model.receiveRedBag(observer,token);
     }
+    public void notice(String token) {
+        if (view == null) {
+            view = getMvpView();
+        }
+        BaseObserver<NoticeBean> observer = new BaseObserver<NoticeBean>() {
+            @Override
+            public void onSuccess(NoticeBean bean) {
+                view.noticeSuccess(bean.getContent());
+            }
 
+            @Override
+            public void onFailure(String errorMsg) {
+                view.noticeFailure(errorMsg);
+            }
+        };
+        model2.notice(observer, token);
+    }
 }

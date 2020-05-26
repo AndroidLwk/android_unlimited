@@ -119,7 +119,7 @@ public class SearchResultActivity extends MvpActivity<SearchResultPresenter, Sea
     private TopSmoothScroller mScroller;
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         StatusBarUtil.setStatusBarColor(this,getResources().getColor(R.color.whitesmoke));
         StatusBarUtil.setStatusBarDarkTheme(this,true);
         mScroller = new TopSmoothScroller(this);

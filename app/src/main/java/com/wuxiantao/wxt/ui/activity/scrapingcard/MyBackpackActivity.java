@@ -54,7 +54,7 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
     private MyBoxTypeAdapter mAdapter;
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
         setStatusBar();
         mPresenter.isSetPayPassword(getAppToken());

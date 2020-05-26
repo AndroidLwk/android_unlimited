@@ -1,5 +1,6 @@
 package com.wuxiantao.wxt.ui.activity;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -43,7 +44,7 @@ public class MyIncomeActivity extends MvpActivity<MyIncomePresenter, MyIncomeCon
     private MyIncomeBean datas;
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         initRefreshLoadMore();
     }
 

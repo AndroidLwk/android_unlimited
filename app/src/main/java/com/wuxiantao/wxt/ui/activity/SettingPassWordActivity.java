@@ -3,7 +3,6 @@ package com.wuxiantao.wxt.ui.activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -56,7 +55,7 @@ public class SettingPassWordActivity extends MvpActivity<SettingPassWordPresente
     private String number;
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         Bundle bundle = getBundle();
         if (bundle != null){
             isSettingPassWord = bundle.getBoolean(IS_SETTING_PW);

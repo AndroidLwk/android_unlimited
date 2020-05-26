@@ -69,7 +69,7 @@ public class AddressManagementActivity extends MvpActivity<AddressPresenter, Add
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         loadingDialog = new LoadingDialog.Build(this).build();
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.white));
         StatusBarUtil.setStatusBarDarkTheme(this, true);

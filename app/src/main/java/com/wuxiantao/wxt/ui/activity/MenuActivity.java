@@ -14,7 +14,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,10 +39,9 @@ import com.wuxiantao.wxt.ui.fragment.main.MyDepositFragment;
 import com.wuxiantao.wxt.ui.fragment.main.ScrapingCardFragment;
 import com.wuxiantao.wxt.ui.fragment.main.TaoBaoFragment;
 import com.wuxiantao.wxt.ui.fragment.main.TaskHallFragment;
-import com.wuxiantao.wxt.ui.popupwindow.NoticePopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.VersionUpdatePopupWindow;
+import com.wuxiantao.wxt.utils.AppUtils;
 import com.wuxiantao.wxt.utils.ToastUtils;
-import com.wuxiantao.wxt.utils.VersionUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -115,11 +114,14 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
         }
     };
 
+    private Bundle savedInstanceState;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
-    public void initView() {
-       // mPresenter.notice(getAppToken());
+    public void initView(Bundle savedInstanceState) {
+        menu_tab_high_area.setVisibility(AppUtils.isVisiableView() ? View.VISIBLE : View.GONE);
+        menu_tab_high_area_checked_img.setVisibility(AppUtils.isVisiableView() ? View.VISIBLE : View.GONE);
+        this.savedInstanceState = savedInstanceState;
         EventBus.getDefault().register(this);
         setOnClikListener(menu_tab_high_area_checked_img);
         setStatusBar();
@@ -166,6 +168,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
 
     @Override
     public void getSwitchTypeSuccess(NetSwitchBean bean) {
+        Log.e("getSwitchTypeSuccess", "df");
         this.type = bean.getType();
         mPresenter.onStartApp(getAppToken());
     }
@@ -173,6 +176,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     //启动app 成功
     @Override
     public void onStartAppSuccess(String msg) {
+        Log.e("onStartAppSuccess", "df");
         mPresenter.getAppCurrentVersion();
     }
 
@@ -185,10 +189,10 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     //版本信息获取成功
     @Override
     public void getAppCurrentVersionSuccess(CurrentVersionBean bean) {
-        boolean isNeedUpdate = VersionUtils.newInstance().isNeedUpdate(bean);
-        if (isNeedUpdate) {
-            showVersionUpdateWindow(bean.getSite_url());
-        }
+//        boolean isNeedUpdate = VersionUtils.newInstance().isNeedUpdate(bean);
+//        if (isNeedUpdate) {
+//            showVersionUpdateWindow(bean.getSite_url());
+//        }
         mPresenter.getPersonalInfo(getAppToken());
     }
 
@@ -232,14 +236,17 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
             saveUserInfo(USER_HEAD_IMG, bean.getHeadimg());
             saveUserInfo(NICKNAME, bean.getNickname());
             //isShowSmallIcon
-            initRadioButton();
-            Bundle bundle = getBundle();
-            if (bundle != null) {
-                int id = bundle.getInt(SHIFT_ID);
-                changeFragment(id, null);
-                mRBlist.get(id).setChecked(true);
-            } else {
-                changeFragment(DEFAULT_PAGE, null);
+            if (savedInstanceState == null) {
+                initRadioButton();
+                Bundle bundle = getBundle();
+                if (bundle != null) {
+                    // initRadioButton();
+                    int id = bundle.getInt(SHIFT_ID);
+                    changeFragment(id, null);
+                    mRBlist.get(id).setChecked(true);
+                } else {
+                    changeFragment(DEFAULT_PAGE, null);
+                }
             }
             main_menu_radiogroup.setOnCheckedChangeListener(MenuActivity.this);
         }
@@ -394,6 +401,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
 
     @Override
     public void getSwitchTypeFailure(String failure) {
+        Log.e("getSwitchTypeFailure", "");
         mPresenter.getPersonalInfo(getAppToken());
     }
 
@@ -405,22 +413,6 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     @Override
     public void getPersonalInfoFailure(String failure) {
         showOnlyConfirmDialog(failure);
-    }
-
-    @Override
-    public void noticeFailure(String failure) {
-
-    }
-
-    @Override
-    public void noticeSuccess(String content) {
-        if (TextUtils.isEmpty(content)) {
-            return;
-        }
-        new NoticePopupWindow.Build(this)
-                .setWindowAnimStyle(R.style.custom_dialog)
-                .setContent(content)
-                .builder().showPopupWindow();
     }
 
     @Override

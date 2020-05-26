@@ -133,7 +133,7 @@ public class CommodityInfoActivity extends MvpActivity<CommodityInfoPresenter, C
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         //注册
         EventBus.getDefault().register(this);
 
