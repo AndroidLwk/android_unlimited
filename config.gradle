@@ -50,8 +50,8 @@ ext {
             targetSdkVersion : 28,
             // versionCode      : getVersionCode(true),
             //versionName      : getVersionName(),
-            versionCode      : 29,
-            versionName      : "29.0.0",
+            versionCode      : 30,
+            versionName      : "30.0.0",
             runner           : "android.support.test.runner.AndroidJUnitRunner"
     ]
     release = [
