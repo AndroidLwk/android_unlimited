@@ -2,7 +2,9 @@ package com.wuxiantao.wxt.ui.fragment.main;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -28,6 +30,7 @@ import com.wuxiantao.wxt.ui.activity.scrapingcard.MyBackpackActivity;
 import com.wuxiantao.wxt.ui.activity.scrapingcard.PointToCardActivity;
 import com.wuxiantao.wxt.ui.custom.recyclerview.NestRecyclerView;
 import com.wuxiantao.wxt.ui.popupwindow.TradingHallPopupWindow;
+import com.wuxiantao.wxt.utils.AppUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ContentView;
@@ -72,6 +75,8 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
     TextView tv_dating;
     @ViewInject(R.id.iv_openCard)
     ImageView iv_openCard;
+    @ViewInject(R.id.lt_scardget)
+    LinearLayout lt_scardget;
     private List<MyCardInfo.JackpotImgsBean> mData_a = new ArrayList<>();
     private List<ScrapingCardBean> mData_b = new ArrayList<>();
     private List<MyCardInfo.ListBean> mData_c = new ArrayList<>();
@@ -86,6 +91,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
 
     @Override
     public void initView() {
+        lt_scardget.setVisibility(AppUtils.isVisiableView() ? View.VISIBLE : View.GONE);
         setOnClikListener(tv_dating, iv_openCard, tv_mypack,
                 tv_more, tv_my_heroscroll, tv_help);
         mPresenter.getMyCardInfo(getAppToken());

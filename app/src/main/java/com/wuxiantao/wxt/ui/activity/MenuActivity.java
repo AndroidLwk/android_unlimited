@@ -128,6 +128,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
         boolean isReview = getSPBoolean(IS_REVIEW);
         menu_tab_red_envelope.setVisibility(isReview ? View.GONE : View.VISIBLE);
         menu_tab_income_hall.setVisibility(isReview ? View.GONE : View.VISIBLE);
+        menu_tab_income_hall.setVisibility(AppUtils.isVisiableView() ? View.VISIBLE : View.GONE);
         if (isEmpty(getAppToken())) {
             $startActivity(WeChatLoginActivity.class, true);
             finish();

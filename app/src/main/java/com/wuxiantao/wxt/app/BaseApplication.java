@@ -45,6 +45,7 @@ import com.wuxiantao.wxt.config.Api;
 import com.wuxiantao.wxt.config.Constant;
 import com.wuxiantao.wxt.handler.CrashHandler;
 import com.wuxiantao.wxt.ui.activity.MenuActivity;
+import com.wuxiantao.wxt.utils.AppUtils;
 import com.wuxiantao.wxt.utils.LogUtils;
 import com.wuxiantao.wxt.utils.ToastUtils;
 
@@ -102,7 +103,9 @@ public class BaseApplication extends MultiDexApplication implements Application.
         registerActivityLifecycleCallbacks(this);
         initYunKf();
         initBugly();
-        initTTAdSdk();
+        if (AppUtils.isVisiableView()) {
+            initTTAdSdk();
+        }
     }
 
     /**
@@ -117,7 +120,7 @@ public class BaseApplication extends MultiDexApplication implements Application.
          * 参数五：Push推送业务的secret 填充Umeng Message Secret对应信息（需替换）
          */
         // 打开统计SDK调试模式
-        UMConfigure.setLogEnabled(true);
+        //UMConfigure.setLogEnabled(true);
         UMConfigure.init(this, Api.UM_APPKEY, "Umeng", UMConfigure.DEVICE_TYPE_PHONE, Api.UM_MESSAGE_SECRECT);
         // 支持在子进程中统计自定义事件
         UMConfigure.setProcessEvent(true);

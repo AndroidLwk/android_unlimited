@@ -22,7 +22,9 @@ import com.wuxiantao.wxt.mvp.view.activity.MvpActivity;
 import com.wuxiantao.wxt.ui.popupwindow.ScrapingCardSuccessPopupWindow;
 import com.wuxiantao.wxt.ui.title.CNToolbar;
 import com.wuxiantao.wxt.utils.AdUtils;
+import com.wuxiantao.wxt.utils.AppUtils;
 import com.wuxiantao.wxt.utils.AudioUtils;
+import com.wuxiantao.wxt.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.view.annotation.ContentView;
@@ -56,9 +58,11 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        new Thread(() -> {
-            list_ad = AdUtils.initAd(this);
-        }).start();
+        if (AppUtils.isVisiableView()) {
+            new Thread(() -> {
+                list_ad = AdUtils.initAd(this);
+            }).start();
+        }
         setStatusBar();
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
         cntoolbar_title.setOnRightButtonClickListener(() -> $startActivity(MyBackpackActivity.class));
@@ -89,6 +93,10 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
                         .setWindowData(bean.getCode() == 200 ? bean.getData().getMsg() : bean.getMsg(), bean.getData().getCard_img())
                         .setWindowAnimStyle(R.style.custom_dialog)
                         .setOnClickListener((status) -> {//获取成功
+                                    if (!AppUtils.isVisiableView()) {
+                                        ToastUtils.showToast("领取成功");
+                                        return;
+                                    }
                                     if (status) {
                                         AdUtils.initRewardVideoAd(this, () -> {
                                             mPresenter.getCard(getAppToken(), "video");

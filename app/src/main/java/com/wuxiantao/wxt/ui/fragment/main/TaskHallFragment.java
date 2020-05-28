@@ -22,6 +22,7 @@ import com.wuxiantao.wxt.ui.activity.ShareThemActivity;
 import com.wuxiantao.wxt.ui.custom.recyclerview.NestRecyclerView;
 import com.wuxiantao.wxt.ui.popupwindow.ScrapingCardSuccessPopupWindow;
 import com.wuxiantao.wxt.utils.AdUtils;
+import com.wuxiantao.wxt.utils.AppUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -70,9 +71,11 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
 
     @Override
     public void initView() {
-        new Thread(() -> {
-            list_ad = AdUtils.initAd(getActivity());
-        }).start();
+        if (AppUtils.isVisiableView()) {
+            new Thread(() -> {
+                list_ad = AdUtils.initAd(getActivity());
+            }).start();
+        }
         mPresenter.getTaskInfo(getAppToken());
         setOnClikListener(tv_help, tv_refresh, iv_box_a, iv_box_b, iv_box_c, iv_box_d, iv_box_e);
         rv_task_one.setLayoutManager(new LinearLayoutManager(getContext()));
