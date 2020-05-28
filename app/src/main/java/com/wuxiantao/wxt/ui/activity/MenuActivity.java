@@ -62,7 +62,6 @@ import static com.wuxiantao.wxt.config.Constant.IS_TAO_BAO_AUTH;
 import static com.wuxiantao.wxt.config.Constant.NEW_AWARD_STATUS;
 import static com.wuxiantao.wxt.config.Constant.NICKNAME;
 import static com.wuxiantao.wxt.config.Constant.RECEIVE_LOGIN;
-import static com.wuxiantao.wxt.config.Constant.SHIFT_ID;
 import static com.wuxiantao.wxt.config.Constant.USER_HEAD_IMG;
 import static com.wuxiantao.wxt.config.Constant.VIP_STATUS;
 import static com.wuxiantao.wxt.config.Constant.WECHAT_NO;
@@ -115,6 +114,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
     };
 
     private Bundle savedInstanceState;
+    private FragmentManager mManager;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
@@ -149,6 +149,28 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
         //注册
         registerReceiver(receiver, filter);
         registerReceiver(netWorkReceiver, netFilter);
+        mManager = getSupportFragmentManager();
+        mTransaction = mManager.beginTransaction();
+        main_menu_radiogroup.setOnCheckedChangeListener(MenuActivity.this);
+        // initRadioButton();
+        if (savedInstanceState == null) {
+            initFragment();
+        }
+    }
+
+    private void initFragment() {
+        mTaoBaoFragment = new TaoBaoFragment();
+        mIncomeHallFragment = new IncomeHallFragment();
+        mScrapingCardFragment = new ScrapingCardFragment();
+        mTaskHallFragment = new TaskHallFragment();
+        mMyDepositFragment = new MyDepositFragment();
+        mTransaction.add(R.id.main_menu_frament, mTaoBaoFragment);
+        mTransaction.add(R.id.main_menu_frament, mIncomeHallFragment);
+        mTransaction.add(R.id.main_menu_frament, mScrapingCardFragment);
+        mTransaction.add(R.id.main_menu_frament, mTaskHallFragment);
+        mTransaction.add(R.id.main_menu_frament, mMyDepositFragment);
+        mTransaction.commit();
+        changeFragment(0, null);
     }
 
     @Override
@@ -236,20 +258,21 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
             saveUserInfo(GAME_ACCOUNT, bean.getAccountname());
             saveUserInfo(USER_HEAD_IMG, bean.getHeadimg());
             saveUserInfo(NICKNAME, bean.getNickname());
+
             //isShowSmallIcon
-            if (savedInstanceState == null) {
-                initRadioButton();
-                Bundle bundle = getBundle();
-                if (bundle != null) {
-                    // initRadioButton();
-                    int id = bundle.getInt(SHIFT_ID);
-                    changeFragment(id, null);
-                    mRBlist.get(id).setChecked(true);
-                } else {
-                    changeFragment(DEFAULT_PAGE, null);
-                }
-            }
-            main_menu_radiogroup.setOnCheckedChangeListener(MenuActivity.this);
+//            if (savedInstanceState == null) {
+//                initRadioButton();
+//                Bundle bundle = getBundle();
+//                if (bundle != null) {
+//                    // initRadioButton();
+//                    int id = bundle.getInt(SHIFT_ID);
+//                    changeFragment(id, null);
+//                    mRBlist.get(id).setChecked(true);
+//                } else {
+//                    changeFragment(DEFAULT_PAGE, null);
+//                }
+//            }
+
         }
     }
 
@@ -295,71 +318,70 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
 
     //切换页面
     public void changeFragment(int index, Bundle bundle) {
-        FragmentManager mManager = getSupportFragmentManager();
         mTransaction = mManager.beginTransaction();
         hideFragments();
         //   menu_tab_high_area_checked_img.setVisibility(index == 2 ? View.VISIBLE : View.GONE);
         switch (index) {
             //首页
             case 0:
-                if (mTaoBaoFragment == null) {
-                    mTaoBaoFragment = new TaoBaoFragment();
-                    mTransaction.add(R.id.main_menu_frament, mTaoBaoFragment);
-                } else {
-                    mTransaction.show(mTaoBaoFragment);
-                }
-                if (bundle != null) {
-                    mTaoBaoFragment.setArguments(bundle);
-                }
+//                if (mTaoBaoFragment == null) {
+//                    mTaoBaoFragment = new TaoBaoFragment();
+//                    mTransaction.add(R.id.main_menu_frament, mTaoBaoFragment);
+//                } else {
+                mTransaction.show(mTaoBaoFragment);
+                //   }
+//                if (bundle != null) {
+//                    mTaoBaoFragment.setArguments(bundle);
+//                }
                 break;
             //游戏分红
             case 1:
-                if (mIncomeHallFragment == null) {
-                    mIncomeHallFragment = new IncomeHallFragment();
-                    mTransaction.add(R.id.main_menu_frament, mIncomeHallFragment);
-                } else {
-                    mTransaction.show(mIncomeHallFragment);
-                }
-                if (bundle != null) {
-                    mIncomeHallFragment.setArguments(bundle);
-                }
+//                if (mIncomeHallFragment == null) {
+//                    mIncomeHallFragment = new IncomeHallFragment();
+//                    mTransaction.add(R.id.main_menu_frament, mIncomeHallFragment);
+//                } else {
+                mTransaction.show(mIncomeHallFragment);
+                //  }
+//                if (bundle != null) {
+//                    mIncomeHallFragment.setArguments(bundle);
+//                }
 
 
                 break;
             //刮刮卡
             case 2:
-                if (mScrapingCardFragment == null) {
-                    mScrapingCardFragment = new ScrapingCardFragment();
-                    mTransaction.add(R.id.main_menu_frament, mScrapingCardFragment);
-                } else {
-                    mTransaction.show(mScrapingCardFragment);
-                }
-                if (bundle != null) {
-                    mScrapingCardFragment.setArguments(bundle);
-                }
+//                if (mScrapingCardFragment == null) {
+//                    mScrapingCardFragment = new ScrapingCardFragment();
+//                    mTransaction.add(R.id.main_menu_frament, mScrapingCardFragment);
+//                } else {
+                mTransaction.show(mScrapingCardFragment);
+                // }
+//                if (bundle != null) {
+//                    mScrapingCardFragment.setArguments(bundle);
+//                }
                 break;
             case 3://任务大厅
-                if (mTaskHallFragment == null) {
-                    mTaskHallFragment = new TaskHallFragment();
-                    mTransaction.add(R.id.main_menu_frament, mTaskHallFragment);
-                } else {
-                    mTransaction.show(mTaskHallFragment);
-                }
-                if (bundle != null) {
-                    mTaskHallFragment.setArguments(bundle);
-                }
+//                if (mTaskHallFragment == null) {
+//                    mTaskHallFragment = new TaskHallFragment();
+//                    mTransaction.add(R.id.main_menu_frament, mTaskHallFragment);
+//                } else {
+                mTransaction.show(mTaskHallFragment);
+                // }
+//                if (bundle != null) {
+//                    mTaskHallFragment.setArguments(bundle);
+//                }
                 break;
             //个人中心
             case 4:
-                if (mMyDepositFragment == null) {
-                    mMyDepositFragment = new MyDepositFragment();
-                    mTransaction.add(R.id.main_menu_frament, mMyDepositFragment);
-                } else {
-                    mTransaction.show(mMyDepositFragment);
-                }
-                if (bundle != null) {
-                    mMyDepositFragment.setArguments(bundle);
-                }
+//                if (mMyDepositFragment == null) {
+//                    mMyDepositFragment = new MyDepositFragment();
+//                    mTransaction.add(R.id.main_menu_frament, mMyDepositFragment);
+//                } else {
+                mTransaction.show(mMyDepositFragment);
+                // }
+//                if (bundle != null) {
+//                    mMyDepositFragment.setArguments(bundle);
+//                }
                 break;
         }
         mTransaction.commitAllowingStateLoss();

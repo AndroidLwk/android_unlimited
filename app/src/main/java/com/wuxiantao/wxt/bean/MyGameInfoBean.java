@@ -199,7 +199,7 @@ public class MyGameInfoBean {
             private int num;
             private int cha_next;
             private int tiyan_count;
-            private int tiyan_total;
+            private double tiyan_total;
             private int tiyan_today_me;
 
             public String getTiyan_money() {
@@ -258,11 +258,11 @@ public class MyGameInfoBean {
                 this.tiyan_count = tiyan_count;
             }
 
-            public int getTiyan_total() {
+            public double getTiyan_total() {
                 return tiyan_total;
             }
 
-            public void setTiyan_total(int tiyan_total) {
+            public void setTiyan_total(double tiyan_total) {
                 this.tiyan_total = tiyan_total;
             }
 

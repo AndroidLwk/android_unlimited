@@ -33,6 +33,7 @@
                    android:id="@+id/menu_tab_taobao"
                    app:drawableTop="@drawable/main_menu_taobao_selector"
                    style="@style/main_tab_bottom"
+                   android:checked="true"
                    android:text="@string/main_tab_tao_bao"/>
                <com.wuxiantao.wxt.ui.custom.radiobutton.SiteImgRadioButton
                    android:id="@+id/menu_tab_high_area"

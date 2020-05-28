@@ -410,7 +410,7 @@ public class Constant {
     // 扩容界面支付成功返回
     public static final String SUCCESS_EXPANSION_BACK = "successExpansionBack";
     //显示版本时间
-    public static final String VISIABLE_TIME = "2020-05-30 05:00";
+    public static final String VISIABLE_TIME = "2020-05-24 05:00";
     //第一次显示公告
     public static final String NOTICE_FIRST = "noticeFirst";
 }

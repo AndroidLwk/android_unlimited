@@ -10,13 +10,10 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.alibaba.baichuan.android.trade.AlibcTradeSDK;
 import com.alibaba.baichuan.android.trade.callback.AlibcTradeInitCallback;
@@ -34,12 +31,6 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tencent.smtt.sdk.QbSdk;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
-import com.umeng.message.IUmengRegisterCallback;
-import com.umeng.message.PushAgent;
-import com.umeng.message.UTrack;
-import com.umeng.message.UmengMessageHandler;
-import com.umeng.message.UmengNotificationClickHandler;
-import com.umeng.message.entity.UMessage;
 import com.wuxiantao.wxt.ad.TTAdManagerHolder;
 import com.wuxiantao.wxt.config.Api;
 import com.wuxiantao.wxt.config.Constant;
@@ -120,8 +111,8 @@ public class BaseApplication extends MultiDexApplication implements Application.
          * 参数五：Push推送业务的secret 填充Umeng Message Secret对应信息（需替换）
          */
         // 打开统计SDK调试模式
-        //UMConfigure.setLogEnabled(true);
-        UMConfigure.init(this, Api.UM_APPKEY, "Umeng", UMConfigure.DEVICE_TYPE_PHONE, Api.UM_MESSAGE_SECRECT);
+        UMConfigure.setLogEnabled(true);
+        UMConfigure.init(this, Api.UM_APPKEY, "Umeng", UMConfigure.DEVICE_TYPE_PHONE, null);
         // 支持在子进程中统计自定义事件
         UMConfigure.setProcessEvent(true);
         // 选用AUTO页面采集模式[统计]
@@ -129,56 +120,56 @@ public class BaseApplication extends MultiDexApplication implements Application.
         //程序退出时，用于保存统计数据的API
         MobclickAgent.onKillProcess(this);
         //获取消息推送代理示例
-        PushAgent mPushAgent = PushAgent.getInstance(this);
-        //注册推送服务，每次调用register方法都会回调该接口
-        mPushAgent.register(new IUmengRegisterCallback() {
-
-            @Override
-            public void onSuccess(String deviceToken) {
-                //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
-                Log.i("", "注册成功：deviceToken：-------->  " + deviceToken);
-            }
-
-            @Override
-            public void onFailure(String s, String s1) {
-                Log.e("", "注册失败：-------->  " + "s:" + s + ",s1:" + s1);
-            }
-        });
-        //自定义通知栏打开动作(自定义消息)
-        UmengNotificationClickHandler notificationClickHandler = new UmengNotificationClickHandler() {
-
-            @Override
-            public void dealWithCustomAction(Context context, UMessage msg) {
-                Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
-            }
-        };
-        mPushAgent.setNotificationClickHandler(notificationClickHandler);
-        //自定义消息回调
-        UmengMessageHandler messageHandler = new UmengMessageHandler() {
-            @Override
-            public void dealWithCustomMessage(final Context context, final UMessage msg) {
-                new Handler(getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        //自定义通知栏样式
-
-
-                        // 对于自定义消息，PushSDK默认只统计送达。若开发者需要统计点击和忽略，则需手动调用统计方法。
-                        boolean isClickOrDismissed = true;
-                        if (isClickOrDismissed) {
-                            //自定义消息的点击统计
-                            UTrack.getInstance(getApplicationContext()).trackMsgClick(msg);
-                        } else {
-                            //自定义消息的忽略统计
-                            UTrack.getInstance(getApplicationContext()).trackMsgDismissed(msg);
-                        }
-                        Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        };
-
-        mPushAgent.setMessageHandler(messageHandler);
+//        PushAgent mPushAgent = PushAgent.getInstance(this);
+//        //注册推送服务，每次调用register方法都会回调该接口
+//        mPushAgent.register(new IUmengRegisterCallback() {
+//
+//            @Override
+//            public void onSuccess(String deviceToken) {
+//                //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
+//                Log.i("", "注册成功：deviceToken：-------->  " + deviceToken);
+//            }
+//
+//            @Override
+//            public void onFailure(String s, String s1) {
+//                Log.e("", "注册失败：-------->  " + "s:" + s + ",s1:" + s1);
+//            }
+//        });
+//        //自定义通知栏打开动作(自定义消息)
+//        UmengNotificationClickHandler notificationClickHandler = new UmengNotificationClickHandler() {
+//
+//            @Override
+//            public void dealWithCustomAction(Context context, UMessage msg) {
+//                Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
+//            }
+//        };
+//        mPushAgent.setNotificationClickHandler(notificationClickHandler);
+//        //自定义消息回调
+//        UmengMessageHandler messageHandler = new UmengMessageHandler() {
+//            @Override
+//            public void dealWithCustomMessage(final Context context, final UMessage msg) {
+//                new Handler(getMainLooper()).post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        //自定义通知栏样式
+//
+//
+//                        // 对于自定义消息，PushSDK默认只统计送达。若开发者需要统计点击和忽略，则需手动调用统计方法。
+//                        boolean isClickOrDismissed = true;
+//                        if (isClickOrDismissed) {
+//                            //自定义消息的点击统计
+//                            UTrack.getInstance(getApplicationContext()).trackMsgClick(msg);
+//                        } else {
+//                            //自定义消息的忽略统计
+//                            UTrack.getInstance(getApplicationContext()).trackMsgDismissed(msg);
+//                        }
+//                        Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//            }
+//        };
+//
+//        mPushAgent.setMessageHandler(messageHandler);
 
     }
 

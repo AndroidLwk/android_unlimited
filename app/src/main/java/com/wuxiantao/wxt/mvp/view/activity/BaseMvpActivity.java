@@ -19,7 +19,7 @@ import android.widget.EditText;
 
 import com.ssm.sp.SPSecuredUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import com.umeng.message.PushAgent;
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.count_down.CountDownCallBack;
 import com.wuxiantao.wxt.count_down.CountDownManager;
@@ -65,7 +65,7 @@ public abstract class BaseMvpActivity<P extends MvpPresenter,V extends MvpView> 
         super.onCreate(savedInstanceState);
 
         x.view().inject(this);
-        PushAgent.getInstance(this).onAppStart();//友盟Push后台进行日活统计及多维度推送
+        //PushAgent.getInstance(this).onAppStart();//友盟Push后台进行日活统计及多维度推送
 //        StatusBarUtil.setRootViewFitsSystemWindows(this,false);
         //设置状态栏透明
 //        StatusBarUtil.setTranslucentStatus(this);
@@ -271,12 +271,14 @@ public abstract class BaseMvpActivity<P extends MvpPresenter,V extends MvpView> 
     protected void onResume() {
         super.onResume();
         mActyvityDelegate.onResume();
+        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mActyvityDelegate.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

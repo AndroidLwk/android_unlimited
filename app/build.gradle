@@ -177,7 +177,7 @@ dependencies {
     //applink
     implementation rootProject.ext.dependencies["alibc_link_partner"]
     //ut（jar包远端依赖）
-    implementation rootProject.ext.dependencies["utdid4all"]
+    //implementation rootProject.ext.dependencies["utdid4all"]
     implementation rootProject.ext.dependencies["monitor"]
     //基础电商组件（必选）
     implementation rootProject.ext.dependencies["alibc_trade_common"]
@@ -214,10 +214,10 @@ dependencies {
     implementation rootProject.ext.dependencies["marqueeView"]
 
     //友盟消息推送、统计
-    implementation rootProject.ext.dependencies["um_common"]
+    //implementation rootProject.ext.dependencies["um_common"]
     // implementation rootProject.ext.dependencies["um_utdid"]
-    implementation rootProject.ext.dependencies["um_push"]
-    implementation rootProject.ext.dependencies["analytics"]
+   // implementation rootProject.ext.dependencies["um_push"]
+   // implementation rootProject.ext.dependencies["analytics"]
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     implementation 'org.jetbrains:annotations:15.0'
@@ -227,4 +227,5 @@ dependencies {
 //    implementation 'cn.bingoogolapple:bga-photopicker:1.2.6@aar'
 //    implementation 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
 //    implementation 'cn.bingoogolapple:bga-flowlayout:1.0.0@aar'
+
 }

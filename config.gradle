@@ -151,7 +151,7 @@ ext {
             //applink 打通“手机淘宝”与三方app的桥梁（必选）
             "alibc_link_partner"   : 'com.alibaba.sdk.android:alibc_link_partner:4.1.15@aar',
             //ut（jar包远端依赖）
-            "utdid4all"            : 'com.taobao.android:utdid4all:1.5.2',
+         //   "utdid4all"            : 'com.taobao.android:utdid4all:1.5.2',
             "monitor"              : 'com.alibaba.mtl:app-monitor-sdk:2.6.4.5_for_bc',
             //基础电商组件（必选）
             "alibc_trade_common"   : 'com.alibaba.sdk.android:AlibcTradeCommon:4.0.0.8@aar',
@@ -179,8 +179,8 @@ ext {
             /**
              * 友盟消息推送、统计
              */
-            "um_common"            : 'com.umeng.umsdk:common:2.2.5',
-            "um_push"              : 'com.umeng.umsdk:push:6.0.1',
-            "analytics"            : 'com.umeng.umsdk:analytics:8.1.6'
+           // "um_common"            : 'com.umeng.umsdk:common:2.2.5',
+            //"um_push"              : 'com.umeng.umsdk:push:6.0.1',
+            //"analytics"            : 'com.umeng.umsdk:analytics:8.1.6'
     ]
 }
