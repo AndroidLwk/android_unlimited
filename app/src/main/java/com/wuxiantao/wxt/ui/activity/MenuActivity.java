@@ -115,6 +115,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
 
     private Bundle savedInstanceState;
     private FragmentManager mManager;
+
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void initView(Bundle savedInstanceState) {
@@ -154,6 +155,7 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
         // initRadioButton();
 
     }
+
     private void initFragment() {
         mTaoBaoFragment = new TaoBaoFragment();
         mIncomeHallFragment = new IncomeHallFragment();
@@ -291,24 +293,39 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
         switch (checkedId) {
             //淘宝优选
             case R.id.menu_tab_taobao:
+                if (mTaoBaoFragment == null) {
+                    return;
+                }
                 changeFragment(0, null);
                 break;
             //游戏
             case R.id.menu_tab_high_area:
+                if (mIncomeHallFragment == null) {
+                    return;
+                }
                 changeFragment(1, null);
                 break;
             //刮刮卡
             case R.id.menu_tab_red_envelope:
+                if (mScrapingCardFragment == null) {
+                    return;
+                }
                 changeFragment(2, null);
                 mScrapingCardFragment.refreshData();
                 break;
             //任务大厅
             case R.id.menu_tab_income_hall:
+                if (mTaskHallFragment == null) {
+                    return;
+                }
                 changeFragment(3, null);
                 mTaskHallFragment.refreshData();
                 break;
             //我的
             case R.id.menu_tab_my_deposit:
+                if (mMyDepositFragment == null) {
+                    return;
+                }
                 changeFragment(4, null);
                 break;
         }

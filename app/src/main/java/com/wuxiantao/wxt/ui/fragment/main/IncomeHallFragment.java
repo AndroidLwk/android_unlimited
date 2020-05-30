@@ -38,6 +38,7 @@ import com.wuxiantao.wxt.ui.popupwindow.GameRewardPopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.OpenCardPopupWindow;
 import com.wuxiantao.wxt.ui.popupwindow.OperatePromptPopupWindow;
 import com.wuxiantao.wxt.utils.AdUtils;
+import com.wuxiantao.wxt.utils.AppUtils;
 import com.wuxiantao.wxt.utils.BigDecimalUtils;
 import com.wuxiantao.wxt.utils.DateUtils;
 import com.wuxiantao.wxt.utils.MathUtils;
@@ -518,7 +519,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
             bannerList.add(listBean.getImg());
         }
         initBanner(bannerList);
-        if (bean.getCode() == 1009) {//没有创建角色
+        if (bean.getCode() == 1009 && AppUtils.isVisiableView()) {//没有创建角色
             showDialog(R.string.not_have_game_account, R.string.now_create_account, (dialog, which)
                     -> $startActivity(H5GameActivity.class));
             mBanner.stopAutoPlay();
