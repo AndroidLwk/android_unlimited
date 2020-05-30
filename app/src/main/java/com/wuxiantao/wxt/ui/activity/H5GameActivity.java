@@ -7,7 +7,6 @@ import android.widget.ProgressBar;
 
 import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
-import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.WeChatPayBean;
 import com.wuxiantao.wxt.mvp.contract.H5GameContract;
 import com.wuxiantao.wxt.mvp.presenter.H5GamePresenter;
@@ -53,6 +52,8 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "event_H5GameEnterSource");
+
         //去掉信息栏
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -61,15 +62,6 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
         PayListener.getInstance().addListener(this);
         mPresenter.onGetLoadingImg();
         startLoadGame();
-        /**
-         * 第二个参数：eventId	为当前统计的事件ID。
-         * 第三个参数 对当前事件的参数描述
-         */
-        Map<String, Object> map = new HashMap<>();
-        map.put("longTime", "2小时");
-        map.put("enterNum", "10次");
-        MobclickAgent.onEventObject(BaseApplication.getAppContext(), "event_enterToGame", map);//进入游戏页面统计
-        //Toast.makeText(mContext, "已完成数值型统计", Toast.LENGTH_SHORT).show();
     }
 
 

@@ -99,7 +99,6 @@ public class TaoBaoFragment extends MvpFragment<TaoBaoSortPresenter, TaoBaoSortC
         boolean isReview = getSPBoolean(IS_REVIEW);
         fragment_tao_bao_save_money.setVisibility(isReview ? View.GONE : View.VISIBLE);
     }
-
     //跑马灯
     private void initMvText() {
         //https://github.com/gongwen/MarqueeViewLibrary

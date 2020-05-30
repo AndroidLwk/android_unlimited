@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.base.BaseViewPagerAdapter;
 import com.wuxiantao.wxt.mvp.contract.HeroScrollContract;
@@ -38,6 +39,7 @@ public class HeroScrollActivity extends MvpActivity<HeroScrollPresenter, HeroScr
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "event_heroCompose");
         setStatusBar();
         cntoolbar_title.setOnLeftButtonClickListener(() -> finish());
         initFragment();

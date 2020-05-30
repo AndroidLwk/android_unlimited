@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.DividedDragonRecViewAdapter;
 import com.wuxiantao.wxt.bean.AreaChangeInfoBean;
@@ -297,7 +298,10 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
         mBanner.setViewPagerIsScroll(true);
         //设置指示器位置（当banner模式中有指示器时）
         mBanner.setIndicatorGravity(BannerConfig.CENTER);
-        mBanner.setOnBannerListener(position -> $startActivity(H5GameActivity.class));
+        mBanner.setOnBannerListener(position -> {
+            MobclickAgent.onEvent(getContext(), "event_enterToGame");
+            $startActivity(H5GameActivity.class);
+        });
         mBanner.start();
     }
 
@@ -387,7 +391,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
     //开始体验分红
     @Override
     public void onStartExperienceSuccess(StartExperienceBean bean) {
-       // showGameRewardWindow(1, String.valueOf(bean.getTiyan_endtime()));
+        // showGameRewardWindow(1, String.valueOf(bean.getTiyan_endtime()));
     }
 
     //开始分红/分红体验结束显示对话框 type:类型 1.体验前  2.体验后
@@ -618,6 +622,7 @@ public class IncomeHallFragment extends MvpFragment<IncomeHallPresenter, IncomeH
      */
     @Override
     public void enrollBonusSuccess(String msg) {
+        MobclickAgent.onEvent(getContext(), "event_BonusExperience");
         loadingDialog.dismissLoadingDialog();
         showOnlyConfirmDialog(msg);
         ll_income_profit.setVisibility(View.GONE);

@@ -115,7 +115,6 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
 
     private Bundle savedInstanceState;
     private FragmentManager mManager;
-
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void initView(Bundle savedInstanceState) {
@@ -153,11 +152,8 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
         mTransaction = mManager.beginTransaction();
         main_menu_radiogroup.setOnCheckedChangeListener(MenuActivity.this);
         // initRadioButton();
-        if (savedInstanceState == null) {
-            initFragment();
-        }
-    }
 
+    }
     private void initFragment() {
         mTaoBaoFragment = new TaoBaoFragment();
         mIncomeHallFragment = new IncomeHallFragment();
@@ -272,7 +268,9 @@ public class MenuActivity extends MvpActivity<MenuPresenter, MenuContract.IMenuV
 //                    changeFragment(DEFAULT_PAGE, null);
 //                }
 //            }
-
+            if (savedInstanceState == null) {
+                initFragment();
+            }
         }
     }
 

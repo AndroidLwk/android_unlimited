@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.TaskHallFragmentAdapter;
 import com.wuxiantao.wxt.bean.BannerBean;
@@ -108,16 +109,21 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
                     menuActivity.menu_tab_taobao.setChecked(true);
                     break;
                 case 0://游戏充值
+                    MobclickAgent.onEvent(getContext(), "event_todayGameRechargeTap");
+
                     $startActivity(H5GameActivity.class);
                     break;
                 case 2:
                     //点击激励视频广告
+                    MobclickAgent.onEvent(getContext(), "event_rewardADShow");
                     AdUtils.initRewardVideoAd(getActivity(), () -> {
                         //点击广告
                         mPresenter.randGetCard(getAppToken(), "4");
                     });
                     break;
                 case 3:
+
+
                     //观看视频
                     AdUtils.initRewardVideoAd(getActivity(), () -> {
                         //点击广告
@@ -125,6 +131,8 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
                     });
                     break;
                 case 4:
+                    MobclickAgent.onEvent(getContext(), "event_FriendScan");
+
                     $startActivity(ShareThemActivity.class);
                     break;
 
@@ -233,6 +241,7 @@ public class TaskHallFragment extends MvpFragment<TaskHallPresenter, TaskHallCon
 
     @Override
     public void signSuccess(MySignInfo info) {//签到成功业务处理
+        MobclickAgent.onEvent(getContext(), "event_signHandle");
         mPresenter.getTaskInfo(getAppToken());
         new ScrapingCardSuccessPopupWindow.Build(getContext(), list_ad)
                 .setWindowData(info.getMsg(), "")

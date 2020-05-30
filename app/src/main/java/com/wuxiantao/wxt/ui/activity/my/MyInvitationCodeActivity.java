@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.ShareAdBean;
 import com.wuxiantao.wxt.bean.SharePicBean;
@@ -51,6 +52,7 @@ public class MyInvitationCodeActivity extends MvpActivity<MyInvitationPresenter,
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "event_MyCode");
         setStatusBar();
         mPresenter.getSharePic(getAppToken());
         setOnClikListener(mine_fansi_back, iv_invateCode, img_invateCode_share);

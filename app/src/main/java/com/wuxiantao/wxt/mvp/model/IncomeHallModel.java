@@ -3,6 +3,7 @@ package com.wuxiantao.wxt.mvp.model;
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.bean.AreaChangeInfoBean;
 import com.wuxiantao.wxt.bean.DragonStatusInfoBean;
+import com.wuxiantao.wxt.bean.EnrollBonusBean;
 import com.wuxiantao.wxt.bean.GameMessageBean;
 import com.wuxiantao.wxt.bean.IncomeHallBean;
 import com.wuxiantao.wxt.bean.IncreaseCountBean;
@@ -114,7 +115,7 @@ public class IncomeHallModel extends BaseModel {
     }
 
     //开始分红
-    public void enrollBonus(BaseObserver<List> observer, String token, String type) {
+    public void enrollBonus(BaseObserver<EnrollBonusBean> observer, String token, String type) {
         HttpManager.newInstance()
                 .createService(CommissionService.class)
                 .enrollBonus(token, type)

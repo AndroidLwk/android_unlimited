@@ -12,6 +12,7 @@ import com.kf5.sdk.system.internet.HttpRequestCallBack;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.HelpCenterRcvViewAdapter;
 import com.wuxiantao.wxt.bean.HelpCenterBean;
@@ -64,6 +65,8 @@ public class HelpCenterActivity extends MvpActivity<HelpCenterPresenter, HelpCen
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "event_HelpCenterEnter");
+
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.white));
         StatusBarUtil.setStatusBarDarkTheme(this, true);
         initRefreshLoadMore();

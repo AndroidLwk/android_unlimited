@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.MymemberAdapter;
 import com.wuxiantao.wxt.bean.VipStatusInfoBean;
@@ -210,6 +211,7 @@ public class MyMemberActivity extends MvpActivity<MyMemberPresenter, MyMemberCon
     //支付成功
     @Override
     public void onOrderPaySuccess(String msg) {
+        MobclickAgent.onEvent(this, "event_GoodsView");
         showOnlyConfirmDialog(msg, (dialog, which) -> mPresenter.getVipStatusInfo(getAppToken()));
     }
 

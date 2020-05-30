@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.MerchandiseImgRecViewAdapter;
 import com.wuxiantao.wxt.bean.MerchandiseDetailBean;
@@ -39,6 +40,8 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static com.wuxiantao.wxt.config.Constant.SHIFT_ID;
@@ -108,6 +111,9 @@ public class MerchandiseDetailsActivity extends MvpActivity<MerchandiseDetailPre
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void initView(Bundle savedInstanceState) {
+        Map<String, Object> detail = new HashMap<String, Object>();
+        detail.put("event_GoodsView", "popular");//自定义参数：音乐类型，值：流行
+        MobclickAgent.onEventObject(this, "event_GoodsView", detail);
         setStatusBar();
         loadingDialog = new LoadingDialog.Build(this).build();
         Bundle bundle = getBundle();

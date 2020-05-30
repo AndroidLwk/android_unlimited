@@ -1,13 +1,12 @@
 package com.wuxiantao.wxt.mvp.model;
 
 import com.wuxiantao.wxt.app.BaseApplication;
+import com.wuxiantao.wxt.bean.EnrollBonusBean;
 import com.wuxiantao.wxt.bean.MyCardInfo;
 import com.wuxiantao.wxt.net.base.BaseObserver;
 import com.wuxiantao.wxt.net.helper.RxHelper;
 import com.wuxiantao.wxt.net.http.HttpManager;
 import com.wuxiantao.wxt.net.service.CommissionService;
-
-import java.util.List;
 
 public class ScrapingCardFragmentModel extends BaseModel {
     //刮刮卡页面信息
@@ -20,7 +19,7 @@ public class ScrapingCardFragmentModel extends BaseModel {
     }
 
     //开始分红
-    public void enrollBonus(BaseObserver<List> observer, String token, String type) {
+    public void enrollBonus(BaseObserver<EnrollBonusBean> observer, String token, String type) {
         HttpManager.newInstance()
                 .createService(CommissionService.class)
                 .enrollBonus(token, type)

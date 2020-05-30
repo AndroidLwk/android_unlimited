@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.donkingliang.labels.LabelsView;
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.HistoryRecordingBean;
 import com.wuxiantao.wxt.bean.SearchHotBean;
@@ -63,6 +64,7 @@ public class SearchActivity  extends MvpActivity<SearchPresenter, SearchContract
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "event_search");
         StatusBarUtil.setStatusBarColor(this,getResources().getColor(R.color.whitesmoke));
         StatusBarUtil.setStatusBarDarkTheme(this,true);
         mPresenter.getSearchHot();

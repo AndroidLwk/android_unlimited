@@ -111,14 +111,15 @@ public class BaseApplication extends MultiDexApplication implements Application.
          * 参数五：Push推送业务的secret 填充Umeng Message Secret对应信息（需替换）
          */
         // 打开统计SDK调试模式
-        UMConfigure.setLogEnabled(true);
-        UMConfigure.init(this, Api.UM_APPKEY, "Umeng", UMConfigure.DEVICE_TYPE_PHONE, null);
+        // UMConfigure.setLogEnabled(true);
+        UMConfigure.init(this, Api.UM_APPKEY, "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+
+//        // 选用AUTO页面采集模式[统计]
+        MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.AUTO);
         // 支持在子进程中统计自定义事件
         UMConfigure.setProcessEvent(true);
-        // 选用AUTO页面采集模式[统计]
-        MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.AUTO);
-        //程序退出时，用于保存统计数据的API
-        MobclickAgent.onKillProcess(this);
+//        //程序退出时，用于保存统计数据的API
+//        MobclickAgent.onKillProcess(this);
         //获取消息推送代理示例
 //        PushAgent mPushAgent = PushAgent.getInstance(this);
 //        //注册推送服务，每次调用register方法都会回调该接口

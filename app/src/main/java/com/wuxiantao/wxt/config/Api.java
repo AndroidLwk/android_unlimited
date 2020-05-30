@@ -400,7 +400,8 @@ public class Api {
     //游戏支付 type类型:1.支付宝 2.微信 3.分享
     public static final String H5_WE_CHAT_PAY = "http://chaoren.haowusong.com/api/pay";
     //友盟APPKEY
-    public static final String UM_APPKEY = "5e614e02895cca527e000862";
+    //public static final String UM_APPKEY = "5e614e02895cca527e000862";
+    public static final String UM_APPKEY = "5ed07dffdbc2ec081c04d617";
     //友盟 Push推送业务的secret
     public static final String UM_MESSAGE_SECRECT = "0daccf39fffcbbab9413d9d98ee324eb";
     //刮刮卡页面信息

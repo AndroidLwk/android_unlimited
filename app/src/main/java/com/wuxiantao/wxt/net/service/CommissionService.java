@@ -7,6 +7,7 @@ import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.CheckInInfoBean;
 import com.wuxiantao.wxt.bean.CommissionWithdrawInfoBean;
 import com.wuxiantao.wxt.bean.ComposeHeroBean;
+import com.wuxiantao.wxt.bean.EnrollBonusBean;
 import com.wuxiantao.wxt.bean.ExchangeBean;
 import com.wuxiantao.wxt.bean.KuorongInfoBean;
 import com.wuxiantao.wxt.bean.MyBoxInfo;
@@ -111,7 +112,7 @@ public interface CommissionService {
 
     @POST(ENROLL_BONUS)
     @FormUrlEncoded
-    Observable<BaseResponse<List>> enrollBonus(@Field("token") String token, @Field("type") String type);
+    Observable<BaseResponse<EnrollBonusBean>> enrollBonus(@Field("token") String token, @Field("type") String type);
 
     @POST(TASK_INFO)
     @FormUrlEncoded

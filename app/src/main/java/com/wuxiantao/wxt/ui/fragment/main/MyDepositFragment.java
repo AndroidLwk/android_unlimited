@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.MyMoneyCashBean;
 import com.wuxiantao.wxt.imgloader.GlideImgManager;
@@ -125,6 +126,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
 
     @Override
     public void initView() {
+        MobclickAgent.onEvent(getContext(), "event_InformationPage");
         setOnClikListener(sbt_moreInfo, tv_mine_member, tv_mine_set, tv_blanseValue, tv_officialGroup, tv_money_title, tv_crashMoney_title, tv_crashValue,
                 tv_mine_friend, tv_mine_code, tv_promotioninvitation, tv_mine_second_pass, tv_mine_freedback, rt_personInfo, ll_mine_scan);
         loadingDialog = createLoadingDialog();
@@ -180,6 +182,7 @@ public class MyDepositFragment extends MvpFragment<MinePresenter, MineContract.I
                 $startActivity(MineBalanceActivity.class);
                 break;
             case R.id.tv_mine_member:
+                MobclickAgent.onEvent(getContext(), "event_vipSkip");
                 $startActivity(MyMemberActivity.class);
                 break;
             case R.id.tv_mine_friend:

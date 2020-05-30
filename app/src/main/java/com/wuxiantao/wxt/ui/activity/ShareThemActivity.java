@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.InviteRuleRecViewAdapter;
 import com.wuxiantao.wxt.bean.InviteFriendNumBean;
@@ -136,6 +137,8 @@ public class ShareThemActivity extends MvpActivity<ShareThemPresenter, ShareThem
                 break;
             //查看更多主题
             case R.id.share_them_more:
+                MobclickAgent.onEvent(this, "event_ThemeOfShareSelectMore");
+
                 $startActivityForResult(MoreThemActivity.class, REQUEST_SHARE_MORE_THEM);
                 break;
             //分享专属海报 生成二维码

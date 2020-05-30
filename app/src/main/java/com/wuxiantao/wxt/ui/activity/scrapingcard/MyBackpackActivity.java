@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.FrameLayout;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.MyBoxTypeAdapter;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
@@ -26,6 +27,7 @@ import com.wuxiantao.wxt.ui.fragment.mybackpack.BackPackSkinCardFragment;
 import com.wuxiantao.wxt.ui.fragment.mybackpack.BackPackTemapFragment;
 import com.wuxiantao.wxt.ui.fragment.mybackpack.BackpackScreptCardFragment;
 import com.wuxiantao.wxt.ui.title.CNToolbar;
+import com.wuxiantao.wxt.utils.AppUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -55,6 +57,8 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "event_myPackage");
+        AppUtils.getTestDeviceInfo(this);
         EventBus.getDefault().register(this);
         setStatusBar();
         mPresenter.isSetPayPassword(getAppToken());
@@ -72,7 +76,6 @@ public class MyBackpackActivity extends MvpActivity<MyBackpackPrewenter, MyBackp
             changeFragment(potion, bundle);//切换界面
         });
     }
-
     @Override
     protected MyBackpackPrewenter CreatePresenter() {
         return new MyBackpackPrewenter();

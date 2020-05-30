@@ -1,6 +1,7 @@
 package com.wuxiantao.wxt.mvp.presenter;
 
 import com.wuxiantao.wxt.R;
+import com.wuxiantao.wxt.bean.EnrollBonusBean;
 import com.wuxiantao.wxt.bean.MyCardInfo;
 import com.wuxiantao.wxt.bean.MySignInfo;
 import com.wuxiantao.wxt.bean.ScrapingCardBean;
@@ -67,9 +68,9 @@ public class ScrapingCardFragmentPresenter extends BasePresenter<ScrapingCardFra
         if (view == null) {
             view = getMvpView();
         }
-        BaseObserver<List> observer = new BaseObserver<List>() {
+        BaseObserver<EnrollBonusBean> observer = new BaseObserver<EnrollBonusBean>() {
             @Override
-            public void onSuccess(List bean) {
+            public void onSuccess(EnrollBonusBean bean) {
                 view.enrollBonusSuccess("分红成功");
             }
 

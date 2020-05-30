@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.ScrapingCardFragmentOneAdapter;
 import com.wuxiantao.wxt.adapter.recview.ScrapingCardFragmentThreeAdapter;
@@ -91,6 +92,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
 
     @Override
     public void initView() {
+        tv_dating.setVisibility(AppUtils.isVisiableView() ? View.VISIBLE : View.GONE);
         lt_scardget.setVisibility(AppUtils.isVisiableView() ? View.VISIBLE : View.GONE);
         setOnClikListener(tv_dating, iv_openCard, tv_mypack,
                 tv_more, tv_my_heroscroll, tv_help);
@@ -117,6 +119,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
         mAdapter_b.setOnItemBtnClickListener(potion -> {
             switch (potion) {
                 case 0://签到
+                    MobclickAgent.onEvent(getContext(), "event_ToSign");
                     MenuActivity menuActivity = (MenuActivity) getActivity();
                     menuActivity.changeFragment(3, null);
                     menuActivity.menu_tab_income_hall.setChecked(true);
@@ -125,6 +128,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
                     $startActivity(MyInvitationCodeActivity.class);
                     break;
                 case 2://分享无限淘
+                    MobclickAgent.onEvent(getContext(), "event_FriendAid");
                     $startActivity(ShareThemActivity.class);
                     break;
                 case 3://在线游戏
@@ -178,6 +182,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
                 $startActivity(PointToCardActivity.class);
                 break;
             case R.id.tv_more:
+                MobclickAgent.onEvent(getContext(), "event_Invite");
                 MenuActivity menuActivity = (MenuActivity) getActivity();
                 menuActivity.changeFragment(3, null);
                 menuActivity.menu_tab_income_hall.setChecked(true);
@@ -187,6 +192,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
                 $startActivity(MyBackpackActivity.class);
                 break;
             case R.id.tv_my_heroscroll:
+                MobclickAgent.onEvent(getContext(), "event_toyLaw");
                 $startActivity(HeroScrollActivity.class);
                 break;
             case R.id.tv_help:
@@ -258,6 +264,7 @@ public class ScrapingCardFragment extends MvpFragment<ScrapingCardFragmentPresen
 
     @Override
     public void enrollBonusSuccess(String msg) {
+        MobclickAgent.onEvent(getContext(), "event_BonusExperience");
         mPresenter.getMyCardInfo(getAppToken());
         showOnlyConfirmDialog(msg);
     }

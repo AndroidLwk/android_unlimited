@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.AreaChangeInfoBean;
 import com.wuxiantao.wxt.bean.DragonStatusInfoBean;
+import com.wuxiantao.wxt.bean.EnrollBonusBean;
 import com.wuxiantao.wxt.bean.GameMessageBean;
 import com.wuxiantao.wxt.bean.IncomeHallBean;
 import com.wuxiantao.wxt.bean.IncreaseCountBean;
@@ -289,9 +290,9 @@ public class IncomeHallPresenter extends BasePresenter<IncomeHallContract.IIncom
         if (view == null) {
             view = getMvpView();
         }
-        BaseObserver<List> observer = new BaseObserver<List>() {
+        BaseObserver<EnrollBonusBean> observer = new BaseObserver<EnrollBonusBean>() {
             @Override
-            public void onSuccess(List bean) {
+            public void onSuccess(EnrollBonusBean bean) {
                 view.enrollBonusSuccess("分红成功");
             }
 

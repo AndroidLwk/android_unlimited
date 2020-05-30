@@ -143,7 +143,12 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
     //九宫个菜单布局
     private void initGridLayout() {
         TaoBaoFeaturedMenuRecViewAdapter adapter = new TaoBaoFeaturedMenuRecViewAdapter(getContext(), initList());
-        int spanCount = 5;
+        int spanCount = 0;
+        if (AppUtils.isVisiableView()) {
+            spanCount = 5;
+        } else {
+            spanCount = 3;
+        }
         GridLayoutManager manager = new GridLayoutManager(getContext(), spanCount);
         GridSpacingItemDecoration decoration = new GridSpacingItemDecoration(spanCount, 20, true);
         taobao_featured_grid_rv.setLayoutManager(manager);
@@ -180,8 +185,15 @@ public class TaoBaoFeaturedFragment extends MvpFragment<TaoBaoFeaturedPresenter,
 
     private List<TaoBaoFeaturedMenuBean> initList() {
         List<TaoBaoFeaturedMenuBean> list = new ArrayList<>();
-        String[] name = getResources().getStringArray(R.array.main_taobao_featured_title);
-        TypedArray ta = getResources().obtainTypedArray(R.array.main_taobao_featured_icon);
+        String[] name = null;
+        TypedArray ta = null;
+        if (AppUtils.isVisiableView()) {
+            name = getResources().getStringArray(R.array.main_taobao_featured_title);
+            ta = getResources().obtainTypedArray(R.array.main_taobao_featured_icon);
+        } else {
+            name = getResources().getStringArray(R.array.main_taobao_featured_title_b);
+            ta = getResources().obtainTypedArray(R.array.main_taobao_featured_icon_b);
+        }
         //获取图片资源
         int[] icons = new int[ta.length()];
         for (int i = 0; i < ta.length(); i++) {

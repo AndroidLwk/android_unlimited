@@ -8,6 +8,12 @@
         <item>邀请码</item>
         <item>交易大厅</item>
     </string-array>
+    <string-array name="main_taobao_featured_title_b">
+        <item>推广赚钱</item>
+        <item>会员中心</item>
+        <item>邀请码</item>
+    </string-array>
+
     <string-array name="main_taobao_featured_icon">
         <item>@drawable/main_item_invite_icon</item>
         <item>@drawable/main_item_change_icon</item>
@@ -16,7 +22,11 @@
         <item>@drawable/main_item_transaction_icon</item>
     </string-array>
 
-
+    <string-array name="main_taobao_featured_icon_b">
+        <item>@drawable/main_item_invite_icon</item>
+        <item>@drawable/main_item_favorites</item>
+        <item>@drawable/main_item_invitation</item>
+    </string-array>
     <string-array name="server_protocol_title">
         <item>用户协议</item>
         <item>隐私政策</item>

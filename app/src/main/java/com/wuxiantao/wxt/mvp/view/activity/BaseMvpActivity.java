@@ -19,7 +19,6 @@ import android.widget.EditText;
 
 import com.ssm.sp.SPSecuredUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.app.BaseApplication;
 import com.wuxiantao.wxt.count_down.CountDownCallBack;
 import com.wuxiantao.wxt.count_down.CountDownManager;
@@ -271,14 +270,12 @@ public abstract class BaseMvpActivity<P extends MvpPresenter,V extends MvpView> 
     protected void onResume() {
         super.onResume();
         mActyvityDelegate.onResume();
-        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mActyvityDelegate.onPause();
-        MobclickAgent.onPause(this);
     }
 
     @Override

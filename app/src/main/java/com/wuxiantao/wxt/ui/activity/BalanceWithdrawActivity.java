@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.bean.WithdrawBean;
 import com.wuxiantao.wxt.adapter.recview.BalanceWithdrawRecViewAdapter;
@@ -368,6 +369,8 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
         switch (event.getType()) {
             //微信绑定成功
             case UPDATE_WECHAT_BINGDING_SUCCESS:
+
+                MobclickAgent.onEvent(this, "getWithdrawInfo");
                 mPresenter.getWithdrawInfo(getAppToken());
                 break;
             //微信绑定失败
@@ -401,6 +404,8 @@ public class BalanceWithdrawActivity extends MvpActivity<ApplyWithdrawPresenter,
     //提现申请成功
     @Override
     public void withdrawSuccess(String msg) {
+        MobclickAgent.onEvent(this, "event_ExtractAccount");
+
         showOnlyConfirmDialog(msg, (dialog, which) -> {
             EventBus.getDefault().post(new MessageEvent(UPDATE_MINE_BALANCE));
             finish();

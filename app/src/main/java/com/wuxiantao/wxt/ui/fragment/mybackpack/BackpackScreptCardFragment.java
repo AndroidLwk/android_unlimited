@@ -10,6 +10,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.adapter.recview.MyBackpackRecRecViewAdapter;
 import com.wuxiantao.wxt.bean.BoxTypeBean;
@@ -32,7 +33,9 @@ import com.wuxiantao.wxt.ui.popupwindow.TransferScratchCardPopupWindow;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.wuxiantao.wxt.config.Constant.IS_SETPAY_PASS;
 import static com.wuxiantao.wxt.config.Constant.PAY_TYPE_ALI;
@@ -210,6 +213,9 @@ public class BackpackScreptCardFragment extends MvpFragment<MyBackpackPrewenter,
 
     @Override
     public void useCardSuccess(String msg) {
+        Map<String, Object> detail = new HashMap<String, Object>();
+        detail.put("cardname", msg);//自定义参数：背包卡片使用
+        MobclickAgent.onEventObject(getContext(), "event_cardUse", detail);
         mPresenter.myBox(getAppToken(), page, pid);
         showOnlyConfirmDialog(msg);
     }
@@ -271,6 +277,7 @@ public class BackpackScreptCardFragment extends MvpFragment<MyBackpackPrewenter,
 
     @Override
     public void onOrderPaySuccess(String msg) {
+        MobclickAgent.onEvent(getContext(), "event_cardGive");
         showOnlyConfirmDialog(msg, (dialog, which) -> mPresenter.myBox(getAppToken(), page, pid));
     }
 

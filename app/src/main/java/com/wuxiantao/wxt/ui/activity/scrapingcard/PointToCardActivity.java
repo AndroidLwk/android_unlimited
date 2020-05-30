@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.plattysoft.leonids.ParticleSystem;
+import com.umeng.analytics.MobclickAgent;
 import com.wuxiantao.wxt.R;
 import com.wuxiantao.wxt.bean.CardInfoBean;
 import com.wuxiantao.wxt.bean.MyLuckyInfoBean;
@@ -58,6 +59,7 @@ public class PointToCardActivity extends MvpActivity<PointToCardPresenter, Point
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "event_cardScrapt");
         if (AppUtils.isVisiableView()) {
             new Thread(() -> {
                 list_ad = AdUtils.initAd(this);
