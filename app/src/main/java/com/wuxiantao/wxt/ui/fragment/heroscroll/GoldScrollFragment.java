@@ -52,6 +52,7 @@ public class GoldScrollFragment extends MvpFragment<HeroScrollPresenter, HeroScr
         recylerview_two.setLayoutManager(layoutManager);
         mAdapter_two = new HeroScrollTwoAdapter(getContext(), mData_two);
         mAdapter_two.setOnItemClickListener((heroScrolllBean, potion) -> {
+            this.id = heroScrolllBean.getId();
             mData_one.clear();
             mData_one.addAll(heroScrolllBean.getChild());
             mAdapter_one.notifyDataSetChanged();
