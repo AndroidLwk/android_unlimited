@@ -81,14 +81,14 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
         client.setOnInterceptUrlListener(new GameWebViewClient.OnInterceptUrlListener() {
             //1支付宝支付 2微信支付
             @Override
-            public void onCreateOrderPay(int type, int goods_id) {
+            public void onCreateOrderPay(int type, int goods_id, int qu_id) {
                 String account = getUserInfo(GAME_ACCOUNT);
-                String srvid = getUserInfo("srvid");
+                //String srvid = getUserInfo("srvid");
                 Map<String, Object> map = new HashMap<>();
                 map.put("token", account);
                 map.put("type", type);
                 map.put("goods_id", goods_id);
-                map.put("srvid", srvid);
+                map.put("qu_id", qu_id);
                 mPresenter.onOrderCreate(map, type == 1 ? -1 : -2);
             }
 
@@ -178,14 +178,14 @@ public class H5GameActivity extends MvpActivity<H5GamePresenter, H5GameContract.
     @Override
     protected void onPause() {
         super.onPause();
-      //  MobclickAgent.onPageEnd("H5GameActivity");
+        //  MobclickAgent.onPageEnd("H5GameActivity");
         h5_game_web_view.webViewOnPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-       // MobclickAgent.onPageStart("H5GameActivity");
+        // MobclickAgent.onPageStart("H5GameActivity");
         h5_game_web_view.webViewOnResume();
 
     }

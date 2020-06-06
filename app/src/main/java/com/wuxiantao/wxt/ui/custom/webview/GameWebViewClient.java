@@ -23,12 +23,12 @@ import static com.wuxiantao.wxt.config.Api.H5_WE_CHAT_PAY;
  * Date:20-1-7 下午6:08
  * Description:${DESCRIPTION}
  */
-public  class GameWebViewClient  extends BaseWebViewClient {
+public class GameWebViewClient extends BaseWebViewClient {
 
     public OnInterceptUrlListener listener;
     private LoadingDialog loadingDialog;
 
-    public GameWebViewClient(ProgressBar progressBar,Context context) {
+    public GameWebViewClient(ProgressBar progressBar, Context context) {
         super(progressBar);
         WeakReference<Context> reference = new WeakReference<>(context);
         loadingDialog = new LoadingDialog.Build(reference.get()).build();
@@ -37,7 +37,7 @@ public  class GameWebViewClient  extends BaseWebViewClient {
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
-        if (loadingDialog != null){
+        if (loadingDialog != null) {
             loadingDialog.showLoadingDialog();
         }
     }
@@ -45,7 +45,7 @@ public  class GameWebViewClient  extends BaseWebViewClient {
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
-        if (loadingDialog != null){
+        if (loadingDialog != null) {
             loadingDialog.dismissLoadingDialog();
         }
     }
@@ -53,22 +53,22 @@ public  class GameWebViewClient  extends BaseWebViewClient {
     @Override
     public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
         super.onReceivedError(view, request, error);
-        if (loadingDialog != null){
+        if (loadingDialog != null) {
             loadingDialog.dismissLoadingDialog();
         }
     }
 
     @Override
     public boolean onInterceptUrl(WebView webView, String url) {
-        if (url.contains("srvid")){
+        if (url.contains("srvid")) {
             String[] array = url.split("&");
             try {
                 String srvid = array[1];
-                if (listener != null){
-                    srvid = srvid.substring(srvid.indexOf('=')).replaceAll("=","").trim();
+                if (listener != null) {
+                    srvid = srvid.substring(srvid.indexOf('=')).replaceAll("=", "").trim();
                     listener.onSaveSrvid(srvid);
                 }
-            }catch (IndexOutOfBoundsException e){
+            } catch (IndexOutOfBoundsException e) {
                 listener.onError("区id获取失败");
                 e.printStackTrace();
             }
@@ -77,13 +77,14 @@ public  class GameWebViewClient  extends BaseWebViewClient {
             String[] array = url.split("&");
             int type = NumberFormatUtils.StrFindInteger(array[0]);
             int goods_id = NumberFormatUtils.StrFindInteger(array[1]);
+            int qu_id = NumberFormatUtils.StrFindInteger(array[2]);
             switch (type) {
                 //支付宝支付
                 case 1:
                     //微信支付
                 case 2:
                     if (listener != null) {
-                        listener.onCreateOrderPay(type, goods_id);
+                        listener.onCreateOrderPay(type, goods_id, qu_id);
                     }
                     break;
                 //微信分享
@@ -104,9 +105,12 @@ public  class GameWebViewClient  extends BaseWebViewClient {
 
 
     public interface OnInterceptUrlListener {
-        void onCreateOrderPay(int type, int goods_id);
+        void onCreateOrderPay(int type, int goods_id, int qu_id);
+
         void onError(String error);
+
         void onSaveSrvid(String id);
+
         void onJumpShare();
     }
 
