@@ -83,7 +83,6 @@
                         android:drawableTop="@drawable/main_scrapcard_order"
                         android:drawablePadding="@dimen/dp_4"
                         android:gravity="center"
-
                         android:text="@string/pointtocard_text21"
                         android:textColor="@color/color_999"
                         android:textSize="@dimen/sp_12" />

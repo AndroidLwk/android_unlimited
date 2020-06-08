@@ -61,7 +61,7 @@ public class HelpCenterActivity extends MvpActivity<HelpCenterPresenter, HelpCen
     private LoadingDialog loadingDialog;
     private int page = 1;
     private HelpCenterRcvViewAdapter adapter;
-    private List<HelpCenterBean> list;
+    private List<HelpCenterBean>  list;
 
     @Override
     public void initView(Bundle savedInstanceState) {
